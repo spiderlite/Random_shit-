@@ -143,10 +143,14 @@ class MainActivity : FlutterActivity() {
 
     private fun ensurePermissions(result: MethodChannel.Result) {
         val wanted = mutableListOf<String>()
+        val prefs = getSharedPreferences("haul", MODE_PRIVATE)
+        // Notifications are a nicety: ask once, never nag.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-            !granted(Manifest.permission.POST_NOTIFICATIONS)
+            !granted(Manifest.permission.POST_NOTIFICATIONS) &&
+            !prefs.getBoolean("askedNotifications", false)
         ) {
             wanted += Manifest.permission.POST_NOTIFICATIONS
+            prefs.edit().putBoolean("askedNotifications", true).apply()
         }
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q &&
             !granted(Manifest.permission.WRITE_EXTERNAL_STORAGE)

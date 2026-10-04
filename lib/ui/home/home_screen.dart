@@ -97,6 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
       _toast?.show(ToastData('No links found in that', icon: Icons.link_off_rounded));
       return false;
     }
+    // Ask for notification (and, on old Android, storage) access in
+    // context — the first time something is actually downloading.
+    app.bridge.ensurePermissions();
     final r = app.queue.addUrls(links);
     _clipSeen.addAll(links.map(canonicalKey));
     if (_clipLinks.isNotEmpty) setState(() => _clipLinks = const []);
@@ -121,7 +124,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ));
     }
     HapticFeedback.lightImpact();
-    app.bridge.ensurePermissions();
     return r.added > 0 || r.duplicates > 0;
   }
 

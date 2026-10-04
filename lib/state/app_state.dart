@@ -89,7 +89,6 @@ class AppState extends ChangeNotifier {
     _phase = Phase.ready;
     if (!_settings.onboarded) update((s) => s.copyWith(onboarded: true));
     notifyListeners();
-    bridge.ensurePermissions();
     queue.start();
   }
 
