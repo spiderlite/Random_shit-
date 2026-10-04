@@ -1,8 +1,8 @@
 diff --git a/data/event_scripts.s b/data/event_scripts.s
-index 88d7594..fb4c95e 100644
+index 88d7594..a1449df 100644
 --- a/data/event_scripts.s
 +++ b/data/event_scripts.s
-@@ -345,6 +345,10 @@ gStdScriptsEnd::
+@@ -345,6 +345,12 @@ gStdScriptsEnd::
  	.include "data/maps/PalletTown_PlayersHouse_2F/scripts.inc"
  	.include "data/maps/PalletTown_RivalsHouse/scripts.inc"
  	.include "data/maps/PalletTown_ProfessorOaksLab/scripts.inc"
@@ -10,10 +10,12 @@ index 88d7594..fb4c95e 100644
 +	.include "data/maps/PalletTown_House2/scripts.inc"
 +	.include "data/maps/PalletTown_House3/scripts.inc"
 +	.include "data/maps/PalletTown_House4/scripts.inc"
++	.include "data/maps/PalletTown_House5/scripts.inc"
++	.include "data/maps/PalletTown_House6/scripts.inc"
  	.include "data/maps/ViridianCity_House/scripts.inc"
  	.include "data/maps/ViridianCity_Gym/scripts.inc"
  	.include "data/maps/ViridianCity_School/scripts.inc"
-@@ -671,6 +675,10 @@ gStdScriptsEnd::
+@@ -671,6 +677,12 @@ gStdScriptsEnd::
  	.include "data/maps/PalletTown_PlayersHouse_2F/text.inc"
  	.include "data/maps/PalletTown_RivalsHouse/text.inc"
  	.include "data/maps/PalletTown_ProfessorOaksLab/text.inc"
@@ -21,25 +23,29 @@ index 88d7594..fb4c95e 100644
 +	.include "data/maps/PalletTown_House2/text.inc"
 +	.include "data/maps/PalletTown_House3/text.inc"
 +	.include "data/maps/PalletTown_House4/text.inc"
++	.include "data/maps/PalletTown_House5/text.inc"
++	.include "data/maps/PalletTown_House6/text.inc"
  	.include "data/maps/ViridianCity_House/text.inc"
  	.include "data/maps/ViridianCity_Gym/text.inc"
  	.include "data/maps/ViridianCity_School/text.inc"
 diff --git a/data/layouts/PalletTown/map.bin b/data/layouts/PalletTown/map.bin
-index f2113394f22d6f0180f364071301b5ed06588773..278ddd6c2cad260df89832697c72db49425fbd40 100644
+index f2113394f22d6f0180f364071301b5ed06588773..f1a8d5b105cd4f7e6275fbcea4fbb1ca0733f984 100644
 GIT binary patch
-literal 1760
-zcmbtVXKxch6a;6Py-*SkI|;=OA3~9U52ts3klv485{}-HsG<wgJEr#@z;r?hJ@nga
-zyL)lqB=oem&!gG7@$+b%X9bo|wFa}%G=>^eaSJTR>evuAG{qXu#?m+%mVzrZ^Gx^{
-z@7IKI4?YFYi8LujC({(KpGwnWBx0(p>Hc@hu?EkFLo;Y5&7#>f$LnRyrFk@;7AVL<
-zYNi%iq#zFIESKs-ze0C0mS8ECVL7C#Lo2WntFcDG)?yvjV}pVuS+3@H6E<TDwql!h
-zVmo$VCw3{=ZtTHc>{Aejbe8J3Nc(XB2XP38l@mwkD30McPQ+M|PT~|!<4lY=lw_%X
-zOE`;jIFAdssGPWj%UFdgxEf<6T*GzTz|9zOD9KX&sx$rHUiF(+>lWP(>ki%3G9eX`
-ze(%wJpV>+e@DPvC+UZ=G9^*+^Pw@=T=>@$ES+8QY?pJ28jb7so-lC1l^bSE~Si5)5
-zrT6#{)<=B8XMDj|Z_;}9b-yyH9r%Xt_<;_%#H^r9>!+{#3%}8gcjp;i#ToCx!8uQ6
-zU-v6BXn0If2A8@<s9Vi@@?Lx+dh<TKhS%D`9Q5p~ev4XC`*M@_^VD6cV%3&ui6#7I
-zZE+vu?5L~bVh+jdtA0zJk}4brI>Fr{)XG$E%W9_ve-6p)tA1rl{?_%k2XIjtCY}Sm
-zH&rU>caY*j`iZ)Hw#jTV3)xB<l`!cym|!%?Xphhl=18wbnbCXxwKv-0KSkWXHCC<F
-V)iSI|*R%}p_ls6ne1VJm_YbpN?+X9`
+literal 2640
+zcmbtV_iqz17=_e4r;L^(9gL&}l_3E?L|^_v_70<L!rn+su|?RMviB|!Hf59@_BlSE
+z?aNg;34L<T_xyeDUaa@oNtR;CNTZpJp|R8yDL2LHSUnrchD8`7*f<(b!z1Jh&Lk5$
+zCX`~L_mpq)cM?tZ(J3_5olm3bKB6+stQn>MRL2@!9a)-5vuHNWp;mXUV=m33`Lw`5
+z7SbYGOiK(TOLkU{8a%y%cPW-(IaXjLG;5YtVKvrboq?^#25iJ80|{p3EWKN>72B{K
+zJFJSG*oEELV_<u+5BqVzK(b_KnR@ed5QlIWM{v}rI7Y{D0w;0G$MSR<XK)thd?ZW3
+zEK_eA&f@|u;u0<!6<2T-Yj6$MeXI>Pa1*z1+efk#%rf<wd-}g~Q*TtRJ9O8JdvxFO
+zgk}ipeLxROneFrlkMRWUWpxF5if3Lt#|yl~E4=o0<c*(g>(w6YptpF3_voMkeSnM@
+z>vZdK^bw!D_>3?3if{Pt^4i|F^=hXU@dH2c3q|CJrDZtj-zDBZ_=|45JCE@y&Ug<F
+z&Uw)LwqEVQxSJ^=&NXk`<E`dBc`v>hy?GyA!)v+R2iyCm-n`}1zTDycT=pDQvFfyw
+z7DMPwWW;$;mr=8NF7_eleN%5+nNx*g$s^Ae!B(J#jE+ufEbT+k`=(y)lHkmAMgPnI
+zE+WPTy1#?mFNKAvH*8&E9ig@1sH}*lx9E3ljOnjyRAXuuO|No?s*=xeRIY{TRb7+x
+z9HiNlM>Ha4I!|@0aFMtJ)qP=iO{(M|n<MN^<>_t}yyksjca3yV7?X{uJl(D3dhM>U
+z>npwKZVl=Uc1<NFbKSl%?EMXPjagS|Zr>Qe{jF3TbzSRiGP+*(znV2CTAUVVa3VUd
+w@`F6F)XAlu3LWW;a$~fkzEkNrB%}OW!)jSqBc4{gPCD+MmuhsCFL0svAIN$V)c^nh
 
 literal 960
 zcmZuvSxdt}7=*eE?TfOd>PxE+^#Ju@`Tn8zNxh91-c|*ziU*4Kt$3h5`E%Sa*>=-S
@@ -51,20 +57,22 @@ z+~{BNhCl4$9Uu6t;9n&YN-7@qFK;SGBToKcKR9>XBcBJ0;E%%j-G;`fAB>pb>ww=t
 yG5=}F=_i?$S^1lE-{xoAk2JXxs!g_QbV!@Tu9i#vSF0Mu6EEqdUfU_|bN+vQvI_11
 
 diff --git a/data/layouts/layouts.json b/data/layouts/layouts.json
-index 41d0eb1..0f6de7c 100644
+index 41d0eb1..5b1fcf5 100644
 --- a/data/layouts/layouts.json
 +++ b/data/layouts/layouts.json
-@@ -741,7 +741,7 @@
+@@ -741,8 +741,8 @@
      {
        "id": "LAYOUT_PALLET_TOWN",
        "name": "PalletTown_Layout",
 -      "width": 24,
+-      "height": 20,
 +      "width": 44,
-       "height": 20,
++      "height": 30,
        "border_width": 2,
        "border_height": 2,
+       "primary_tileset": "gTileset_General",
 diff --git a/data/maps/PalletTown/map.json b/data/maps/PalletTown/map.json
-index 802d32d..fd456c2 100644
+index 802d32d..81bd03f 100644
 --- a/data/maps/PalletTown/map.json
 +++ b/data/maps/PalletTown/map.json
 @@ -16,12 +16,12 @@
@@ -91,15 +99,17 @@ index 802d32d..fd456c2 100644
        "y": 10,
        "elevation": 3,
        "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-@@ -45,7 +45,7 @@
+@@ -45,8 +45,8 @@
        "local_id": "LOCALID_PALLET_FAT_MAN",
        "type": "object",
        "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
 -      "x": 13,
+-      "y": 17,
 +      "x": 23,
-       "y": 17,
++      "y": 27,
        "elevation": 3,
        "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+       "movement_range_x": 6,
 @@ -60,7 +60,7 @@
        "local_id": "LOCALID_PALLET_PROF_OAK",
        "type": "object",
@@ -109,7 +119,7 @@ index 802d32d..fd456c2 100644
        "y": 8,
        "elevation": 3,
        "movement_type": "MOVEMENT_TYPE_FACE_UP",
-@@ -70,35 +70,91 @@
+@@ -70,35 +70,189 @@
        "trainer_sight_or_berry_tree_id": "0",
        "script": "0x0",
        "flag": "FLAG_HIDE_OAK_IN_PALLET_TOWN"
@@ -140,6 +150,90 @@ index 802d32d..fd456c2 100644
 +      "trainer_type": "TRAINER_TYPE_NONE",
 +      "trainer_sight_or_berry_tree_id": "0",
 +      "script": "PalletTown_EventScript_PineOldMan",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
++      "x": 14,
++      "y": 18,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerTimmy",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_LASS",
++      "x": 18,
++      "y": 22,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerMila",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
++      "x": 30,
++      "y": 21,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerWes",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
++      "x": 25,
++      "y": 23,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerDrew",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
++      "x": 15,
++      "y": 25,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerRosa",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_FISHER",
++      "x": 21,
++      "y": 27,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerOtto",
 +      "flag": "0"
      }
    ],
@@ -195,6 +289,20 @@ index 802d32d..fd456c2 100644
 +      "elevation": 0,
 +      "dest_map": "MAP_PALLET_TOWN_HOUSE4",
 +      "dest_warp_id": "1"
++    },
++    {
++      "x": 6,
++      "y": 25,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN_HOUSE5",
++      "dest_warp_id": "1"
++    },
++    {
++      "x": 36,
++      "y": 25,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN_HOUSE6",
++      "dest_warp_id": "1"
      }
    ],
    "coord_events": [
@@ -205,7 +313,7 @@ index 802d32d..fd456c2 100644
        "y": 1,
        "elevation": 3,
        "var": "VAR_MAP_SCENE_PALLET_TOWN_OAK",
-@@ -107,7 +163,7 @@
+@@ -107,7 +261,7 @@
      },
      {
        "type": "trigger",
@@ -214,7 +322,7 @@ index 802d32d..fd456c2 100644
        "y": 1,
        "elevation": 3,
        "var": "VAR_MAP_SCENE_PALLET_TOWN_OAK",
-@@ -116,7 +172,7 @@
+@@ -116,7 +270,7 @@
      },
      {
        "type": "trigger",
@@ -223,7 +331,7 @@ index 802d32d..fd456c2 100644
        "y": 2,
        "elevation": 3,
        "var": "VAR_TEMP_2",
-@@ -127,7 +183,7 @@
+@@ -127,7 +281,7 @@
    "bg_events": [
      {
        "type": "sign",
@@ -232,7 +340,7 @@ index 802d32d..fd456c2 100644
        "y": 16,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -135,7 +191,7 @@
+@@ -135,7 +289,7 @@
      },
      {
        "type": "sign",
@@ -241,7 +349,7 @@ index 802d32d..fd456c2 100644
        "y": 7,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -143,7 +199,7 @@
+@@ -143,7 +297,7 @@
      },
      {
        "type": "sign",
@@ -250,7 +358,7 @@ index 802d32d..fd456c2 100644
        "y": 7,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -151,7 +207,7 @@
+@@ -151,7 +305,7 @@
      },
      {
        "type": "sign",
@@ -259,7 +367,7 @@ index 802d32d..fd456c2 100644
        "y": 11,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -159,11 +215,43 @@
+@@ -159,11 +313,67 @@
      },
      {
        "type": "sign",
@@ -269,6 +377,14 @@ index 802d32d..fd456c2 100644
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
        "script": "PalletTown_EventScript_TrainerTips"
++    },
++    {
++      "type": "sign",
++      "x": 21,
++      "y": 18,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_EventScript_ParkSign"
 +    },
 +    {
 +      "type": "sign",
@@ -301,11 +417,27 @@ index 802d32d..fd456c2 100644
 +      "elevation": 0,
 +      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
 +      "script": "PalletTown_EventScript_MarshMailbox"
++    },
++    {
++      "type": "sign",
++      "x": 4,
++      "y": 25,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_EventScript_BellMailbox"
++    },
++    {
++      "type": "sign",
++      "x": 34,
++      "y": 25,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_EventScript_KowalskiMailbox"
      }
    ]
  }
 diff --git a/data/maps/PalletTown/scripts.inc b/data/maps/PalletTown/scripts.inc
-index 1384b7d..93a3b36 100644
+index 1384b7d..6b23fc3 100644
 --- a/data/maps/PalletTown/scripts.inc
 +++ b/data/maps/PalletTown/scripts.inc
 @@ -24,12 +24,12 @@ PalletTown_EventScript_SetSignLadyDone::
@@ -362,7 +494,7 @@ index 1384b7d..93a3b36 100644
  	waitdooranim
  	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1
  	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
-@@ -447,3 +447,27 @@ PalletTown_EventScript_SignLadyStartShowSign::
+@@ -447,3 +447,219 @@ PalletTown_EventScript_SignLadyStartShowSign::
  	call PalletTown_EventScript_SignLadyShowSign
  	release
  	end
@@ -390,11 +522,203 @@ index 1384b7d..93a3b36 100644
 +PalletTown_EventScript_MarshMailbox::
 +	msgbox PalletTown_Text_MarshMailbox, MSGBOX_SIGN
 +	end
++
++PalletTown_EventScript_BellMailbox::
++	msgbox PalletTown_Text_BellMailbox, MSGBOX_SIGN
++	end
++
++PalletTown_EventScript_KowalskiMailbox::
++	msgbox PalletTown_Text_KowalskiMailbox, MSGBOX_SIGN
++	end
++
++PalletTown_EventScript_ParkSign::
++	msgbox PalletTown_Text_ParkSign, MSGBOX_SIGN
++	end
++
++PalletTown_EventScript_TrainerTimmy::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	goto_if_defeated TRAINER_PALLET_YOUNGSTER_TIMMY, PalletTown_EventScript_TrainerTimmyAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerTimmyNoMon
++	msgbox PalletTown_Text_TimmyAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerTimmyDecline
++	msgbox PalletTown_Text_TimmyAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_YOUNGSTER_TIMMY, PalletTown_Text_TimmyDefeat
++	msgbox PalletTown_Text_TimmyAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerTimmyAfter::
++	msgbox PalletTown_Text_TimmyAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerTimmyNoMon::
++	msgbox PalletTown_Text_TimmyNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerTimmyDecline::
++	msgbox PalletTown_Text_TimmyDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerMila::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	goto_if_defeated TRAINER_PALLET_LASS_MILA, PalletTown_EventScript_TrainerMilaAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerMilaNoMon
++	msgbox PalletTown_Text_MilaAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerMilaDecline
++	msgbox PalletTown_Text_MilaAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_LASS_MILA, PalletTown_Text_MilaDefeat
++	msgbox PalletTown_Text_MilaAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerMilaAfter::
++	msgbox PalletTown_Text_MilaAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerMilaNoMon::
++	msgbox PalletTown_Text_MilaNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerMilaDecline::
++	msgbox PalletTown_Text_MilaDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerWes::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	goto_if_defeated TRAINER_PALLET_BUG_CATCHER_WES, PalletTown_EventScript_TrainerWesAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerWesNoMon
++	msgbox PalletTown_Text_WesAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerWesDecline
++	msgbox PalletTown_Text_WesAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_BUG_CATCHER_WES, PalletTown_Text_WesDefeat
++	msgbox PalletTown_Text_WesAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerWesAfter::
++	msgbox PalletTown_Text_WesAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerWesNoMon::
++	msgbox PalletTown_Text_WesNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerWesDecline::
++	msgbox PalletTown_Text_WesDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerDrew::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	goto_if_defeated TRAINER_PALLET_CAMPER_DREW, PalletTown_EventScript_TrainerDrewAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerDrewNoMon
++	msgbox PalletTown_Text_DrewAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerDrewDecline
++	msgbox PalletTown_Text_DrewAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_CAMPER_DREW, PalletTown_Text_DrewDefeat
++	msgbox PalletTown_Text_DrewAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerDrewAfter::
++	msgbox PalletTown_Text_DrewAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerDrewNoMon::
++	msgbox PalletTown_Text_DrewNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerDrewDecline::
++	msgbox PalletTown_Text_DrewDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerRosa::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	goto_if_defeated TRAINER_PALLET_PICNICKER_ROSA, PalletTown_EventScript_TrainerRosaAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerRosaNoMon
++	msgbox PalletTown_Text_RosaAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerRosaDecline
++	msgbox PalletTown_Text_RosaAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_PICNICKER_ROSA, PalletTown_Text_RosaDefeat
++	msgbox PalletTown_Text_RosaAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerRosaAfter::
++	msgbox PalletTown_Text_RosaAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerRosaNoMon::
++	msgbox PalletTown_Text_RosaNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerRosaDecline::
++	msgbox PalletTown_Text_RosaDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerOtto::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	goto_if_defeated TRAINER_PALLET_FISHERMAN_OTTO, PalletTown_EventScript_TrainerOttoAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerOttoNoMon
++	msgbox PalletTown_Text_OttoAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerOttoDecline
++	msgbox PalletTown_Text_OttoAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_FISHERMAN_OTTO, PalletTown_Text_OttoDefeat
++	msgbox PalletTown_Text_OttoAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerOttoAfter::
++	msgbox PalletTown_Text_OttoAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerOttoNoMon::
++	msgbox PalletTown_Text_OttoNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerOttoDecline::
++	msgbox PalletTown_Text_OttoDecline
++	release
++	end
 diff --git a/data/maps/PalletTown/text.inc b/data/maps/PalletTown/text.inc
-index 726aea8..1feaf95 100644
+index 726aea8..a4740ee 100644
 --- a/data/maps/PalletTown/text.inc
 +++ b/data/maps/PalletTown/text.inc
-@@ -65,3 +65,24 @@ PalletTown_Text_OakYouEnjoyingTraveling::
+@@ -65,3 +65,194 @@ PalletTown_Text_OakYouEnjoyingTraveling::
      .string "Good for you, good for you.\n"
      .string "Hohoho.$"
  
@@ -419,9 +743,179 @@ index 726aea8..1feaf95 100644
 +
 +PalletTown_Text_MarshMailbox::
 +    .string "MARSH's house$"
++
++PalletTown_Text_BellMailbox::
++    .string "BELL's house$"
++
++PalletTown_Text_KowalskiMailbox::
++    .string "KOWALSKI's house$"
++
++PalletTown_Text_ParkSign::
++    .string "PALLET PARK\n"
++    .string "New TRAINERS, test your skills here!$"
++
++PalletTown_Text_TimmyNoMon::
++    .string "Shorts are comfy and easy to\n"
++    .string "battle in!\p"
++    .string "Huh? You don't even have a\n"
++    .string "POKéMON? Get one, then we'll talk!$"
++
++PalletTown_Text_TimmyAsk::
++    .string "My RATTATA is in the top\n"
++    .string "percentage of RATTATA!\p"
++    .string "You've got a POKéMON now, huh?\n"
++    .string "Wanna battle?$"
++
++PalletTown_Text_TimmyAccept::
++    .string "Yes! Get ready to be schooled!$"
++
++PalletTown_Text_TimmyDecline::
++    .string "Scared, huh? I get it.\n"
++    .string "We're pretty much unbeatable.$"
++
++PalletTown_Text_TimmyDefeat::
++    .string "Wh-what?! My top percentage\n"
++    .string "RATTATA lost?!$"
++
++PalletTown_Text_TimmyAfter::
++    .string "I'm gonna train every day until\n"
++    .string "RATTATA is the top-top percentage!$"
++
++PalletTown_Text_MilaNoMon::
++    .string "I named my ODDISH “Sprout” and\n"
++    .string "my NIDORAN “Blossom.”\p"
++    .string "Once you have a POKéMON, you\n"
++    .string "should give it a cute name too!$"
++
++PalletTown_Text_MilaAsk::
++    .string "Oh! Is that your very first\n"
++    .string "POKéMON? It's adorable!\p"
++    .string "Sprout and Blossom would love\n"
++    .string "to play. Will you battle us?$"
++
++PalletTown_Text_MilaAccept::
++    .string "Yay! Let's do our best, girls!$"
++
++PalletTown_Text_MilaDecline::
++    .string "Aww. Maybe after your POKéMON\n"
++    .string "has had a little nap.$"
++
++PalletTown_Text_MilaDefeat::
++    .string "Oh no, Sprout! Blossom!\n"
++    .string "You were both so brave!$"
++
++PalletTown_Text_MilaAfter::
++    .string "Losing is OK as long as we\n"
++    .string "have fun together. Right, Sprout?$"
++
++PalletTown_Text_WesNoMon::
++    .string "Shh! I'm watching this pine tree.\n"
++    .string "Something wiggled up there!\p"
++    .string "Come back with a POKéMON and\n"
++    .string "I'll show you my bug team!$"
++
++PalletTown_Text_WesAsk::
++    .string "BUG POKéMON grow up so fast!\n"
++    .string "That's what makes them the best!\p"
++    .string "Want to see how tough my bugs\n"
++    .string "are? Battle me!$"
++
++PalletTown_Text_WesAccept::
++    .string "Go, my creepy-crawly crew!$"
++
++PalletTown_Text_WesDecline::
++    .string "Fine! I'll go back to staring\n"
++    .string "at this tree.$"
++
++PalletTown_Text_WesDefeat::
++    .string "My bugs got squished!$"
++
++PalletTown_Text_WesAfter::
++    .string "Someday CATERPIE will be a\n"
++    .string "BUTTERFREE. Then watch out!$"
++
++PalletTown_Text_DrewNoMon::
++    .string "I pitched my tent right here in\n"
++    .string "the park. Best spot in PALLET!\p"
++    .string "Every camper needs a partner.\n"
++    .string "Go get yourself a POKéMON!$"
++
++PalletTown_Text_DrewAsk::
++    .string "Nothing like a battle under the\n"
++    .string "open sky!\p"
++    .string "You and your partner up for a\n"
++    .string "match? Let's go!$"
++
++PalletTown_Text_DrewAccept::
++    .string "That's the spirit! Here I come!$"
++
++PalletTown_Text_DrewDecline::
++    .string "No worries. The sky's not going\n"
++    .string "anywhere. Come back anytime!$"
++
++PalletTown_Text_DrewDefeat::
++    .string "Whoa! You've got real outdoor\n"
++    .string "grit!$"
++
++PalletTown_Text_DrewAfter::
++    .string "Toughen up out here, and VIRIDIAN\n"
++    .string "FOREST won't scare you one bit.$"
++
++PalletTown_Text_RosaNoMon::
++    .string "I packed sandwiches for a picnic,\n"
++    .string "but MEOWTH ate them all!\p"
++    .string "When you have a POKéMON, let's\n"
++    .string "have a battle picnic!$"
++
++PalletTown_Text_RosaAsk::
++    .string "A battle before lunch builds an\n"
++    .string "appetite!\p"
++    .string "Will you battle with me and my\n"
++    .string "hungry friends?$"
++
++PalletTown_Text_RosaAccept::
++    .string "Hooray! Ready, set, picnic!$"
++
++PalletTown_Text_RosaDecline::
++    .string "OK! I'll save you a sandwich.\n"
++    .string "If MEOWTH doesn't find it first.$"
++
++PalletTown_Text_RosaDefeat::
++    .string "Oh! Now we're even hungrier!$"
++
++PalletTown_Text_RosaAfter::
++    .string "Battling outdoors is the best.\n"
++    .string "Even better with snacks!$"
++
++PalletTown_Text_OttoNoMon::
++    .string "Thirty years I've fished this\n"
++    .string "pond. Thirty years!\p"
++    .string "Come back with a POKéMON and\n"
++    .string "I'll show you what I've caught.$"
++
++PalletTown_Text_OttoAsk::
++    .string "Patience, youngster. That's the\n"
++    .string "secret to fishing and battling.\p"
++    .string "Let's see if you have any.\n"
++    .string "Care for a battle?$"
++
++PalletTown_Text_OttoAccept::
++    .string "Heh heh. Reel 'em in!$"
++
++PalletTown_Text_OttoDecline::
++    .string "Patient AND careful. You'll make\n"
++    .string "a fine angler someday.$"
++
++PalletTown_Text_OttoDefeat::
++    .string "Ho! You landed a big one!$"
++
++PalletTown_Text_OttoAfter::
++    .string "My MAGIKARP will grow into\n"
++    .string "something fierce. I can wait.\p"
++    .string "I've waited thirty years already!$"
 diff --git a/data/maps/PalletTown_House1/map.json b/data/maps/PalletTown_House1/map.json
 new file mode 100644
-index 0000000..d8c0a7e
+index 0000000..1ecf101
 --- /dev/null
 +++ b/data/maps/PalletTown_House1/map.json
 @@ -0,0 +1,58 @@
@@ -445,7 +939,7 @@ index 0000000..d8c0a7e
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
-+      "x": 4,
++      "x": 2,
 +      "y": 4,
 +      "elevation": 3,
 +      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -508,7 +1002,7 @@ index 0000000..43e696f
 +    .string "neighbors on both sides!$"
 diff --git a/data/maps/PalletTown_House2/map.json b/data/maps/PalletTown_House2/map.json
 new file mode 100644
-index 0000000..9cd4a85
+index 0000000..75713c6
 --- /dev/null
 +++ b/data/maps/PalletTown_House2/map.json
 @@ -0,0 +1,58 @@
@@ -532,8 +1026,8 @@ index 0000000..9cd4a85
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
-+      "x": 6,
-+      "y": 4,
++      "x": 8,
++      "y": 6,
 +      "elevation": 3,
 +      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
 +      "movement_range_x": 1,
@@ -595,7 +1089,7 @@ index 0000000..5f94643
 +    .string "to raise a family.$"
 diff --git a/data/maps/PalletTown_House3/map.json b/data/maps/PalletTown_House3/map.json
 new file mode 100644
-index 0000000..7db8086
+index 0000000..dd94b50
 --- /dev/null
 +++ b/data/maps/PalletTown_House3/map.json
 @@ -0,0 +1,58 @@
@@ -619,7 +1113,7 @@ index 0000000..7db8086
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
-+      "x": 5,
++      "x": 2,
 +      "y": 5,
 +      "elevation": 3,
 +      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -682,7 +1176,7 @@ index 0000000..46430dd
 +    .string "be a TRAINER too!$"
 diff --git a/data/maps/PalletTown_House4/map.json b/data/maps/PalletTown_House4/map.json
 new file mode 100644
-index 0000000..3a944bf
+index 0000000..97bd854
 --- /dev/null
 +++ b/data/maps/PalletTown_House4/map.json
 @@ -0,0 +1,58 @@
@@ -706,7 +1200,7 @@ index 0000000..3a944bf
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_FISHER",
-+      "x": 6,
++      "x": 9,
 +      "y": 4,
 +      "elevation": 3,
 +      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -767,6 +1261,180 @@ index 0000000..f62d531
 +    .string "all the way to CINNABAR.\p"
 +    .string "You'll need a POKéMON that\n"
 +    .string "knows SURF to get there.$"
+diff --git a/data/maps/PalletTown_House5/map.json b/data/maps/PalletTown_House5/map.json
+new file mode 100644
+index 0000000..e65f9db
+--- /dev/null
++++ b/data/maps/PalletTown_House5/map.json
+@@ -0,0 +1,58 @@
++{
++  "id": "MAP_PALLET_TOWN_HOUSE5",
++  "name": "PalletTown_House5",
++  "layout": "LAYOUT_HOUSE2",
++  "music": "MUS_PALLET",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
++      "x": 2,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_House5_EventScript_Resident",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 3,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "7"
++    },
++    {
++      "x": 4,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "7"
++    },
++    {
++      "x": 5,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "7"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_House5/scripts.inc b/data/maps/PalletTown_House5/scripts.inc
+new file mode 100644
+index 0000000..cf64487
+--- /dev/null
++++ b/data/maps/PalletTown_House5/scripts.inc
+@@ -0,0 +1,6 @@
++PalletTown_House5_MapScripts::
++	.byte 0
++
++PalletTown_House5_EventScript_Resident::
++	msgbox PalletTown_House5_Text_Resident, MSGBOX_NPC
++	end
+diff --git a/data/maps/PalletTown_House5/text.inc b/data/maps/PalletTown_House5/text.inc
+new file mode 100644
+index 0000000..42ba7b6
+--- /dev/null
++++ b/data/maps/PalletTown_House5/text.inc
+@@ -0,0 +1,5 @@
++PalletTown_House5_Text_Resident::
++    .string "My grandson watches the park\n"
++    .string "battles from the window.\p"
++    .string "Be kind to those young TRAINERS.\n"
++    .string "They're just starting out, dear.$"
+diff --git a/data/maps/PalletTown_House6/map.json b/data/maps/PalletTown_House6/map.json
+new file mode 100644
+index 0000000..a97a4c7
+--- /dev/null
++++ b/data/maps/PalletTown_House6/map.json
+@@ -0,0 +1,58 @@
++{
++  "id": "MAP_PALLET_TOWN_HOUSE6",
++  "name": "PalletTown_House6",
++  "layout": "LAYOUT_HOUSE1",
++  "music": "MUS_PALLET",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN",
++      "x": 8,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_House6_EventScript_Resident",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 3,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "8"
++    },
++    {
++      "x": 4,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "8"
++    },
++    {
++      "x": 5,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "8"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_House6/scripts.inc b/data/maps/PalletTown_House6/scripts.inc
+new file mode 100644
+index 0000000..990a717
+--- /dev/null
++++ b/data/maps/PalletTown_House6/scripts.inc
+@@ -0,0 +1,6 @@
++PalletTown_House6_MapScripts::
++	.byte 0
++
++PalletTown_House6_EventScript_Resident::
++	msgbox PalletTown_House6_Text_Resident, MSGBOX_NPC
++	end
+diff --git a/data/maps/PalletTown_House6/text.inc b/data/maps/PalletTown_House6/text.inc
+new file mode 100644
+index 0000000..cd9dde0
+--- /dev/null
++++ b/data/maps/PalletTown_House6/text.inc
+@@ -0,0 +1,5 @@
++PalletTown_House6_Text_Resident::
++    .string "OTTO has fished that pond for\n"
++    .string "thirty years.\p"
++    .string "Thirty years, and all he's ever\n"
++    .string "caught is MAGIKARP!$"
 diff --git a/data/maps/Route1/map.json b/data/maps/Route1/map.json
 index b2145ee..7ee7261 100644
 --- a/data/maps/Route1/map.json
@@ -794,10 +1462,10 @@ index 7fdfa0d..3203691 100644
      },
      {
 diff --git a/data/maps/map_groups.json b/data/maps/map_groups.json
-index 8c382f5..86baefa 100644
+index 8c382f5..84afb9c 100644
 --- a/data/maps/map_groups.json
 +++ b/data/maps/map_groups.json
-@@ -310,7 +310,11 @@
+@@ -310,7 +310,13 @@
      "PalletTown_PlayersHouse_1F",
      "PalletTown_PlayersHouse_2F",
      "PalletTown_RivalsHouse",
@@ -806,50 +1474,52 @@ index 8c382f5..86baefa 100644
 +    "PalletTown_House1",
 +    "PalletTown_House2",
 +    "PalletTown_House3",
-+    "PalletTown_House4"
++    "PalletTown_House4",
++    "PalletTown_House5",
++    "PalletTown_House6"
    ],
    "gMapGroup_IndoorViridian": [
      "ViridianCity_House",
 diff --git a/data/tilesets/secondary/pallet_town/metatile_attributes.bin b/data/tilesets/secondary/pallet_town/metatile_attributes.bin
-index 2ba2894bc2e11a75b7ec3f11cc340c767e7cfb85..781620265ffff827d7699596794e2f3ef4c684d7 100644
+index 2ba2894bc2e11a75b7ec3f11cc340c767e7cfb85..aa04a9ecdf692ad03e8c1c5c96e4f2684d178958 100644
 GIT binary patch
-literal 636
-zcmbV`VG4jy2!p*u|98Fa(ZSoIJ;XAk!BFNmFd`67Gg<;S*#Z~&kHAvv{p04|gfZJp
-x#;-qgIm{n-um0fNoMvGdwE{2MEtn3O_nywz>b#rgb*}=0iPf8Mi`mG_>Ya<!5Z3?z
+literal 648
+zcmb`BQ3`-C3`2Vf|8qU>;lWK{ky_UwVj#48O}9k^;%TBwU?*E(BYzRN)Ougcy!R&K
+yY*UG+f9N=zKgM4DgSm66B}3E-oMhMFY?hh()t)oCIxkiQg1@adZg*}x%i<@mzY&)J
 
 literal 356
 zcmah=$q4`;4C})c{1>-#4+poYC{ZgGLUW2-r{sXMrfAV$jv_h}Mz>Q_j{5FkusUsU
 Zczntt;J-YWxP@H=50T|01(?S1wF5Z)1q}cI
 
 diff --git a/data/tilesets/secondary/pallet_town/metatiles.bin b/data/tilesets/secondary/pallet_town/metatiles.bin
-index 41db2701509573f5a57d38ddb349e9a243b518ee..a147385390488e07d1120441d59afc4dda695bc9 100644
+index 41db2701509573f5a57d38ddb349e9a243b518ee..dffd5f0c9a1ca90ae307eec60094b43d7f4ff7e4 100644
 GIT binary patch
-literal 2544
-zcmZXWcYG8@6vxLHDK@Nt1p!4sK@n8I-g__DdvBobQ%;d`nYrZ1B}W?|l+bp7qnBAa
-zM?!Ys4h{${A@trmhy_%1);RArc>9?@zMtQFZ+>rfX7++^mP=h`k^g=nH<-wFX~J-h
-ztI4M`E2oN{<%YDH?V5N$hiP}}XF_sqKj)4nB%<qQSE(P-_0xX*@r2|_Kj+OLB$&vz
-zXd;UKy<EQ^Klh+Lso`F<H|;|?a$nky_NN8N1L#0|5FKor_(GeIA#^C}gbcHXTO)Mm
-zmGjxQut(aXFn+WhlVj|$(&*!K{&+b7d7_+TO_ozIf2x$yk<(D0E@#M@au%|;zO&^V
-znR7<JbKN+dM~kRg|6)3ymQWX2(FJrNO&}-fBD$ESkeAS<?lM~Hn*8PV3VWqoWgGT-
-z@`m9T)QjpR@iI5;_2>=5t7Vy7Ez6PD$O>z%T!*|~_qah16F*aK)O~J5-Xu56O>zrz
-zyO!-U+O_PGQH@k5wMiY)K~q;fYLIG~bxB*Yj;#x?hYeurZFRTN?Q{qBx0CLoyXhX}
-zy>uVlPY)m;q=)EXdIb3>J?0*#Kf9)$H-G1hE*XtU6VjTrAt&T7@`U^q{rx6?w@+H9
-zF#ZqwPkAbFvZKlO*5WVUdYqPj%hQrLMnB8RaL#rzmEm)oYEEXdI_j1EcFSl=8fUi2
-zY@O+?O${f#K4yP;`88S1@VV?fc0RiR-_M1t7Q2XD%uM}D*rn_;emUy3!nIi)UKjZa
-zcBQ(CUybqp`t?M;*fmal(Lgj5rrx#cI@L%tiW$CMHC9bT6V&U+nmP?*4N$+qxzTAR
-znxlS`x>>alEl|HjwN$M{E7WgwZgZN)nxTF>Yt7oQw#>|z?cTwebtn42i`~ucVfUhb
-zAG@DDz#c??h&{|6VUHp|rn4XC>HF&m@uYZ4JS|N9XT-DWIq^JlJN1fsRlEj9e_g#H
-z-V|@4{<e5WysO^B`tQRB@F9GJ@gJ*C)TjJ2^!vH`LVU@;Ql_4Nz1u?v@N<VV_-p=+
-zcAmcPz6GmFym#OFb??6QGw|<p{`b%k0_g7t_z^lmr-1SE6EG_f=#2g%rJ<DnzKvRy
-zPZ#J4-5>~tyJ`;lIEz!xc!(Q4o9957cZW#Id|z_)nnbXlJdqd67g1sS<`!sG55t~6
-z@B3o72lRwqyjMYQ=mQ-3Vn6+$U!Xtq$A0<*3RK^~0PJTV41_`YG5v;8kyO;8c%F@4
-zueZTai2ZrJ75aDxAIkkaO!rm@!(oK7xqy+nx60orKAOk)804{h9E|4^aQ=xf2`0l7
-z<f$ORfoaIoVLHsvkEu5kW~tdQ2m6UyIj;U9{?Gqh6<70Ak&0SzRg^4J@nl>T^Z7iU
-zEK#mfzWmCLOOhqY1!}>+@lmTtmFRetEY|Vq{Q11Nz^qR^xlq?ls2n%Rsk;dME#@h{
-zgfHdB?=pSfO7$)^yj-n-m9Prq=jmBit1|Rc&epIBSc`gjSgDFYS<>XIWH~ES6{xRa
-z<>9qZf$v*sPi1N&)=U4NG5c+kcC;D&ZQ)z^R{faz+qAk}?@GgwMAiR0AvdB=U|Qb+
-zHs9%c-=S1iDqo)wlb`MG(iL~3U+*k=HI2Rp_QF2ckGi)Py*Z2?OojCROxHWW5As9&
-WF!pzZAJudW{Rc~r>vx!s^Zx^Z-+L4Q
+literal 2592
+zcmZXWcYG8@6vx*XirBCLHUyMnK|vI-_udQk-W!OHiYVnWa|MnZWnQ=oM+>{a(aS8o
+z9y=rpq4$I&^xiv)1!l#0x6$lp|M-4>Z{ED$dpmOp@EnJ7#*Kgff;<opIW(?0>?rc-
+zjE9T-dX5uRYRJ*?evZ&?)X#>|-Sl(!;f4`a`9n@-f5xLKe}?_>hS5X#xyKa42*h(a
+zjmNNlZ>_%`Klh})sOH|Z59Jh)^JrfhrwQbI+RseV{-%x}U>e3iI!HOy`3IW?d<e2>
+zTINu57{(7bQ(}ZUQt0?mYW-+226?O)$H$8aj@Bm%A#5=T^~qw2m@1|rd;Og*W{7Z6
+zWxq4|EIOOdp}PNbX`0TX4zi^4X(25_cIg7TkQO5^qKo+wx)l4j%v|oQ5Gzfc&-3KH
+znqQHx$~NRRqS^E4y_#2v)nb)cgS=L(b4o-h@_Oa5OuagOswh`J%aJR@22mk4BDZPY
+zHmgnZ&RJEBYDO)iw$V;e7xh**s%F<QS{oItBC-KCg3h;zZ>C%LR`j=xZl^owPUKy5
+zH{C<`BJZR7=>d8W`4BzKkI<uB=kxaOl+`(_k<r*_X|ytqiR0!mal+L4N%J@Jck`5^
+z`496?ajNJq)V*H(?d!*BVc4g|Ikt|^vd^`%?JAb$s&+NIN~${QXZ?1~YGO3XZk63K
+z+w0AFcBVi2`|;M-U^OD=!v*X@xCrNSF{{ZgVV5$U|1x$tyMok0y=J5~t3$3tzKUH9
+z*N|&L$NTfwwd$s>v+G&)tp-@{_3{SU&}x{{@r`6-*~DssdcD+*c7s%X)NitHwr{bT
+zqJFEqO*XTdq265HE?ZbFP`|^z({7q-iQI~{W_Q8ezWVMVjNgm(-^cD}55R+{Kg1qp
+zkHDkIkFm$u6YwPRQ)>0oBy)c~V?Ap<XFZSmy<oj4Um`Cfzb@a9Z<4ogzqjQ(*1P0A
+z<oB%)<cH)V<d5MK_!K_F{XUmp$S=uPsDCZLvD%V$$o_tR3+=(r?f=8yk?&RI`aUuY
+zB7dk9@7=e4-Mer7{3H8`g`5uXGjzoIet}=16Ld=Gd3FZIJ0`kF&C#X7r2oE+@v~1?
+z2tW={&>T>#u2*D6f+R%3MC%dK4Z4#kM2mY6%5%|w%<5_NvU+2``>6TkcF4@fU%&VJ
+zqM1v8JelYAg*YT2AN}-$eu*R`(N8?lU*;zUpr3&-5C*A7`wJ$c#W7Ct{Ofu>Z-b!#
+z{dnFAd_07h#Lt%URscg`7z`&V7=ivql2K$d8G}5QjDzuH0`f!<V8bM=XEIEIsW1(B
+zI!uQd>e2PigjsSn%t1df9(L3(#Q*A_E7NkGbYzUDrQ<p>?WUz<^I6(0ltt3@tv~Cy
+z&@FTq$OZqz$G9U4RlMs;6`xr@pUH^sPug9m@)pamvq;TzG5T3TmXc*;Ir0iM&y~LO
+zwo0ysHLw=_%u~CplO<SBDO=CVpd9tmh%3tyC9d}Gx}~f{mZ83$l}5^;4Cn2tno8s*
+z%olble{UgYv#Mwd*0+^xCEL`a^KVz`4qv^|qRRj81bI}Qz|8l#Q_XvqZ{ERVPI0a}
+zBRXG5^@s7@nBO}~UQVs=fxWN~_M;y^d*{{rHoZM{e8@SV@@3A?K~j1DKr)#0W~Ac}
+bk;CK&IcjM>Mvf~wf%OCiomAg=F2<h$|C*5|
 
 literal 1424
 zcmb_b&rcIk5T0x{*n`0)o2Vz{aX{1*!yXDs(2!6LdeOvsBe7Q#jb8L(HC<6$kdltL
@@ -868,7 +1538,7 @@ z#DXI2Dxr#Okmn*6y>+a5tFlt(@2>v}dA~q^yZimQ=Fa7MmRY9ldb8eKec5}KtL0>F
 lW8%xsLUJt$5aNlATrv4|2Vk8v|92IMo3b`5#9j3o-XCo{c7Xr@
 
 diff --git a/data/tilesets/secondary/pallet_town/palettes/07.pal b/data/tilesets/secondary/pallet_town/palettes/07.pal
-index 995731c..2b43b63 100644
+index 995731c..41f1288 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/07.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/07.pal
 @@ -1,19 +1,19 @@
@@ -894,21 +1564,21 @@ index 995731c..2b43b63 100644
 +255 0 255
 +189 239 214
 +66 74 107
-+132 173 173
-+247 247 247
++123 181 90
++132 74 74
++214 140 156
++49 107 181
++57 49 33
++49 115 74
++74 148 90
++156 115 99
++198 173 107
 +123 123 132
-+198 198 214
-+41 173 107
-+115 206 165
-+115 57 49
-+99 99 115
-+57 49 41
-+206 140 74
-+74 140 90
-+156 173 189
-+148 148 148
++198 198 189
++90 66 49
++41 49 90
 diff --git a/data/tilesets/secondary/pallet_town/palettes/08.pal b/data/tilesets/secondary/pallet_town/palettes/08.pal
-index dcecb9c..7d96b5d 100644
+index dcecb9c..e2d8126 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/08.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/08.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -931,22 +1601,22 @@ index dcecb9c..7d96b5d 100644
 -189 98 74
 -123 205 164
 +66 123 189
-+189 239 214
 +123 165 206
 +82 74 57
 +49 99 148
-+148 115 99
-+41 66 99
-+198 165 140
-+99 140 198
-+173 181 181
-+115 115 239
-+148 206 239
-+74 198 140
 +231 231 206
++148 115 99
++189 156 132
++33 66 90
++99 140 198
++181 181 181
++148 206 239
++115 115 239
++74 198 140
++66 74 107
 +107 156 239
 diff --git a/data/tilesets/secondary/pallet_town/palettes/09.pal b/data/tilesets/secondary/pallet_town/palettes/09.pal
-index 90bb775..664627a 100644
+index 90bb775..47ad201 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/09.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/09.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -968,23 +1638,23 @@ index 90bb775..664627a 100644
 -213 189 106
 -197 148 74
 -222 205 123
-+66 74 107
-+198 231 214
-+123 181 90
-+132 74 74
-+206 140 148
-+49 107 181
-+90 66 49
-+41 115 74
-+74 148 82
-+156 115 99
-+198 173 107
-+123 123 132
-+189 189 181
-+41 49 90
-+57 49 33
++189 239 214
++57 74 99
++132 173 173
++247 247 247
++132 132 132
++115 206 165
++82 140 198
++198 206 214
++49 165 99
++156 222 198
++66 57 33
++57 107 156
++99 99 115
++206 156 66
++148 173 189
 diff --git a/data/tilesets/secondary/pallet_town/palettes/10.pal b/data/tilesets/secondary/pallet_town/palettes/10.pal
-index 1958eff..bd981a8 100644
+index 1958eff..2cd18c6 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/10.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/10.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -1006,23 +1676,23 @@ index 1958eff..bd981a8 100644
 -164 90 106
 -139 65 82
 -32 172 98
-+189 239 214
-+82 66 57
 +239 140 148
++206 239 222
++115 49 41
++74 140 214
 +239 214 165
 +140 189 99
 +206 173 148
++206 99 90
 +132 115 90
 +173 148 123
-+198 90 90
 +181 214 107
 +247 173 173
-+198 198 198
-+115 49 41
 +222 115 115
-+231 239 231
++198 198 198
++82 66 57
 diff --git a/data/tilesets/secondary/pallet_town/palettes/11.pal b/data/tilesets/secondary/pallet_town/palettes/11.pal
-index 896c792..066c6e9 100644
+index 896c792..b9602f9 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/11.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/11.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -1047,20 +1717,20 @@ index 896c792..066c6e9 100644
 +206 115 57
 +99 49 24
 +214 206 181
-+222 115 115
 +156 82 33
-+181 82 82
++181 74 82
++222 115 115
 +99 99 99
 +189 107 41
 +206 99 99
 +222 140 82
 +214 132 66
-+123 49 49
 +198 239 222
 +156 57 57
-+239 140 148
++156 123 82
++123 49 49
 diff --git a/data/tilesets/secondary/pallet_town/palettes/12.pal b/data/tilesets/secondary/pallet_town/palettes/12.pal
-index 2bfc45b..84a7334 100644
+index 2bfc45b..5096813 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/12.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/12.pal
 @@ -1,19 +1,19 @@
@@ -1085,146 +1755,148 @@ index 2bfc45b..84a7334 100644
 -189 238 213
 +255 0 255
 +189 239 214
-+74 74 90
-+115 206 165
-+214 198 123
++74 74 99
++82 148 214
++222 198 123
 +255 255 255
-+82 140 214
 +123 123 132
 +247 239 198
-+156 231 198
++115 206 165
 +198 198 198
-+140 181 214
-+156 123 82
-+49 107 156
++132 181 222
++156 115 82
 +231 222 148
-+222 231 231
++148 222 198
++165 165 165
++222 231 222
 diff --git a/data/tilesets/secondary/pallet_town/tiles.png b/data/tilesets/secondary/pallet_town/tiles.png
-index 771eed906cc7721e5126a6badd7a1df3136e0fe3..728e6d732696b6d2a857805badb1befbb52c3cb8 100644
+index 771eed906cc7721e5126a6badd7a1df3136e0fe3..589f50633a5387c51965eb074a76543949e71241 100644
 GIT binary patch
-literal 6140
-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
-O0000<MNUMnLSTXg?VI8N
+literal 6255
+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
+Z{C9I5PYg!51n&R<002ovPDHLkV1g}>;Hv-t
 
 delta 920
-zcmV;J184mFFQEsJ7k?-O0{{R3#9!}w0000mP)t-s|NsB)?(W{+-p$R;y}iAxtgM`z
+zcmV;J184m2Frf#K7k?-O0{{R3#9!}w0000mP)t-s|NsB)?(W{+-p$R;y}iAxtgM`z
 zoQsQ#b8~ZIVq#KKQb9pMF)=Y9ARrJB5C8xGL-gVL0009lNkl<ZNQsTrPixa)90%~+
 zJb4JhdeKV{zJap%2I_nPGX`M@!|kyS|8`5WIn&){z@C-9fqw}V*|A{O77x-wA9vew
 zu$k^+L2RyqBJub9&6Bjt_JuZENIre?`#sMSO@o9ymmHaAmMLSCFOA1$=d3=zP*VZB
@@ -1241,69 +1913,70 @@ zZV<5m@Z6x=LZAS<<duN1=i!Y6fcFajdH6>K)(!gCSOErz?aIj8NFLil5BRWa2&q8r
 z2?wB(qKE_WVz~%VkEQ_}av=lIE3<$otWhjpR{{EVya*sxBb4Gt8h}_y=WNH}08At|
 zkbnJ@zhJ<KDG<k#&ev!^)-u^{b6~q|sw2o=r^VfHG6_%iv*+EmPk*$t9hfe!Tr{2m
 z{D~%H^xvj{fCKJ1z-tEl%mbWA#F+*@M6k@m(U)96S(#HnH~Ow=mvJ`_NbSPeoX~y7
-uALaq`dBFP<3VfUa$R$ko2>!`l_aBc&g%PcJAHlu=0000<MNUMnLSTY$6QgYa
+uALaq`dBFP<3VfUa$R$ko2>!`l_aBc&g%PcJAHlu=0000<MNUMnLSTYK@}pq@
 
 diff --git a/graphics/door_anims/oaks_lab.png b/graphics/door_anims/oaks_lab.png
-index c8bc9ebeab395b93b7a553724bb27d0e39b1ad2f..e02a9d94a0c66e81cb98ebaf064c14791b8af81e 100644
+index c8bc9ebeab395b93b7a553724bb27d0e39b1ad2f..57de797f42dd889ac6641f459d1fcfe28e82d0a9 100644
 GIT binary patch
-delta 249
-zcmV<V00#e*0-6GlDSrR}0784cz3<k0rOr}HIWc3DlyhS#LSx3IjAM+(t+lmtbMKVS
-z?@Gpu=jYCAobR~II@SOH0HsMpK~#90m5x0M!cY)|zuhdv@*P2K1k<Fj^$woKbe<tc
-zNFDG7R_O&#5X1}kN=f`H@*)UIbekR6*_lt)9uSAY!=nz3vvQ^^3s5cv07{sbFxW#2
-z$|wgw=9|+PacEQB>-q?$oWVeC*?q}u1wbp)J|{{6xM{bEY~sbem&Tb7?O%Bm4nYJS
-z+a`+?K$|Lfl#ufmPk;JY`n!-MAN1IDH^}n@?XD<JjQ~+Q00000NkvXXu0mjf1oUxF
+delta 258
+zcmV+d0sa1z0;2+uDSrR}0784cd!^1&N;xrOl;`KplyhUfoP;4lT4RjHwY9aB&hK+`
+z?@GpuLP~3EobR7J7f1jA0Io?yK~#90osKaI!axv3-%K_r*aS}y#7+dkYgptOc6PQo
+zf{oaw^#nE+xkj2`6>J1MiI`}ys}e*5PBWjGKl7gyF`yv^x_dF#1k+je14>XN06=l|
+z5(f5AfpVV!Ami<3L481m^9=k5W0-=1`ZITROMyBsW$^st+3QMe$CDz~u#qLFb1$)z
+zuRIE=6K|e%1fZ9l^BC-^!IJ|&d5+0v)*nJft5%Pxb7<jt04=*JZ{+UqZ~y=R07*qo
+IM6N<$f<%FGP5=M^
 
 delta 243
-zcmV<P01W?{0+a%fDS!U}|5DAA_V)k1#onB(y?c9uT3T~KN@|?V_F|mwVw~>Hi<G^4
+zcmV<P01W@50+a%fDS!U}|5DAA_V)k1#onB(y?c9uT3T~KN@|?V_F|mwVw~>Hi<G^4
 zgQQw&i$PK#tYZ7;=YaqK0G~-jK~xx(h0w7P!ypU=P*z};43H@l>J*?mH&lVrdt?N*
 zbK_Q#1ma>E|LUC(NQbL6Z>_!2{o`!k4%#{r`Q#bpk-Z-{6l{D%9hvA*AaP0Xsaz67
 zV96~279)ZPofJ6eV1%3br6fIyd_~D;M|#qPHkVf(fPn~TfZe7C1MId&Fu>d=*giq0
-tbMOX<qlo%W?K3WjD+;WLE9U>$tRE7|t2NN*W|jZ|002ovPDHLkV1lC5awY%(
+tbMOX<qlo%W?K3WjD+;WLE9U>$tRE7|t2NN*W|jZ|002ovPDHLkV1lb(axVY?
 
 diff --git a/graphics/door_anims/pallet.png b/graphics/door_anims/pallet.png
-index 1bc68a6e7887aea4a5d06051eb428693790f4ef7..273261604cd85fbc65b6f39a17923d7886a5fa15 100644
+index 1bc68a6e7887aea4a5d06051eb428693790f4ef7..43dc13da9228124ca99c3189690a5cb5639dfe48 100644
 GIT binary patch
-delta 287
-zcmV+)0pR|Z0>1)~DSrR}0KM<lN=jOD&ZXAId;kCcQjFGndxZDz#+>KI#>U2swbq<_
-zQZZ|s=iZdw=jW(?jCcS50Ln>3K~#90ozO8#Ls1Zg;qP5;ARq`2>}=#(q)~{v1UoC6
-zScfdZCSa8%q;Us!DSS;ji|oN#a0NyzUK8b7+-K~9IL-XbIe)_(raHM>@wpN$AD-gH
-zP?Q%mM4JU)L{qe5L3=ZXXmb7rLH~UQ2DfQ&^_X+i8+k_1Rh2O6&r~(9XPtCp>uIQJ
-z`yVyJ;r(S@q~%<J+;p%h5KY^0nUpS=4E^NM<vD%HIp?5v?e`X>RHV4JJ~-Z;r%K(@
-lcKv@4_Zre}&lq3+^9>%8I5Zb{a0&nb002ovPDHLkV1nspjE4XK
+delta 255
+zcmV<b0094&0-yqrDSrR}0KM<lN=jo=l-AzHd;kCcdwYcU@5Xb^rN+j_gtgwBb5iHt
+zl$74arKP3b=iX7j3ylB(0INwvK~#90m5#9r!Y~v?PfEnu)n6!xxVZ`bhJsV=82pmV
+zE_U}996AVHI`l6Dhteq}P>DlQJBjs8mwPU}BjPjz*B~j%>v&|lMB>hnfuy^^3nU59
+zDk9pW0+5_mH9*9)Q2^q3-<V`y5n*<@N8v;bU^QYEnh)|JXFzhEUK)>zJZxMRLf1FR
+zA%s@>7qMMby$``>t$kzq@!(@MFwW=8=HDP5`uApp&l?7pF=rYmaw`A;002ovPDHLk
+FV1n+8c*6hy
 
 delta 246
-zcmV<S015xU0+#}iDS!U}|MvF(-sbkb#onB(y?c9uT3T~KN@|?V_F|mwIeXs!&9wHU
+zcmV<S015w~0+#}iDS!U}|MvF(-sbkb#onB(y?c9uT3T~KN@|?V_F|mwIeXs!&9wHU
 zgWij3y<$px&7`!TY+(QZ0HR4mK~xx(h0wbZ!ypU>V0KEMEfgjIU3?e1K<7a+Knf4!
 zj@F%-A$lP0Oq0L*P6(vKm6De2`$8w!3?IeuRK&I~jC@OV?{7G3)uX0Jt(^jFRARgf
 zl^6j?d<%d?2*5(e1qwRop=Nq1a*rTgk<+1w_ckES`H?!HBLEs;wdvjftF7S;F!u4b
-wkC*8b{DVjl1bL_Ej0?hy3^T%v@jo`}2a_1EyUD@2>Hq)$07*qoM6N<$g10huiU0rr
+wkC*8b{DVjl1bL_Ej0?hy3^T%v@jo`}2a_1EyUD@2>Hq)$07*qoM6N<$f|+P`YXATM
 
 diff --git a/graphics/door_anims/pallet_house1.png b/graphics/door_anims/pallet_house1.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..4f3846189a031e836f9a21f55b9a9f01d2225b3e
+index 0000000000000000000000000000000000000000..3eb163c00457bc345d69a5c9e1a7f824de49a51b
 GIT binary patch
-literal 284
-zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!FMx_1?YjuT?KS7vyDW
-zm^@`lak8dU^0B2o$vwx`Zrxg3{C>*0_g=?(o<BdAJ?H(7GgjAtdX{^-IEGZrNft@j
-z*eUd*xS_F=k!yxkmY=~60|SLl10dLMo{*4`cq8XS`uTV^wq^Id*WBO#|G<F*M-1LG
-zy70c<w>;qJKJf>;B*1_*GKbG#gQ|hSw8Jh_CitW!WB@gXBt7_f2&m)0r+G(17+tM{
-z-On<HFi(`2&8yIJ-&<yZ632I&18?QjS=oSKnu*e#&!&ubFR}Tg2OLQdX^))faKn}%
-WYN2{$L9IT>{|uh4elF{r5}E+uHE<dL
+literal 275
+zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!FMx_1@~G=YqT}4U?xl
+ze|~OCaq`|dEs9Q2$vwxmZrwWN-239<_g=?(oV>EL=e(b9BklpzGtbk-F{ENnvPjCc
+zvtd7q8yY(qxn@{p<r_#C8z{I$NJvQ3wHZnqY%tIXO5pwby`k~x^sY12ZU1?Ae0V;|
+zD`d^v@z3(Wfky`p9NNI1#dpVn?HU6c2)L=P;8?7{ylECE4^K}M&zX9~GQ-&x3$os?
+z*xQh&FlVC&W72PZQP&k5hinZ@tN8*R$$euo@s>=lIZ(is$aXrJy(z1ske}h!Ev3g!
+T3wf>pUCQ9;>gTe~DWM4f^yX$!
 
 literal 0
 HcmV?d00001
 
 diff --git a/graphics/door_anims/pallet_rival.png b/graphics/door_anims/pallet_rival.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..b2a8312eef6796b117846cac6950a2ce7a997edc
+index 0000000000000000000000000000000000000000..11c9baadb71e6ea7d2ad7bf46bfb82e4d633110d
 GIT binary patch
 literal 269
-zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!Hl7_t%`fvRl@!{r>%X
-zb#=?JW7jm-W*47ZT5M^UoD3v1&-HkD^+e5CyLZZzDQxZaTY!3Ic)B=-RLt4hXUNy&
-zAj0~5{Sk>>xwZ|a;TyJm=9oP}!mH1rbNh{XM*<G3S~S_RhPAaw=tPJlHS*p~x%dC1
-zhoG!>8RshR*U@vEo6;)`9vp1_#>JJ8FUwHD;QQX^{|sNr4W=G1domdAD@irIN|xB4
-zByjc_tAcBZ74r(cz5aP@2KLYRPkd5LzV!IEVa~?ob9`4f{A|<xwuezMPMJZFuZaWb
-OMg~t;KbLh*2~7ax(rG6E
+zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!Hl7_tz}Fl3UiU{r>%X
+zOG``fxurop$Bv!5X1FwY&b?z!mWr0ybCQ#b&&_d~vUYFwp~<R1Ju^IA978JRZ0%Fz
+zJLDkXdY@-@*RE0tp}q^s1q>`=+tXOhSF}i9c~r%DWtpeyCiayFOjas7ZfG^@2;DLL
+zyZU7H-tYWp_+$_N-DKB%Xv2Ql0|%x)<lwrnT~OiBvhD@9Z>DH8o>5ek+Q?AZ8=<kQ
+zf9Ah{#)vR~hRi=J87>%Z**x1k#9ocF&8YamBK7slH>CJS_|!9g=k@-!he69xAwsIa
+R=Qq%e44$rjF6*2UngFbpZ2|xQ
 
 literal 0
 HcmV?d00001
@@ -1321,6 +1994,30 @@ index 7f42269..dc6df82 100644
  
  // gTileset_PewterCity
  #define METATILE_PewterCity_Door  0x2CE
+diff --git a/include/constants/opponents.h b/include/constants/opponents.h
+index 3b893f2..3fb5c1c 100644
+--- a/include/constants/opponents.h
++++ b/include/constants/opponents.h
+@@ -747,11 +747,18 @@
+ #define TRAINER_CHAMPION_REMATCH_CHARMANDER      741
+ #define TRAINER_CUE_BALL_PAXTON                  742
+ 
++#define TRAINER_PALLET_YOUNGSTER_TIMMY           743
++#define TRAINER_PALLET_LASS_MILA                 744
++#define TRAINER_PALLET_BUG_CATCHER_WES           745
++#define TRAINER_PALLET_CAMPER_DREW               746
++#define TRAINER_PALLET_PICNICKER_ROSA            747
++#define TRAINER_PALLET_FISHERMAN_OTTO            748
++
+ // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is 
+ //       only space for 25 additional trainers before trainer flag space overflows.
+ //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
+ 
+-#define NUM_TRAINERS                             743
++#define NUM_TRAINERS                             749
+ #define MAX_TRAINERS_COUNT                       768
+ 
+ #endif  // GUARD_CONSTANTS_OPPONENTS_H
 diff --git a/src/data/heal_locations.json b/src/data/heal_locations.json
 index 9802525..2e606a0 100644
 --- a/src/data/heal_locations.json
@@ -1334,8 +2031,163 @@ index 9802525..2e606a0 100644
        "y": 8,
        "respawn_map": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
        "respawn_npc": "LOCALID_MOM"
+diff --git a/src/data/trainer_parties.h b/src/data/trainer_parties.h
+index 2e57800..5ecddd6 100644
+--- a/src/data/trainer_parties.h
++++ b/src/data/trainer_parties.h
+@@ -10860,3 +10860,81 @@ static const struct TrainerMonNoItemDefaultMoves sParty_CueBallPaxton[] = {
+         .species = SPECIES_MUK,
+     },
+ };
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletTimmy[] = {
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_RATTATA,
++    },
++    {
++        .iv = 0,
++        .lvl = 3,
++        .species = SPECIES_PIDGEY,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletMila[] = {
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_ODDISH,
++    },
++    {
++        .iv = 0,
++        .lvl = 3,
++        .species = SPECIES_NIDORAN_F,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletWes[] = {
++    {
++        .iv = 0,
++        .lvl = 3,
++        .species = SPECIES_CATERPIE,
++    },
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_WEEDLE,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletDrew[] = {
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_SANDSHREW,
++    },
++    {
++        .iv = 0,
++        .lvl = 3,
++        .species = SPECIES_MANKEY,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletRosa[] = {
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_BELLSPROUT,
++    },
++    {
++        .iv = 0,
++        .lvl = 3,
++        .species = SPECIES_MEOWTH,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletOtto[] = {
++    {
++        .iv = 0,
++        .lvl = 5,
++        .species = SPECIES_MAGIKARP,
++    },
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_HORSEA,
++    },
++};
+diff --git a/src/data/trainers.h b/src/data/trainers.h
+index 02afbfd..cf1141a 100644
+--- a/src/data/trainers.h
++++ b/src/data/trainers.h
+@@ -7422,4 +7422,64 @@ const struct Trainer gTrainers[] = {
+         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+         .party = NO_ITEM_DEFAULT_MOVES(sParty_CueBallPaxton),
+     },
++    [TRAINER_PALLET_YOUNGSTER_TIMMY] = {
++        .trainerClass = TRAINER_CLASS_YOUNGSTER,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
++        .trainerPic = TRAINER_PIC_YOUNGSTER,
++        .trainerName = _("TIMMY"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletTimmy),
++    },
++    [TRAINER_PALLET_LASS_MILA] = {
++        .trainerClass = TRAINER_CLASS_LASS,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
++        .trainerPic = TRAINER_PIC_LASS,
++        .trainerName = _("MILA"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletMila),
++    },
++    [TRAINER_PALLET_BUG_CATCHER_WES] = {
++        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
++        .trainerPic = TRAINER_PIC_BUG_CATCHER,
++        .trainerName = _("WES"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletWes),
++    },
++    [TRAINER_PALLET_CAMPER_DREW] = {
++        .trainerClass = TRAINER_CLASS_CAMPER,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
++        .trainerPic = TRAINER_PIC_CAMPER,
++        .trainerName = _("DREW"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletDrew),
++    },
++    [TRAINER_PALLET_PICNICKER_ROSA] = {
++        .trainerClass = TRAINER_CLASS_PICNICKER,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_GIRL | F_TRAINER_FEMALE,
++        .trainerPic = TRAINER_PIC_PICNICKER,
++        .trainerName = _("ROSA"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletRosa),
++    },
++    [TRAINER_PALLET_FISHERMAN_OTTO] = {
++        .trainerClass = TRAINER_CLASS_FISHERMAN,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
++        .trainerPic = TRAINER_PIC_FISHERMAN,
++        .trainerName = _("OTTO"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletOtto),
++    },
+ };
 diff --git a/src/field_door.c b/src/field_door.c
-index c3be102..1300a4e 100644
+index c3be102..53a979f 100644
 --- a/src/field_door.c
 +++ b/src/field_door.c
 @@ -47,6 +47,8 @@ static const u8 sDoorAnimTiles_SlidingDouble[] = INCBIN_U8("graphics/door_anims/
@@ -1353,10 +2205,10 @@ index c3be102..1300a4e 100644
  static const u8 sDoorAnimPalettes_SlidingDouble[] = {3, 3, 3, 3, 3, 3, 3, 3};
 -static const u8 sDoorAnimPalettes_Pallet[] = {8, 8, 8, 8, 8, 8, 8, 8};
 -static const u8 sDoorAnimPalettes_OaksLab[] = {10, 10, 10, 10, 10, 10, 10, 10};
-+static const u8 sDoorAnimPalettes_Pallet[] = {12, 12, 10, 9, 12, 12, 10, 9};
-+static const u8 sDoorAnimPalettes_PalletHouse1[] = {8, 8, 8, 8, 8, 8, 8, 8};
-+static const u8 sDoorAnimPalettes_PalletRival[] = {7, 7, 7, 7, 7, 7, 7, 7};
-+static const u8 sDoorAnimPalettes_OaksLab[] = {8, 8, 7, 7, 8, 8, 7, 7};
++static const u8 sDoorAnimPalettes_Pallet[] = {12, 12, 7, 7, 12, 12, 7, 7};
++static const u8 sDoorAnimPalettes_PalletHouse1[] = {8, 8, 9, 9, 8, 8, 9, 9};
++static const u8 sDoorAnimPalettes_PalletRival[] = {9, 9, 9, 9, 9, 9, 9, 9};
++static const u8 sDoorAnimPalettes_OaksLab[] = {8, 8, 9, 9, 8, 8, 9, 9};
  static const u8 sDoorAnimPalettes_Viridian[] = {8, 8, 8, 8, 8, 8, 8, 8};
  static const u8 sDoorAnimPalettes_Pewter[] = {8, 8, 8, 8, 8, 8, 8, 8};
  static const u8 sDoorAnimPalettes_Saffron[] = {8, 8, 8, 8, 8, 8, 8, 8};

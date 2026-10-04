@@ -21,7 +21,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "harness"))
 import tilesets as T  # noqa: E402
 
-W, H, B = 44, 20, 16
+W, H, B = 44, 30, 16
+BOT = 10  # rows inserted above the original bottom edge (the south district)
 DX = 10  # original column c is now c + DX
 OUT = os.path.join(HERE, "build")
 
@@ -108,27 +109,32 @@ for x in range(2, W - 2):
     G[2][x] = 654
 G[2][2], G[2][W - 3] = 678, 655
 G[2][EXIT[0]], G[2][EXIT[1]] = 645, 646
-for y in range(3, 17):
+for y in range(3, 17 + BOT):
     G[y][2], G[y][W - 3] = 686, 663
 # bottom rows: core from the original, extensions continue its patterns
 for y in (17, 18, 19):
     for ox in range(2, 22):
-        G[y][ox + DX] = o_id(ox, y)
-        COLL[y][ox + DX] = o_coll(ox, y)
-G[17][2 + DX] = 670          # was the bottom-left corner; lawn continues west now
-G[17][21 + DX] = LAWN        # was the right edge
-G[18][21 + DX] = 670         # was the bottom-right corner
+        G[y + BOT][ox + DX] = o_id(ox, y)
+        COLL[y + BOT][ox + DX] = o_coll(ox, y)
+G[17 + BOT][2 + DX] = 670          # was the bottom-left corner; lawn continues west now
+G[17 + BOT][21 + DX] = LAWN        # was the right edge
+G[18 + BOT][21 + DX] = 670         # was the bottom-right corner
 # Row 19 holds tree tops (14/15), as the original does: the forest below the
 # map (border blocks) starts with mid-forest pieces, so without tops the trees
 # along the map's bottom edge would look sliced off.
 for x in range(2, 2 + DX):   # west extension: lawn edge, dark grass, tree tops
-    G[17][x] = 694 if x == 2 else 670
-    G[18][x] = 17 if x % 2 == 0 else 9
-    G[19][x] = 14 if x % 2 == 0 else 15
+    G[17 + BOT][x] = 694 if x == 2 else 670
+    G[18 + BOT][x] = 17 if x % 2 == 0 else 9
+    G[19 + BOT][x] = 14 if x % 2 == 0 else 15
 for x in range(22 + DX, W - 2):  # east extension
-    G[17][x] = 663 if x == W - 3 else LAWN
-    G[18][x] = 671 if x == W - 3 else 670
-    G[19][x] = 14 if x % 2 == 0 else 15
+    G[17 + BOT][x] = 663 if x == W - 3 else LAWN
+    G[18 + BOT][x] = 671 if x == W - 3 else 670
+    G[19 + BOT][x] = 14 if x % 2 == 0 else 15
+# The tree tops along the bottom edge are solid (the original lets you walk behind
+# them, which reads as walking through the trees).
+for x in range(2, W - 2):
+    if G[19 + BOT][x] in (14, 15):
+        COLL[19 + BOT][x] = (1, 0)
 # kept original areas: Oak's lab block with its yard, fence and sign; the garden
 KEEP_AREAS = [(12, 9, 20, 16), (4, 11, 10, 15)]  # original coords, inclusive
 for (x0, y0, x1, y1) in KEEP_AREAS:
@@ -237,9 +243,12 @@ def mailbox(cell, color):
 
 
 def tree(cell, sid=62):
+    """A tree is solid over its whole height, so nothing can walk behind its crown."""
     t = sprite(sid)
     x, y = cell
-    place(t, x * B + 8 - t.width // 2, (y + 1) * B - t.height, {cell, (x, y - 1)}, base_rows=(y - 1, y))
+    py = (y + 1) * B - t.height
+    rows = range(py // B, y + 1)
+    place(t, x * B + 8 - t.width // 2, py, {(x, r) for r in rows}, base_rows=rows)
 
 
 # Core: player's and rival's houses on their original door squares.
@@ -293,6 +302,24 @@ for c in [(31, 12), (31, 15)]:
 # Flower beds (walkable) in front of the new houses.
 pink, blue = sprite(283), sprite(271)
 FLOWERBEDS = []
+
+# ---------------- south district (rows 17-26) ----------------
+house("south_west", "blue", False, (6, 25))
+house("south_east", "pink", False, (36, 25))
+mailbox((4, 25), "blue")
+mailbox((34, 25), "red")
+# The park: pines on either side, a lamp-lit bench, and a sign.
+for c in [(12, 22), (32, 22)]:
+    tree(c)
+for lx in (16, 27):
+    place(lamp, lx * B + 8 - lamp.width // 2, 20 * B - lamp.height, {(lx, 18), (lx, 19)}, base_rows=(18, 19))
+place(bench, 21 * B + 8 - bench.width // 2, 21 * B - bench.height, {(20, 20), (21, 20), (22, 20)}, base_rows=(20,))
+PARK_SIGN = (21, 18)
+G[PARK_SIGN[1]][PARK_SIGN[0]] = 2  # the original FireRed signpost
+COLL[PARK_SIGN[1]][PARK_SIGN[0]] = (1, 0)
+bot, _ = layers(2)
+under.paste(bot, (PARK_SIGN[0] * B, PARK_SIGN[1] * B))
+BEHAVIOR[PARK_SIGN] = attr(2) & 0x1FF
 
 # ---------------- flatten objects ----------------
 objects.sort(key=lambda o: o[0])

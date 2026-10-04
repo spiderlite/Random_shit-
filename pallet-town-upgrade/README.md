@@ -2,9 +2,15 @@
 
 A bigger Pallet Town for [pret/pokefirered](https://github.com/pret/pokefirered):
 
-- **Size:** the map goes from 24×20 to 44×20.
-- **New districts:** four new houses with working doors and their own interiors
-  (each with a resident to talk to), a fountain plaza and a pine grove.
+- **Size:** the map goes from 24×20 to 44×30.
+- **New districts:** six new houses with working doors and their own interiors
+  (each with a resident to talk to), a fountain plaza, a pine grove, and a park
+  in the new south district.
+- **Beginner trainers:** six trainers in Pallet Park (Youngster Timmy, Lass Mila,
+  Bug Catcher Wes, Camper Drew, Picnicker Rosa, Fisherman Otto), each with their
+  own personality. They never start a battle themselves. Before you have a
+  Pokémon they just chat; after that they ask YES/NO, and after you beat them they
+  have a parting line. Their teams are first-stage Kanto Pokémon at levels 3–5.
 - **Player and rival homes:** both houses get new art.
 - **Kept as in FireRed:** Oak's lab, the garden, the pond and the forest edge.
   All the original events still work, including Oak's "wait, it's unsafe!"
@@ -15,7 +21,8 @@ A bigger Pallet Town for [pret/pokefirered](https://github.com/pret/pokefirered)
 The overview shows the compiled map, with the bottom of Route 1 above it and the
 top of Route 21 below it. The original town is in
 `screenshots/pallet_original.png`, and in-game screenshots are in
-`screenshots/pallet_ingame.png`.
+`screenshots/pallet_ingame.png`, `screenshots/pallet_qa.png` and
+`screenshots/pallet_trainers_qa.png`.
 
 Tile credits and license terms are in [CREDITS.md](CREDITS.md). The
 ChaoticCherryCake tiles are CC BY-NC-SA, so this is **non-commercial only**.
@@ -24,23 +31,36 @@ ChaoticCherryCake tiles are CC BY-NC-SA, so this is **non-commercial only**.
 
 | | |
 |---|---|
-| Layout | `PalletTown_Layout` is now 44 wide. The original town is the middle (shifted 10 columns right); new west and east districts are on either side. |
-| Tileset | `gTileset_PalletTown` was redrawn: 384/384 tiles, 6 palettes, 172 metatiles. Metatiles 682/683/690/698 are unchanged, because Route 1 uses them. |
+| Layout | `PalletTown_Layout` is now 44×30. The original town is the middle (shifted 10 columns right), with new west and east districts on either side. Ten rows were inserted above the original bottom edge for the south district, so the pond and the seam with Route 21 are unchanged. |
+| Tileset | `gTileset_PalletTown` was redrawn: 376/384 tiles, 6 palettes, 162 metatiles. Metatiles 682/683/690/698 are unchanged, because Route 1 uses them. |
 | Neighbours | The Route 1 and Route 21 North connections were re-aligned (offset ±10). Nothing on those routes was changed. |
-| Events | All warps, signs, triggers and NPCs moved 10 columns. Hard-coded positions in `PalletTown/scripts.inc` (`setobjectxyperm`, `opendoor`/`closedoor`) and the Pallet heal location were moved too. |
-| New maps | `PalletTown_House1`–`4`, reusing the existing house interiors (`LAYOUT_HOUSE1`, `HOUSE2`, `HOUSE5`, `VIRIDIAN_CITY_HOUSE`). |
+| Events | All warps, signs, triggers and NPCs moved 10 columns, and the Fat Man by the pond moved down 10 rows with the bottom edge. Hard-coded positions in `PalletTown/scripts.inc` (`setobjectxyperm`, `opendoor`/`closedoor`) and the Pallet heal location were moved too. |
+| New maps | `PalletTown_House1`–`6`, reusing the existing house interiors (`LAYOUT_HOUSE1`, `HOUSE2`, `HOUSE5`, `VIRIDIAN_CITY_HOUSE`). |
 | Doors | New door-opening animations for each house design. The rival's house and the blue houses have their own door metatiles, registered in `src/field_door.c`. |
-| Extras | Mailbox signs for the new houses, and two outdoor NPCs (a girl by the fountain, an old man by the pines). |
+| Trainers | Six new trainers (`TRAINER_PALLET_*`, ids 743–748; `NUM_TRAINERS` is now 749 of the 768 that fit) in `include/constants/opponents.h`, `src/data/trainers.h` and `src/data/trainer_parties.h`. They're defined in `pallet_upgrade/trainers_data.py`. |
+| Extras | Mailbox signs for every new house, a Pallet Park sign, and two outdoor NPCs (a girl beside the fountain bench, an old man by the pines). |
 
 Checked in the emulator:
 
-- The intro leads into the new town, and leaving the player's house plays the new door animation.
-- Oak's cutscene at the north exit plays and leads you into the lab.
-- A new house can be entered, its resident talks, and leaving puts you back at the right door.
-- Roofs are drawn over the player when walking behind a house.
-- The mailbox signs work.
-- Before building, all of Oak's scripted walks were traced against the new
-  collision map; none of them pass through a blocked square.
+- **Arriving outside:** the intro leads into the new town, and leaving the player's house plays the new door animation.
+- **Oak's cutscene:** it plays at the north exit and leads you into the lab.
+- **The houses:** every new house puts you on the middle of its doormat, its
+  resident stands on the floor and talks, and leaving puts you back at the right
+  door.
+- **Roofs:** they're drawn over the player when walking behind a house. Trees, lamp poles,
+  benches and fences are solid.
+- **The trainers:** talking to Youngster Timmy covers every path: the
+  pre-Pokémon line, NO, YES leading into a real trainer battle, and the after-battle line
+  (with no rematch).
+
+Checked automatically on every rebuild:
+
+- **Drawing and collision:** `compose.py` checks that nothing at ground level is drawn over the player, and that no
+  blocked square is invisible.
+- **Reachability:** `check_reach.py` checks that every NPC, trainer, sign and door can be reached and faced,
+  and that every house resident stands on open floor.
+- **Oak's walks:** all of his scripted walks were traced against the collision map; none of them pass
+  through a blocked square.
 
 ## Rebuilding
 

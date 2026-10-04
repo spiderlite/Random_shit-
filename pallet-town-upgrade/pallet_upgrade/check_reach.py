@@ -46,4 +46,20 @@ for w in m["warp_events"]:
     r = (w["x"], w["y"] + 1) in seen
     print("DOOR %-28s at %-8s %s" % (w["dest_map"].replace("MAP_", ""), (w["x"], w["y"]), "ok" if r else "UNREACHABLE"))
     ok &= r
+# Interiors: every resident must stand on an open floor square (not furniture, not the doormat).
+layouts = {l["id"]: l for l in json.load(open(os.path.join(ROOT, "data/layouts/layouts.json")))["layouts"] if "id" in l}
+for d in sorted(os.listdir(os.path.join(ROOT, "data/maps"))):
+    if not d.startswith("PalletTown_House"):
+        continue
+    mj = json.load(open(os.path.join(ROOT, "data/maps", d, "map.json")))
+    l = layouts[mj["layout"]]
+    lw = l["width"]
+    blk = [x for (x,) in struct.iter_unpack("<H", open(os.path.join(ROOT, l["blockdata_filepath"]), "rb").read())]
+    warps = {(w["x"], w["y"]) for w in mj["warp_events"]}
+    for o in mj["object_events"]:
+        c = (o["x"], o["y"])
+        good = not ((blk[c[1] * lw + c[0]] >> 10) & 3) and c not in warps
+        print("ROOM %-28s at %-8s %s" % (d + " " + o["graphics_id"].replace("OBJ_EVENT_GFX_", ""), c,
+                                          "ok" if good else "ON FURNITURE/DOORMAT"))
+        ok &= good
 sys.exit(0 if ok else 1)
