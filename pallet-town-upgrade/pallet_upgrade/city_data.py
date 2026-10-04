@@ -248,7 +248,7 @@ OUTDOOR = [
         "Ahh… a bench in the park.\\p"
         "This is the life. No battles,\\n"
         "no homework. Just sunshine.$"),
-    npc("LITTLE_BOY", (7, 11), WANDER,
+    npc("LITTLE_BOY", (12, 16), WANDER,
         "Tag! You're it!\\n"
         "…Wait, you're not playing?$", rng=2),
     mon("PIDGEY", "SPECIES_PIDGEY", (9, 17), WANDER, "PIDGEY: Pijji! Pijji!$", rng=2),
@@ -257,7 +257,7 @@ OUTDOOR = [
         "I planted these pines the year\\n"
         "PROF. OAK built his lab.\\p"
         "They've grown taller than me!$"),
-    npc("WORKER_M", (47, 11), LOOK,
+    npc("WORKER_M", (48, 9), LOOK,
         "We just finished the POKéMON\\n"
         "CENTER and the MART.\\p"
         "Next up, the mayor wants a\\n"

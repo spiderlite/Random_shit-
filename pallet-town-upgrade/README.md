@@ -37,11 +37,13 @@ event are kept as they are in FireRed.
   chat; after that they ask YES/NO, and after you beat them they have a parting line.
   Their teams are first-stage Pokémon at levels 3–5.
 
-![overview](screenshots/pallet_city_overview.png)
+![overview](screenshots/pallet_city_people.png)
+
+(The whole town with everyone in place. `pallet_city_overview.png` is the bare map.)
 
 In-game screenshots: `screenshots/pallet_city_tour.png` (eight spots around town),
 `pallet_park_battle.png`, `pallet_market_stall.png`, `pallet_pokemon_center.png` and
-`pallet_cinnabar_trainer.png`. Every interior, with residents marked, is in
+`pallet_cinnabar_trainer.png`. Every interior, with its residents drawn in, is in
 `pallet_city_interiors.png`, and the original town is in `pallet_original.png`.
 
 Tile credits and license terms are in [CREDITS.md](CREDITS.md). The
@@ -79,6 +81,8 @@ Checked automatically on every rebuild (`check_reach.py`, `compose.py` audits):
 - **Interiors:** every resident stands on open floor (not furniture or the doormat), and every exit
   is on a real doormat.
 - **Drawing:** nothing at ground level is drawn over the player, and no blocked square is invisible.
+- **Hidden characters:** no character can stand or wander in a square where a roof, tree crown or
+  lamp head is drawn over them (`check_cover.py`). Lamp heads and tree crowns are solid.
 
 ## Rebuilding
 
@@ -103,7 +107,7 @@ art) and run `pallet_upgrade/rebuild.sh`:
 4. `wire.py` writes the map JSON, scripts, trainers, shops, interiors,
    connections and heal location. It always starts from the committed files.
    `sprites.py` imports the Emerald overworld Pokémon.
-5. `check_reach.py` runs the checks above and fails the build on any problem.
+5. `check_reach.py` and `check_cover.py` run the checks above and fail the build on any problem.
 
 `pallet_upgrade/orig/` is a copy of the original Pallet Town tileset and map
 that the pipeline reads from.

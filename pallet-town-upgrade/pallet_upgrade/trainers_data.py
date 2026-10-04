@@ -295,7 +295,7 @@ TRAINERS = [
     },
     {
         "name": "IVY", "class": "PICNICKER", "const": "TRAINER_PALLET_PICNICKER_IVY",
-        "gfx": "OBJ_EVENT_GFX_PICNICKER", "pos": (53, 9), "facing": "MOVEMENT_TYPE_WANDER_AROUND", "range": 2,
+        "gfx": "OBJ_EVENT_GFX_PICNICKER", "pos": (53, 9), "facing": "MOVEMENT_TYPE_WANDER_AROUND", "range": 1,
         "female": True,
         "party": [("EKANS", 4), ("NIDORAN_M", 4)],
         "text": {

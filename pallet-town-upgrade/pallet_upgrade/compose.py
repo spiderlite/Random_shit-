@@ -467,7 +467,7 @@ place(fountain, 11 * B + 8 - fountain.width // 2, 13 * B - fountain.height,
 lamp = dawn((0, 95, 16, 145))
 # Lamp posts are solid for their base and pole squares; only the head overlaps.
 for lx in (9, 13):
-    place(lamp, lx * B + 8 - lamp.width // 2, 14 * B - lamp.height, {(lx, 12), (lx, 13)}, base_rows=(12, 13))
+    place(lamp, lx * B + 8 - lamp.width // 2, 14 * B - lamp.height, {(lx, 11), (lx, 12), (lx, 13)}, base_rows=(12, 13))  # head square solid too
 bench = dawn((48, 96, 80, 112))
 # Centred just below the fountain. It straddles three squares; all are blocked.
 place(bench, 11 * B + 8 - bench.width // 2, 15 * B - bench.height, {(10, 14), (11, 14), (12, 14)}, base_rows=(14,))
@@ -490,14 +490,14 @@ for c in [(12, 22), (32, 22)]:
     tree(c)
 for lx in PARK["lamps"]:
     ly = PARK["lamp_row"]
-    place(lamp, lx * B + 8 - lamp.width // 2, (ly + 1) * B - lamp.height, {(lx, ly - 1), (lx, ly)}, base_rows=(ly - 1, ly))
+    place(lamp, lx * B + 8 - lamp.width // 2, (ly + 1) * B - lamp.height, {(lx, ly - 2), (lx, ly - 1), (lx, ly)}, base_rows=(ly - 1, ly))
 bx, by = PARK["bench"]
 place(bench, bx * B + 8 - bench.width // 2, (by + 1) * B - bench.height, {(bx - 1, by), (bx, by), (bx + 1, by)}, base_rows=(by,))
 for (sx, sy) in PARK["side_benches"]:   # two squares wide, sitting exactly on them
     place(bench, sx * B, (sy + 1) * B - bench.height, {(sx, sy), (sx + 1, sy)}, base_rows=(sy,))
 # Lamps on either side of the flower garden.
 for lx in (43, 53):
-    place(lamp, lx * B + 8 - lamp.width // 2, 23 * B - lamp.height, {(lx, 21), (lx, 22)}, base_rows=(21, 22))
+    place(lamp, lx * B + 8 - lamp.width // 2, 23 * B - lamp.height, {(lx, 20), (lx, 21), (lx, 22)}, base_rows=(21, 22))
 
 # Farmers' market stall: a canopy on two poles (drawn below the player so the
 # vendor stands in front of it) and baskets of produce in front as a counter.
