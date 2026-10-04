@@ -20,11 +20,13 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "harness"))
 import tilesets as T  # noqa: E402
+import city_data as CITY  # noqa: E402
 
-W, H, B = 44, 30, 16
+W, H, B = 62, 30, 16
 BOT = 10  # rows inserted above the original bottom edge (the south district)
 DX = 10  # original column c is now c + DX
 OUT = os.path.join(HERE, "build")
+os.makedirs(OUT, exist_ok=True)
 
 # ---------------- original data ----------------
 OW = 24
@@ -143,6 +145,76 @@ for (x0, y0, x1, y1) in KEEP_AREAS:
             G[y][x + DX] = o_id(x, y)
             COLL[y][x + DX] = o_coll(x, y)
 
+# ---------------- market district structures (FireRed's own blocks) ----------------
+def yard(x0, y0, x1, y1, fill=1):
+    """A dark-grass yard with Pallet's lawn edges around it (the same pieces the
+    original garden and lab yard use, so it costs no new tiles)."""
+    for y in range(y0, y1 + 1):
+        for x in range(x0, x1 + 1):
+            if (x, y) == (x0, y0):
+                mid = 711
+            elif (x, y) == (x1, y0):
+                mid = 710
+            elif (x, y) == (x0, y1):
+                mid = 703
+            elif (x, y) == (x1, y1):
+                mid = 702
+            elif y == y0:
+                mid = 670
+            elif y == y1:
+                mid = 654
+            elif x == x0:
+                mid = 663
+            elif x == x1:
+                mid = 661
+            else:
+                mid = fill
+            G[y][x] = mid
+            COLL[y][x] = (0, 3)
+
+
+VIR = next(l for l in T.layouts() if l["name"] == "ViridianCity_Layout")
+VIR_W = VIR["width"]
+VIR_V = [v for (v,) in struct.iter_unpack("<H", open(T.path(VIR["blockdata_filepath"]), "rb").read())]
+
+
+def copy_viridian(sx, sy, w, h, dx, dy):
+    """Copy a block of Viridian City (metatiles, collision, elevation) into the town."""
+    for j in range(h):
+        for i in range(w):
+            v = VIR_V[(sy + j) * VIR_W + sx + i]
+            G[dy + j][dx + i] = v & 0x3FF
+            COLL[dy + j][dx + i] = ((v >> 10) & 3, v >> 12)
+
+
+SIGNPOSTS = {}  # cell -> text key
+
+
+def signpost(cell, mid=3):
+    x, y = cell
+    G[y][x] = mid
+    COLL[y][x] = (1, 0)
+
+
+for b in CITY.BUILDINGS:
+    dx, dy = b["door"]
+    if b["design"] == "pc":   # 5x4, door in the middle column
+        yard(dx - 3, dy - 4, dx + 3, dy)
+        copy_viridian(24, 23, 5, 4, dx - 2, dy - 3)
+    elif b["design"] == "mart":  # 4x4, door in the third column
+        yard(dx - 3, dy - 4, dx + 2, dy)
+        copy_viridian(34, 16, 4, 4, dx - 2, dy - 3)
+    if b.get("sign"):
+        signpost(b["sign"])
+
+# Flower garden plaza in the market district: flowers you can walk through,
+# round bushes at the corners.
+GARDEN = (44, 19, 52, 24)
+yard(*GARDEN, fill=4)
+for (x, y) in [(45, 20), (51, 20), (45, 23), (51, 23)]:
+    G[y][x] = 5
+    COLL[y][x] = (1, 0)
+
 # ---------------- render ground ----------------
 under = Image.new("RGBA", (W * B, H * B))
 over = Image.new("RGBA", (W * B, H * B))
@@ -153,12 +225,89 @@ for y in range(H):
         if top is not None:
             over.paste(top, (x * B, y * B))
 
+PATH_ART = set()
 BEHAVIOR = {}
 for y in range(H):
     for x in range(W):
         b = attr(G[y][x]) & 0x1FF
         if b:
             BEHAVIOR[(x, y)] = b
+
+# ---------------- streets ----------------
+# Sand paths in FireRed's own style (General metatiles 0xD3-0xE5), autotiled per
+# 8x8 quadrant so straight runs, corners and junctions all join. The outermost
+# dark-grass band of FireRed's path art is replaced by the lawn underneath, so
+# the paths sit naturally on Pallet's lighter lawn.
+PATH_F = (115, 206, 165)  # FireRed's dark grass band around the sand
+INNER_TL = ["fddddbaa",   # hand-drawn inner corner (lawn notch top-left),
+            "dddddbaa",   # continuing the edge bands of both neighbours
+            "ddddbaaa",
+            "ddddbaaa",
+            "ddbbaaaa",
+            "bbaaaaaa",
+            "aaaaaaaa",
+            "aaaaaaaa"]
+LAWN_BASE = (189, 239, 214, 255)
+PATH_COL = {"d": (189, 231, 165), "b": (222, 198, 140), "a": (239, 231, 140)}
+
+
+def quad(mid, q):
+    bot, _ = layers(mid)
+    return bot.crop(((q % 2) * 8, (q // 2) * 8, (q % 2) * 8 + 8, (q // 2) * 8 + 8))
+
+
+def inner_quad(q):
+    im = Image.new("RGBA", (8, 8))
+    for y, row in enumerate(INNER_TL):
+        for x, ch in enumerate(row):
+            im.putpixel((x, y), (PATH_F if ch == "f" else PATH_COL[ch]) + (255,))
+    if q in (1, 3):
+        im = im.transpose(Image.FLIP_LEFT_RIGHT)
+    if q in (2, 3):
+        im = im.transpose(Image.FLIP_TOP_BOTTOM)
+    return im
+
+
+# quadrant q: (vertical neighbour dy, horizontal neighbour dx), and the source
+# metatiles for outer corner / horizontal edge / vertical edge
+QUAD = {0: (-1, -1, 0xD3, 0xD4, 0xDB), 1: (-1, 1, 0xD5, 0xD4, 0xDD),
+        2: (1, -1, 0xE3, 0xE4, 0xDB), 3: (1, 1, 0xE5, 0xE4, 0xDD)}
+PATH = set()
+
+
+def street(x0, y0, x1, y1):
+    for y in range(y0, y1 + 1):
+        for x in range(x0, x1 + 1):
+            PATH.add((x, y))
+
+
+for r in CITY.STREETS:
+    street(*r)
+PATH = {(x, y) for (x, y) in PATH if G[y][x] == LAWN and (x, y) not in getattr(CITY, "NO_PATH", ())}
+for (x, y) in sorted(PATH):
+    cell = under.crop((x * B, y * B, x * B + B, y * B + B))
+    full = True
+    for q, (dy, dx, outer, hedge, vedge) in QUAD.items():
+        v, h, d = (x, y + dy) in PATH, (x + dx, y) in PATH, (x + dx, y + dy) in PATH
+        if v and h and d:
+            src = quad(0xDC, q)
+        else:
+            full = False
+            src = inner_quad(q) if (v and h) else quad(outer if not (v or h) else (hedge if h else vedge), q)
+        ox, oy = (q % 2) * 8, (q // 2) * 8
+        for py in range(8):
+            for px in range(8):
+                c = src.getpixel((px, py))
+                # FireRed's dark band becomes plain lawn (flat, so edge pieces
+                # repeat exactly and cost few tiles)
+                cell.putpixel((ox + px, oy + py), LAWN_BASE if c[:3] == PATH_F else c)
+    if full:
+        G[y][x] = 0xDC
+        bot, _ = layers(0xDC)
+        under.paste(bot, (x * B, y * B))
+    else:
+        under.paste(cell, (x * B, y * B))
+        PATH_ART.add((x, y))
 
 # ---------------- CCC objects ----------------
 boxes = json.load(open(os.path.join(HERE, "assets", "ccc_boxes.json")))
@@ -255,18 +404,16 @@ def tree(cell, sid=62):
 house("player", "pink", False, (6 + DX, 7))
 house("rival", "orange", True, (15 + DX, 7))
 mailbox((4 + DX, 7), "red")
-mailbox((13 + DX, 7), "blue")
+mailbox(CITY.RIVAL_MAILBOX, "blue")
 
-# West district
-house("west1", "blue", False, (5, 7))
-house("west2", "pink", False, (5, 15))
-mailbox((3, 7), "blue")
-mailbox((3, 15), "blue")
-# East district (same designs and pixel alignment as the west, so tiles are shared)
-house("east1", "pink", False, (35, 7))
-house("east2", "blue", False, (35, 15))
-mailbox((33, 7), "red")
-mailbox((33, 15), "blue")
+# Every other house comes from the city data (same pixel alignment per design, so
+# repeated designs share all their tiles).
+for b in CITY.BUILDINGS:
+    if b["design"] in ("pink", "blue", "orange"):
+        house(b["key"], b["design"], b["design"] == "orange", b["door"])
+    if b.get("mailbox"):
+        cell, color = b["mailbox"]
+        mailbox(cell, color)
 
 # ---------------- decoration ----------------
 dawn_sheet = Image.open(os.path.join(HERE, "assets", "dawn16.png")).convert("RGBA")
@@ -295,6 +442,10 @@ bench = dawn((48, 96, 80, 112))
 # Centred just below the fountain. It straddles three squares; all are blocked.
 place(bench, 11 * B + 8 - bench.width // 2, 15 * B - bench.height, {(10, 14), (11, 14), (12, 14)}, base_rows=(14,))
 
+# Shade trees in the open lawns between the north houses and in the south-west grove.
+for c in [(11, 5), (31, 5), (5, 20), (9, 20)]:
+    tree(c)
+
 # Pine grove on the east side, between Oak's lab and the east houses.
 for c in [(31, 12), (31, 15)]:
     tree(c)
@@ -304,16 +455,15 @@ pink, blue = sprite(283), sprite(271)
 FLOWERBEDS = []
 
 # ---------------- south district (rows 17-26) ----------------
-house("south_west", "blue", False, (6, 25))
-house("south_east", "pink", False, (36, 25))
-mailbox((4, 25), "blue")
-mailbox((34, 25), "red")
 # The park: pines on either side, a lamp-lit bench, and a sign.
 for c in [(12, 22), (32, 22)]:
     tree(c)
 for lx in (16, 27):
     place(lamp, lx * B + 8 - lamp.width // 2, 20 * B - lamp.height, {(lx, 18), (lx, 19)}, base_rows=(18, 19))
 place(bench, 21 * B + 8 - bench.width // 2, 21 * B - bench.height, {(20, 20), (21, 20), (22, 20)}, base_rows=(20,))
+# Lamps on either side of the flower garden.
+for lx in (43, 53):
+    place(lamp, lx * B + 8 - lamp.width // 2, 23 * B - lamp.height, {(lx, 21), (lx, 22)}, base_rows=(21, 22))
 PARK_SIGN = (21, 18)
 G[PARK_SIGN[1]][PARK_SIGN[0]] = 2  # the original FireRed signpost
 COLL[PARK_SIGN[1]][PARK_SIGN[0]] = (1, 0)
@@ -321,7 +471,25 @@ bot, _ = layers(2)
 under.paste(bot, (PARK_SIGN[0] * B, PARK_SIGN[1] * B))
 BEHAVIOR[PARK_SIGN] = attr(2) & 0x1FF
 
+# Farmers' market stall: a canopy on two poles (drawn below the player so the
+# vendor stands in front of it) and baskets of produce in front as a counter.
+COUNTERS = set()
+cx, cy = CITY.STALL["canopy"]
+canopy = dawn((48, 1201, 96, 1248))
+# Mirror the left half onto the right: a symmetric canopy shares its tiles
+# through flips (the tileset is nearly full).
+canopy.paste(canopy.crop((0, 0, 24, canopy.height)).transpose(Image.FLIP_LEFT_RIGHT), (24, 0))
+# Straight top edge (the source has a notch in the middle).
+for x in range(8, 40):
+    canopy.paste(canopy.crop((8, 0, 9, 8)), (x, 0))
+place(canopy, cx * B, cy * B, base_rows=(cy, cy + 1, cy + 2))  # top on the square edge
+for i, box in enumerate([(96, 1168, 112, 1184), (112, 1168, 128, 1184), (96, 1168, 112, 1184)]):  # carrots, berries, carrots
+    basket = dawn(box)
+    prop(basket, (cx + i, cy + 3))
+    COUNTERS.add((cx + i, cy + 3))
+
 # ---------------- flatten objects ----------------
+under.save(os.path.join(OUT, "ground.png"))  # ground only, before objects
 objects.sort(key=lambda o: o[0])
 ground_layer = Image.new("RGBA", under.size)  # object pixels at ground level
 high_layer = Image.new("RGBA", under.size)    # object pixels above their base (roofs, crowns)
@@ -395,16 +563,17 @@ for c in DOORS:
     BEHAVIOR[c] = 0x69
 for c in SIGNS:
     BEHAVIOR[c] = 0x84
+for c in COUNTERS:
+    BEHAVIOR[c] = 0x80  # MB_COUNTER: talk to the vendor across it
 
 # ---------------- outputs ----------------
-os.makedirs(OUT, exist_ok=True)
 under.save(os.path.join(OUT, "under.png"))
 over.save(os.path.join(OUT, "over.png"))
 cells = {}
 for y in range(H):
     for x in range(W):
         mid = G[y][x]
-        has_art_change = (x, y) in DECAL or objlayer.crop((x * B, y * B, x * B + B, y * B + B)).getbbox() is not None
+        has_art_change = (x, y) in DECAL or (x, y) in PATH_ART or objlayer.crop((x * B, y * B, x * B + B, y * B + B)).getbbox() is not None
         cells["%d,%d" % (x, y)] = {
             "id": None if has_art_change else mid,
             "coll": COLL[y][x][0], "elev": COLL[y][x][1],

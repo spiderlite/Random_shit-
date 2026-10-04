@@ -1,28 +1,42 @@
-# Expanded Pallet Town for the FireRed decomp
+# Pallet City for the FireRed decomp
 
-A bigger Pallet Town for [pret/pokefirered](https://github.com/pret/pokefirered):
+Pallet Town for [pret/pokefirered](https://github.com/pret/pokefirered), grown
+into a small, busy city. Oak's lab, the garden, the pond and every original
+event are kept as they are in FireRed.
 
-- **Size:** the map goes from 24×20 to 44×30.
-- **New districts:** six new houses with working doors and their own interiors
-  (each with a resident to talk to), a fountain plaza, a pine grove, and a park
-  in the new south district.
-- **Beginner trainers:** six trainers in Pallet Park (Youngster Timmy, Lass Mila,
-  Bug Catcher Wes, Camper Drew, Picnicker Rosa, Fisherman Otto), each with their
-  own personality. They never start a battle themselves. Before you have a
-  Pokémon they just chat; after that they ask YES/NO, and after you beat them they
-  have a parting line. Their teams are first-stage Kanto Pokémon at levels 3–5.
-- **Player and rival homes:** both houses get new art.
-- **Kept as in FireRed:** Oak's lab, the garden, the pond and the forest edge.
-  All the original events still work, including Oak's "wait, it's unsafe!"
-  cutscene, which leads you to the lab.
+- **Size:** the map goes from 24×20 to 62×30.
+- **Streets:** sand paths in FireRed's own style. There's a main street from the Route 1
+  gate, three avenues past every row of front doors, an east street, a
+  fountain square and lanes around the park.
+- **12 enterable buildings, each with its own interior and residents:**
+  - **Pokémon Center:** the nurse heals you and sets your respawn point, and the 2F link rooms work.
+  - **Poké Mart:** sells Potions, Antidotes, Paralyze Heals, Awakenings, Burn Heals and Escape Ropes.
+  - **Café:** a chef, a pacing waitress, a regular, and Brendan visiting from Hoenn.
+  - **Pokémon Nursery:** Clefairy, Pikachu, Jigglypuff and Nidoran♀.
+  - **Trainers' School:** a teacher and two pupils at their desks.
+  - **Pokémon breeder's house**, plus six family homes (Harper, Aoki, Bell, Vale, Marsh, Kowalski),
+    one of them with an upstairs.
+- **Farmers' market stall** in the east square: a canopy and baskets of produce,
+  and a vendor you talk to across the baskets. He sells Fresh Water, Soda Pop and Lemonade.
+- **Townsfolk:** 12 townsfolk, each with their own personality. There's a policeman at the gate,
+  a mail carrier on his round, a jogger running laps of East Street, a shopper
+  at the stall, a gentleman walking his Meowth, a man napping in the sun,
+  kids playing tag, a construction worker, and May visiting from Littleroot in the
+  Pokémon Center. Five Pokémon wander about too (two Pidgey, Meowth, Slowpoke, Psyduck),
+  and talking to one plays its cry.
+- **14 beginner trainers** spread across town. Some are relaxing in the park or the
+  flower garden, some wander about, and some are waiting at the harbour to head
+  for Cinnabar ("I'll use my newly caught POKéMON on you, rookie!").
+  They never start a battle themselves. Before you have a Pokémon they just
+  chat; after that they ask YES/NO, and after you beat them they have a parting line.
+  Their teams are first-stage Pokémon at levels 3–5.
 
-![overview](screenshots/pallet_expanded_overview.png)
+![overview](screenshots/pallet_city_overview.png)
 
-The overview shows the compiled map, with the bottom of Route 1 above it and the
-top of Route 21 below it. The original town is in
-`screenshots/pallet_original.png`, and in-game screenshots are in
-`screenshots/pallet_ingame.png`, `screenshots/pallet_qa.png` and
-`screenshots/pallet_trainers_qa.png`.
+In-game screenshots: `screenshots/pallet_city_tour.png` (eight spots around town),
+`pallet_market_stall.png`, `pallet_pokemon_center.png` and
+`pallet_cinnabar_trainer.png`. Every interior, with residents marked, is in
+`pallet_city_interiors.png`, and the original town is in `pallet_original.png`.
 
 Tile credits and license terms are in [CREDITS.md](CREDITS.md). The
 ChaoticCherryCake tiles are CC BY-NC-SA, so this is **non-commercial only**.
@@ -31,36 +45,31 @@ ChaoticCherryCake tiles are CC BY-NC-SA, so this is **non-commercial only**.
 
 | | |
 |---|---|
-| Layout | `PalletTown_Layout` is now 44×30. The original town is the middle (shifted 10 columns right), with new west and east districts on either side. Ten rows were inserted above the original bottom edge for the south district, so the pond and the seam with Route 21 are unchanged. |
-| Tileset | `gTileset_PalletTown` was redrawn: 376/384 tiles, 6 palettes, 162 metatiles. Metatiles 682/683/690/698 are unchanged, because Route 1 uses them. |
-| Neighbours | The Route 1 and Route 21 North connections were re-aligned (offset ±10). Nothing on those routes was changed. |
-| Events | All warps, signs, triggers and NPCs moved 10 columns, and the Fat Man by the pond moved down 10 rows with the bottom edge. Hard-coded positions in `PalletTown/scripts.inc` (`setobjectxyperm`, `opendoor`/`closedoor`) and the Pallet heal location were moved too. |
-| New maps | `PalletTown_House1`–`6`, reusing the existing house interiors (`LAYOUT_HOUSE1`, `HOUSE2`, `HOUSE5`, `VIRIDIAN_CITY_HOUSE`). |
-| Doors | New door-opening animations for each house design. The rival's house and the blue houses have their own door metatiles, registered in `src/field_door.c`. |
-| Trainers | Six new trainers (`TRAINER_PALLET_*`, ids 743–748; `NUM_TRAINERS` is now 749 of the 768 that fit) in `include/constants/opponents.h`, `src/data/trainers.h` and `src/data/trainer_parties.h`. They're defined in `pallet_upgrade/trainers_data.py`. |
-| Extras | Mailbox signs for every new house, a Pallet Park sign, and two outdoor NPCs (a girl beside the fountain bench, an old man by the pines). |
+| Layout | `PalletTown_Layout` is now 62×30. The original town sits in the middle (shifted 10 columns right), and ten rows were inserted above the original bottom edge, so the pond and the seams with Route 1 and Route 21 are unchanged. |
+| Tileset | `gTileset_PalletTown` was redrawn: 375 of the 376 usable tiles (the last 8 of the 384 are reserved for door animations), 6 palettes, 215 metatiles. No tiles were merged lossily. Tiles that already exist in the General tileset are referenced from there. Ground-level objects sit on the metatile's second layer, so they cost the same tiles on any ground. Metatiles 682/683/690/698 are unchanged, because Route 1 uses them. |
+| Neighbours | The Route 1 and Route 21 North connections were re-aligned. Nothing on those routes was changed. |
+| Events | All original warps, signs, triggers and NPCs moved with the town. Hard-coded positions in `PalletTown/scripts.inc` and the Pallet heal location were moved too. |
+| New maps | 14 interior maps (`PalletTown_*`), in a new map group. They reuse FireRed's interior layouts, and their door warps are aligned to each layout's doormat. |
+| Doors | New door-opening animations for each house design, registered in `src/field_door.c`. The Pokémon Center and Mart use FireRed's sliding doors. |
+| Trainers | 14 new trainers (`TRAINER_PALLET_*`, ids 743–756; `NUM_TRAINERS` is now 757 of the 768 that fit), defined in `pallet_upgrade/trainers_data.py`. |
+| Data | Every building, resident, townsperson, street and the market stall is defined in `pallet_upgrade/city_data.py`. |
 
-Checked in the emulator:
+Checked in the emulator, on the final ROM:
 
-- **Arriving outside:** the intro leads into the new town, and leaving the player's house plays the new door animation.
-- **Oak's cutscene:** it plays at the north exit and leads you into the lab.
-- **The houses:** every new house puts you on the middle of its doormat, its
-  resident stands on the floor and talks, and leaving puts you back at the right
-  door.
-- **Roofs:** they're drawn over the player when walking behind a house. Trees, lamp poles,
-  benches and fences are solid.
-- **The trainers:** talking to Youngster Timmy covers every path: the
-  pre-Pokémon line, NO, YES leading into a real trainer battle, and the after-battle line
-  (with no rematch).
+- **New game:** the intro leads into the new town. Oak's cutscene at the Route 1 gate takes you
+  to the lab, where you pick a starter and battle the rival.
+- **Buildings:** all 12 put you on the middle of the doormat and return you to
+  the square in front of their door.
+- **Services:** the Pokémon Center heals, and the Mart and the stall vendor open their shops.
+- **Trainers:** battles with Lass Mila and Sailor Duncan, from the YES/NO prompt through the after-battle line.
 
-Checked automatically on every rebuild:
+Checked automatically on every rebuild (`check_reach.py`, `compose.py` audits):
 
-- **Drawing and collision:** `compose.py` checks that nothing at ground level is drawn over the player, and that no
-  blocked square is invisible.
-- **Reachability:** `check_reach.py` checks that every NPC, trainer, sign and door can be reached and faced,
-  and that every house resident stands on open floor.
-- **Oak's walks:** all of his scripted walks were traced against the collision map; none of them pass
-  through a blocked square.
+- **Reachability:** every NPC, trainer, sign and door can be reached and faced. The stall vendor counts
+  as reachable across the counter.
+- **Interiors:** every resident stands on open floor (not furniture or the doormat), and every exit
+  is on a real doormat.
+- **Drawing:** nothing at ground level is drawn over the player, and no blocked square is invisible.
 
 ## Rebuilding
 
@@ -72,32 +81,34 @@ git -C pokefirered apply ../pokefirered.patch
 make -C pokefirered -j"$(nproc)"      # -> pokefirered/pokefirered.gba
 ```
 
-To change the design, edit `pallet_upgrade/compose.py` and run
-`pallet_upgrade/rebuild.sh`, which runs every step:
+The patch reproduces the tested ROM byte for byte on a fresh clone.
 
-1. `compose.py` lays the town out at pixel level, with a ground layer, an
-   above-the-player layer and a per-square plan (collision, behaviour, doors).
-2. `build.py` turns that into a GBA tileset: it clusters the tiles into 6
-   palettes, reduces colours, dedupes tiles with flips, merges near-identical
-   tiles if the 384-tile limit is exceeded, and writes metatiles and the map.
+To change the design, edit `pallet_upgrade/city_data.py` (or `compose.py` for
+art) and run `pallet_upgrade/rebuild.sh`:
+
+1. `compose.py` lays the town out at pixel level: ground, autotiled streets,
+   objects (split into below/above-the-player parts), collision and behaviours.
+2. `build.py` turns that into a GBA tileset. It reuses primary tiles, clusters
+   into 6 palettes, dedupes with flips, and writes the metatiles and the map.
 3. `doors.py` makes the door animations and registers them.
-4. `wire.py` edits the map JSON, scripts, connections, heal location and the
-   new interior maps. It always starts from the committed files, so you can
-   re-run it.
-5. `check_reach.py` flood-fills the built map from the player's door and fails
-   the build if any NPC, sign or door can't be reached. `compose.py` also prints
-   an audit of squares where an object would be drawn wrongly or block invisibly.
+4. `wire.py` writes the map JSON, scripts, trainers, shops, interiors,
+   connections and heal location. It always starts from the committed files.
+5. `check_reach.py` runs the checks above and fails the build on any problem.
 
-The `pallet_upgrade/orig/` folder is a copy of the original Pallet Town tileset
-and map that the pipeline reads from.
+`pallet_upgrade/orig/` is a copy of the original Pallet Town tileset and map
+that the pipeline reads from.
 
 ## Emulator tools (`harness/`)
 
-- `gba.c` runs the ROM without a screen (via libmgba), using scripted button
-  presses, screenshots and save states. With `--record DIR` it saves every frame
-  that changes, plus logs of inputs and runs.
-- `review.py` browses a recording: a summary, contact sheets, the frame on
-  screen at a given time, diffs, and a rebuilt real-time video.
+- `gba.c` runs the ROM without a screen (via libmgba). It takes scripted button presses,
+  screenshots and save states. With `--record DIR` it saves every frame that changes,
+  plus logs of inputs and runs. `pos`, `step DIR` and `face DIR` read the player's position from RAM
+  (`source gbaenv.sh` first).
+- `walk.py` is a position-aware driver. It finds paths over the real collision map, walks
+  them step by step, re-plans around NPCs, and talks to people (`Game.goto`, `Game.talk`).
+- `mkstate.sh` and `mkstarter.py` replay a new game on the current ROM. The first leaves you outside home; the second goes on
+  through Oak, a starter and the rival battle.
+- `sweep.py` enters and leaves every building and saves a screenshot of each.
+- `review.py` browses a recording: a summary, contact sheets, frames by time, diffs, and a video.
 - `tilesets.py` renders any tileset or map from the decomp with its real palettes.
-- `qa.py` runs a scripted walk from a save state and puts every screenshot side by
-  side, to check door arrivals and how objects are drawn around the player.
+- `qa.py` runs a scripted sequence and puts the screenshots side by side.

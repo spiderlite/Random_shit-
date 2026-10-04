@@ -45,6 +45,7 @@ def from5(c5):
 
 # ---------------- inputs ----------------
 under = np.array(Image.open(os.path.join(HERE, "build", "under.png")).convert("RGBA"))
+ground = np.array(Image.open(os.path.join(HERE, "build", "ground.png")).convert("RGBA"))
 over = np.array(Image.open(os.path.join(HERE, "build", "over.png")).convert("RGBA"))
 plan = json.load(open(os.path.join(HERE, "build", "plan.json")))
 W, H = plan["width"], plan["height"]
@@ -62,7 +63,21 @@ for (x, y), c in cells.items():
         continue
     bottom = under[y * B:(y + 1) * B, x * B:(x + 1) * B, :3]
     top = over[y * B:(y + 1) * B, x * B:(x + 1) * B]
-    blocks[(x, y)] = ("art", bottom, top if top[:, :, 3].any() else None, c["behavior"])
+    if top[:, :, 3].any():
+        blocks[(x, y)] = ("art", bottom, top, c["behavior"], LAYER_NORMAL)
+    else:
+        # Nothing above the player: put the ground in the bottom layer and the
+        # ground-level object pixels in the top layer, both drawn below the
+        # player (COVERED). Objects then cost the same tiles on any ground.
+        g = ground[y * B:(y + 1) * B, x * B:(x + 1) * B, :3]
+        diff = (g != bottom).any(-1)
+        if diff.any() and not c["door"] and mid != 684:
+            obj = np.zeros((B, B, 4), np.uint8)
+            obj[:, :, :3] = bottom
+            obj[:, :, 3] = np.where(diff, 255, 0)
+            blocks[(x, y)] = ("art", g, obj, c["behavior"], LAYER_COVERED)
+        else:
+            blocks[(x, y)] = ("art", bottom, None, c["behavior"], LAYER_COVERED)
     if c["door"] == "player":
         DOORS[(x, y)] = 675
     elif c["door"]:
@@ -88,7 +103,7 @@ art_blocks = {}
 for pos, b in blocks.items():
     if b[0] != "art":
         continue
-    _, bottom, top, behavior = b
+    _, bottom, top, behavior, layer = b
     bt = [add_tile(bottom[r:r + 8, c:c + 8], np.ones((8, 8), bool)) for r in (0, 8) for c in (0, 8)]
     tt = None
     if top is not None:
@@ -98,9 +113,51 @@ for pos, b in blocks.items():
                 t = top[r:r + 8, c:c + 8]
                 m = t[:, :, 3] > 0
                 tt.append(add_tile(t[:, :, :3], m) if m.any() else None)
-    art_blocks[pos] = (bt, tt, behavior)
+    art_blocks[pos] = (bt, tt, behavior, layer)
 
 print("unique 8x8 tiles before palette reduction:", len(tile_list))
+
+# ---------------- reuse primary (General) tiles ----------------
+# A metatile may mix primary and secondary tiles, so any 8x8 tile that already
+# exists in the General tileset (with one of palettes 0-6, any flip) is
+# referenced from there and costs nothing from the 384-tile secondary budget.
+def load_primary():
+    d = os.path.join(ROOT, "data/tilesets/primary/general")
+    raw = open(os.path.join(d, "tiles.4bpp"), "rb").read()
+    tiles = [np.array([px for b in raw[t * 32:(t + 1) * 32] for px in (b & 0xF, b >> 4)], np.uint8).reshape(8, 8)
+             for t in range(len(raw) // 32)]
+    pals = []
+    for i in range(7):
+        cols = [(c & 31, (c >> 5) & 31, (c >> 10) & 31)
+                for (c,) in struct.iter_unpack("<H", open(os.path.join(d, "palettes", "%02d.gbapal" % i), "rb").read()[:32])]
+        pals.append(np.array(cols, int))
+    table = {}
+    for t, idx in enumerate(tiles):
+        if t == 0:
+            continue
+        for pal in range(7):
+            rgb = pals[pal][idx]
+            mask = idx != 0
+            for a, m, hf, vf in ((rgb, mask, 0, 0), (rgb[:, ::-1], mask[:, ::-1], 1, 0),
+                                 (rgb[::-1], mask[::-1], 0, 1), (rgb[::-1, ::-1], mask[::-1, ::-1], 1, 1)):
+                a = np.where(m[:, :, None], a, 0)
+                table.setdefault(a.astype(np.uint8).tobytes() + m.tobytes(), t | (hf << 10) | (vf << 11) | (pal << 12))
+    return table
+
+
+PRIMARY = load_primary()
+prim_entry = {}
+door_tiles = {t for pos in DOORS for t in art_blocks[pos][0]}  # door animations need their own tiles
+for i, (rgb, mask) in enumerate(tile_list):
+    if i in door_tiles:
+        continue
+    a = np.where(mask[:, :, None], to5(rgb.reshape(-1, 3)).reshape(8, 8, 3), 0).astype(np.uint8)
+    e = PRIMARY.get(a.tobytes() + mask.tobytes())
+    if e is not None:
+        prim_entry[i] = e
+rest = [i for i in range(len(tile_list)) if i not in prim_entry]
+print("8x8 tiles found in the primary tileset:", len(prim_entry))
+all_tiles, tile_list = tile_list, [tile_list[i] for i in rest]
 
 # ---------------- palette clustering ----------------
 # Work in 5-bit GBA colour space.
@@ -219,12 +276,14 @@ if len(final_tiles) > TARGET:
     alias_flip = [(0, 0)] * n
     removed = set()
     merges = []
+    merge_pairs = []
     while n - len(removed) > TARGET:
         f, a, b = np.unravel_index(np.argmin(D), D.shape)
         # replace tile a by flipped tile b
         removed.add(a)
         alias[a], alias_flip[a] = b, flips[f]
         merges.append(float(D[f, a, b]))
+        merge_pairs.append((a, b, flips[f]))
         D[:, a, :] = np.inf
         D[:, :, a] = np.inf
     def resolve(t):
@@ -242,11 +301,20 @@ if len(final_tiles) > TARGET:
         t2, hf, vf = resolve(t)
         entry_for[i] = (newidx[t2], ehf ^ hf, evf ^ vf, pal)
     final_tiles = [final_tiles[t] for t in keep_list]
+    if os.environ.get("MERGE_DEBUG"):
+        sheet = np.zeros((len(merge_pairs) * 10, 20, 3), np.uint8)
+        for k, (a, b, (fh, fv)) in enumerate(merge_pairs):
+            sheet[k * 10:k * 10 + 8, 0:8] = imgs[a]
+            vb = imgs[b][:, ::-1] if fh else imgs[b]
+            vb = vb[::-1] if fv else vb
+            sheet[k * 10:k * 10 + 8, 10:18] = vb
+        Image.fromarray(sheet).resize((200, len(merge_pairs) * 100), Image.NEAREST).save(os.environ["MERGE_DEBUG"])
     print("merged %d near-duplicate tiles (worst colour error per tile %.0f, ~%.1f px fully different)"
           % (len(merges), max(merges), max(merges) / (3 * 255 ** 2)))
 if len(final_tiles) > MAX_TILES:
     sys.exit("too many tiles")
-entry_for = {i: (640 + t) | (hf << 10) | (vf << 11) | (pal << 12) for i, (t, hf, vf, pal) in entry_for.items()}
+entry_for = {rest[i]: (640 + t) | (hf << 10) | (vf << 11) | (pal << 12) for i, (t, hf, vf, pal) in entry_for.items()}
+entry_for.update(prim_entry)
 
 # ---------------- metatiles ----------------
 BLANK = 0x0000  # primary tile 0 is fully transparent
@@ -260,13 +328,12 @@ door_ids = {}
 door_by_key = {}
 block_id = {}
 for pos in sorted(art_blocks, key=lambda p: (p[1], p[0])):
-    bt, tt, behavior = art_blocks[pos]
+    bt, tt, behavior, layer = art_blocks[pos]
     bottom = [entry_for[t] for t in bt]
     if tt is None:
-        top, layer = [BLANK] * 4, LAYER_COVERED
+        top = [BLANK] * 4
     else:
         top = [entry_for[t] if t is not None else BLANK for t in tt]
-        layer = LAYER_NORMAL
     attr = behavior | (layer << 29)
     key = (tuple(bottom), tuple(top), attr)
     if pos in DOORS:

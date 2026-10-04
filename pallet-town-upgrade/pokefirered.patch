@@ -1,51 +1,76 @@
 diff --git a/data/event_scripts.s b/data/event_scripts.s
-index 88d7594..a1449df 100644
+index 88d7594..6a83d89 100644
 --- a/data/event_scripts.s
 +++ b/data/event_scripts.s
-@@ -345,6 +345,12 @@ gStdScriptsEnd::
+@@ -345,6 +345,20 @@ gStdScriptsEnd::
  	.include "data/maps/PalletTown_PlayersHouse_2F/scripts.inc"
  	.include "data/maps/PalletTown_RivalsHouse/scripts.inc"
  	.include "data/maps/PalletTown_ProfessorOaksLab/scripts.inc"
-+	.include "data/maps/PalletTown_House1/scripts.inc"
-+	.include "data/maps/PalletTown_House2/scripts.inc"
-+	.include "data/maps/PalletTown_House3/scripts.inc"
-+	.include "data/maps/PalletTown_House4/scripts.inc"
-+	.include "data/maps/PalletTown_House5/scripts.inc"
-+	.include "data/maps/PalletTown_House6/scripts.inc"
++	.include "data/maps/PalletTown_HarperHouse/scripts.inc"
++	.include "data/maps/PalletTown_AokiHouse_1F/scripts.inc"
++	.include "data/maps/PalletTown_AokiHouse_2F/scripts.inc"
++	.include "data/maps/PalletTown_BellHouse/scripts.inc"
++	.include "data/maps/PalletTown_ValeHouse/scripts.inc"
++	.include "data/maps/PalletTown_MarshHouse/scripts.inc"
++	.include "data/maps/PalletTown_KowalskiHouse/scripts.inc"
++	.include "data/maps/PalletTown_PokemonCenter_1F/scripts.inc"
++	.include "data/maps/PalletTown_PokemonCenter_2F/scripts.inc"
++	.include "data/maps/PalletTown_Mart/scripts.inc"
++	.include "data/maps/PalletTown_Cafe/scripts.inc"
++	.include "data/maps/PalletTown_Nursery/scripts.inc"
++	.include "data/maps/PalletTown_School/scripts.inc"
++	.include "data/maps/PalletTown_BreederHouse/scripts.inc"
  	.include "data/maps/ViridianCity_House/scripts.inc"
  	.include "data/maps/ViridianCity_Gym/scripts.inc"
  	.include "data/maps/ViridianCity_School/scripts.inc"
-@@ -671,6 +677,12 @@ gStdScriptsEnd::
+@@ -671,6 +685,20 @@ gStdScriptsEnd::
  	.include "data/maps/PalletTown_PlayersHouse_2F/text.inc"
  	.include "data/maps/PalletTown_RivalsHouse/text.inc"
  	.include "data/maps/PalletTown_ProfessorOaksLab/text.inc"
-+	.include "data/maps/PalletTown_House1/text.inc"
-+	.include "data/maps/PalletTown_House2/text.inc"
-+	.include "data/maps/PalletTown_House3/text.inc"
-+	.include "data/maps/PalletTown_House4/text.inc"
-+	.include "data/maps/PalletTown_House5/text.inc"
-+	.include "data/maps/PalletTown_House6/text.inc"
++	.include "data/maps/PalletTown_HarperHouse/text.inc"
++	.include "data/maps/PalletTown_AokiHouse_1F/text.inc"
++	.include "data/maps/PalletTown_AokiHouse_2F/text.inc"
++	.include "data/maps/PalletTown_BellHouse/text.inc"
++	.include "data/maps/PalletTown_ValeHouse/text.inc"
++	.include "data/maps/PalletTown_MarshHouse/text.inc"
++	.include "data/maps/PalletTown_KowalskiHouse/text.inc"
++	.include "data/maps/PalletTown_PokemonCenter_1F/text.inc"
++	.include "data/maps/PalletTown_PokemonCenter_2F/text.inc"
++	.include "data/maps/PalletTown_Mart/text.inc"
++	.include "data/maps/PalletTown_Cafe/text.inc"
++	.include "data/maps/PalletTown_Nursery/text.inc"
++	.include "data/maps/PalletTown_School/text.inc"
++	.include "data/maps/PalletTown_BreederHouse/text.inc"
  	.include "data/maps/ViridianCity_House/text.inc"
  	.include "data/maps/ViridianCity_Gym/text.inc"
  	.include "data/maps/ViridianCity_School/text.inc"
 diff --git a/data/layouts/PalletTown/map.bin b/data/layouts/PalletTown/map.bin
-index f2113394f22d6f0180f364071301b5ed06588773..f1a8d5b105cd4f7e6275fbcea4fbb1ca0733f984 100644
+index f2113394f22d6f0180f364071301b5ed06588773..b06084f93995265274a49cfb7e16163982305130 100644
 GIT binary patch
-literal 2640
-zcmbtV_iqz17=_e4r;L^(9gL&}l_3E?L|^_v_70<L!rn+su|?RMviB|!Hf59@_BlSE
-z?aNg;34L<T_xyeDUaa@oNtR;CNTZpJp|R8yDL2LHSUnrchD8`7*f<(b!z1Jh&Lk5$
-zCX`~L_mpq)cM?tZ(J3_5olm3bKB6+stQn>MRL2@!9a)-5vuHNWp;mXUV=m33`Lw`5
-z7SbYGOiK(TOLkU{8a%y%cPW-(IaXjLG;5YtVKvrboq?^#25iJ80|{p3EWKN>72B{K
-zJFJSG*oEELV_<u+5BqVzK(b_KnR@ed5QlIWM{v}rI7Y{D0w;0G$MSR<XK)thd?ZW3
-zEK_eA&f@|u;u0<!6<2T-Yj6$MeXI>Pa1*z1+efk#%rf<wd-}g~Q*TtRJ9O8JdvxFO
-zgk}ipeLxROneFrlkMRWUWpxF5if3Lt#|yl~E4=o0<c*(g>(w6YptpF3_voMkeSnM@
-z>vZdK^bw!D_>3?3if{Pt^4i|F^=hXU@dH2c3q|CJrDZtj-zDBZ_=|45JCE@y&Ug<F
-z&Uw)LwqEVQxSJ^=&NXk`<E`dBc`v>hy?GyA!)v+R2iyCm-n`}1zTDycT=pDQvFfyw
-z7DMPwWW;$;mr=8NF7_eleN%5+nNx*g$s^Ae!B(J#jE+ufEbT+k`=(y)lHkmAMgPnI
-zE+WPTy1#?mFNKAvH*8&E9ig@1sH}*lx9E3ljOnjyRAXuuO|No?s*=xeRIY{TRb7+x
-z9HiNlM>Ha4I!|@0aFMtJ)qP=iO{(M|n<MN^<>_t}yyksjca3yV7?X{uJl(D3dhM>U
-z>npwKZVl=Uc1<NFbKSl%?EMXPjagS|Zr>Qe{jF3TbzSRiGP+*(znV2CTAUVVa3VUd
-w@`F6F)XAlu3LWW;a$~fkzEkNrB%}OW!)jSqBc4{gPCD+MmuhsCFL0svAIN$V)c^nh
+literal 3720
+zcmbtW_m>n!5Z1fes>J}VcYxsl@rZY*L$v|8I|KzJs3i3nelh$bMlh|IQBZ+%P45}-
+z>7M$;oC7Azo(c1v0Y%Rox~8YLdv@n!pT2rC-CbQ(-&A+k*V6){prx*744lbl@#wm2
+z>x<b8!(kkZuj82rXY)Bcp)T7U#}nKZkbKUK<-DYIBlljxD=XUb`2yR&kT0re)H1YE
+zU3TldFOJu*8AjTCihK#L;!F85zTEb&z$@`8EZW}Hyqd4!Yi&<t4X@?v_<Fv9*TrMC
+z3$51khKh7sD?gTzdY5=alDA;rgg4_Ycq`s!G4H@T@vazqBi@bo;JtCb$Yt)~`|y5z
+z03VDsY8P6Scs?wEg|G-#<~G^5C7u*bj@qL3NJi>iO6C0!K8%mxqxhJO`Zzv;PsY)o
+z!l&^Wd^W&-4xh&t@Woi8cA-^?m%vh32Fqbpf*rwBU@#!q>K*32nP0+}@fCa(UrTUg
+zjkoaY_y)d-Zw1(I<2(2+zK5Ibypyz5iBE)+;AA)jRwvlgU^>izju>0L!@PU(ef$7F
+z#E<af0DCKbf;Zx)_*sDcIevj(;#b&Pu}fR^@u_ecoDM5;>vH|}>-u;W%(mk*pr0E-
+zy~DiM@Yi+7H~cMs7s$3ce6r%MwWmOM!kzQ)`G-Wdb8n>bV?`^oKk)$n%)cb^EC0sc
+z%X_DNRG)4KEOvO#i~KwPVb`e4fAU}WH||6`n}N!n%FZ^J_1s91NRE(*v=)n;H)11|
+zAgzn#&V$am(GatXwG8w2m0ads&2F?i4W(fgYY%eL0Nob5#0A<jktS-U;pA%3bA!VU
+z>)p=@c6NPhjh1-?jikM3Z`y}S43U$9txmz-ms)5PjixcQAC0B`$<?Cg28XS&1kKOM
+zD7(J3M$6nvZokI`*!cu|JWZg9bURL>$<#*e$(nm^aM&74(EOZ?vg=zbxopqc6gq$o
+zq#nB~jW8rCMDj@9eKC)_$`Q6cC|>iB8yvRA610#vws3ZRYb6V|lO9`}{yylB&zk4z
+z4cwjZU&sxD-3S`1X!{{=Y{h@C@5m_jR3o*?@mqSv9Bd9Dkp?)_z7I3CtPmOJl~vVV
+zH&}i9O5Dy;tJ92XLSC6}w($(pQJGU4=cA*++Uok&`%qi0)lQOK6KMeL6}gk#&U%gO
+zWoxUgs_R?tLv0nitAZUy=-L7HOv?@7*^tvQ({jq;G>c~2h-qGP_hH_+R<b|Bo^+3Q
+zB+a3@!FRX}{VFLdI-hx#3v!_B08!4~V)HEaQ8b?x#MqwC1tVl2$$nu9+kb`YIc!}e
+zWinm!&VU=-7i_ZoROCf;v^l0G?=%BR_Q%$Nt$z>7WQyIDfi1hYn3mAujJ(qfr2Ac+
+zuZ|VPjg`r~wsy_cQ`+=?hwS96e4Nlr`{AtrbMe}cmxQ5&4ZWoAv5=jdjgRAfd@r2!
+ze=ecc+t&8NyqB8rf5i1WOvonH^Vzf6+G^irwhHu|FE{C0OplIhYAv)Dj&G{{`v0!+
+xdAplRZ!B$9+g50|GNq9IqW?EK!D!w?VHgbd<Rir{M0tCc>NA*qy?Xgy`v+aA)ZPF9
 
 literal 960
 zcmZuvSxdt}7=*eE?TfOd>PxE+^#Ju@`Tn8zNxh91-c|*ziU*4Kt$3h5`E%Sa*>=-S
@@ -57,7 +82,7 @@ z+~{BNhCl4$9Uu6t;9n&YN-7@qFK;SGBToKcKR9>XBcBJ0;E%%j-G;`fAB>pb>ww=t
 yG5=}F=_i?$S^1lE-{xoAk2JXxs!g_QbV!@Tu9i#vSF0Mu6EEqdUfU_|bN+vQvI_11
 
 diff --git a/data/layouts/layouts.json b/data/layouts/layouts.json
-index 41d0eb1..5b1fcf5 100644
+index 41d0eb1..07e9a49 100644
 --- a/data/layouts/layouts.json
 +++ b/data/layouts/layouts.json
 @@ -741,8 +741,8 @@
@@ -66,13 +91,13 @@ index 41d0eb1..5b1fcf5 100644
        "name": "PalletTown_Layout",
 -      "width": 24,
 -      "height": 20,
-+      "width": 44,
++      "width": 62,
 +      "height": 30,
        "border_width": 2,
        "border_height": 2,
        "primary_tileset": "gTileset_General",
 diff --git a/data/maps/PalletTown/map.json b/data/maps/PalletTown/map.json
-index 802d32d..81bd03f 100644
+index 802d32d..8316afb 100644
 --- a/data/maps/PalletTown/map.json
 +++ b/data/maps/PalletTown/map.json
 @@ -16,12 +16,12 @@
@@ -119,10 +144,38 @@ index 802d32d..81bd03f 100644
        "y": 8,
        "elevation": 3,
        "movement_type": "MOVEMENT_TYPE_FACE_UP",
-@@ -70,35 +70,189 @@
+@@ -70,35 +70,553 @@
        "trainer_sight_or_berry_tree_id": "0",
        "script": "0x0",
        "flag": "FLAG_HIDE_OAK_IN_PALLET_TOWN"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
++      "x": 19,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_MG_DELIVERYMAN",
++      "x": 9,
++      "y": 9,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 2,
++      "movement_range_y": 2,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk2",
++      "flag": "0"
 +    },
 +    {
 +      "type": "object",
@@ -135,7 +188,63 @@ index 802d32d..81bd03f 100644
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
 +      "trainer_sight_or_berry_tree_id": "0",
-+      "script": "PalletTown_EventScript_FountainGirl",
++      "script": "PalletTown_EventScript_Townsfolk3",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_SITTING_BOY",
++      "x": 21,
++      "y": 20,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk4",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
++      "x": 7,
++      "y": 11,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 2,
++      "movement_range_y": 2,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk5",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_PIDGEY",
++      "x": 9,
++      "y": 17,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 2,
++      "movement_range_y": 2,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk6",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_PIDGEY",
++      "x": 13,
++      "y": 9,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk7",
 +      "flag": "0"
 +    },
 +    {
@@ -149,7 +258,133 @@ index 802d32d..81bd03f 100644
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
 +      "trainer_sight_or_berry_tree_id": "0",
-+      "script": "PalletTown_EventScript_PineOldMan",
++      "script": "PalletTown_EventScript_Townsfolk8",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
++      "x": 47,
++      "y": 11,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk9",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
++      "x": 41,
++      "y": 18,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 2,
++      "movement_range_y": 2,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk10",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_MEOWTH",
++      "x": 43,
++      "y": 18,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 2,
++      "movement_range_y": 2,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk11",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_LYING_DOWN",
++      "x": 55,
++      "y": 24,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk12",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE",
++      "x": 58,
++      "y": 25,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk13",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CRUSH_GIRL",
++      "x": 40,
++      "y": 12,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
++      "movement_range_x": 4,
++      "movement_range_y": 4,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk14",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
++      "x": 54,
++      "y": 23,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk15",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
++      "x": 16,
++      "y": 26,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk16",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
++      "x": 56,
++      "y": 21,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_StallVendor",
 +      "flag": "0"
 +    },
 +    {
@@ -235,6 +470,118 @@ index 802d32d..81bd03f 100644
 +      "trainer_sight_or_berry_tree_id": "0",
 +      "script": "PalletTown_EventScript_TrainerOtto",
 +      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
++      "x": 24,
++      "y": 28,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerDuncan",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
++      "x": 28,
++      "y": 26,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 2,
++      "movement_range_y": 2,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerKai",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
++      "x": 27,
++      "y": 28,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerOwen",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
++      "x": 21,
++      "y": 29,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerBree",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_LASS",
++      "x": 49,
++      "y": 25,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerJune",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
++      "x": 52,
++      "y": 27,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 2,
++      "movement_range_y": 2,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerPip",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_POKE_MANIAC",
++      "x": 46,
++      "y": 9,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerMilo",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
++      "x": 53,
++      "y": 9,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 2,
++      "movement_range_y": 2,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_TrainerIvy",
++      "flag": "0"
      }
    ],
    "warp_events": [
@@ -266,43 +613,85 @@ index 802d32d..81bd03f 100644
 +      "x": 5,
 +      "y": 7,
 +      "elevation": 0,
-+      "dest_map": "MAP_PALLET_TOWN_HOUSE1",
++      "dest_map": "MAP_PALLET_TOWN_HARPER_HOUSE",
 +      "dest_warp_id": "1"
 +    },
 +    {
 +      "x": 5,
 +      "y": 15,
 +      "elevation": 0,
-+      "dest_map": "MAP_PALLET_TOWN_HOUSE2",
-+      "dest_warp_id": "1"
-+    },
-+    {
-+      "x": 35,
-+      "y": 7,
-+      "elevation": 0,
-+      "dest_map": "MAP_PALLET_TOWN_HOUSE3",
-+      "dest_warp_id": "1"
-+    },
-+    {
-+      "x": 35,
-+      "y": 15,
-+      "elevation": 0,
-+      "dest_map": "MAP_PALLET_TOWN_HOUSE4",
++      "dest_map": "MAP_PALLET_TOWN_AOKI_HOUSE_1_F",
 +      "dest_warp_id": "1"
 +    },
 +    {
 +      "x": 6,
 +      "y": 25,
 +      "elevation": 0,
-+      "dest_map": "MAP_PALLET_TOWN_HOUSE5",
++      "dest_map": "MAP_PALLET_TOWN_BELL_HOUSE",
 +      "dest_warp_id": "1"
++    },
++    {
++      "x": 35,
++      "y": 7,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN_VALE_HOUSE",
++      "dest_warp_id": "1"
++    },
++    {
++      "x": 35,
++      "y": 15,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN_MARSH_HOUSE",
++      "dest_warp_id": "0"
 +    },
 +    {
 +      "x": 36,
 +      "y": 25,
 +      "elevation": 0,
-+      "dest_map": "MAP_PALLET_TOWN_HOUSE6",
++      "dest_map": "MAP_PALLET_TOWN_KOWALSKI_HOUSE",
 +      "dest_warp_id": "1"
++    },
++    {
++      "x": 43,
++      "y": 7,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN_POKEMON_CENTER_1_F",
++      "dest_warp_id": "1"
++    },
++    {
++      "x": 51,
++      "y": 7,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN_MART",
++      "dest_warp_id": "1"
++    },
++    {
++      "x": 56,
++      "y": 7,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN_CAFE",
++      "dest_warp_id": "1"
++    },
++    {
++      "x": 43,
++      "y": 15,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN_NURSERY",
++      "dest_warp_id": "1"
++    },
++    {
++      "x": 49,
++      "y": 15,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN_SCHOOL",
++      "dest_warp_id": "1"
++    },
++    {
++      "x": 56,
++      "y": 15,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN_BREEDER_HOUSE",
++      "dest_warp_id": "0"
      }
    ],
    "coord_events": [
@@ -313,7 +702,7 @@ index 802d32d..81bd03f 100644
        "y": 1,
        "elevation": 3,
        "var": "VAR_MAP_SCENE_PALLET_TOWN_OAK",
-@@ -107,7 +261,7 @@
+@@ -107,7 +625,7 @@
      },
      {
        "type": "trigger",
@@ -322,7 +711,7 @@ index 802d32d..81bd03f 100644
        "y": 1,
        "elevation": 3,
        "var": "VAR_MAP_SCENE_PALLET_TOWN_OAK",
-@@ -116,7 +270,7 @@
+@@ -116,7 +634,7 @@
      },
      {
        "type": "trigger",
@@ -331,7 +720,7 @@ index 802d32d..81bd03f 100644
        "y": 2,
        "elevation": 3,
        "var": "VAR_TEMP_2",
-@@ -127,7 +281,7 @@
+@@ -127,7 +645,7 @@
    "bg_events": [
      {
        "type": "sign",
@@ -340,7 +729,7 @@ index 802d32d..81bd03f 100644
        "y": 16,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -135,7 +289,7 @@
+@@ -135,7 +653,7 @@
      },
      {
        "type": "sign",
@@ -349,16 +738,16 @@ index 802d32d..81bd03f 100644
        "y": 7,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -143,7 +297,7 @@
+@@ -143,7 +661,7 @@
      },
      {
        "type": "sign",
 -      "x": 13,
-+      "x": 23,
++      "x": 28,
        "y": 7,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -151,7 +305,7 @@
+@@ -151,7 +669,7 @@
      },
      {
        "type": "sign",
@@ -367,7 +756,7 @@ index 802d32d..81bd03f 100644
        "y": 11,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -159,11 +313,67 @@
+@@ -159,11 +677,99 @@
      },
      {
        "type": "sign",
@@ -380,19 +769,11 @@ index 802d32d..81bd03f 100644
 +    },
 +    {
 +      "type": "sign",
-+      "x": 21,
-+      "y": 18,
-+      "elevation": 0,
-+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-+      "script": "PalletTown_EventScript_ParkSign"
-+    },
-+    {
-+      "type": "sign",
 +      "x": 3,
 +      "y": 7,
 +      "elevation": 0,
 +      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-+      "script": "PalletTown_EventScript_HarperMailbox"
++      "script": "PalletTown_EventScript_HarperHouseMailbox"
 +    },
 +    {
 +      "type": "sign",
@@ -400,23 +781,7 @@ index 802d32d..81bd03f 100644
 +      "y": 15,
 +      "elevation": 0,
 +      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-+      "script": "PalletTown_EventScript_AokiMailbox"
-+    },
-+    {
-+      "type": "sign",
-+      "x": 33,
-+      "y": 7,
-+      "elevation": 0,
-+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-+      "script": "PalletTown_EventScript_ValeMailbox"
-+    },
-+    {
-+      "type": "sign",
-+      "x": 33,
-+      "y": 15,
-+      "elevation": 0,
-+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-+      "script": "PalletTown_EventScript_MarshMailbox"
++      "script": "PalletTown_EventScript_AokiHouseMailbox"
 +    },
 +    {
 +      "type": "sign",
@@ -424,7 +789,23 @@ index 802d32d..81bd03f 100644
 +      "y": 25,
 +      "elevation": 0,
 +      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-+      "script": "PalletTown_EventScript_BellMailbox"
++      "script": "PalletTown_EventScript_BellHouseMailbox"
++    },
++    {
++      "type": "sign",
++      "x": 33,
++      "y": 7,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_EventScript_ValeHouseMailbox"
++    },
++    {
++      "type": "sign",
++      "x": 33,
++      "y": 15,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_EventScript_MarshHouseMailbox"
 +    },
 +    {
 +      "type": "sign",
@@ -432,12 +813,52 @@ index 802d32d..81bd03f 100644
 +      "y": 25,
 +      "elevation": 0,
 +      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-+      "script": "PalletTown_EventScript_KowalskiMailbox"
++      "script": "PalletTown_EventScript_KowalskiHouseMailbox"
++    },
++    {
++      "type": "sign",
++      "x": 54,
++      "y": 7,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_EventScript_CafeSign"
++    },
++    {
++      "type": "sign",
++      "x": 41,
++      "y": 15,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_EventScript_NurserySign"
++    },
++    {
++      "type": "sign",
++      "x": 47,
++      "y": 15,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_EventScript_SchoolSign"
++    },
++    {
++      "type": "sign",
++      "x": 54,
++      "y": 15,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_EventScript_BreederHouseMailbox"
++    },
++    {
++      "type": "sign",
++      "x": 21,
++      "y": 18,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_EventScript_ParkSign"
      }
    ]
  }
 diff --git a/data/maps/PalletTown/scripts.inc b/data/maps/PalletTown/scripts.inc
-index 1384b7d..6b23fc3 100644
+index 1384b7d..cc053d8 100644
 --- a/data/maps/PalletTown/scripts.inc
 +++ b/data/maps/PalletTown/scripts.inc
 @@ -24,12 +24,12 @@ PalletTown_EventScript_SetSignLadyDone::
@@ -494,45 +915,212 @@ index 1384b7d..6b23fc3 100644
  	waitdooranim
  	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1
  	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
-@@ -447,3 +447,219 @@ PalletTown_EventScript_SignLadyStartShowSign::
+@@ -447,3 +447,626 @@ PalletTown_EventScript_SignLadyStartShowSign::
  	call PalletTown_EventScript_SignLadyShowSign
  	release
  	end
 +
-+PalletTown_EventScript_FountainGirl::
-+	msgbox PalletTown_Text_FountainGirl, MSGBOX_NPC
++PalletTown_EventScript_HarperHouseMailbox::
++	msgbox PalletTown_Text_HarperHouseMailbox, MSGBOX_SIGN
 +	end
 +
-+PalletTown_EventScript_PineOldMan::
-+	msgbox PalletTown_Text_PineOldMan, MSGBOX_NPC
++PalletTown_EventScript_AokiHouseMailbox::
++	msgbox PalletTown_Text_AokiHouseMailbox, MSGBOX_SIGN
 +	end
 +
-+PalletTown_EventScript_HarperMailbox::
-+	msgbox PalletTown_Text_HarperMailbox, MSGBOX_SIGN
++PalletTown_EventScript_BellHouseMailbox::
++	msgbox PalletTown_Text_BellHouseMailbox, MSGBOX_SIGN
 +	end
 +
-+PalletTown_EventScript_AokiMailbox::
-+	msgbox PalletTown_Text_AokiMailbox, MSGBOX_SIGN
++PalletTown_EventScript_ValeHouseMailbox::
++	msgbox PalletTown_Text_ValeHouseMailbox, MSGBOX_SIGN
 +	end
 +
-+PalletTown_EventScript_ValeMailbox::
-+	msgbox PalletTown_Text_ValeMailbox, MSGBOX_SIGN
++PalletTown_EventScript_MarshHouseMailbox::
++	msgbox PalletTown_Text_MarshHouseMailbox, MSGBOX_SIGN
 +	end
 +
-+PalletTown_EventScript_MarshMailbox::
-+	msgbox PalletTown_Text_MarshMailbox, MSGBOX_SIGN
++PalletTown_EventScript_KowalskiHouseMailbox::
++	msgbox PalletTown_Text_KowalskiHouseMailbox, MSGBOX_SIGN
 +	end
 +
-+PalletTown_EventScript_BellMailbox::
-+	msgbox PalletTown_Text_BellMailbox, MSGBOX_SIGN
++PalletTown_EventScript_CafeSign::
++	msgbox PalletTown_Text_CafeSign, MSGBOX_SIGN
 +	end
 +
-+PalletTown_EventScript_KowalskiMailbox::
-+	msgbox PalletTown_Text_KowalskiMailbox, MSGBOX_SIGN
++PalletTown_EventScript_NurserySign::
++	msgbox PalletTown_Text_NurserySign, MSGBOX_SIGN
++	end
++
++PalletTown_EventScript_SchoolSign::
++	msgbox PalletTown_Text_SchoolSign, MSGBOX_SIGN
++	end
++
++PalletTown_EventScript_BreederHouseMailbox::
++	msgbox PalletTown_Text_BreederHouseMailbox, MSGBOX_SIGN
 +	end
 +
 +PalletTown_EventScript_ParkSign::
 +	msgbox PalletTown_Text_ParkSign, MSGBOX_SIGN
++	end
++
++PalletTown_EventScript_Townsfolk1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Text_Townsfolk1
++	release
++	end
++
++PalletTown_EventScript_Townsfolk2::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Text_Townsfolk2
++	release
++	end
++
++PalletTown_EventScript_Townsfolk3::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_Text_Townsfolk3
++	release
++	end
++
++PalletTown_EventScript_Townsfolk4::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Text_Townsfolk4
++	release
++	end
++
++PalletTown_EventScript_Townsfolk5::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Text_Townsfolk5
++	release
++	end
++
++PalletTown_EventScript_Townsfolk6::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_PIDGEY, CRY_MODE_NORMAL
++	msgbox PalletTown_Text_Townsfolk6
++	waitmoncry
++	release
++	end
++
++PalletTown_EventScript_Townsfolk7::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_PIDGEY, CRY_MODE_NORMAL
++	msgbox PalletTown_Text_Townsfolk7
++	waitmoncry
++	release
++	end
++
++PalletTown_EventScript_Townsfolk8::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Text_Townsfolk8
++	release
++	end
++
++PalletTown_EventScript_Townsfolk9::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Text_Townsfolk9
++	release
++	end
++
++PalletTown_EventScript_Townsfolk10::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Text_Townsfolk10
++	release
++	end
++
++PalletTown_EventScript_Townsfolk11::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_MEOWTH, CRY_MODE_NORMAL
++	msgbox PalletTown_Text_Townsfolk11
++	waitmoncry
++	release
++	end
++
++PalletTown_EventScript_Townsfolk12::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Text_Townsfolk12
++	release
++	end
++
++PalletTown_EventScript_Townsfolk13::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_SLOWPOKE, CRY_MODE_NORMAL
++	msgbox PalletTown_Text_Townsfolk13
++	waitmoncry
++	release
++	end
++
++PalletTown_EventScript_Townsfolk14::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_Text_Townsfolk14
++	release
++	end
++
++PalletTown_EventScript_Townsfolk15::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_Text_Townsfolk15
++	release
++	end
++
++PalletTown_EventScript_Townsfolk16::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_PSYDUCK, CRY_MODE_NORMAL
++	msgbox PalletTown_Text_Townsfolk16
++	waitmoncry
++	release
++	end
++
++PalletTown_EventScript_StallVendor::
++	goto_if_questlog EventScript_ReleaseEnd
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	message PalletTown_Text_StallVendor
++	waitmessage
++	pokemart PalletTown_StallItems
++	msgbox PalletTown_Text_StallBye
++	release
++	end
++
++	.align 2
++PalletTown_StallItems::
++	.2byte ITEM_FRESH_WATER
++	.2byte ITEM_SODA_POP
++	.2byte ITEM_LEMONADE
++	.2byte ITEM_NONE
++	release
 +	end
 +
 +PalletTown_EventScript_TrainerTimmy::
@@ -714,118 +1302,468 @@ index 1384b7d..6b23fc3 100644
 +	msgbox PalletTown_Text_OttoDecline
 +	release
 +	end
++
++PalletTown_EventScript_TrainerDuncan::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	goto_if_defeated TRAINER_PALLET_SAILOR_DUNCAN, PalletTown_EventScript_TrainerDuncanAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerDuncanNoMon
++	msgbox PalletTown_Text_DuncanAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerDuncanDecline
++	msgbox PalletTown_Text_DuncanAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_SAILOR_DUNCAN, PalletTown_Text_DuncanDefeat
++	msgbox PalletTown_Text_DuncanAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerDuncanAfter::
++	msgbox PalletTown_Text_DuncanAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerDuncanNoMon::
++	msgbox PalletTown_Text_DuncanNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerDuncanDecline::
++	msgbox PalletTown_Text_DuncanDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerKai::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	goto_if_defeated TRAINER_PALLET_YOUNGSTER_KAI, PalletTown_EventScript_TrainerKaiAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerKaiNoMon
++	msgbox PalletTown_Text_KaiAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerKaiDecline
++	msgbox PalletTown_Text_KaiAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_YOUNGSTER_KAI, PalletTown_Text_KaiDefeat
++	msgbox PalletTown_Text_KaiAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerKaiAfter::
++	msgbox PalletTown_Text_KaiAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerKaiNoMon::
++	msgbox PalletTown_Text_KaiNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerKaiDecline::
++	msgbox PalletTown_Text_KaiDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerOwen::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	goto_if_defeated TRAINER_PALLET_CAMPER_OWEN, PalletTown_EventScript_TrainerOwenAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerOwenNoMon
++	msgbox PalletTown_Text_OwenAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerOwenDecline
++	msgbox PalletTown_Text_OwenAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_CAMPER_OWEN, PalletTown_Text_OwenDefeat
++	msgbox PalletTown_Text_OwenAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerOwenAfter::
++	msgbox PalletTown_Text_OwenAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerOwenNoMon::
++	msgbox PalletTown_Text_OwenNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerOwenDecline::
++	msgbox PalletTown_Text_OwenDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerBree::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	goto_if_defeated TRAINER_PALLET_TUBER_BREE, PalletTown_EventScript_TrainerBreeAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerBreeNoMon
++	msgbox PalletTown_Text_BreeAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerBreeDecline
++	msgbox PalletTown_Text_BreeAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_TUBER_BREE, PalletTown_Text_BreeDefeat
++	msgbox PalletTown_Text_BreeAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerBreeAfter::
++	msgbox PalletTown_Text_BreeAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerBreeNoMon::
++	msgbox PalletTown_Text_BreeNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerBreeDecline::
++	msgbox PalletTown_Text_BreeDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerJune::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	goto_if_defeated TRAINER_PALLET_LASS_JUNE, PalletTown_EventScript_TrainerJuneAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerJuneNoMon
++	msgbox PalletTown_Text_JuneAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerJuneDecline
++	msgbox PalletTown_Text_JuneAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_LASS_JUNE, PalletTown_Text_JuneDefeat
++	msgbox PalletTown_Text_JuneAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerJuneAfter::
++	msgbox PalletTown_Text_JuneAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerJuneNoMon::
++	msgbox PalletTown_Text_JuneNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerJuneDecline::
++	msgbox PalletTown_Text_JuneDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerPip::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	goto_if_defeated TRAINER_PALLET_BUG_CATCHER_PIP, PalletTown_EventScript_TrainerPipAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerPipNoMon
++	msgbox PalletTown_Text_PipAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerPipDecline
++	msgbox PalletTown_Text_PipAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_BUG_CATCHER_PIP, PalletTown_Text_PipDefeat
++	msgbox PalletTown_Text_PipAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerPipAfter::
++	msgbox PalletTown_Text_PipAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerPipNoMon::
++	msgbox PalletTown_Text_PipNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerPipDecline::
++	msgbox PalletTown_Text_PipDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerMilo::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	goto_if_defeated TRAINER_PALLET_POKEMANIAC_MILO, PalletTown_EventScript_TrainerMiloAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerMiloNoMon
++	msgbox PalletTown_Text_MiloAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerMiloDecline
++	msgbox PalletTown_Text_MiloAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_POKEMANIAC_MILO, PalletTown_Text_MiloDefeat
++	msgbox PalletTown_Text_MiloAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerMiloAfter::
++	msgbox PalletTown_Text_MiloAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerMiloNoMon::
++	msgbox PalletTown_Text_MiloNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerMiloDecline::
++	msgbox PalletTown_Text_MiloDecline
++	release
++	end
++
++PalletTown_EventScript_TrainerIvy::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	goto_if_defeated TRAINER_PALLET_PICNICKER_IVY, PalletTown_EventScript_TrainerIvyAfter
++	goto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_TrainerIvyNoMon
++	msgbox PalletTown_Text_IvyAsk, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_EventScript_TrainerIvyDecline
++	msgbox PalletTown_Text_IvyAccept
++	closemessage
++	trainerbattle_no_intro TRAINER_PALLET_PICNICKER_IVY, PalletTown_Text_IvyDefeat
++	msgbox PalletTown_Text_IvyAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerIvyAfter::
++	msgbox PalletTown_Text_IvyAfter
++	release
++	end
++
++PalletTown_EventScript_TrainerIvyNoMon::
++	msgbox PalletTown_Text_IvyNoMon
++	release
++	end
++
++PalletTown_EventScript_TrainerIvyDecline::
++	msgbox PalletTown_Text_IvyDecline
++	release
++	end
 diff --git a/data/maps/PalletTown/text.inc b/data/maps/PalletTown/text.inc
-index 726aea8..a4740ee 100644
+index 726aea8..7cfd710 100644
 --- a/data/maps/PalletTown/text.inc
 +++ b/data/maps/PalletTown/text.inc
-@@ -65,3 +65,194 @@ PalletTown_Text_OakYouEnjoyingTraveling::
+@@ -65,3 +65,530 @@ PalletTown_Text_OakYouEnjoyingTraveling::
      .string "Good for you, good for you.\n"
      .string "Hohoho.$"
  
 +
-+PalletTown_Text_FountainGirl::
-+    .string "The fountain sparkles when the\n"
-+    .string "sun comes up over the sea!$"
-+
-+PalletTown_Text_PineOldMan::
-+    .string "I planted these pines the year\n"
-+    .string "PROF. OAK built his lab.\p"
-+    .string "They've grown taller than me!$"
-+
-+PalletTown_Text_HarperMailbox::
++PalletTown_Text_HarperHouseMailbox::
 +    .string "HARPER's house$"
 +
-+PalletTown_Text_AokiMailbox::
++PalletTown_Text_AokiHouseMailbox::
 +    .string "AOKI's house$"
 +
-+PalletTown_Text_ValeMailbox::
-+    .string "VALE's house$"
-+
-+PalletTown_Text_MarshMailbox::
-+    .string "MARSH's house$"
-+
-+PalletTown_Text_BellMailbox::
++PalletTown_Text_BellHouseMailbox::
 +    .string "BELL's house$"
 +
-+PalletTown_Text_KowalskiMailbox::
++PalletTown_Text_ValeHouseMailbox::
++    .string "VALE's house$"
++
++PalletTown_Text_MarshHouseMailbox::
++    .string "MARSH's house$"
++
++PalletTown_Text_KowalskiHouseMailbox::
 +    .string "KOWALSKI's house$"
 +
++PalletTown_Text_CafeSign::
++    .string "PALLET CAFÉ Fresh berry tea\n"
++    .string "every morning!$"
++
++PalletTown_Text_NurserySign::
++    .string "POKéMON NURSERY Little ones\n"
++    .string "welcome. Please be gentle!$"
++
++PalletTown_Text_SchoolSign::
++    .string "PALLET TRAINER SCHOOL Every\n"
++    .string "champion started somewhere!$"
++
++PalletTown_Text_BreederHouseMailbox::
++    .string "LILA's house$"
++
 +PalletTown_Text_ParkSign::
-+    .string "PALLET PARK\n"
-+    .string "New TRAINERS, test your skills here!$"
++    .string "PALLET PARK New TRAINERS,\n"
++    .string "test your skills here!$"
++
++PalletTown_Text_Townsfolk1::
++    .string "Welcome to PALLET TOWN!\p"
++    .string "It's gotten busy since the\n"
++    .string "market district opened.\p"
++    .string "Mind the little ones by the\n"
++    .string "fountain, now!$"
++
++PalletTown_Text_Townsfolk2::
++    .string "Mail for the HARPERS… mail\n"
++    .string "for the AOKIS…\p"
++    .string "PALLET's gotten so big, my\n"
++    .string "bag is twice as heavy as\l"
++    .string "last year!$"
++
++PalletTown_Text_Townsfolk3::
++    .string "The fountain sparkles when\n"
++    .string "the sun comes up over the\l"
++    .string "sea!$"
++
++PalletTown_Text_Townsfolk4::
++    .string "Ahh… a bench in the park.\p"
++    .string "This is the life. No\n"
++    .string "battles, no homework. Just\l"
++    .string "sunshine.$"
++
++PalletTown_Text_Townsfolk5::
++    .string "Tag! You're it! …Wait,\n"
++    .string "you're not playing?$"
++
++PalletTown_Text_Townsfolk6::
++    .string "PIDGEY: Pijji! Pijji!$"
++
++PalletTown_Text_Townsfolk7::
++    .string "PIDGEY: Pijji?$"
++
++PalletTown_Text_Townsfolk8::
++    .string "I planted these pines the\n"
++    .string "year PROF. OAK built his\l"
++    .string "lab.\p"
++    .string "They've grown taller than\n"
++    .string "me!$"
++
++PalletTown_Text_Townsfolk9::
++    .string "We just finished the POKéMON\n"
++    .string "CENTER and the MART.\p"
++    .string "Next up, the mayor wants a\n"
++    .string "ferry pier down by the pond!$"
++
++PalletTown_Text_Townsfolk10::
++    .string "My MEOWTH and I take a\n"
++    .string "stroll every afternoon.\p"
++    .string "She chooses the route. I\n"
++    .string "merely follow.$"
++
++PalletTown_Text_Townsfolk11::
++    .string "MEOWTH: Meowth! Nya!$"
++
++PalletTown_Text_Townsfolk12::
++    .string "Zzz… Zzz…\p"
++    .string "…Huh? Oh, I'm just napping\n"
++    .string "in the sun. Best spot in\l"
++    .string "town.\p"
++    .string "Zzz…$"
++
++PalletTown_Text_Townsfolk13::
++    .string "SLOWPOKE: …… …… Yawn?$"
++
++PalletTown_Text_Townsfolk14::
++    .string "Hup! Hup! Hup!\p"
++    .string "Five laps of EAST STREET\n"
++    .string "before breakfast!\p"
++    .string "My MANKEY says I'm slow.\n"
++    .string "Hmph! Not for long!$"
++
++PalletTown_Text_Townsfolk15::
++    .string "The LEMONADE here is made\n"
++    .string "with ORAN BERRIES, you know.\p"
++    .string "…At least, that's what the\n"
++    .string "sign says. I can't taste it.$"
++
++PalletTown_Text_Townsfolk16::
++    .string "PSYDUCK: Psy…? …Duck!$"
++
++PalletTown_Text_StallVendor::
++    .string "Morning! Fresh from the\n"
++    .string "farms up on ROUTE 1!\p"
++    .string "The veggies are for the\n"
++    .string "café, but the drinks are\l"
++    .string "ice-cold and for sale!$"
++
++PalletTown_Text_StallBye::
++    .string "Stay hydrated out there,\n"
++    .string "kid! Your POKéMON too!$"
 +
 +PalletTown_Text_TimmyNoMon::
 +    .string "Shorts are comfy and easy to\n"
 +    .string "battle in!\p"
 +    .string "Huh? You don't even have a\n"
-+    .string "POKéMON? Get one, then we'll talk!$"
++    .string "POKéMON? Get one, then we'll\l"
++    .string "talk!$"
 +
 +PalletTown_Text_TimmyAsk::
 +    .string "My RATTATA is in the top\n"
 +    .string "percentage of RATTATA!\p"
-+    .string "You've got a POKéMON now, huh?\n"
-+    .string "Wanna battle?$"
++    .string "You've got a POKéMON now,\n"
++    .string "huh? Wanna battle?$"
 +
 +PalletTown_Text_TimmyAccept::
-+    .string "Yes! Get ready to be schooled!$"
++    .string "Yes! Get ready to be\n"
++    .string "schooled!$"
 +
 +PalletTown_Text_TimmyDecline::
-+    .string "Scared, huh? I get it.\n"
-+    .string "We're pretty much unbeatable.$"
++    .string "Scared, huh? I get it. We're\n"
++    .string "pretty much unbeatable.$"
 +
 +PalletTown_Text_TimmyDefeat::
 +    .string "Wh-what?! My top percentage\n"
 +    .string "RATTATA lost?!$"
 +
 +PalletTown_Text_TimmyAfter::
-+    .string "I'm gonna train every day until\n"
-+    .string "RATTATA is the top-top percentage!$"
++    .string "I'm gonna train every day\n"
++    .string "until RATTATA is the top-top\l"
++    .string "percentage!$"
 +
 +PalletTown_Text_MilaNoMon::
-+    .string "I named my ODDISH “Sprout” and\n"
-+    .string "my NIDORAN “Blossom.”\p"
++    .string "I named my ODDISH “Sprout”\n"
++    .string "and my NIDORAN “Blossom.”\p"
 +    .string "Once you have a POKéMON, you\n"
-+    .string "should give it a cute name too!$"
++    .string "should give it a cute name\l"
++    .string "too!$"
 +
 +PalletTown_Text_MilaAsk::
 +    .string "Oh! Is that your very first\n"
 +    .string "POKéMON? It's adorable!\p"
-+    .string "Sprout and Blossom would love\n"
-+    .string "to play. Will you battle us?$"
++    .string "Sprout and Blossom would\n"
++    .string "love to play. Will you\l"
++    .string "battle us?$"
 +
 +PalletTown_Text_MilaAccept::
-+    .string "Yay! Let's do our best, girls!$"
++    .string "Yay! Let's do our best,\n"
++    .string "girls!$"
 +
 +PalletTown_Text_MilaDecline::
-+    .string "Aww. Maybe after your POKéMON\n"
-+    .string "has had a little nap.$"
++    .string "Aww. Maybe after your\n"
++    .string "POKéMON has had a little\l"
++    .string "nap.$"
 +
 +PalletTown_Text_MilaDefeat::
-+    .string "Oh no, Sprout! Blossom!\n"
-+    .string "You were both so brave!$"
++    .string "Oh no, Sprout! Blossom! You\n"
++    .string "were both so brave!$"
 +
 +PalletTown_Text_MilaAfter::
 +    .string "Losing is OK as long as we\n"
-+    .string "have fun together. Right, Sprout?$"
++    .string "have fun together. Right,\l"
++    .string "Sprout?$"
 +
 +PalletTown_Text_WesNoMon::
-+    .string "Shh! I'm watching this pine tree.\n"
-+    .string "Something wiggled up there!\p"
++    .string "Shh! I'm watching this pine\n"
++    .string "tree. Something wiggled up\l"
++    .string "there!\p"
 +    .string "Come back with a POKéMON and\n"
 +    .string "I'll show you my bug team!$"
 +
 +PalletTown_Text_WesAsk::
 +    .string "BUG POKéMON grow up so fast!\n"
-+    .string "That's what makes them the best!\p"
-+    .string "Want to see how tough my bugs\n"
-+    .string "are? Battle me!$"
++    .string "That's what makes them the\l"
++    .string "best!\p"
++    .string "Want to see how tough my\n"
++    .string "bugs are? Battle me!$"
 +
 +PalletTown_Text_WesAccept::
 +    .string "Go, my creepy-crawly crew!$"
 +
 +PalletTown_Text_WesDecline::
-+    .string "Fine! I'll go back to staring\n"
-+    .string "at this tree.$"
++    .string "Fine! I'll go back to\n"
++    .string "staring at this tree.$"
 +
 +PalletTown_Text_WesDefeat::
 +    .string "My bugs got squished!$"
@@ -835,67 +1773,77 @@ index 726aea8..a4740ee 100644
 +    .string "BUTTERFREE. Then watch out!$"
 +
 +PalletTown_Text_DrewNoMon::
-+    .string "I pitched my tent right here in\n"
-+    .string "the park. Best spot in PALLET!\p"
-+    .string "Every camper needs a partner.\n"
-+    .string "Go get yourself a POKéMON!$"
++    .string "I pitched my tent right here\n"
++    .string "in the park. Best spot in\l"
++    .string "PALLET!\p"
++    .string "Every camper needs a\n"
++    .string "partner. Go get yourself a\l"
++    .string "POKéMON!$"
 +
 +PalletTown_Text_DrewAsk::
-+    .string "Nothing like a battle under the\n"
-+    .string "open sky!\p"
-+    .string "You and your partner up for a\n"
-+    .string "match? Let's go!$"
++    .string "Nothing like a battle under\n"
++    .string "the open sky!\p"
++    .string "You and your partner up for\n"
++    .string "a match? Let's go!$"
 +
 +PalletTown_Text_DrewAccept::
-+    .string "That's the spirit! Here I come!$"
++    .string "That's the spirit! Here I\n"
++    .string "come!$"
 +
 +PalletTown_Text_DrewDecline::
-+    .string "No worries. The sky's not going\n"
-+    .string "anywhere. Come back anytime!$"
++    .string "No worries. The sky's not\n"
++    .string "going anywhere. Come back\l"
++    .string "anytime!$"
 +
 +PalletTown_Text_DrewDefeat::
-+    .string "Whoa! You've got real outdoor\n"
-+    .string "grit!$"
++    .string "Whoa! You've got real\n"
++    .string "outdoor grit!$"
 +
 +PalletTown_Text_DrewAfter::
-+    .string "Toughen up out here, and VIRIDIAN\n"
-+    .string "FOREST won't scare you one bit.$"
++    .string "Toughen up out here, and\n"
++    .string "VIRIDIAN FOREST won't scare\l"
++    .string "you one bit.$"
 +
 +PalletTown_Text_RosaNoMon::
-+    .string "I packed sandwiches for a picnic,\n"
-+    .string "but MEOWTH ate them all!\p"
-+    .string "When you have a POKéMON, let's\n"
-+    .string "have a battle picnic!$"
++    .string "I packed sandwiches for a\n"
++    .string "picnic, but MEOWTH ate them\l"
++    .string "all!\p"
++    .string "When you have a POKéMON,\n"
++    .string "let's have a battle picnic!$"
 +
 +PalletTown_Text_RosaAsk::
-+    .string "A battle before lunch builds an\n"
-+    .string "appetite!\p"
-+    .string "Will you battle with me and my\n"
-+    .string "hungry friends?$"
++    .string "A battle before lunch builds\n"
++    .string "an appetite!\p"
++    .string "Will you battle with me and\n"
++    .string "my hungry friends?$"
 +
 +PalletTown_Text_RosaAccept::
 +    .string "Hooray! Ready, set, picnic!$"
 +
 +PalletTown_Text_RosaDecline::
-+    .string "OK! I'll save you a sandwich.\n"
-+    .string "If MEOWTH doesn't find it first.$"
++    .string "OK! I'll save you a\n"
++    .string "sandwich. If MEOWTH doesn't\l"
++    .string "find it first.$"
 +
 +PalletTown_Text_RosaDefeat::
 +    .string "Oh! Now we're even hungrier!$"
 +
 +PalletTown_Text_RosaAfter::
-+    .string "Battling outdoors is the best.\n"
-+    .string "Even better with snacks!$"
++    .string "Battling outdoors is the\n"
++    .string "best. Even better with\l"
++    .string "snacks!$"
 +
 +PalletTown_Text_OttoNoMon::
-+    .string "Thirty years I've fished this\n"
-+    .string "pond. Thirty years!\p"
++    .string "Thirty years I've fished\n"
++    .string "this pond. Thirty years!\p"
 +    .string "Come back with a POKéMON and\n"
-+    .string "I'll show you what I've caught.$"
++    .string "I'll show you what I've\l"
++    .string "caught.$"
 +
 +PalletTown_Text_OttoAsk::
-+    .string "Patience, youngster. That's the\n"
-+    .string "secret to fishing and battling.\p"
++    .string "Patience, youngster. That's\n"
++    .string "the secret to fishing and\l"
++    .string "battling.\p"
 +    .string "Let's see if you have any.\n"
 +    .string "Care for a battle?$"
 +
@@ -903,113 +1851,242 @@ index 726aea8..a4740ee 100644
 +    .string "Heh heh. Reel 'em in!$"
 +
 +PalletTown_Text_OttoDecline::
-+    .string "Patient AND careful. You'll make\n"
-+    .string "a fine angler someday.$"
++    .string "Patient AND careful. You'll\n"
++    .string "make a fine angler someday.$"
 +
 +PalletTown_Text_OttoDefeat::
 +    .string "Ho! You landed a big one!$"
 +
 +PalletTown_Text_OttoAfter::
 +    .string "My MAGIKARP will grow into\n"
-+    .string "something fierce. I can wait.\p"
-+    .string "I've waited thirty years already!$"
-diff --git a/data/maps/PalletTown_House1/map.json b/data/maps/PalletTown_House1/map.json
-new file mode 100644
-index 0000000..1ecf101
---- /dev/null
-+++ b/data/maps/PalletTown_House1/map.json
-@@ -0,0 +1,58 @@
-+{
-+  "id": "MAP_PALLET_TOWN_HOUSE1",
-+  "name": "PalletTown_House1",
-+  "layout": "LAYOUT_HOUSE1",
-+  "music": "MUS_PALLET",
-+  "region_map_section": "MAPSEC_PALLET_TOWN",
-+  "requires_flash": false,
-+  "weather": "WEATHER_NONE",
-+  "map_type": "MAP_TYPE_INDOOR",
-+  "allow_cycling": false,
-+  "allow_escaping": false,
-+  "allow_running": false,
-+  "show_map_name": false,
-+  "floor_number": 0,
-+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-+  "connections": null,
-+  "object_events": [
-+    {
-+      "type": "object",
-+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
-+      "x": 2,
-+      "y": 4,
-+      "elevation": 3,
-+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-+      "movement_range_x": 1,
-+      "movement_range_y": 1,
-+      "trainer_type": "TRAINER_TYPE_NONE",
-+      "trainer_sight_or_berry_tree_id": "0",
-+      "script": "PalletTown_House1_EventScript_Resident",
-+      "flag": "0"
-+    }
-+  ],
-+  "warp_events": [
-+    {
-+      "x": 3,
-+      "y": 7,
-+      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "3"
-+    },
-+    {
-+      "x": 4,
-+      "y": 7,
-+      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "3"
-+    },
-+    {
-+      "x": 5,
-+      "y": 7,
-+      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "3"
-+    }
-+  ],
-+  "coord_events": [],
-+  "bg_events": []
-+}
-diff --git a/data/maps/PalletTown_House1/scripts.inc b/data/maps/PalletTown_House1/scripts.inc
-new file mode 100644
-index 0000000..33a0367
---- /dev/null
-+++ b/data/maps/PalletTown_House1/scripts.inc
-@@ -0,0 +1,6 @@
-+PalletTown_House1_MapScripts::
-+	.byte 0
++    .string "something fierce. I can\l"
++    .string "wait.\p"
++    .string "I've waited thirty years\n"
++    .string "already!$"
 +
-+PalletTown_House1_EventScript_Resident::
-+	msgbox PalletTown_House1_Text_Resident, MSGBOX_NPC
-+	end
-diff --git a/data/maps/PalletTown_House1/text.inc b/data/maps/PalletTown_House1/text.inc
++PalletTown_Text_DuncanNoMon::
++    .string "Ahoy! I ship out for\n"
++    .string "CINNABAR on the next tide.\p"
++    .string "Come back with a POKéMON and\n"
++    .string "I'll show you what sailors\l"
++    .string "do!$"
++
++PalletTown_Text_DuncanAsk::
++    .string "I'm sailing for CINNABAR,\n"
++    .string "but the tide can wait!\p"
++    .string "I'll use my newly caught\n"
++    .string "POKéMON on you, rookie!\l"
++    .string "Ready?$"
++
++PalletTown_Text_DuncanAccept::
++    .string "Anchors aweigh!$"
++
++PalletTown_Text_DuncanDecline::
++    .string "Ha! Smart. Never fight a\n"
++    .string "sailor in his own harbor.$"
++
++PalletTown_Text_DuncanDefeat::
++    .string "Sunk! Sunk like a stone!$"
++
++PalletTown_Text_DuncanAfter::
++    .string "I'll train KRABBY all the\n"
++    .string "way to CINNABAR. Next time,\l"
++    .string "rookie!$"
++
++PalletTown_Text_KaiNoMon::
++    .string "I'm going to CINNABAR to\n"
++    .string "train under BLAINE! FIRE all\l"
++    .string "the way!\p"
++    .string "You don't even have a\n"
++    .string "POKéMON? Better hurry up!$"
++
++PalletTown_Text_KaiAsk::
++    .string "I just caught GROWLITHE! Now\n"
++    .string "I'm ready for CINNABAR!\p"
++    .string "I'll use my newly caught\n"
++    .string "POKéMON on you, rookie!\l"
++    .string "Battle?$"
++
++PalletTown_Text_KaiAccept::
++    .string "Fire it up!$"
++
++PalletTown_Text_KaiDecline::
++    .string "Huh. Afraid of getting\n"
++    .string "burned, rookie?$"
++
++PalletTown_Text_KaiDefeat::
++    .string "My flames… fizzled out…$"
++
++PalletTown_Text_KaiAfter::
++    .string "Guess I need more training\n"
++    .string "before I face BLAINE.$"
++
++PalletTown_Text_OwenNoMon::
++    .string "They say there's a volcano\n"
++    .string "on CINNABAR. I want to climb\l"
++    .string "it!\p"
++    .string "Get a POKéMON and we'll see\n"
++    .string "who the tougher hiker is!$"
++
++PalletTown_Text_OwenAsk::
++    .string "I'm waiting for my friend so\n"
++    .string "we can head for CINNABAR.\p"
++    .string "Want to warm up with a\n"
++    .string "battle while I wait?$"
++
++PalletTown_Text_OwenAccept::
++    .string "Rock solid! Let's go!$"
++
++PalletTown_Text_OwenDecline::
++    .string "No problem. I'll just keep\n"
++    .string "waiting… and waiting…$"
++
++PalletTown_Text_OwenDefeat::
++    .string "You crushed us like gravel!$"
++
++PalletTown_Text_OwenAfter::
++    .string "KAI's late again. He's\n"
++    .string "probably battling somebody.$"
++
++PalletTown_Text_BreeNoMon::
++    .string "Mommy says CINNABAR has the\n"
++    .string "best beaches in KANTO!\p"
++    .string "Do you have a POKéMON? No?\n"
++    .string "Then we can't play!$"
++
++PalletTown_Text_BreeAsk::
++    .string "I'm going to CINNABAR on a\n"
++    .string "big boat! I'm practicing\l"
++    .string "first!\p"
++    .string "Will you battle me? Please?$"
++
++PalletTown_Text_BreeAccept::
++    .string "Yay! Splash, splash!$"
++
++PalletTown_Text_BreeDecline::
++    .string "Aww… meanie.$"
++
++PalletTown_Text_BreeDefeat::
++    .string "Waaah! I lost!$"
++
++PalletTown_Text_BreeAfter::
++    .string "When I grow up, I'll SURF\n"
++    .string "all the way to CINNABAR\l"
++    .string "myself!$"
++
++PalletTown_Text_JuneNoMon::
++    .string "I come to this garden to\n"
++    .string "relax after school.\p"
++    .string "The flowers smell so nice.\n"
++    .string "Don't you think so?$"
++
++PalletTown_Text_JuneAsk::
++    .string "Relaxing is nice, but a\n"
++    .string "gentle battle is nice too.\p"
++    .string "Would you like to have one?$"
++
++PalletTown_Text_JuneAccept::
++    .string "Let's take it easy, OK?$"
++
++PalletTown_Text_JuneDecline::
++    .string "That's fine. Stop and smell\n"
++    .string "the flowers for a while.$"
++
++PalletTown_Text_JuneDefeat::
++    .string "Oh my. That wasn't very\n"
++    .string "relaxing at all!$"
++
++PalletTown_Text_JuneAfter::
++    .string "Back to my flowers. Come\n"
++    .string "relax here anytime.$"
++
++PalletTown_Text_PipNoMon::
++    .string "The flower garden is full of\n"
++    .string "BUG POKéMON at night!\p"
++    .string "Get a POKéMON and I'll show\n"
++    .string "you my collection!$"
++
++PalletTown_Text_PipAsk::
++    .string "WES says his bugs are the\n"
++    .string "best in PALLET. He's wrong!\p"
++    .string "Battle me and you'll see!$"
++
++PalletTown_Text_PipAccept::
++    .string "Bzzzt! Here we go!$"
++
++PalletTown_Text_PipDecline::
++    .string "Fine! I'll go find more\n"
++    .string "bugs.$"
++
++PalletTown_Text_PipDefeat::
++    .string "Aww! Don't tell WES!$"
++
++PalletTown_Text_PipAfter::
++    .string "VENONAT can see in the dark.\n"
++    .string "That's how we find more\l"
++    .string "bugs!$"
++
++PalletTown_Text_MiloNoMon::
++    .string "I've read every book about\n"
++    .string "POKéMON in the SCHOOL\l"
++    .string "library!\p"
++    .string "Now I just need a POKéMON to\n"
++    .string "battle with. Same as you!$"
++
++PalletTown_Text_MiloAsk::
++    .string "Did you know SLOWPOKE takes\n"
++    .string "a whole five seconds to feel\l"
++    .string "pain?\p"
++    .string "Let's test that! Battle?$"
++
++PalletTown_Text_MiloAccept::
++    .string "For science!$"
++
++PalletTown_Text_MiloDecline::
++    .string "Hmph. A missed opportunity\n"
++    .string "for research.$"
++
++PalletTown_Text_MiloDefeat::
++    .string "Fascinating! Utterly\n"
++    .string "fascinating!$"
++
++PalletTown_Text_MiloAfter::
++    .string "I'll write all about our\n"
++    .string "battle in my notebook\l"
++    .string "tonight.$"
++
++PalletTown_Text_IvyNoMon::
++    .string "I'm on my way to the CAFÉ\n"
++    .string "for berry tea!\p"
++    .string "Get yourself a POKéMON, then\n"
++    .string "we'll battle over a cup!$"
++
++PalletTown_Text_IvyAsk::
++    .string "A quick battle before tea?\n"
++    .string "Sounds perfect to me!$"
++
++PalletTown_Text_IvyAccept::
++    .string "Ready, set, sip!$"
++
++PalletTown_Text_IvyDecline::
++    .string "Suit yourself! More tea for\n"
++    .string "me.$"
++
++PalletTown_Text_IvyDefeat::
++    .string "Oh! My tea's gone cold.$"
++
++PalletTown_Text_IvyAfter::
++    .string "Next time, the tea's on you!$"
+diff --git a/data/maps/PalletTown_AokiHouse_1F/map.json b/data/maps/PalletTown_AokiHouse_1F/map.json
 new file mode 100644
-index 0000000..43e696f
+index 0000000..50068f0
 --- /dev/null
-+++ b/data/maps/PalletTown_House1/text.inc
-@@ -0,0 +1,5 @@
-+PalletTown_House1_Text_Resident::
-+    .string "When I was a boy, PALLET was\n"
-+    .string "two houses and a lab.\p"
-+    .string "Now there's a fountain and\n"
-+    .string "neighbors on both sides!$"
-diff --git a/data/maps/PalletTown_House2/map.json b/data/maps/PalletTown_House2/map.json
-new file mode 100644
-index 0000000..75713c6
---- /dev/null
-+++ b/data/maps/PalletTown_House2/map.json
-@@ -0,0 +1,58 @@
++++ b/data/maps/PalletTown_AokiHouse_1F/map.json
+@@ -0,0 +1,65 @@
 +{
-+  "id": "MAP_PALLET_TOWN_HOUSE2",
-+  "name": "PalletTown_House2",
-+  "layout": "LAYOUT_HOUSE2",
++  "id": "MAP_PALLET_TOWN_AOKI_HOUSE_1_F",
++  "name": "PalletTown_AokiHouse_1F",
++  "layout": "LAYOUT_SAFFRON_CITY_COPYCATS_HOUSE_1F",
 +  "music": "MUS_PALLET",
 +  "region_map_section": "MAPSEC_PALLET_TOWN",
 +  "requires_flash": false,
@@ -1026,164 +2103,90 @@ index 0000000..75713c6
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
-+      "x": 8,
-+      "y": 6,
-+      "elevation": 3,
-+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-+      "movement_range_x": 1,
-+      "movement_range_y": 1,
-+      "trainer_type": "TRAINER_TYPE_NONE",
-+      "trainer_sight_or_berry_tree_id": "0",
-+      "script": "PalletTown_House2_EventScript_Resident",
-+      "flag": "0"
-+    }
-+  ],
-+  "warp_events": [
-+    {
 +      "x": 3,
-+      "y": 7,
-+      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "4"
-+    },
-+    {
-+      "x": 4,
-+      "y": 7,
-+      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "4"
-+    },
-+    {
-+      "x": 5,
-+      "y": 7,
-+      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "4"
-+    }
-+  ],
-+  "coord_events": [],
-+  "bg_events": []
-+}
-diff --git a/data/maps/PalletTown_House2/scripts.inc b/data/maps/PalletTown_House2/scripts.inc
-new file mode 100644
-index 0000000..6c0da4d
---- /dev/null
-+++ b/data/maps/PalletTown_House2/scripts.inc
-@@ -0,0 +1,6 @@
-+PalletTown_House2_MapScripts::
-+	.byte 0
-+
-+PalletTown_House2_EventScript_Resident::
-+	msgbox PalletTown_House2_Text_Resident, MSGBOX_NPC
-+	end
-diff --git a/data/maps/PalletTown_House2/text.inc b/data/maps/PalletTown_House2/text.inc
-new file mode 100644
-index 0000000..5f94643
---- /dev/null
-+++ b/data/maps/PalletTown_House2/text.inc
-@@ -0,0 +1,5 @@
-+PalletTown_House2_Text_Resident::
-+    .string "The kids splash in the fountain\n"
-+    .string "by the garden all summer long.\p"
-+    .string "PALLET TOWN is a lovely place\n"
-+    .string "to raise a family.$"
-diff --git a/data/maps/PalletTown_House3/map.json b/data/maps/PalletTown_House3/map.json
-new file mode 100644
-index 0000000..dd94b50
---- /dev/null
-+++ b/data/maps/PalletTown_House3/map.json
-@@ -0,0 +1,58 @@
-+{
-+  "id": "MAP_PALLET_TOWN_HOUSE3",
-+  "name": "PalletTown_House3",
-+  "layout": "LAYOUT_HOUSE5",
-+  "music": "MUS_PALLET",
-+  "region_map_section": "MAPSEC_PALLET_TOWN",
-+  "requires_flash": false,
-+  "weather": "WEATHER_NONE",
-+  "map_type": "MAP_TYPE_INDOOR",
-+  "allow_cycling": false,
-+  "allow_escaping": false,
-+  "allow_running": false,
-+  "show_map_name": false,
-+  "floor_number": 0,
-+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-+  "connections": null,
-+  "object_events": [
-+    {
-+      "type": "object",
-+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
-+      "x": 2,
 +      "y": 5,
 +      "elevation": 3,
-+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
 +      "movement_range_x": 1,
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
 +      "trainer_sight_or_berry_tree_id": "0",
-+      "script": "PalletTown_House3_EventScript_Resident",
++      "script": "PalletTown_AokiHouse_1F_EventScript_Resident1",
 +      "flag": "0"
 +    }
 +  ],
 +  "warp_events": [
 +    {
 +      "x": 3,
-+      "y": 7,
++      "y": 8,
 +      "elevation": 3,
 +      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "5"
++      "dest_warp_id": "4"
 +    },
 +    {
 +      "x": 4,
-+      "y": 7,
++      "y": 8,
 +      "elevation": 3,
 +      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "5"
++      "dest_warp_id": "4"
 +    },
 +    {
 +      "x": 5,
-+      "y": 7,
++      "y": 8,
 +      "elevation": 3,
 +      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "5"
++      "dest_warp_id": "4"
++    },
++    {
++      "x": 10,
++      "y": 2,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN_AOKI_HOUSE_2_F",
++      "dest_warp_id": "0"
 +    }
 +  ],
 +  "coord_events": [],
 +  "bg_events": []
 +}
-diff --git a/data/maps/PalletTown_House3/scripts.inc b/data/maps/PalletTown_House3/scripts.inc
+diff --git a/data/maps/PalletTown_AokiHouse_1F/scripts.inc b/data/maps/PalletTown_AokiHouse_1F/scripts.inc
 new file mode 100644
-index 0000000..7bfe894
+index 0000000..8e4897d
 --- /dev/null
-+++ b/data/maps/PalletTown_House3/scripts.inc
-@@ -0,0 +1,6 @@
-+PalletTown_House3_MapScripts::
++++ b/data/maps/PalletTown_AokiHouse_1F/scripts.inc
+@@ -0,0 +1,10 @@
++PalletTown_AokiHouse_1F_MapScripts::
 +	.byte 0
 +
-+PalletTown_House3_EventScript_Resident::
-+	msgbox PalletTown_House3_Text_Resident, MSGBOX_NPC
++PalletTown_AokiHouse_1F_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_AokiHouse_1F_Text_Resident1
++	release
 +	end
-diff --git a/data/maps/PalletTown_House3/text.inc b/data/maps/PalletTown_House3/text.inc
+diff --git a/data/maps/PalletTown_AokiHouse_1F/text.inc b/data/maps/PalletTown_AokiHouse_1F/text.inc
 new file mode 100644
-index 0000000..46430dd
+index 0000000..4f1b067
 --- /dev/null
-+++ b/data/maps/PalletTown_House3/text.inc
-@@ -0,0 +1,5 @@
-+PalletTown_House3_Text_Resident::
-+    .string "PROF. OAK lets me watch his\n"
-+    .string "POKéMON through the lab window!\p"
-+    .string "When I grow up, I'm going to\n"
-+    .string "be a TRAINER too!$"
-diff --git a/data/maps/PalletTown_House4/map.json b/data/maps/PalletTown_House4/map.json
++++ b/data/maps/PalletTown_AokiHouse_1F/text.inc
+@@ -0,0 +1,7 @@
++PalletTown_AokiHouse_1F_Text_Resident1::
++    .string "KEN is upstairs playing\n"
++    .string "games again instead of\l"
++    .string "studying.\p"
++    .string "He says he's “training his\n"
++    .string "reflexes” for POKéMON\l"
++    .string "battles.$"
+diff --git a/data/maps/PalletTown_AokiHouse_2F/map.json b/data/maps/PalletTown_AokiHouse_2F/map.json
 new file mode 100644
-index 0000000..97bd854
+index 0000000..4e8b2af
 --- /dev/null
-+++ b/data/maps/PalletTown_House4/map.json
-@@ -0,0 +1,58 @@
++++ b/data/maps/PalletTown_AokiHouse_2F/map.json
+@@ -0,0 +1,44 @@
 +{
-+  "id": "MAP_PALLET_TOWN_HOUSE4",
-+  "name": "PalletTown_House4",
-+  "layout": "LAYOUT_VIRIDIAN_CITY_HOUSE",
++  "id": "MAP_PALLET_TOWN_AOKI_HOUSE_2_F",
++  "name": "PalletTown_AokiHouse_2F",
++  "layout": "LAYOUT_SAFFRON_CITY_COPYCATS_HOUSE_2F",
 +  "music": "MUS_PALLET",
 +  "region_map_section": "MAPSEC_PALLET_TOWN",
 +  "requires_flash": false,
@@ -1199,77 +2202,68 @@ index 0000000..97bd854
 +  "object_events": [
 +    {
 +      "type": "object",
-+      "graphics_id": "OBJ_EVENT_GFX_FISHER",
-+      "x": 9,
-+      "y": 4,
++      "graphics_id": "OBJ_EVENT_GFX_GBA_KID",
++      "x": 4,
++      "y": 5,
 +      "elevation": 3,
-+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
 +      "movement_range_x": 1,
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
 +      "trainer_sight_or_berry_tree_id": "0",
-+      "script": "PalletTown_House4_EventScript_Resident",
++      "script": "PalletTown_AokiHouse_2F_EventScript_Resident1",
 +      "flag": "0"
 +    }
 +  ],
 +  "warp_events": [
 +    {
-+      "x": 3,
-+      "y": 7,
++      "x": 10,
++      "y": 2,
 +      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "6"
-+    },
-+    {
-+      "x": 4,
-+      "y": 7,
-+      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "6"
-+    },
-+    {
-+      "x": 5,
-+      "y": 7,
-+      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "6"
++      "dest_map": "MAP_PALLET_TOWN_AOKI_HOUSE_1_F",
++      "dest_warp_id": "3"
 +    }
 +  ],
 +  "coord_events": [],
 +  "bg_events": []
 +}
-diff --git a/data/maps/PalletTown_House4/scripts.inc b/data/maps/PalletTown_House4/scripts.inc
+diff --git a/data/maps/PalletTown_AokiHouse_2F/scripts.inc b/data/maps/PalletTown_AokiHouse_2F/scripts.inc
 new file mode 100644
-index 0000000..69acbe3
+index 0000000..48eb197
 --- /dev/null
-+++ b/data/maps/PalletTown_House4/scripts.inc
-@@ -0,0 +1,6 @@
-+PalletTown_House4_MapScripts::
++++ b/data/maps/PalletTown_AokiHouse_2F/scripts.inc
+@@ -0,0 +1,10 @@
++PalletTown_AokiHouse_2F_MapScripts::
 +	.byte 0
 +
-+PalletTown_House4_EventScript_Resident::
-+	msgbox PalletTown_House4_Text_Resident, MSGBOX_NPC
++PalletTown_AokiHouse_2F_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_AokiHouse_2F_Text_Resident1
++	release
 +	end
-diff --git a/data/maps/PalletTown_House4/text.inc b/data/maps/PalletTown_House4/text.inc
+diff --git a/data/maps/PalletTown_AokiHouse_2F/text.inc b/data/maps/PalletTown_AokiHouse_2F/text.inc
 new file mode 100644
-index 0000000..f62d531
+index 0000000..6833dc3
 --- /dev/null
-+++ b/data/maps/PalletTown_House4/text.inc
-@@ -0,0 +1,5 @@
-+PalletTown_House4_Text_Resident::
-+    .string "The sea south of town reaches\n"
-+    .string "all the way to CINNABAR.\p"
-+    .string "You'll need a POKéMON that\n"
-+    .string "knows SURF to get there.$"
-diff --git a/data/maps/PalletTown_House5/map.json b/data/maps/PalletTown_House5/map.json
++++ b/data/maps/PalletTown_AokiHouse_2F/text.inc
+@@ -0,0 +1,6 @@
++PalletTown_AokiHouse_2F_Text_Resident1::
++    .string "Shh! I'm about to beat my\n"
++    .string "high score!\p"
++    .string "When I'm a TRAINER, I'll\n"
++    .string "have the fastest fingers in\l"
++    .string "KANTO!$"
+diff --git a/data/maps/PalletTown_BellHouse/map.json b/data/maps/PalletTown_BellHouse/map.json
 new file mode 100644
-index 0000000..e65f9db
+index 0000000..fbd4741
 --- /dev/null
-+++ b/data/maps/PalletTown_House5/map.json
-@@ -0,0 +1,58 @@
++++ b/data/maps/PalletTown_BellHouse/map.json
+@@ -0,0 +1,72 @@
 +{
-+  "id": "MAP_PALLET_TOWN_HOUSE5",
-+  "name": "PalletTown_House5",
++  "id": "MAP_PALLET_TOWN_BELL_HOUSE",
++  "name": "PalletTown_BellHouse",
 +  "layout": "LAYOUT_HOUSE2",
 +  "music": "MUS_PALLET",
 +  "region_map_section": "MAPSEC_PALLET_TOWN",
@@ -1290,12 +2284,430 @@ index 0000000..e65f9db
 +      "x": 2,
 +      "y": 3,
 +      "elevation": 3,
-+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
 +      "movement_range_x": 1,
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
 +      "trainer_sight_or_berry_tree_id": "0",
-+      "script": "PalletTown_House5_EventScript_Resident",
++      "script": "PalletTown_BellHouse_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
++      "x": 9,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_BellHouse_EventScript_Resident2",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 3,
++      "y": 7,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "5"
++    },
++    {
++      "x": 4,
++      "y": 7,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "5"
++    },
++    {
++      "x": 5,
++      "y": 7,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "5"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_BellHouse/scripts.inc b/data/maps/PalletTown_BellHouse/scripts.inc
+new file mode 100644
+index 0000000..8801f77
+--- /dev/null
++++ b/data/maps/PalletTown_BellHouse/scripts.inc
+@@ -0,0 +1,18 @@
++PalletTown_BellHouse_MapScripts::
++	.byte 0
++
++PalletTown_BellHouse_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_BellHouse_Text_Resident1
++	release
++	end
++
++PalletTown_BellHouse_EventScript_Resident2::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_BellHouse_Text_Resident2
++	release
++	end
+diff --git a/data/maps/PalletTown_BellHouse/text.inc b/data/maps/PalletTown_BellHouse/text.inc
+new file mode 100644
+index 0000000..8c9f2c9
+--- /dev/null
++++ b/data/maps/PalletTown_BellHouse/text.inc
+@@ -0,0 +1,13 @@
++PalletTown_BellHouse_Text_Resident1::
++    .string "My grandson watches the park\n"
++    .string "battles from the window.\p"
++    .string "Be kind to those young\n"
++    .string "TRAINERS, dear. They're just\l"
++    .string "starting out.$"
++
++PalletTown_BellHouse_Text_Resident2::
++    .string "Whoa! That BUG CATCHER's\n"
++    .string "WEEDLE is so cool!\p"
++    .string "Grandma says I can go battle\n"
++    .string "when I'm ten. Six more\l"
++    .string "years!$"
+diff --git a/data/maps/PalletTown_BreederHouse/map.json b/data/maps/PalletTown_BreederHouse/map.json
+new file mode 100644
+index 0000000..b157a89
+--- /dev/null
++++ b/data/maps/PalletTown_BreederHouse/map.json
+@@ -0,0 +1,58 @@
++{
++  "id": "MAP_PALLET_TOWN_BREEDER_HOUSE",
++  "name": "PalletTown_BreederHouse",
++  "layout": "LAYOUT_FOUR_ISLAND_LORELEIS_HOUSE",
++  "music": "MUS_PALLET",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
++      "x": 8,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_BreederHouse_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
++      "x": 2,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_BreederHouse_EventScript_Resident2",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 4,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "14"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_BreederHouse/scripts.inc b/data/maps/PalletTown_BreederHouse/scripts.inc
+new file mode 100644
+index 0000000..517f7fc
+--- /dev/null
++++ b/data/maps/PalletTown_BreederHouse/scripts.inc
+@@ -0,0 +1,20 @@
++PalletTown_BreederHouse_MapScripts::
++	.byte 0
++
++PalletTown_BreederHouse_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_BreederHouse_Text_Resident1
++	release
++	end
++
++PalletTown_BreederHouse_EventScript_Resident2::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_CLEFAIRY, CRY_MODE_NORMAL
++	msgbox PalletTown_BreederHouse_Text_Resident2
++	waitmoncry
++	release
++	end
+diff --git a/data/maps/PalletTown_BreederHouse/text.inc b/data/maps/PalletTown_BreederHouse/text.inc
+new file mode 100644
+index 0000000..387e822
+--- /dev/null
++++ b/data/maps/PalletTown_BreederHouse/text.inc
+@@ -0,0 +1,8 @@
++PalletTown_BreederHouse_Text_Resident1::
++    .string "I moved here to raise\n"
++    .string "POKéMON by the sea.\p"
++    .string "CLEFAIRY loves the moonlight\n"
++    .string "over the water. So do I.$"
++
++PalletTown_BreederHouse_Text_Resident2::
++    .string "CLEFAIRY: Pi pippi!$"
+diff --git a/data/maps/PalletTown_Cafe/map.json b/data/maps/PalletTown_Cafe/map.json
+new file mode 100644
+index 0000000..860d58c
+--- /dev/null
++++ b/data/maps/PalletTown_Cafe/map.json
+@@ -0,0 +1,100 @@
++{
++  "id": "MAP_PALLET_TOWN_CAFE",
++  "name": "PalletTown_Cafe",
++  "layout": "LAYOUT_CELADON_CITY_RESTAURANT",
++  "music": "MUS_CELADON",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CHEF",
++      "x": 12,
++      "y": 4,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Cafe_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
++      "x": 6,
++      "y": 5,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Cafe_EventScript_Resident2",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
++      "x": 3,
++      "y": 4,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Cafe_EventScript_Resident3",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_RS_BRENDAN",
++      "x": 3,
++      "y": 7,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Cafe_EventScript_Resident4",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 5,
++      "y": 9,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "11"
++    },
++    {
++      "x": 6,
++      "y": 9,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "11"
++    },
++    {
++      "x": 7,
++      "y": 9,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "11"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_Cafe/scripts.inc b/data/maps/PalletTown_Cafe/scripts.inc
+new file mode 100644
+index 0000000..761f549
+--- /dev/null
++++ b/data/maps/PalletTown_Cafe/scripts.inc
+@@ -0,0 +1,34 @@
++PalletTown_Cafe_MapScripts::
++	.byte 0
++
++PalletTown_Cafe_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Cafe_Text_Resident1
++	release
++	end
++
++PalletTown_Cafe_EventScript_Resident2::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_Cafe_Text_Resident2
++	release
++	end
++
++PalletTown_Cafe_EventScript_Resident3::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Cafe_Text_Resident3
++	release
++	end
++
++PalletTown_Cafe_EventScript_Resident4::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Cafe_Text_Resident4
++	release
++	end
+diff --git a/data/maps/PalletTown_Cafe/text.inc b/data/maps/PalletTown_Cafe/text.inc
+new file mode 100644
+index 0000000..ebd78d3
+--- /dev/null
++++ b/data/maps/PalletTown_Cafe/text.inc
+@@ -0,0 +1,27 @@
++PalletTown_Cafe_Text_Resident1::
++    .string "Welcome to PALLET CAFÉ!\p"
++    .string "Today's special is ORAN\n"
++    .string "BERRY tea with honey.\p"
++    .string "TRAINERS swear it gets them\n"
++    .string "through a whole day of\l"
++    .string "battles!$"
++
++PalletTown_Cafe_Text_Resident2::
++    .string "I wait tables here to save\n"
++    .string "up for my first POKé BALL.\p"
++    .string "Can you believe what they\n"
++    .string "cost in the big cities?$"
++
++PalletTown_Cafe_Text_Resident3::
++    .string "I come here every morning to\n"
++    .string "read the paper.\p"
++    .string "Today's headline: “PALLET\n"
++    .string "TOWN now bigger than\l"
++    .string "VIRIDIAN?!”$"
++
++PalletTown_Cafe_Text_Resident4::
++    .string "I'm visiting from HOENN with\n"
++    .string "my friend MAY.\p"
++    .string "Your KANTO café makes a mean\n"
++    .string "berry tea! We have nothing\l"
++    .string "like it in LITTLEROOT.$"
+diff --git a/data/maps/PalletTown_HarperHouse/map.json b/data/maps/PalletTown_HarperHouse/map.json
+new file mode 100644
+index 0000000..3a37a00
+--- /dev/null
++++ b/data/maps/PalletTown_HarperHouse/map.json
+@@ -0,0 +1,72 @@
++{
++  "id": "MAP_PALLET_TOWN_HARPER_HOUSE",
++  "name": "PalletTown_HarperHouse",
++  "layout": "LAYOUT_HOUSE3",
++  "music": "MUS_PALLET",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
++      "x": 8,
++      "y": 4,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_HarperHouse_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
++      "x": 8,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_HarperHouse_EventScript_Resident2",
 +      "flag": "0"
 +    }
 +  ],
@@ -1305,59 +2717,81 @@ index 0000000..e65f9db
 +      "y": 7,
 +      "elevation": 3,
 +      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "7"
++      "dest_warp_id": "3"
 +    },
 +    {
 +      "x": 4,
 +      "y": 7,
 +      "elevation": 3,
 +      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "7"
++      "dest_warp_id": "3"
 +    },
 +    {
 +      "x": 5,
 +      "y": 7,
 +      "elevation": 3,
 +      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "7"
++      "dest_warp_id": "3"
 +    }
 +  ],
 +  "coord_events": [],
 +  "bg_events": []
 +}
-diff --git a/data/maps/PalletTown_House5/scripts.inc b/data/maps/PalletTown_House5/scripts.inc
+diff --git a/data/maps/PalletTown_HarperHouse/scripts.inc b/data/maps/PalletTown_HarperHouse/scripts.inc
 new file mode 100644
-index 0000000..cf64487
+index 0000000..de70b13
 --- /dev/null
-+++ b/data/maps/PalletTown_House5/scripts.inc
-@@ -0,0 +1,6 @@
-+PalletTown_House5_MapScripts::
++++ b/data/maps/PalletTown_HarperHouse/scripts.inc
+@@ -0,0 +1,18 @@
++PalletTown_HarperHouse_MapScripts::
 +	.byte 0
 +
-+PalletTown_House5_EventScript_Resident::
-+	msgbox PalletTown_House5_Text_Resident, MSGBOX_NPC
++PalletTown_HarperHouse_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_HarperHouse_Text_Resident1
++	release
 +	end
-diff --git a/data/maps/PalletTown_House5/text.inc b/data/maps/PalletTown_House5/text.inc
++
++PalletTown_HarperHouse_EventScript_Resident2::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_HarperHouse_Text_Resident2
++	release
++	end
+diff --git a/data/maps/PalletTown_HarperHouse/text.inc b/data/maps/PalletTown_HarperHouse/text.inc
 new file mode 100644
-index 0000000..42ba7b6
+index 0000000..4457d9a
 --- /dev/null
-+++ b/data/maps/PalletTown_House5/text.inc
-@@ -0,0 +1,5 @@
-+PalletTown_House5_Text_Resident::
-+    .string "My grandson watches the park\n"
-+    .string "battles from the window.\p"
-+    .string "Be kind to those young TRAINERS.\n"
-+    .string "They're just starting out, dear.$"
-diff --git a/data/maps/PalletTown_House6/map.json b/data/maps/PalletTown_House6/map.json
++++ b/data/maps/PalletTown_HarperHouse/text.inc
+@@ -0,0 +1,15 @@
++PalletTown_HarperHouse_Text_Resident1::
++    .string "When I was a boy, PALLET was\n"
++    .string "two houses and a lab.\p"
++    .string "Now there's a POKéMON\n"
++    .string "CENTER, a café, even a\l"
++    .string "school!\p"
++    .string "Still the same sea breeze,\n"
++    .string "though. That never changes.$"
++
++PalletTown_HarperHouse_Text_Resident2::
++    .string "Oh, don't mind me, dear.\n"
++    .string "Stew's almost ready.\p"
++    .string "Grandpa tells that “two\n"
++    .string "houses and a lab” story\l"
++    .string "every dinner.$"
+diff --git a/data/maps/PalletTown_KowalskiHouse/map.json b/data/maps/PalletTown_KowalskiHouse/map.json
 new file mode 100644
-index 0000000..a97a4c7
+index 0000000..84fa004
 --- /dev/null
-+++ b/data/maps/PalletTown_House6/map.json
-@@ -0,0 +1,58 @@
++++ b/data/maps/PalletTown_KowalskiHouse/map.json
+@@ -0,0 +1,72 @@
 +{
-+  "id": "MAP_PALLET_TOWN_HOUSE6",
-+  "name": "PalletTown_House6",
-+  "layout": "LAYOUT_HOUSE1",
++  "id": "MAP_PALLET_TOWN_KOWALSKI_HOUSE",
++  "name": "PalletTown_KowalskiHouse",
++  "layout": "LAYOUT_HOUSE4",
 +  "music": "MUS_PALLET",
 +  "region_map_section": "MAPSEC_PALLET_TOWN",
 +  "requires_flash": false,
@@ -1377,16 +2811,37 @@ index 0000000..a97a4c7
 +      "x": 8,
 +      "y": 3,
 +      "elevation": 3,
-+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
 +      "movement_range_x": 1,
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
 +      "trainer_sight_or_berry_tree_id": "0",
-+      "script": "PalletTown_House6_EventScript_Resident",
++      "script": "PalletTown_KowalskiHouse_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
++      "x": 2,
++      "y": 5,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_KowalskiHouse_EventScript_Resident2",
 +      "flag": "0"
 +    }
 +  ],
 +  "warp_events": [
++    {
++      "x": 2,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "8"
++    },
 +    {
 +      "x": 3,
 +      "y": 7,
@@ -1400,41 +2855,1160 @@ index 0000000..a97a4c7
 +      "elevation": 3,
 +      "dest_map": "MAP_PALLET_TOWN",
 +      "dest_warp_id": "8"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_KowalskiHouse/scripts.inc b/data/maps/PalletTown_KowalskiHouse/scripts.inc
+new file mode 100644
+index 0000000..443a9ea
+--- /dev/null
++++ b/data/maps/PalletTown_KowalskiHouse/scripts.inc
+@@ -0,0 +1,20 @@
++PalletTown_KowalskiHouse_MapScripts::
++	.byte 0
++
++PalletTown_KowalskiHouse_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_KowalskiHouse_Text_Resident1
++	release
++	end
++
++PalletTown_KowalskiHouse_EventScript_Resident2::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_PSYDUCK, CRY_MODE_NORMAL
++	msgbox PalletTown_KowalskiHouse_Text_Resident2
++	waitmoncry
++	release
++	end
+diff --git a/data/maps/PalletTown_KowalskiHouse/text.inc b/data/maps/PalletTown_KowalskiHouse/text.inc
+new file mode 100644
+index 0000000..bd4d1a8
+--- /dev/null
++++ b/data/maps/PalletTown_KowalskiHouse/text.inc
+@@ -0,0 +1,8 @@
++PalletTown_KowalskiHouse_Text_Resident1::
++    .string "OTTO has fished that pond\n"
++    .string "for thirty years.\p"
++    .string "Thirty years, and all he's\n"
++    .string "ever caught is MAGIKARP!$"
++
++PalletTown_KowalskiHouse_Text_Resident2::
++    .string "PSYDUCK: Psy…? Psyy…$"
+diff --git a/data/maps/PalletTown_MarshHouse/map.json b/data/maps/PalletTown_MarshHouse/map.json
+new file mode 100644
+index 0000000..e597918
+--- /dev/null
++++ b/data/maps/PalletTown_MarshHouse/map.json
+@@ -0,0 +1,58 @@
++{
++  "id": "MAP_PALLET_TOWN_MARSH_HOUSE",
++  "name": "PalletTown_MarshHouse",
++  "layout": "LAYOUT_THREE_ISLAND_HOUSE1",
++  "music": "MUS_PALLET",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_FISHER",
++      "x": 8,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_MarshHouse_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
++      "x": 9,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_MarshHouse_EventScript_Resident2",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 4,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "7"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_MarshHouse/scripts.inc b/data/maps/PalletTown_MarshHouse/scripts.inc
+new file mode 100644
+index 0000000..30bea26
+--- /dev/null
++++ b/data/maps/PalletTown_MarshHouse/scripts.inc
+@@ -0,0 +1,18 @@
++PalletTown_MarshHouse_MapScripts::
++	.byte 0
++
++PalletTown_MarshHouse_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_MarshHouse_Text_Resident1
++	release
++	end
++
++PalletTown_MarshHouse_EventScript_Resident2::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_MarshHouse_Text_Resident2
++	release
++	end
+diff --git a/data/maps/PalletTown_MarshHouse/text.inc b/data/maps/PalletTown_MarshHouse/text.inc
+new file mode 100644
+index 0000000..fdc6caa
+--- /dev/null
++++ b/data/maps/PalletTown_MarshHouse/text.inc
+@@ -0,0 +1,16 @@
++PalletTown_MarshHouse_Text_Resident1::
++    .string "The sea south of town\n"
++    .string "reaches all the way to\l"
++    .string "CINNABAR.\p"
++    .string "Lately every rookie in town\n"
++    .string "wants to head down there.\p"
++    .string "You'll need a POKéMON that\n"
++    .string "knows SURF, though!$"
++
++PalletTown_MarshHouse_Text_Resident2::
++    .string "My husband swears he'll\n"
++    .string "catch something bigger than\l"
++    .string "OTTO.\p"
++    .string "So far it's been one boot\n"
++    .string "and a very surprised\l"
++    .string "MAGIKARP.$"
+diff --git a/data/maps/PalletTown_Mart/map.json b/data/maps/PalletTown_Mart/map.json
+new file mode 100644
+index 0000000..5d9192e
+--- /dev/null
++++ b/data/maps/PalletTown_Mart/map.json
+@@ -0,0 +1,86 @@
++{
++  "id": "MAP_PALLET_TOWN_MART",
++  "name": "PalletTown_Mart",
++  "layout": "LAYOUT_MART",
++  "music": "MUS_POKE_CENTER",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CLERK",
++      "x": 2,
++      "y": 3,
++      "elevation": 0,
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Mart_EventScript_Clerk",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
++      "x": 6,
++      "y": 4,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Mart_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
++      "x": 8,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Mart_EventScript_Resident2",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 3,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "10"
++    },
++    {
++      "x": 4,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "10"
 +    },
 +    {
 +      "x": 5,
 +      "y": 7,
 +      "elevation": 3,
 +      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "8"
++      "dest_warp_id": "10"
 +    }
 +  ],
 +  "coord_events": [],
 +  "bg_events": []
 +}
-diff --git a/data/maps/PalletTown_House6/scripts.inc b/data/maps/PalletTown_House6/scripts.inc
+diff --git a/data/maps/PalletTown_Mart/scripts.inc b/data/maps/PalletTown_Mart/scripts.inc
 new file mode 100644
-index 0000000..990a717
+index 0000000..9c9f8d4
 --- /dev/null
-+++ b/data/maps/PalletTown_House6/scripts.inc
-@@ -0,0 +1,6 @@
-+PalletTown_House6_MapScripts::
++++ b/data/maps/PalletTown_Mart/scripts.inc
+@@ -0,0 +1,41 @@
++PalletTown_Mart_MapScripts::
 +	.byte 0
 +
-+PalletTown_House6_EventScript_Resident::
-+	msgbox PalletTown_House6_Text_Resident, MSGBOX_NPC
++PalletTown_Mart_EventScript_Clerk::
++	goto_if_questlog EventScript_ReleaseEnd
++	lock
++	faceplayer
++	message Text_MayIHelpYou
++	waitmessage
++	pokemart PalletTown_Mart_Items
++	msgbox Text_PleaseComeAgain
++	release
 +	end
-diff --git a/data/maps/PalletTown_House6/text.inc b/data/maps/PalletTown_House6/text.inc
++
++	.align 2
++PalletTown_Mart_Items::
++	.2byte ITEM_POTION
++	.2byte ITEM_ANTIDOTE
++	.2byte ITEM_PARALYZE_HEAL
++	.2byte ITEM_AWAKENING
++	.2byte ITEM_BURN_HEAL
++	.2byte ITEM_ESCAPE_ROPE
++	.2byte ITEM_NONE
++	release
++	end
++
++PalletTown_Mart_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_Mart_Text_Resident1
++	release
++	end
++
++PalletTown_Mart_EventScript_Resident2::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Mart_Text_Resident2
++	release
++	end
+diff --git a/data/maps/PalletTown_Mart/text.inc b/data/maps/PalletTown_Mart/text.inc
 new file mode 100644
-index 0000000..cd9dde0
+index 0000000..f903f58
 --- /dev/null
-+++ b/data/maps/PalletTown_House6/text.inc
-@@ -0,0 +1,5 @@
-+PalletTown_House6_Text_Resident::
-+    .string "OTTO has fished that pond for\n"
-+    .string "thirty years.\p"
-+    .string "Thirty years, and all he's ever\n"
-+    .string "caught is MAGIKARP!$"
++++ b/data/maps/PalletTown_Mart/text.inc
+@@ -0,0 +1,10 @@
++PalletTown_Mart_Text_Resident1::
++    .string "POTION or SUPER POTION…?\p"
++    .string "Oh, they only have POTIONS.\n"
++    .string "Well, that settles that!$"
++
++PalletTown_Mart_Text_Resident2::
++    .string "Stocking up before I sail\n"
++    .string "for CINNABAR.\p"
++    .string "ANTIDOTES! Never leave port\n"
++    .string "without ANTIDOTES.$"
+diff --git a/data/maps/PalletTown_Nursery/map.json b/data/maps/PalletTown_Nursery/map.json
+new file mode 100644
+index 0000000..6d9eb58
+--- /dev/null
++++ b/data/maps/PalletTown_Nursery/map.json
+@@ -0,0 +1,114 @@
++{
++  "id": "MAP_PALLET_TOWN_NURSERY",
++  "name": "PalletTown_Nursery",
++  "layout": "LAYOUT_LAVENDER_TOWN_VOLUNTEER_POKEMON_HOUSE",
++  "music": "MUS_PALLET",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
++      "x": 3,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Nursery_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
++      "x": 6,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Nursery_EventScript_Resident2",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
++      "x": 9,
++      "y": 5,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Nursery_EventScript_Resident3",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_JIGGLYPUFF",
++      "x": 2,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Nursery_EventScript_Resident4",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_NIDORAN_F",
++      "x": 10,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_Nursery_EventScript_Resident5",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 3,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "12"
++    },
++    {
++      "x": 4,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "12"
++    },
++    {
++      "x": 5,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "12"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_Nursery/scripts.inc b/data/maps/PalletTown_Nursery/scripts.inc
+new file mode 100644
+index 0000000..722e265
+--- /dev/null
++++ b/data/maps/PalletTown_Nursery/scripts.inc
+@@ -0,0 +1,50 @@
++PalletTown_Nursery_MapScripts::
++	.byte 0
++
++PalletTown_Nursery_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_Nursery_Text_Resident1
++	release
++	end
++
++PalletTown_Nursery_EventScript_Resident2::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_CLEFAIRY, CRY_MODE_NORMAL
++	msgbox PalletTown_Nursery_Text_Resident2
++	waitmoncry
++	release
++	end
++
++PalletTown_Nursery_EventScript_Resident3::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_PIKACHU, CRY_MODE_NORMAL
++	msgbox PalletTown_Nursery_Text_Resident3
++	waitmoncry
++	release
++	end
++
++PalletTown_Nursery_EventScript_Resident4::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_JIGGLYPUFF, CRY_MODE_NORMAL
++	msgbox PalletTown_Nursery_Text_Resident4
++	waitmoncry
++	release
++	end
++
++PalletTown_Nursery_EventScript_Resident5::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_NIDORAN_F, CRY_MODE_NORMAL
++	msgbox PalletTown_Nursery_Text_Resident5
++	waitmoncry
++	release
++	end
+diff --git a/data/maps/PalletTown_Nursery/text.inc b/data/maps/PalletTown_Nursery/text.inc
+new file mode 100644
+index 0000000..7f3d3c9
+--- /dev/null
++++ b/data/maps/PalletTown_Nursery/text.inc
+@@ -0,0 +1,19 @@
++PalletTown_Nursery_Text_Resident1::
++    .string "Welcome to the NURSERY!\p"
++    .string "Folks who are busy at work\n"
++    .string "leave their POKéMON with me.\p"
++    .string "They're a handful, but I\n"
++    .string "wouldn't trade them for\l"
++    .string "anything.$"
++
++PalletTown_Nursery_Text_Resident2::
++    .string "CLEFAIRY: Pippi! Pi!$"
++
++PalletTown_Nursery_Text_Resident3::
++    .string "PIKACHU: Pika pika!$"
++
++PalletTown_Nursery_Text_Resident4::
++    .string "JIGGLYPUFF: Jiggly… puu…$"
++
++PalletTown_Nursery_Text_Resident5::
++    .string "NIDORAN♀: Nido!$"
+diff --git a/data/maps/PalletTown_PokemonCenter_1F/map.json b/data/maps/PalletTown_PokemonCenter_1F/map.json
+new file mode 100644
+index 0000000..3dcdfa5
+--- /dev/null
++++ b/data/maps/PalletTown_PokemonCenter_1F/map.json
+@@ -0,0 +1,107 @@
++{
++  "id": "MAP_PALLET_TOWN_POKEMON_CENTER_1_F",
++  "name": "PalletTown_PokemonCenter_1F",
++  "layout": "LAYOUT_POKEMON_CENTER_1F",
++  "music": "MUS_POKE_CENTER",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_NURSE",
++      "x": 7,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_PokemonCenter_1F_EventScript_Nurse",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_RS_MAY",
++      "x": 10,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_PokemonCenter_1F_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
++      "x": 3,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_PokemonCenter_1F_EventScript_Resident2",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
++      "x": 12,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_PokemonCenter_1F_EventScript_Resident3",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 6,
++      "y": 8,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "9"
++    },
++    {
++      "x": 7,
++      "y": 8,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "9"
++    },
++    {
++      "x": 8,
++      "y": 8,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "9"
++    },
++    {
++      "x": 1,
++      "y": 6,
++      "elevation": 4,
++      "dest_map": "MAP_PALLET_TOWN_POKEMON_CENTER_2_F",
++      "dest_warp_id": "0"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_PokemonCenter_1F/scripts.inc b/data/maps/PalletTown_PokemonCenter_1F/scripts.inc
+new file mode 100644
+index 0000000..3ca187a
+--- /dev/null
++++ b/data/maps/PalletTown_PokemonCenter_1F/scripts.inc
+@@ -0,0 +1,39 @@
++PalletTown_PokemonCenter_1F_MapScripts::
++	map_script MAP_SCRIPT_ON_TRANSITION, PalletTown_PokemonCenter_1F_OnTransition
++	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
++	.byte 0
++
++PalletTown_PokemonCenter_1F_OnTransition::
++	setrespawn HEAL_LOCATION_PALLET_TOWN
++	end
++
++PalletTown_PokemonCenter_1F_EventScript_Nurse::
++	lock
++	faceplayer
++	call EventScript_PkmnCenterNurse
++	release
++	end
++
++PalletTown_PokemonCenter_1F_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_PokemonCenter_1F_Text_Resident1
++	release
++	end
++
++PalletTown_PokemonCenter_1F_EventScript_Resident2::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_PokemonCenter_1F_Text_Resident2
++	release
++	end
++
++PalletTown_PokemonCenter_1F_EventScript_Resident3::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_PokemonCenter_1F_Text_Resident3
++	release
++	end
+diff --git a/data/maps/PalletTown_PokemonCenter_1F/text.inc b/data/maps/PalletTown_PokemonCenter_1F/text.inc
+new file mode 100644
+index 0000000..d88eab6
+--- /dev/null
++++ b/data/maps/PalletTown_PokemonCenter_1F/text.inc
+@@ -0,0 +1,22 @@
++PalletTown_PokemonCenter_1F_Text_Resident1::
++    .string "Hi! I'm MAY. I'm visiting\n"
++    .string "from LITTLEROOT TOWN in\l"
++    .string "HOENN.\p"
++    .string "I came all this way to see\n"
++    .string "PROF. OAK's lab! It's\l"
++    .string "smaller than my dad's, hee\l"
++    .string "hee.$"
++
++PalletTown_PokemonCenter_1F_Text_Resident2::
++    .string "This POKéMON CENTER is brand\n"
++    .string "new! It still smells like\l"
++    .string "paint.\p"
++    .string "Before, we had to walk all\n"
++    .string "the way to VIRIDIAN to heal\l"
++    .string "up!$"
++
++PalletTown_PokemonCenter_1F_Text_Resident3::
++    .string "The NURSE here is my\n"
++    .string "granddaughter's best friend.\p"
++    .string "She treats every POKéMON\n"
++    .string "like it's her very own.$"
+diff --git a/data/maps/PalletTown_PokemonCenter_2F/map.json b/data/maps/PalletTown_PokemonCenter_2F/map.json
+new file mode 100644
+index 0000000..6f20f16
+--- /dev/null
++++ b/data/maps/PalletTown_PokemonCenter_2F/map.json
+@@ -0,0 +1,100 @@
++{
++  "id": "MAP_PALLET_TOWN_POKEMON_CENTER_2_F",
++  "name": "PalletTown_PokemonCenter_2F",
++  "layout": "LAYOUT_POKEMON_CENTER_2F",
++  "music": "MUS_POKE_CENTER",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CABLE_CLUB_RECEPTIONIST",
++      "x": 6,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 0,
++      "movement_range_y": 0,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Common_EventScript_UnionRoomAttendant",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CABLE_CLUB_RECEPTIONIST",
++      "x": 2,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 0,
++      "movement_range_y": 0,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Common_EventScript_WirelessClubAttendant",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CABLE_CLUB_RECEPTIONIST",
++      "x": 10,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 0,
++      "movement_range_y": 0,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Common_EventScript_DirectCornerAttendant",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_MG_DELIVERYMAN",
++      "x": 1,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "CableClub_EventScript_MysteryGiftMan",
++      "flag": "FLAG_HIDE_MG_DELIVERYMEN"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 1,
++      "y": 6,
++      "elevation": 4,
++      "dest_map": "MAP_PALLET_TOWN_POKEMON_CENTER_1_F",
++      "dest_warp_id": "3"
++    },
++    {
++      "x": 5,
++      "y": 1,
++      "elevation": 0,
++      "dest_map": "MAP_UNION_ROOM",
++      "dest_warp_id": "0"
++    },
++    {
++      "x": 9,
++      "y": 1,
++      "elevation": 0,
++      "dest_map": "MAP_TRADE_CENTER",
++      "dest_warp_id": "0"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_PokemonCenter_2F/scripts.inc b/data/maps/PalletTown_PokemonCenter_2F/scripts.inc
+new file mode 100644
+index 0000000..a23ad75
+--- /dev/null
++++ b/data/maps/PalletTown_PokemonCenter_2F/scripts.inc
+@@ -0,0 +1,6 @@
++PalletTown_PokemonCenter_2F_MapScripts::
++	map_script MAP_SCRIPT_ON_FRAME_TABLE, CableClub_OnFrame
++	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, CableClub_OnWarp
++	map_script MAP_SCRIPT_ON_LOAD, CableClub_OnLoad
++	map_script MAP_SCRIPT_ON_TRANSITION, CableClub_OnTransition
++	.byte 0
+diff --git a/data/maps/PalletTown_PokemonCenter_2F/text.inc b/data/maps/PalletTown_PokemonCenter_2F/text.inc
+new file mode 100644
+index 0000000..e69de29
+diff --git a/data/maps/PalletTown_School/map.json b/data/maps/PalletTown_School/map.json
+new file mode 100644
+index 0000000..fce6aab
+--- /dev/null
++++ b/data/maps/PalletTown_School/map.json
+@@ -0,0 +1,127 @@
++{
++  "id": "MAP_PALLET_TOWN_SCHOOL",
++  "name": "PalletTown_School",
++  "layout": "LAYOUT_VIRIDIAN_CITY_SCHOOL",
++  "music": "MUS_PALLET",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
++      "x": 6,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_School_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
++      "x": 4,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_School_EventScript_Resident2",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
++      "x": 5,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_School_EventScript_Resident3",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 3,
++      "y": 7,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "13"
++    },
++    {
++      "x": 4,
++      "y": 7,
++      "elevation": 0,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "13"
++    },
++    {
++      "x": 5,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "13"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": [
++    {
++      "type": "sign",
++      "x": 4,
++      "y": 4,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "ViridianCity_School_EventScript_Notebook"
++    },
++    {
++      "type": "sign",
++      "x": 5,
++      "y": 1,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "ViridianCity_School_EventScript_Blackboard"
++    },
++    {
++      "type": "sign",
++      "x": 4,
++      "y": 1,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "ViridianCity_School_EventScript_Blackboard"
++    },
++    {
++      "type": "sign",
++      "x": 9,
++      "y": 2,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
++      "script": "ViridianCity_School_EventScript_PokemonJournal"
++    },
++    {
++      "type": "sign",
++      "x": 8,
++      "y": 2,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
++      "script": "ViridianCity_School_EventScript_PokemonJournal"
++    }
++  ]
++}
+diff --git a/data/maps/PalletTown_School/scripts.inc b/data/maps/PalletTown_School/scripts.inc
+new file mode 100644
+index 0000000..8491533
+--- /dev/null
++++ b/data/maps/PalletTown_School/scripts.inc
+@@ -0,0 +1,26 @@
++PalletTown_School_MapScripts::
++	.byte 0
++
++PalletTown_School_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_School_Text_Resident1
++	release
++	end
++
++PalletTown_School_EventScript_Resident2::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_School_Text_Resident2
++	release
++	end
++
++PalletTown_School_EventScript_Resident3::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_School_Text_Resident3
++	release
++	end
+diff --git a/data/maps/PalletTown_School/text.inc b/data/maps/PalletTown_School/text.inc
+new file mode 100644
+index 0000000..22d59e1
+--- /dev/null
++++ b/data/maps/PalletTown_School/text.inc
+@@ -0,0 +1,18 @@
++PalletTown_School_Text_Resident1::
++    .string "Good morning, class!\p"
++    .string "Oh, a new student? Have a\n"
++    .string "look at the blackboard,\l"
++    .string "dear.\p"
++    .string "Type matchups are the first\n"
++    .string "thing every TRAINER must\l"
++    .string "learn!$"
++
++PalletTown_School_Text_Resident2::
++    .string "FIRE beats GRASS… GRASS\n"
++    .string "beats WATER… WATER beats…\p"
++    .string "Um… CAMPERS?$"
++
++PalletTown_School_Text_Resident3::
++    .string "I'm going to be the first\n"
++    .string "girl from PALLET to become\l"
++    .string "CHAMPION!$"
+diff --git a/data/maps/PalletTown_ValeHouse/map.json b/data/maps/PalletTown_ValeHouse/map.json
+new file mode 100644
+index 0000000..b65d56e
+--- /dev/null
++++ b/data/maps/PalletTown_ValeHouse/map.json
+@@ -0,0 +1,86 @@
++{
++  "id": "MAP_PALLET_TOWN_VALE_HOUSE",
++  "name": "PalletTown_ValeHouse",
++  "layout": "LAYOUT_HOUSE5",
++  "music": "MUS_PALLET",
++  "region_map_section": "MAPSEC_PALLET_TOWN",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": null,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
++      "x": 2,
++      "y": 5,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_ValeHouse_EventScript_Resident1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_MEOWTH",
++      "x": 7,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_ValeHouse_EventScript_Resident2",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
++      "x": 9,
++      "y": 2,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_ValeHouse_EventScript_Resident3",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 3,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "6"
++    },
++    {
++      "x": 4,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "6"
++    },
++    {
++      "x": 5,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "6"
++    }
++  ],
++  "coord_events": [],
++  "bg_events": []
++}
+diff --git a/data/maps/PalletTown_ValeHouse/scripts.inc b/data/maps/PalletTown_ValeHouse/scripts.inc
+new file mode 100644
+index 0000000..36477a9
+--- /dev/null
++++ b/data/maps/PalletTown_ValeHouse/scripts.inc
+@@ -0,0 +1,28 @@
++PalletTown_ValeHouse_MapScripts::
++	.byte 0
++
++PalletTown_ValeHouse_EventScript_Resident1::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_ValeHouse_Text_Resident1
++	release
++	end
++
++PalletTown_ValeHouse_EventScript_Resident2::
++	lock
++	faceplayer
++	waitse
++	playmoncry SPECIES_MEOWTH, CRY_MODE_NORMAL
++	msgbox PalletTown_ValeHouse_Text_Resident2
++	waitmoncry
++	release
++	end
++
++PalletTown_ValeHouse_EventScript_Resident3::
++	lock
++	faceplayer
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_ValeHouse_Text_Resident3
++	release
++	end
+diff --git a/data/maps/PalletTown_ValeHouse/text.inc b/data/maps/PalletTown_ValeHouse/text.inc
+new file mode 100644
+index 0000000..4c9a0f0
+--- /dev/null
++++ b/data/maps/PalletTown_ValeHouse/text.inc
+@@ -0,0 +1,15 @@
++PalletTown_ValeHouse_Text_Resident1::
++    .string "PROF. OAK lets me watch his\n"
++    .string "POKéMON through the lab\l"
++    .string "window!\p"
++    .string "My MEOWTH watches too. I\n"
++    .string "think she wants to be a\l"
++    .string "TRAINER too.$"
++
++PalletTown_ValeHouse_Text_Resident2::
++    .string "MEOWTH: Meow! Mrrr…$"
++
++PalletTown_ValeHouse_Text_Resident3::
++    .string "We moved here from SAFFRON\n"
++    .string "for the quiet. Then the city\l"
++    .string "came to us!$"
 diff --git a/data/maps/Route1/map.json b/data/maps/Route1/map.json
 index b2145ee..7ee7261 100644
 --- a/data/maps/Route1/map.json
@@ -1462,64 +4036,79 @@ index 7fdfa0d..3203691 100644
      },
      {
 diff --git a/data/maps/map_groups.json b/data/maps/map_groups.json
-index 8c382f5..84afb9c 100644
+index 8c382f5..e8882b9 100644
 --- a/data/maps/map_groups.json
 +++ b/data/maps/map_groups.json
-@@ -310,7 +310,13 @@
+@@ -310,7 +310,21 @@
      "PalletTown_PlayersHouse_1F",
      "PalletTown_PlayersHouse_2F",
      "PalletTown_RivalsHouse",
 -    "PalletTown_ProfessorOaksLab"
 +    "PalletTown_ProfessorOaksLab",
-+    "PalletTown_House1",
-+    "PalletTown_House2",
-+    "PalletTown_House3",
-+    "PalletTown_House4",
-+    "PalletTown_House5",
-+    "PalletTown_House6"
++    "PalletTown_HarperHouse",
++    "PalletTown_AokiHouse_1F",
++    "PalletTown_AokiHouse_2F",
++    "PalletTown_BellHouse",
++    "PalletTown_ValeHouse",
++    "PalletTown_MarshHouse",
++    "PalletTown_KowalskiHouse",
++    "PalletTown_PokemonCenter_1F",
++    "PalletTown_PokemonCenter_2F",
++    "PalletTown_Mart",
++    "PalletTown_Cafe",
++    "PalletTown_Nursery",
++    "PalletTown_School",
++    "PalletTown_BreederHouse"
    ],
    "gMapGroup_IndoorViridian": [
      "ViridianCity_House",
 diff --git a/data/tilesets/secondary/pallet_town/metatile_attributes.bin b/data/tilesets/secondary/pallet_town/metatile_attributes.bin
-index 2ba2894bc2e11a75b7ec3f11cc340c767e7cfb85..aa04a9ecdf692ad03e8c1c5c96e4f2684d178958 100644
+index 2ba2894bc2e11a75b7ec3f11cc340c767e7cfb85..8313c8989f5ca39bbeaa7147188b4d5708457684 100644
 GIT binary patch
-literal 648
-zcmb`BQ3`-C3`2Vf|8qU>;lWK{ky_UwVj#48O}9k^;%TBwU?*E(BYzRN)Ougcy!R&K
-yY*UG+f9N=zKgM4DgSm66B}3E-oMhMFY?hh()t)oCIxkiQg1@adZg*}x%i<@mzY&)J
+literal 860
+zcmb_XK@NZ*4C52t`#pc*!H3%#t8+jg(I#c3>qaQ0pwy&w15}~`3b6&yG;@FCV|`|w
+zt?EpM4_9+PdtBFiqvyl<{hG`Fu<x8|&cxoNW~>XaV=5$_fo$+D&!p_mITNe$0?zY&
+d$ooQVi}Sv#3P@~uF*E98<4%#mn+vrl?*JgF7#9El
 
 literal 356
 zcmah=$q4`;4C})c{1>-#4+poYC{ZgGLUW2-r{sXMrfAV$jv_h}Mz>Q_j{5FkusUsU
 Zczntt;J-YWxP@H=50T|01(?S1wF5Z)1q}cI
 
 diff --git a/data/tilesets/secondary/pallet_town/metatiles.bin b/data/tilesets/secondary/pallet_town/metatiles.bin
-index 41db2701509573f5a57d38ddb349e9a243b518ee..dffd5f0c9a1ca90ae307eec60094b43d7f4ff7e4 100644
+index 41db2701509573f5a57d38ddb349e9a243b518ee..249a2d613c69ca3533ed74f5e3fe2538395517a4 100644
 GIT binary patch
-literal 2592
-zcmZXWcYG8@6vx*XirBCLHUyMnK|vI-_udQk-W!OHiYVnWa|MnZWnQ=oM+>{a(aS8o
-z9y=rpq4$I&^xiv)1!l#0x6$lp|M-4>Z{ED$dpmOp@EnJ7#*Kgff;<opIW(?0>?rc-
-zjE9T-dX5uRYRJ*?evZ&?)X#>|-Sl(!;f4`a`9n@-f5xLKe}?_>hS5X#xyKa42*h(a
-zjmNNlZ>_%`Klh})sOH|Z59Jh)^JrfhrwQbI+RseV{-%x}U>e3iI!HOy`3IW?d<e2>
-zTINu57{(7bQ(}ZUQt0?mYW-+226?O)$H$8aj@Bm%A#5=T^~qw2m@1|rd;Og*W{7Z6
-zWxq4|EIOOdp}PNbX`0TX4zi^4X(25_cIg7TkQO5^qKo+wx)l4j%v|oQ5Gzfc&-3KH
-znqQHx$~NRRqS^E4y_#2v)nb)cgS=L(b4o-h@_Oa5OuagOswh`J%aJR@22mk4BDZPY
-zHmgnZ&RJEBYDO)iw$V;e7xh**s%F<QS{oItBC-KCg3h;zZ>C%LR`j=xZl^owPUKy5
-zH{C<`BJZR7=>d8W`4BzKkI<uB=kxaOl+`(_k<r*_X|ytqiR0!mal+L4N%J@Jck`5^
-z`496?ajNJq)V*H(?d!*BVc4g|Ikt|^vd^`%?JAb$s&+NIN~${QXZ?1~YGO3XZk63K
-z+w0AFcBVi2`|;M-U^OD=!v*X@xCrNSF{{ZgVV5$U|1x$tyMok0y=J5~t3$3tzKUH9
-z*N|&L$NTfwwd$s>v+G&)tp-@{_3{SU&}x{{@r`6-*~DssdcD+*c7s%X)NitHwr{bT
-zqJFEqO*XTdq265HE?ZbFP`|^z({7q-iQI~{W_Q8ezWVMVjNgm(-^cD}55R+{Kg1qp
-zkHDkIkFm$u6YwPRQ)>0oBy)c~V?Ap<XFZSmy<oj4Um`Cfzb@a9Z<4ogzqjQ(*1P0A
-z<oB%)<cH)V<d5MK_!K_F{XUmp$S=uPsDCZLvD%V$$o_tR3+=(r?f=8yk?&RI`aUuY
-zB7dk9@7=e4-Mer7{3H8`g`5uXGjzoIet}=16Ld=Gd3FZIJ0`kF&C#X7r2oE+@v~1?
-z2tW={&>T>#u2*D6f+R%3MC%dK4Z4#kM2mY6%5%|w%<5_NvU+2``>6TkcF4@fU%&VJ
-zqM1v8JelYAg*YT2AN}-$eu*R`(N8?lU*;zUpr3&-5C*A7`wJ$c#W7Ct{Ofu>Z-b!#
-z{dnFAd_07h#Lt%URscg`7z`&V7=ivql2K$d8G}5QjDzuH0`f!<V8bM=XEIEIsW1(B
-zI!uQd>e2PigjsSn%t1df9(L3(#Q*A_E7NkGbYzUDrQ<p>?WUz<^I6(0ltt3@tv~Cy
-z&@FTq$OZqz$G9U4RlMs;6`xr@pUH^sPug9m@)pamvq;TzG5T3TmXc*;Ir0iM&y~LO
-zwo0ysHLw=_%u~CplO<SBDO=CVpd9tmh%3tyC9d}Gx}~f{mZ83$l}5^;4Cn2tno8s*
-z%olble{UgYv#Mwd*0+^xCEL`a^KVz`4qv^|qRRj81bI}Qz|8l#Q_XvqZ{ERVPI0a}
-zBRXG5^@s7@nBO}~UQVs=fxWN~_M;y^d*{{rHoZM{e8@SV@@3A?K~j1DKr)#0W~Ac}
-bk;CK&IcjM>Mvf~wf%OCiomAg=F2<h$|C*5|
+literal 3440
+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
 
 literal 1424
 zcmb_b&rcIk5T0x{*n`0)o2Vz{aX{1*!yXDs(2!6LdeOvsBe7Q#jb8L(HC<6$kdltL
@@ -1538,7 +4127,7 @@ z#DXI2Dxr#Okmn*6y>+a5tFlt(@2>v}dA~q^yZimQ=Fa7MmRY9ldb8eKec5}KtL0>F
 lW8%xsLUJt$5aNlATrv4|2Vk8v|92IMo3b`5#9j3o-XCo{c7Xr@
 
 diff --git a/data/tilesets/secondary/pallet_town/palettes/07.pal b/data/tilesets/secondary/pallet_town/palettes/07.pal
-index 995731c..41f1288 100644
+index 995731c..7b29fd8 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/07.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/07.pal
 @@ -1,19 +1,19 @@
@@ -1562,23 +4151,23 @@ index 995731c..41f1288 100644
 -0 0 0
 -0 0 0
 +255 0 255
++66 123 189
++231 239 222
++66 74 99
++132 173 173
++181 198 231
++132 123 132
++49 107 156
++123 173 206
++90 140 198
 +189 239 214
-+66 74 107
-+123 181 90
-+132 74 74
-+214 140 156
-+49 107 181
-+57 49 33
-+49 115 74
-+74 148 90
-+156 115 99
-+198 173 107
-+123 123 132
-+198 198 189
-+90 66 49
-+41 49 90
++66 49 33
++99 99 115
++165 173 181
++107 140 239
++148 148 140
 diff --git a/data/tilesets/secondary/pallet_town/palettes/08.pal b/data/tilesets/secondary/pallet_town/palettes/08.pal
-index dcecb9c..e2d8126 100644
+index dcecb9c..7d8e09d 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/08.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/08.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -1600,23 +4189,23 @@ index dcecb9c..e2d8126 100644
 -222 139 106
 -189 98 74
 -123 205 164
++74 82 107
++247 247 247
++198 173 107
++123 123 132
++132 74 74
++189 198 198
++156 140 99
++49 173 107
++90 57 49
 +66 123 189
-+123 165 206
-+82 74 57
-+49 99 148
-+231 231 206
-+148 115 99
-+189 156 132
-+33 66 90
-+99 140 198
-+181 181 181
-+148 206 239
-+115 115 239
-+74 198 140
-+66 74 107
-+107 156 239
++41 49 82
++140 189 99
++206 140 156
++181 214 107
++156 107 99
 diff --git a/data/tilesets/secondary/pallet_town/palettes/09.pal b/data/tilesets/secondary/pallet_town/palettes/09.pal
-index 90bb775..47ad201 100644
+index 90bb775..c85a8b8 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/09.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/09.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -1638,23 +4227,23 @@ index 90bb775..47ad201 100644
 -213 189 106
 -197 148 74
 -222 205 123
-+189 239 214
-+57 74 99
-+132 173 173
-+247 247 247
-+132 132 132
-+115 206 165
-+82 140 198
-+198 206 214
-+49 165 99
-+156 222 198
-+66 57 33
-+57 107 156
-+99 99 115
-+206 156 66
-+148 173 189
++74 148 90
++66 49 33
++57 115 181
++206 189 173
++148 189 99
++49 90 140
++33 107 66
++33 66 90
++214 123 57
++140 99 82
++115 173 90
++107 148 198
++90 74 57
++189 156 132
++57 123 82
 diff --git a/data/tilesets/secondary/pallet_town/palettes/10.pal b/data/tilesets/secondary/pallet_town/palettes/10.pal
-index 1958eff..2cd18c6 100644
+index 1958eff..0fe489c 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/10.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/10.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -1676,23 +4265,23 @@ index 1958eff..2cd18c6 100644
 -164 90 106
 -139 65 82
 -32 172 98
-+239 140 148
-+206 239 222
-+115 49 41
-+74 140 214
-+239 214 165
-+140 189 99
-+206 173 148
-+206 99 90
-+132 115 90
-+173 148 123
-+181 214 107
-+247 173 173
-+222 115 115
-+198 198 198
-+82 66 57
++189 239 214
++74 74 99
++115 206 165
++231 214 148
++123 123 132
++247 247 247
++189 231 165
++82 148 214
++239 231 206
++239 156 156
++156 231 198
++198 198 206
++156 123 82
++140 181 214
++198 173 132
 diff --git a/data/tilesets/secondary/pallet_town/palettes/11.pal b/data/tilesets/secondary/pallet_town/palettes/11.pal
-index 896c792..b9602f9 100644
+index 896c792..0ff57f4 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/11.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/11.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -1714,23 +4303,23 @@ index 896c792..b9602f9 100644
 -115 205 164
 -255 0 255
 -255 0 255
-+206 115 57
++206 123 57
++222 206 173
 +99 49 24
-+214 206 181
-+156 82 33
-+181 74 82
++239 148 156
++148 82 33
++165 140 115
 +222 115 115
-+99 99 99
++206 173 148
++181 74 82
++123 49 41
 +189 107 41
-+206 99 99
++206 99 90
++222 231 214
++82 74 66
 +222 140 82
-+214 132 66
-+198 239 222
-+156 57 57
-+156 123 82
-+123 49 49
 diff --git a/data/tilesets/secondary/pallet_town/palettes/12.pal b/data/tilesets/secondary/pallet_town/palettes/12.pal
-index 2bfc45b..5096813 100644
+index 2bfc45b..4291247 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/12.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/12.pal
 @@ -1,19 +1,19 @@
@@ -1754,149 +4343,147 @@ index 2bfc45b..5096813 100644
 -90 57 74
 -189 238 213
 +255 0 255
-+189 239 214
-+74 74 99
-+82 148 214
-+222 198 123
-+255 255 255
-+123 123 132
-+247 239 198
-+115 206 165
-+198 198 198
-+132 181 222
-+156 115 82
-+231 222 148
-+148 222 198
-+165 165 165
-+222 231 222
++66 74 107
++206 206 189
++198 115 49
++99 41 33
++181 74 82
++99 107 107
++148 148 156
++148 115 90
++156 57 57
++206 99 99
++165 90 41
++140 66 82
++123 99 66
++198 132 140
++90 66 33
 diff --git a/data/tilesets/secondary/pallet_town/tiles.png b/data/tilesets/secondary/pallet_town/tiles.png
-index 771eed906cc7721e5126a6badd7a1df3136e0fe3..589f50633a5387c51965eb074a76543949e71241 100644
+index 771eed906cc7721e5126a6badd7a1df3136e0fe3..b75b849181b747f17bcb5cff6dba9bb1338b4220 100644
 GIT binary patch
-literal 6255
-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
-Z{C9I5PYg!51n&R<002ovPDHLkV1g}>;Hv-t
+literal 6142
+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
+QdjJ3c07*qoM6N<$f`*#RivR!s
 
 delta 920
-zcmV;J184m2Frf#K7k?-O0{{R3#9!}w0000mP)t-s|NsB)?(W{+-p$R;y}iAxtgM`z
+zcmV;J184mHFQEsJ7k?-O0{{R3#9!}w0000mP)t-s|NsB)?(W{+-p$R;y}iAxtgM`z
 zoQsQ#b8~ZIVq#KKQb9pMF)=Y9ARrJB5C8xGL-gVL0009lNkl<ZNQsTrPixa)90%~+
 zJb4JhdeKV{zJap%2I_nPGX`M@!|kyS|8`5WIn&){z@C-9fqw}V*|A{O77x-wA9vew
 zu$k^+L2RyqBJub9&6Bjt_JuZENIre?`#sMSO@o9ymmHaAmMLSCFOA1$=d3=zP*VZB
@@ -1913,92 +4500,92 @@ zZV<5m@Z6x=LZAS<<duN1=i!Y6fcFajdH6>K)(!gCSOErz?aIj8NFLil5BRWa2&q8r
 z2?wB(qKE_WVz~%VkEQ_}av=lIE3<$otWhjpR{{EVya*sxBb4Gt8h}_y=WNH}08At|
 zkbnJ@zhJ<KDG<k#&ev!^)-u^{b6~q|sw2o=r^VfHG6_%iv*+EmPk*$t9hfe!Tr{2m
 z{D~%H^xvj{fCKJ1z-tEl%mbWA#F+*@M6k@m(U)96S(#HnH~Ow=mvJ`_NbSPeoX~y7
-uALaq`dBFP<3VfUa$R$ko2>!`l_aBc&g%PcJAHlu=0000<MNUMnLSTYK@}pq@
+uALaq`dBFP<3VfUa$R$ko2>!`l_aBc&g%PcJAHlu=0000<MNUMnLSTY-L!)m1
 
 diff --git a/graphics/door_anims/oaks_lab.png b/graphics/door_anims/oaks_lab.png
-index c8bc9ebeab395b93b7a553724bb27d0e39b1ad2f..57de797f42dd889ac6641f459d1fcfe28e82d0a9 100644
+index c8bc9ebeab395b93b7a553724bb27d0e39b1ad2f..dc1e3c174ef5af7879e92b804f8c6714ec4c9b87 100644
 GIT binary patch
-delta 258
-zcmV+d0sa1z0;2+uDSrR}0784cd!^1&N;xrOl;`KplyhUfoP;4lT4RjHwY9aB&hK+`
-z?@GpuLP~3EobR7J7f1jA0Io?yK~#90osKaI!axv3-%K_r*aS}y#7+dkYgptOc6PQo
-zf{oaw^#nE+xkj2`6>J1MiI`}ys}e*5PBWjGKl7gyF`yv^x_dF#1k+je14>XN06=l|
-z5(f5AfpVV!Ami<3L481m^9=k5W0-=1`ZITROMyBsW$^st+3QMe$CDz~u#qLFb1$)z
-zuRIE=6K|e%1fZ9l^BC-^!IJ|&d5+0v)*nJft5%Pxb7<jt04=*JZ{+UqZ~y=R07*qo
-IM6N<$f<%FGP5=M^
+delta 254
+zcmV<a00IA$0-pkqDSrR}0784c=kMM^N@Ikrt+mGIgnNWBYn*$n&RUGdz3<jSF(G4P
+zbEU1dYmD!dl#EvD0)qem0IEquK~#90osKaI!cY)I-~N1!+C>lq8_~k{SK8WIX=NQO
+zOdIe5Uc)Z8u*nq!Yl~b#5J5!(7FmT9638|?Ff+`Pse@~N#&<$9Tmwe3&1f5fp)~}+
+zp!X9p>$N%D=NO(b0QTai>9~_1-Q@&4hq2$*`>3sck$p*^mh~I}xhX!Ly}8CJDve4O
+z>iS<E1F;I_k-*=%qQ1~fJ)XxN$~?7%43f%>%}<p)ACbExNqQ9<%m4rY07*qoM6N<$
+Ef}4VL&;S4c
 
 delta 243
-zcmV<P01W@50+a%fDS!U}|5DAA_V)k1#onB(y?c9uT3T~KN@|?V_F|mwVw~>Hi<G^4
+zcmV<P01W@10+a%fDS!U}|5DAA_V)k1#onB(y?c9uT3T~KN@|?V_F|mwVw~>Hi<G^4
 zgQQw&i$PK#tYZ7;=YaqK0G~-jK~xx(h0w7P!ypU=P*z};43H@l>J*?mH&lVrdt?N*
 zbK_Q#1ma>E|LUC(NQbL6Z>_!2{o`!k4%#{r`Q#bpk-Z-{6l{D%9hvA*AaP0Xsaz67
 zV96~279)ZPofJ6eV1%3br6fIyd_~D;M|#qPHkVf(fPn~TfZe7C1MId&Fu>d=*giq0
-tbMOX<qlo%W?K3WjD+;WLE9U>$tRE7|t2NN*W|jZ|002ovPDHLkV1lb(axVY?
+tbMOX<qlo%W?K3WjD+;WLE9U>$tRE7|t2NN*W|jZ|002ovPDHLkV1lQUaw`A;
 
 diff --git a/graphics/door_anims/pallet.png b/graphics/door_anims/pallet.png
-index 1bc68a6e7887aea4a5d06051eb428693790f4ef7..43dc13da9228124ca99c3189690a5cb5639dfe48 100644
+index 1bc68a6e7887aea4a5d06051eb428693790f4ef7..c253a87e3450ffb614c0d000398b4e1e865fea64 100644
 GIT binary patch
-delta 255
-zcmV<b0094&0-yqrDSrR}0KM<lN=jo=l-AzHd;kCcdwYcU@5Xb^rN+j_gtgwBb5iHt
-zl$74arKP3b=iX7j3ylB(0INwvK~#90m5#9r!Y~v?PfEnu)n6!xxVZ`bhJsV=82pmV
-zE_U}996AVHI`l6Dhteq}P>DlQJBjs8mwPU}BjPjz*B~j%>v&|lMB>hnfuy^^3nU59
-zDk9pW0+5_mH9*9)Q2^q3-<V`y5n*<@N8v;bU^QYEnh)|JXFzhEUK)>zJZxMRLf1FR
-zA%s@>7qMMby$``>t$kzq@!(@MFwW=8=HDP5`uApp&l?7pF=rYmaw`A;002ovPDHLk
-FV1n+8c*6hy
+delta 254
+zcmV<a00IA(0-pkqDSrR}07_D8_xJb4t!sOGgoH{;y~f6zjAJpaYg#!mLVLX_F;a}Z
+zW6q46wbpB#Yh&JB?gan<0IEquK~#90rH&yE!ax*6-)=sF)@%)$tiUxvlQdb99-v3!
+z2sJgu)Zi;gsKDY#n@UbX1)^I5h7kDbWoCY6RM9(72BA5o!*?Y|2c(DtVQ65Uq3Mz?
+zxq?PE6@XCYixr>|;{b?T8{b-Mh42J`#-FkiM3B`UUNRM^h}j)L75&zXR<j#30nUeq
+zvxjc&K_;urC&i3i@geg{SpTzUzvTV>H+YtQ%6zfs0Vf(IO0)@>r~m)}07*qoM6N<$
+Ef^(H|q5uE@
 
 delta 246
-zcmV<S015w~0+#}iDS!U}|MvF(-sbkb#onB(y?c9uT3T~KN@|?V_F|mwIeXs!&9wHU
+zcmV<S015w}0+#}iDS!U}|MvF(-sbkb#onB(y?c9uT3T~KN@|?V_F|mwIeXs!&9wHU
 zgWij3y<$px&7`!TY+(QZ0HR4mK~xx(h0wbZ!ypU>V0KEMEfgjIU3?e1K<7a+Knf4!
 zj@F%-A$lP0Oq0L*P6(vKm6De2`$8w!3?IeuRK&I~jC@OV?{7G3)uX0Jt(^jFRARgf
 zl^6j?d<%d?2*5(e1qwRop=Nq1a*rTgk<+1w_ckES`H?!HBLEs;wdvjftF7S;F!u4b
-wkC*8b{DVjl1bL_Ej0?hy3^T%v@jo`}2a_1EyUD@2>Hq)$07*qoM6N<$f|+P`YXATM
+wkC*8b{DVjl1bL_Ej0?hy3^T%v@jo`}2a_1EyUD@2>Hq)$07*qoM6N<$f|zo4Y5)KL
 
 diff --git a/graphics/door_anims/pallet_house1.png b/graphics/door_anims/pallet_house1.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..3eb163c00457bc345d69a5c9e1a7f824de49a51b
+index 0000000000000000000000000000000000000000..e29e296c9637fa2a7f1c5c1f2e8896c22ada6b61
 GIT binary patch
-literal 275
-zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!FMx_1@~G=YqT}4U?xl
-ze|~OCaq`|dEs9Q2$vwxmZrwWN-239<_g=?(oV>EL=e(b9BklpzGtbk-F{ENnvPjCc
-zvtd7q8yY(qxn@{p<r_#C8z{I$NJvQ3wHZnqY%tIXO5pwby`k~x^sY12ZU1?Ae0V;|
-zD`d^v@z3(Wfky`p9NNI1#dpVn?HU6c2)L=P;8?7{ylECE4^K}M&zX9~GQ-&x3$os?
-z*xQh&FlVC&W72PZQP&k5hinZ@tN8*R$$euo@s>=lIZ(is$aXrJy(z1ske}h!Ev3g!
-T3wf>pUCQ9;>gTe~DWM4f^yX$!
+literal 265
+zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!FMx_1@?2?>TuTx2#>e
+z_1N>4>K4Q7In`^=MfDup`~I4fp<;4!@zS+hvwPl8nbH&Xim4f>XNsqbV@SoEWRaBa
+zQ=&hr8yh<rxn@|c3UiPs5M*O((^uo;;ps7+`fsJdpXvh#4uuq@$uUo6VirEk+95Tq
+zzWSe|XuP+>)pHsr#I`mxW-~G`HuOmmoph3ihg(8IBHZxLg9a_XLWhgzE`40g9m<mU
+z$wzesM{p-|2-ico8A&?t8Y3L1R4)-<5P9lK!#f@>$pY<;LVkv82h_I592X7;x{txr
+L)z4*}Q$iB}s*Gco
 
 literal 0
 HcmV?d00001
 
 diff --git a/graphics/door_anims/pallet_rival.png b/graphics/door_anims/pallet_rival.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..11c9baadb71e6ea7d2ad7bf46bfb82e4d633110d
+index 0000000000000000000000000000000000000000..b434224f48a0410b64e12e33755dc2e4016f1014
 GIT binary patch
-literal 269
-zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!Hl7_tz}Fl3UiU{r>%X
-zOG``fxurop$Bv!5X1FwY&b?z!mWr0ybCQ#b&&_d~vUYFwp~<R1Ju^IA978JRZ0%Fz
-zJLDkXdY@-@*RE0tp}q^s1q>`=+tXOhSF}i9c~r%DWtpeyCiayFOjas7ZfG^@2;DLL
-zyZU7H-tYWp_+$_N-DKB%Xv2Ql0|%x)<lwrnT~OiBvhD@9Z>DH8o>5ek+Q?AZ8=<kQ
-zf9Ah{#)vR~hRi=J87>%Z**x1k#9ocF&8YamBK7slH>CJS_|!9g=k@-!he69xAwsIa
-R=Qq%e44$rjF6*2UngFbpZ2|xQ
+literal 280
+zcmV+z0q6dSP)<h;3K|Lk000e1NJLTq000mG001xq0{{R3>T%~}0000mP)t-s0000&
+zd%frH-a<-agsrW$#^;24gfVNJd#%n|jK;n1)<Q8MV`Fort+i{6@065`R_X$S0001^
+zNkl<Zc$}S%F$%&!5JlfC8?a0~ft7d+8~Yp~g}r4O3$KxY5G-?rSmXxgAi|^)U4*sB
+z3W{LRfq}=H5A)@i&zFhB7+0Lm+ZGJC{k;VXHLDvKfWs_+4a>R;=8^@|_#R6ML@ClR
+zj8y=MF~AP5Ds?y+04k80>jc0~^F;<=T+zK`2B<#FC|JrU1>X8d95Q~R`n^x`!>>P~
+ee}Y#X>+=9;!!(E!=DuD40000<MNUMnLSTa1+;U|A
 
 literal 0
 HcmV?d00001
 
 diff --git a/include/constants/metatile_labels.h b/include/constants/metatile_labels.h
-index 7f42269..dc6df82 100644
+index 7f42269..7ffba65 100644
 --- a/include/constants/metatile_labels.h
 +++ b/include/constants/metatile_labels.h
 @@ -87,6 +87,8 @@
  // gTileset_PalletTown
  #define METATILE_PalletTown_Door         0x2A3
  #define METATILE_PalletTown_OaksLabDoor  0x2AC
-+#define METATILE_PalletTown_RivalDoor    0x2D6
-+#define METATILE_PalletTown_HouseDoor1   0x2CD
++#define METATILE_PalletTown_RivalDoor    0x2E7
++#define METATILE_PalletTown_HouseDoor1   0x2DE
  
  // gTileset_PewterCity
  #define METATILE_PewterCity_Door  0x2CE
 diff --git a/include/constants/opponents.h b/include/constants/opponents.h
-index 3b893f2..3fb5c1c 100644
+index 3b893f2..5263656 100644
 --- a/include/constants/opponents.h
 +++ b/include/constants/opponents.h
-@@ -747,11 +747,18 @@
+@@ -747,11 +747,26 @@
  #define TRAINER_CHAMPION_REMATCH_CHARMANDER      741
  #define TRAINER_CUE_BALL_PAXTON                  742
  
@@ -2008,13 +4595,21 @@ index 3b893f2..3fb5c1c 100644
 +#define TRAINER_PALLET_CAMPER_DREW               746
 +#define TRAINER_PALLET_PICNICKER_ROSA            747
 +#define TRAINER_PALLET_FISHERMAN_OTTO            748
++#define TRAINER_PALLET_SAILOR_DUNCAN             749
++#define TRAINER_PALLET_YOUNGSTER_KAI             750
++#define TRAINER_PALLET_CAMPER_OWEN               751
++#define TRAINER_PALLET_TUBER_BREE                752
++#define TRAINER_PALLET_LASS_JUNE                 753
++#define TRAINER_PALLET_BUG_CATCHER_PIP           754
++#define TRAINER_PALLET_POKEMANIAC_MILO           755
++#define TRAINER_PALLET_PICNICKER_IVY             756
 +
  // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is 
  //       only space for 25 additional trainers before trainer flag space overflows.
  //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
  
 -#define NUM_TRAINERS                             743
-+#define NUM_TRAINERS                             749
++#define NUM_TRAINERS                             757
  #define MAX_TRAINERS_COUNT                       768
  
  #endif  // GUARD_CONSTANTS_OPPONENTS_H
@@ -2032,10 +4627,10 @@ index 9802525..2e606a0 100644
        "respawn_map": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
        "respawn_npc": "LOCALID_MOM"
 diff --git a/src/data/trainer_parties.h b/src/data/trainer_parties.h
-index 2e57800..5ecddd6 100644
+index 2e57800..b2eab6b 100644
 --- a/src/data/trainer_parties.h
 +++ b/src/data/trainer_parties.h
-@@ -10860,3 +10860,81 @@ static const struct TrainerMonNoItemDefaultMoves sParty_CueBallPaxton[] = {
+@@ -10860,3 +10860,185 @@ static const struct TrainerMonNoItemDefaultMoves sParty_CueBallPaxton[] = {
          .species = SPECIES_MUK,
      },
  };
@@ -2117,11 +4712,115 @@ index 2e57800..5ecddd6 100644
 +        .species = SPECIES_HORSEA,
 +    },
 +};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletDuncan[] = {
++    {
++        .iv = 0,
++        .lvl = 5,
++        .species = SPECIES_KRABBY,
++    },
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_TENTACOOL,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletKai[] = {
++    {
++        .iv = 0,
++        .lvl = 5,
++        .species = SPECIES_GROWLITHE,
++    },
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_VULPIX,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletOwen[] = {
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_GEODUDE,
++    },
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_MACHOP,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletBree[] = {
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_SHELLDER,
++    },
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_PSYDUCK,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletJune[] = {
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_EXEGGCUTE,
++    },
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_PARAS,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletPip[] = {
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_VENONAT,
++    },
++    {
++        .iv = 0,
++        .lvl = 3,
++        .species = SPECIES_PARAS,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletMilo[] = {
++    {
++        .iv = 0,
++        .lvl = 5,
++        .species = SPECIES_SLOWPOKE,
++    },
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_CUBONE,
++    },
++};
++
++static const struct TrainerMonNoItemDefaultMoves sParty_PalletIvy[] = {
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_EKANS,
++    },
++    {
++        .iv = 0,
++        .lvl = 4,
++        .species = SPECIES_NIDORAN_M,
++    },
++};
 diff --git a/src/data/trainers.h b/src/data/trainers.h
-index 02afbfd..cf1141a 100644
+index 02afbfd..66f51a4 100644
 --- a/src/data/trainers.h
 +++ b/src/data/trainers.h
-@@ -7422,4 +7422,64 @@ const struct Trainer gTrainers[] = {
+@@ -7422,4 +7422,144 @@ const struct Trainer gTrainers[] = {
          .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
          .party = NO_ITEM_DEFAULT_MOVES(sParty_CueBallPaxton),
      },
@@ -2185,9 +4884,89 @@ index 02afbfd..cf1141a 100644
 +        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
 +        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletOtto),
 +    },
++    [TRAINER_PALLET_SAILOR_DUNCAN] = {
++        .trainerClass = TRAINER_CLASS_SAILOR,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
++        .trainerPic = TRAINER_PIC_SAILOR,
++        .trainerName = _("DUNCAN"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletDuncan),
++    },
++    [TRAINER_PALLET_YOUNGSTER_KAI] = {
++        .trainerClass = TRAINER_CLASS_YOUNGSTER,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
++        .trainerPic = TRAINER_PIC_YOUNGSTER,
++        .trainerName = _("KAI"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletKai),
++    },
++    [TRAINER_PALLET_CAMPER_OWEN] = {
++        .trainerClass = TRAINER_CLASS_CAMPER,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
++        .trainerPic = TRAINER_PIC_CAMPER,
++        .trainerName = _("OWEN"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletOwen),
++    },
++    [TRAINER_PALLET_TUBER_BREE] = {
++        .trainerClass = TRAINER_CLASS_TUBER,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_GIRL | F_TRAINER_FEMALE,
++        .trainerPic = TRAINER_PIC_TUBER_F,
++        .trainerName = _("BREE"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletBree),
++    },
++    [TRAINER_PALLET_LASS_JUNE] = {
++        .trainerClass = TRAINER_CLASS_LASS,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
++        .trainerPic = TRAINER_PIC_LASS,
++        .trainerName = _("JUNE"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletJune),
++    },
++    [TRAINER_PALLET_BUG_CATCHER_PIP] = {
++        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
++        .trainerPic = TRAINER_PIC_BUG_CATCHER,
++        .trainerName = _("PIP"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletPip),
++    },
++    [TRAINER_PALLET_POKEMANIAC_MILO] = {
++        .trainerClass = TRAINER_CLASS_POKEMANIAC,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
++        .trainerPic = TRAINER_PIC_POKEMANIAC,
++        .trainerName = _("MILO"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletMilo),
++    },
++    [TRAINER_PALLET_PICNICKER_IVY] = {
++        .trainerClass = TRAINER_CLASS_PICNICKER,
++        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_GIRL | F_TRAINER_FEMALE,
++        .trainerPic = TRAINER_PIC_PICNICKER,
++        .trainerName = _("IVY"),
++        .items = {},
++        .doubleBattle = FALSE,
++        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
++        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletIvy),
++    },
  };
 diff --git a/src/field_door.c b/src/field_door.c
-index c3be102..53a979f 100644
+index c3be102..0eb45a3 100644
 --- a/src/field_door.c
 +++ b/src/field_door.c
 @@ -47,6 +47,8 @@ static const u8 sDoorAnimTiles_SlidingDouble[] = INCBIN_U8("graphics/door_anims/
@@ -2205,10 +4984,10 @@ index c3be102..53a979f 100644
  static const u8 sDoorAnimPalettes_SlidingDouble[] = {3, 3, 3, 3, 3, 3, 3, 3};
 -static const u8 sDoorAnimPalettes_Pallet[] = {8, 8, 8, 8, 8, 8, 8, 8};
 -static const u8 sDoorAnimPalettes_OaksLab[] = {10, 10, 10, 10, 10, 10, 10, 10};
-+static const u8 sDoorAnimPalettes_Pallet[] = {12, 12, 7, 7, 12, 12, 7, 7};
-+static const u8 sDoorAnimPalettes_PalletHouse1[] = {8, 8, 9, 9, 8, 8, 9, 9};
-+static const u8 sDoorAnimPalettes_PalletRival[] = {9, 9, 9, 9, 9, 9, 9, 9};
-+static const u8 sDoorAnimPalettes_OaksLab[] = {8, 8, 9, 9, 8, 8, 9, 9};
++static const u8 sDoorAnimPalettes_Pallet[] = {8, 8, 10, 10, 8, 8, 10, 10};
++static const u8 sDoorAnimPalettes_PalletHouse1[] = {7, 7, 7, 7, 7, 7, 7, 7};
++static const u8 sDoorAnimPalettes_PalletRival[] = {7, 8, 7, 7, 7, 8, 7, 7};
++static const u8 sDoorAnimPalettes_OaksLab[] = {7, 10, 8, 8, 7, 10, 8, 8};
  static const u8 sDoorAnimPalettes_Viridian[] = {8, 8, 8, 8, 8, 8, 8, 8};
  static const u8 sDoorAnimPalettes_Pewter[] = {8, 8, 8, 8, 8, 8, 8, 8};
  static const u8 sDoorAnimPalettes_Saffron[] = {8, 8, 8, 8, 8, 8, 8, 8};

@@ -225,6 +225,28 @@ static void recordFinish(int argc, char** argv, int scriptStart) {
 	       rec.firstFrame, core->frameCounter(core));
 }
 
+// ---- player position (addresses come from the ROM's symbol map via env vars) ----
+static uint32_t envAddr(const char* name) {
+	const char* v = getenv(name);
+	return v ? (uint32_t) strtoul(v, NULL, 16) : 0;
+}
+
+static int playerPos(int* x, int* y, int* group, int* num, int* facing) {
+	uint32_t objEvents = envAddr("GBA_OBJECT_EVENTS"), avatar = envAddr("GBA_PLAYER_AVATAR"), sb1 = envAddr("GBA_SAVEBLOCK1_PTR");
+	if (!objEvents || !avatar || !sb1) {
+		return 0;
+	}
+	unsigned id = core->busRead8(core, avatar + 5);
+	uint32_t o = objEvents + id * 0x24;
+	*x = (int16_t) core->busRead16(core, o + 0x10) - 7;
+	*y = (int16_t) core->busRead16(core, o + 0x12) - 7;
+	*facing = core->busRead8(core, o + 0x18) & 0xF;
+	uint32_t save = core->busRead32(core, sb1);
+	*group = (int8_t) core->busRead8(core, save + 4);
+	*num = (int8_t) core->busRead8(core, save + 5);
+	return 1;
+}
+
 static void run(uint32_t keys, int frames) {
 	core->setKeys(core, keys);
 	for (int i = 0; i < frames; i++) {
@@ -296,6 +318,29 @@ int main(int argc, char** argv) {
 			run(keys, atoi(argv[++i]));
 		} else if (!strcmp(cmd, "shot") && i + 1 < argc) {
 			writePng(argv[++i]);
+		} else if (!strcmp(cmd, "pos")) {
+			int x, y, g, n, f;
+			if (playerPos(&x, &y, &g, &n, &f)) {
+				printf("POS %d %d %d %d %d\n", x, y, g, n, f);
+			} else {
+				printf("POS unknown (set GBA_* env vars)\n");
+			}
+		} else if (!strcmp(cmd, "step") && i + 1 < argc) {
+			// Walk exactly one square: hold the direction until the player's square changes.
+			uint32_t keys = parseKeys(argv[++i]);
+			int x0, y0, g0, n0, f0, x, y, g, n, f, moved = 0;
+			playerPos(&x0, &y0, &g0, &n0, &f0);
+			for (int t = 0; t < 40 && !moved; t++) {
+				run(keys, 1);
+				playerPos(&x, &y, &g, &n, &f);
+				moved = (x != x0 || y != y0 || g != g0 || n != n0);
+			}
+			run(0, 16);
+			printf("STEP %s %d %d\n", moved ? "ok" : "blocked", x, y);
+		} else if (!strcmp(cmd, "face") && i + 1 < argc) {
+			uint32_t keys = parseKeys(argv[++i]);
+			run(keys, 2);
+			run(0, 10);
 		} else if (!strcmp(cmd, "reset")) {
 			core->reset(core);
 		} else {

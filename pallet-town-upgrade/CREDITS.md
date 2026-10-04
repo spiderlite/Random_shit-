@@ -24,13 +24,14 @@ credit, and the first one also sets license terms on anything built with it.
   Resource), TheDeadHeroAlistair, Calis Projects, Cilerba, Magiscarf,
   DaNerdyDude, XDinky, KyleDove.
 - The tiles contain rips from Ruby/Sapphire/Emerald (credited to Heartlessdragoon).
-- Used for: the fountain, street lamps and bench.
+- Used for: the fountain, street lamps, benches, and the market stall canopy and
+  produce baskets.
 - The original download links are dead. The copy here is the preview sheet from
   the same page (`assets/dawn_outdoor.png`), shrunk to half size
   (`assets/dawn16.png`).
 
 ## Everything else
 
-The ground, forest, garden, pond and Oak's lab are the original FireRed
-metatiles from the pret/pokefirered decompilation. Pokémon and its art belong to
+The ground, sand streets, forest, garden, pond, Pokémon Center, Poké Mart and
+Oak's lab are the original FireRed metatiles from the pret/pokefirered decompilation. Pokémon and its art belong to
 Nintendo / Game Freak / Creatures. This is a non-commercial fan project.

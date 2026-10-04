@@ -1,30 +1,38 @@
 #!/usr/bin/env python3
-"""Wire the expanded Pallet Town into the game data.
+"""Wire the expanded Pallet Town into the game data, from city_data.py and
+trainers_data.py.
 
-Always starts from the committed (original) versions of the files it edits, so
-it can be re-run safely:
-  - layout width 24 -> 44
-  - PalletTown map.json: events shifted 10 columns, connections re-aligned, new
-    warps/signs/NPCs for the new houses
+Always starts from the committed (original) versions of the files it edits and
+regenerates every map it owns, so it can be re-run safely:
+  - layout 24x20 -> 62x30
+  - PalletTown map.json: original events moved (10 columns right; the bottom
+    edge 10 rows down), connections re-aligned, a door per building, signs,
+    townsfolk, Pokémon and trainers
   - Route 1 / Route 21 North connections re-aligned
-  - PalletTown scripts: hard-coded object positions shifted; new scripts/texts
-  - heal location shifted
-  - four new interior maps (reusing existing house layouts) + map group + includes
+  - PalletTown scripts: hard-coded positions moved; generated scripts/texts
+  - heal location moved
+  - an interior map per building floor (copying the warps of a real FireRed map
+    with the same layout), the Pokémon Center (1F/2F) and the Mart
+  - beginner trainers (constants, trainer table, parties)
 """
 import json
+import struct
 import os
 import re
+import shutil
 import subprocess
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "pokefirered"))
-DX = 10
-NEW_W = 44
-NEW_H = 30
-BOT = 10  # rows inserted above the original bottom edge; original rows >= 17 move down
+sys.path.insert(0, HERE)
+import city_data as CITY  # noqa: E402
+from trainers_data import TRAINERS  # noqa: E402
+
+DX = 10    # original column c is now c + DX
+BOT = 10   # original rows >= 17 moved down by this much
+NEW_W, NEW_H = CITY.W, CITY.H
+WRAP = 28  # characters per message line
 
 
 def orig(path):
@@ -38,70 +46,93 @@ def write(path, text):
         f.write(text)
 
 
-def as_strings(text):
-    out, cur = [], ""
-    for part in re.split(r"(\\n|\\p)", text):
-        cur += part
-        if part in ("\\n", "\\p"):
-            out.append(cur)
-            cur = ""
-    out.append(cur)
-    return "".join('    .string "%s"\n' % l for l in out if l)
-
-
 def dump(obj):
     return json.dumps(obj, indent=2, ensure_ascii=False) + "\n"
 
 
-# ---------------- layout width ----------------
+def snake(name):
+    return re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name).upper()
+
+
+def map_const(name):
+    return "MAP_" + snake(name)
+
+
+def reflow(text):
+    """Re-wrap a message so no line is too long: \\n after the first line of a box,
+    \\l (scroll) after the rest, \\p between boxes, $ at the end."""
+    body = text.rstrip("$")
+    out = []
+    for para in body.split("\\p"):
+        words = re.sub(r"\\[nl]", " ", para).split()
+        lines, cur = [], ""
+        for w in words:
+            if cur and len(cur) + 1 + len(w) > WRAP:
+                lines.append(cur)
+                cur = w
+            else:
+                cur = (cur + " " + w) if cur else w
+        if cur:
+            lines.append(cur)
+        out.append(lines)
+    strings = []
+    for pi, lines in enumerate(out):
+        for li, line in enumerate(lines):
+            last_line = li == len(lines) - 1
+            if not last_line:
+                strings.append(line + ("\\n" if li == 0 else "\\l"))
+            elif pi < len(out) - 1:
+                strings.append(line + "\\p")
+            else:
+                strings.append(line + "$")
+    return "".join('    .string "%s"\n' % s for s in strings)
+
+
+def obj(gfx, pos, move, rng, script, flag="0"):
+    return {"type": "object", "graphics_id": gfx, "x": pos[0], "y": pos[1], "elevation": 3,
+            "movement_type": move, "movement_range_x": rng, "movement_range_y": rng,
+            "trainer_type": "TRAINER_TYPE_NONE", "trainer_sight_or_berry_tree_id": "0",
+            "script": script, "flag": flag}
+
+
+def npc_script(label, text_label, who):
+    color = "NPC_TEXT_COLOR_FEMALE" if who.get("female") else "NPC_TEXT_COLOR_MALE"
+    if who.get("cry"):
+        return ("\n%s::\n\tlock\n\tfaceplayer\n\twaitse\n\tplaymoncry %s, CRY_MODE_NORMAL\n"
+                "\tmsgbox %s\n\twaitmoncry\n\trelease\n\tend\n" % (label, who["cry"], text_label))
+    return "\n%s::\n\tlock\n\tfaceplayer\n\ttextcolor %s\n\tmsgbox %s\n\trelease\n\tend\n" % (label, color, text_label)
+
+
+tracked = set(subprocess.run(["git", "-C", ROOT, "ls-files", "data/maps"], capture_output=True, text=True).stdout.split())
+ALL_MAPS = {}
+for d in os.listdir(os.path.join(ROOT, "data/maps")):
+    if "data/maps/%s/map.json" % d in tracked:
+        ALL_MAPS[d] = json.loads(orig("data/maps/%s/map.json" % d))
+
+
+def entry_warp(source):
+    """The warp id the source's own town uses to enter it (the doormat middle)."""
+    const = ALL_MAPS[source]["id"]
+    for mm in ALL_MAPS.values():
+        if mm.get("map_type") == "MAP_TYPE_INDOOR":
+            continue
+        for w in mm.get("warp_events") or []:
+            if w["dest_map"] == const:
+                return w["dest_warp_id"]
+    return "0"
+
+
+# Remove maps generated by earlier runs (anything PalletTown_* that isn't in git).
+for d in os.listdir(os.path.join(ROOT, "data/maps")):
+    if d.startswith("PalletTown_") and "data/maps/%s/map.json" % d not in tracked:
+        shutil.rmtree(os.path.join(ROOT, "data/maps", d))
+
+# ---------------- layout size ----------------
 layouts = json.loads(orig("data/layouts/layouts.json"))
 for l in layouts["layouts"]:
     if l.get("name") == "PalletTown_Layout":
-        l["width"] = NEW_W
-        l["height"] = NEW_H
+        l["width"], l["height"] = NEW_W, NEW_H
 write("data/layouts/layouts.json", dump(layouts))
-
-# ---------------- new houses ----------------
-HOUSES = [  # map name, layout, door in Pallet, NPC gfx, npc pos (an open floor square), mailbox pos, family
-    ("PalletTown_House1", "LAYOUT_HOUSE1", (5, 7), "OBJ_EVENT_GFX_OLD_MAN_1", (2, 4), (3, 7), "HARPER"),
-    ("PalletTown_House2", "LAYOUT_HOUSE2", (5, 15), "OBJ_EVENT_GFX_WOMAN_1", (8, 6), (3, 15), "AOKI"),
-    ("PalletTown_House3", "LAYOUT_HOUSE5", (35, 7), "OBJ_EVENT_GFX_LITTLE_BOY", (2, 5), (33, 7), "VALE"),
-    ("PalletTown_House4", "LAYOUT_VIRIDIAN_CITY_HOUSE", (35, 15), "OBJ_EVENT_GFX_FISHER", (9, 4), (33, 15), "MARSH"),
-    ("PalletTown_House5", "LAYOUT_HOUSE2", (6, 25), "OBJ_EVENT_GFX_OLD_WOMAN", (2, 3), (4, 25), "BELL"),
-    ("PalletTown_House6", "LAYOUT_HOUSE1", (36, 25), "OBJ_EVENT_GFX_BALDING_MAN", (8, 3), (34, 25), "KOWALSKI"),
-]
-NPC_TEXT = {
-    "PalletTown_House1": "When I was a boy, PALLET was\\n"
-                         "two houses and a lab.\\p"
-                         "Now there's a fountain and\\n"
-                         "neighbors on both sides!$",
-    "PalletTown_House2": "The kids splash in the fountain\\n"
-                         "by the garden all summer long.\\p"
-                         "PALLET TOWN is a lovely place\\n"
-                         "to raise a family.$",
-    "PalletTown_House3": "PROF. OAK lets me watch his\\n"
-                         "POKéMON through the lab window!\\p"
-                         "When I grow up, I'm going to\\n"
-                         "be a TRAINER too!$",
-    "PalletTown_House4": "The sea south of town reaches\\n"
-                         "all the way to CINNABAR.\\p"
-                         "You'll need a POKéMON that\\n"
-                         "knows SURF to get there.$",
-    "PalletTown_House5": "My grandson watches the park\\n"
-                         "battles from the window.\\p"
-                         "Be kind to those young TRAINERS.\\n"
-                         "They're just starting out, dear.$",
-    "PalletTown_House6": "OTTO has fished that pond for\\n"
-                         "thirty years.\\p"
-                         "Thirty years, and all he's ever\\n"
-                         "caught is MAGIKARP!$",
-}
-
-# ---------------- park trainers ----------------
-# Talk-to trainers: no line of sight, they never start a battle themselves. Before
-# the player has a POKéMON they just chat; afterwards they ask YES/NO. Teams are
-# first-stage POKéMON found around KANTO, levels 3-5.
-from trainers_data import TRAINERS  # noqa: E402
 
 # ---------------- PalletTown map.json ----------------
 m = json.loads(orig("data/maps/PalletTown/map.json"))
@@ -110,135 +141,204 @@ for c in m["connections"]:
 for key in ("object_events", "warp_events", "coord_events", "bg_events"):
     for e in m.get(key) or []:
         e["x"] += DX
-        if e["y"] >= 17:  # the original bottom edge moved down to make room for the south district
+        if e["y"] >= 17:
             e["y"] += BOT
+# The rival's mailbox moved to the other side of the house, off the Route 1 street.
+for e in m["bg_events"]:
+    if (e["x"], e["y"]) == (13 + DX, 7):
+        e["x"], e["y"] = CITY.RIVAL_MAILBOX
+
+scripts = []    # generated PalletTown scripts
+texts = []      # (label, text)
+interiors = []  # (map name, map.json, scripts.inc, text.inc)
+
+# Buildings: one door each, in order after the original three.
+for i, b in enumerate(CITY.BUILDINGS):
+    pallet_warp = 3 + i
+    key = b["key"]
+    if b["design"] == "pc":
+        names = ["PalletTown_PokemonCenter_1F", "PalletTown_PokemonCenter_2F"]
+        sources = ["ViridianCity_PokemonCenter_1F", "ViridianCity_PokemonCenter_2F"]
+    elif b["design"] == "mart":
+        names, sources = ["PalletTown_Mart"], ["PewterCity_Mart"]
+    else:
+        floors = b["floors"]
+        names = ["PalletTown_%s" % key] if len(floors) == 1 else \
+            ["PalletTown_%s_%dF" % (key, n + 1) for n in range(len(floors))]
+        sources = [f["source"] for f in floors]
+    m["warp_events"].append({"x": b["door"][0], "y": b["door"][1], "elevation": 0,
+                             "dest_map": map_const(names[0]), "dest_warp_id": entry_warp(sources[0])})
+    if b.get("mailbox"):
+        label = "PalletTown_EventScript_%sMailbox" % key
+        cell = b["mailbox"][0]
+        m["bg_events"].append({"type": "sign", "x": cell[0], "y": cell[1], "elevation": 0,
+                               "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY", "script": label})
+        scripts.append("\n%s::\n\tmsgbox PalletTown_Text_%sMailbox, MSGBOX_SIGN\n\tend\n" % (label, key))
+        texts.append(("PalletTown_Text_%sMailbox" % key, b["mailbox_text"].rstrip("$") + "'s house$"))
+    if b.get("sign"):
+        label = "PalletTown_EventScript_%sSign" % key
+        m["bg_events"].append({"type": "sign", "x": b["sign"][0], "y": b["sign"][1], "elevation": 0,
+                               "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY", "script": label})
+        scripts.append("\n%s::\n\tmsgbox PalletTown_Text_%sSign, MSGBOX_SIGN\n\tend\n" % (label, key))
+        texts.append(("PalletTown_Text_%sSign" % key, b["sign_text"]))
+
+    # ---- interiors ----
+    consts = [map_const(n) for n in names]
+    src_consts = [ALL_MAPS[s_]["id"] for s_ in sources]
+    for fi, (name, source) in enumerate(zip(names, sources)):
+        src = json.loads(json.dumps(ALL_MAPS[source]))
+        mj = {"id": consts[fi], "name": name, "layout": src["layout"], "music": src["music"],
+              "region_map_section": "MAPSEC_PALLET_TOWN"}
+        for k in ("requires_flash", "weather", "map_type", "allow_cycling", "allow_escaping",
+                  "allow_running", "show_map_name", "floor_number", "battle_scene"):
+            mj[k] = src[k]
+        mj["connections"] = None
+        warps = []
+        for w in src["warp_events"]:
+            w = dict(w)
+            if w["dest_map"] in src_consts:
+                w["dest_map"] = consts[src_consts.index(w["dest_map"])]
+            elif w["dest_map"] in ("MAP_UNION_ROOM", "MAP_TRADE_CENTER", "MAP_RECORD_CORNER"):
+                pass
+            else:
+                w["dest_map"], w["dest_warp_id"] = "MAP_PALLET_TOWN", str(pallet_warp)
+            warps.append(w)
+        sc, tx = "", ""
+        if b["design"] == "pc" and fi == 0:
+            nurse = [o for o in src["object_events"] if o["graphics_id"] == "OBJ_EVENT_GFX_NURSE"][0]
+            nurse.pop("local_id", None)
+            nurse["script"] = "%s_EventScript_Nurse" % name
+            objects = [nurse]
+            bgs = src.get("bg_events") or []
+            sc += ("%s_MapScripts::\n\tmap_script MAP_SCRIPT_ON_TRANSITION, %s_OnTransition\n"
+                   "\tmap_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume\n\t.byte 0\n\n"
+                   "%s_OnTransition::\n\tsetrespawn HEAL_LOCATION_PALLET_TOWN\n\tend\n\n"
+                   "%s_EventScript_Nurse::\n\tlock\n\tfaceplayer\n\tcall EventScript_PkmnCenterNurse\n"
+                   "\trelease\n\tend\n") % (name, name, name, name)
+            residents = CITY.PC_RESIDENTS
+        elif b["design"] == "pc":
+            objects = src["object_events"]
+            bgs = src.get("bg_events") or []
+            sc += ("%s_MapScripts::\n\tmap_script MAP_SCRIPT_ON_FRAME_TABLE, CableClub_OnFrame\n"
+                   "\tmap_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, CableClub_OnWarp\n"
+                   "\tmap_script MAP_SCRIPT_ON_LOAD, CableClub_OnLoad\n"
+                   "\tmap_script MAP_SCRIPT_ON_TRANSITION, CableClub_OnTransition\n\t.byte 0\n") % name
+            residents = []
+        elif b["design"] == "mart":
+            clerk = [o for o in src["object_events"] if o["graphics_id"] == "OBJ_EVENT_GFX_CLERK"][0]
+            clerk["script"] = "%s_EventScript_Clerk" % name
+            objects = [clerk]
+            bgs = []
+            items = "".join("\t.2byte %s\n" % it for it in CITY.MART_ITEMS)
+            sc += ("%s_MapScripts::\n\t.byte 0\n\n%s_EventScript_Clerk::\n\tgoto_if_questlog EventScript_ReleaseEnd\n"
+                   "\tlock\n\tfaceplayer\n\tmessage Text_MayIHelpYou\n\twaitmessage\n\tpokemart %s_Items\n"
+                   "\tmsgbox Text_PleaseComeAgain\n\trelease\n\tend\n\n\t.align 2\n%s_Items::\n%s"
+                   "\t.2byte ITEM_NONE\n\trelease\n\tend\n") % (name, name, name, name, items)
+            residents = CITY.MART_RESIDENTS
+        else:
+            floor = b["floors"][fi]
+            if floor.get("layout") and floor["layout"] != src["layout"]:
+                mj["layout"] = floor["layout"]
+                # A different layout can have its doormat elsewhere: find the centre
+                # doormat block of the source layout in the same row of the new one
+                # and shift the door warps with it.
+                def blocks(lid):
+                    lay = next(l for l in layouts["layouts"] if l.get("id") == lid)
+                    raw = open(os.path.join(ROOT, lay["blockdata_filepath"]), "rb").read()
+                    return lay["width"], [v & 0x3FF for (v,) in struct.iter_unpack("<H", raw)]
+                sw, sb = blocks(src["layout"])
+                nw, nb = blocks(floor["layout"])
+                door = [w for w in warps if w["dest_map"] == "MAP_PALLET_TOWN"]
+                cw = door[len(door) // 2]
+                mat = sb[cw["y"] * sw + cw["x"]]
+                shift = [x for x in range(nw) if nb[cw["y"] * nw + x] == mat][0] - cw["x"]
+                for w in door:
+                    w["x"] += shift
+            mj["music"] = floor.get("music", "MUS_PALLET")
+            objects = []
+            bgs = (src.get("bg_events") or []) if floor.get("keep_bg") else []
+            sc += "%s_MapScripts::\n\t.byte 0\n" % name
+            residents = floor["residents"]
+        for ri, who in enumerate(residents):
+            label = "%s_EventScript_Resident%d" % (name, ri + 1)
+            tlabel = "%s_Text_Resident%d" % (name, ri + 1)
+            objects.append(obj(who["gfx"], who["pos"], who["move"], who["range"], label))
+            sc += npc_script(label, tlabel, who)
+            tx += "\n%s::\n%s" % (tlabel, reflow(who["text"]))
+        mj["object_events"] = objects
+        mj["warp_events"] = warps
+        mj["coord_events"] = []
+        mj["bg_events"] = bgs
+        interiors.append((name, mj, sc, tx))
+
+# ---- townsfolk, Pokémon and the park sign ----
 m["bg_events"].append({"type": "sign", "x": 21, "y": 18, "elevation": 0,
-                       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-                       "script": "PalletTown_EventScript_ParkSign"})
-for name, _, door, *_rest in HOUSES:
-    m["warp_events"].append({"x": door[0], "y": door[1], "elevation": 0,
-                             "dest_map": "MAP_PALLET_TOWN_" + name.split("_")[1].upper(),
-                             # warp 1 is the middle doormat square, as every original house uses
-                             "dest_warp_id": "1"})
-for name, _, _, _, _, mbox, family in HOUSES:
-    m["bg_events"].append({"type": "sign", "x": mbox[0], "y": mbox[1], "elevation": 0,
-                           "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-                           "script": "PalletTown_EventScript_%sMailbox" % family.capitalize()})
-m["object_events"] += [
-    # On the open side of the bench, looking past it at the fountain.
-    {"type": "object", "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL", "x": 11, "y": 15, "elevation": 3,
-     "movement_type": "MOVEMENT_TYPE_FACE_UP", "movement_range_x": 1, "movement_range_y": 1,
-     "trainer_type": "TRAINER_TYPE_NONE", "trainer_sight_or_berry_tree_id": "0",
-     "script": "PalletTown_EventScript_FountainGirl", "flag": "0"},
-    {"type": "object", "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_2", "x": 33, "y": 10, "elevation": 3,
-     "movement_type": "MOVEMENT_TYPE_FACE_DOWN", "movement_range_x": 1, "movement_range_y": 1,
-     "trainer_type": "TRAINER_TYPE_NONE", "trainer_sight_or_berry_tree_id": "0",
-     "script": "PalletTown_EventScript_PineOldMan", "flag": "0"},
-]
+                       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY", "script": "PalletTown_EventScript_ParkSign"})
+scripts.append("\nPalletTown_EventScript_ParkSign::\n\tmsgbox PalletTown_Text_ParkSign, MSGBOX_SIGN\n\tend\n")
+texts.append(("PalletTown_Text_ParkSign", "PALLET PARK\\nNew TRAINERS, test your skills here!$"))
+for i, who in enumerate(CITY.OUTDOOR):
+    label = "PalletTown_EventScript_Townsfolk%d" % (i + 1)
+    tlabel = "PalletTown_Text_Townsfolk%d" % (i + 1)
+    m["object_events"].append(obj(who["gfx"], who["pos"], who["move"], who["range"], label))
+    scripts.append(npc_script(label, tlabel, who))
+    texts.append((tlabel, who["text"]))
+
+# ---- market stall vendor ----
+st = CITY.STALL
+m["object_events"].append(obj(st["vendor"]["gfx"], st["vendor"]["pos"], st["vendor"]["move"], 1,
+                              "PalletTown_EventScript_StallVendor"))
+scripts.append("\nPalletTown_EventScript_StallVendor::\n\tgoto_if_questlog EventScript_ReleaseEnd\n"
+               "\tlock\n\tfaceplayer\n\ttextcolor NPC_TEXT_COLOR_MALE\n\tmessage PalletTown_Text_StallVendor\n"
+               "\twaitmessage\n\tpokemart PalletTown_StallItems\n\tmsgbox PalletTown_Text_StallBye\n"
+               "\trelease\n\tend\n\n\t.align 2\nPalletTown_StallItems::\n"
+               + "".join("\t.2byte %s\n" % it for it in st["items"]) + "\t.2byte ITEM_NONE\n\trelease\n\tend\n")
+texts.append(("PalletTown_Text_StallVendor", st["vendor"]["text"]))
+texts.append(("PalletTown_Text_StallBye", st["bye"]))
+
+# ---- trainers ----
 for tr in TRAINERS:
-    m["object_events"].append({
-        "type": "object", "graphics_id": tr["gfx"], "x": tr["pos"][0], "y": tr["pos"][1], "elevation": 3,
-        "movement_type": tr["facing"], "movement_range_x": 1, "movement_range_y": 1,
-        "trainer_type": "TRAINER_TYPE_NONE", "trainer_sight_or_berry_tree_id": "0",
-        "script": "PalletTown_EventScript_Trainer%s" % tr["name"].capitalize(), "flag": "0"})
+    n = tr["name"].capitalize()
+    m["object_events"].append(obj(tr["gfx"], tr["pos"], tr["facing"], tr.get("range", 1),
+                                  "PalletTown_EventScript_Trainer%s" % n))
+    color = "NPC_TEXT_COLOR_FEMALE" if tr["female"] else "NPC_TEXT_COLOR_MALE"
+    scripts.append(("\nPalletTown_EventScript_Trainer{n}::\n"
+                    "\tlock\n\tfaceplayer\n\ttextcolor {color}\n"
+                    "\tgoto_if_defeated {const}, PalletTown_EventScript_Trainer{n}After\n"
+                    "\tgoto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_Trainer{n}NoMon\n"
+                    "\tmsgbox PalletTown_Text_{n}Ask, MSGBOX_YESNO\n"
+                    "\tgoto_if_eq VAR_RESULT, NO, PalletTown_EventScript_Trainer{n}Decline\n"
+                    "\tmsgbox PalletTown_Text_{n}Accept\n"
+                    "\tclosemessage\n"
+                    "\ttrainerbattle_no_intro {const}, PalletTown_Text_{n}Defeat\n"
+                    "\tmsgbox PalletTown_Text_{n}After\n"
+                    "\trelease\n\tend\n"
+                    "\nPalletTown_EventScript_Trainer{n}After::\n\tmsgbox PalletTown_Text_{n}After\n\trelease\n\tend\n"
+                    "\nPalletTown_EventScript_Trainer{n}NoMon::\n\tmsgbox PalletTown_Text_{n}NoMon\n\trelease\n\tend\n"
+                    "\nPalletTown_EventScript_Trainer{n}Decline::\n\tmsgbox PalletTown_Text_{n}Decline\n\trelease\n\tend\n"
+                    ).format(n=n, const=tr["const"], color=color))
+    for k in ("NoMon", "Ask", "Accept", "Decline", "Defeat", "After"):
+        texts.append(("PalletTown_Text_%s%s" % (n, k), tr["text"][k]))
 write("data/maps/PalletTown/map.json", dump(m))
 
 # ---------------- neighbours ----------------
-for path, direction in (("data/maps/Route1/map.json", "down"), ("data/maps/Route21_North/map.json", "up")):
+for path in ("data/maps/Route1/map.json", "data/maps/Route21_North/map.json"):
     r = json.loads(orig(path))
     for c in r["connections"]:
         if c["map"] == "MAP_PALLET_TOWN":
             c["offset"] = -DX
     write(path, dump(r))
 
-# ---------------- PalletTown scripts ----------------
+# ---------------- PalletTown scripts and texts ----------------
 s = orig("data/maps/PalletTown/scripts.inc")
-
-
-def shift(mo):
-    return "%s, %d, %s" % (mo.group(1), int(mo.group(2)) + DX, mo.group(3))
-
-
-s = re.sub(r"(setobjectxyperm LOCALID_\w+), (\d+), (\d+)", shift, s)
-s = re.sub(r"(opendoor|closedoor) (\d+), (\d+)", lambda mo: "%s %d, %s" % (mo.group(1), int(mo.group(2)) + DX, mo.group(3)), s)
-s += "\nPalletTown_EventScript_FountainGirl::\n\tmsgbox PalletTown_Text_FountainGirl, MSGBOX_NPC\n\tend\n"
-s += "\nPalletTown_EventScript_PineOldMan::\n\tmsgbox PalletTown_Text_PineOldMan, MSGBOX_NPC\n\tend\n"
-for name, *_r, family in HOUSES:
-    f = family.capitalize()
-    s += "\nPalletTown_EventScript_%sMailbox::\n\tmsgbox PalletTown_Text_%sMailbox, MSGBOX_SIGN\n\tend\n" % (f, f)
-s += "\nPalletTown_EventScript_ParkSign::\n\tmsgbox PalletTown_Text_ParkSign, MSGBOX_SIGN\n\tend\n"
-for tr in TRAINERS:
-    n = tr["name"].capitalize()
-    const = tr["const"]
-    color = "NPC_TEXT_COLOR_FEMALE" if tr["female"] else "NPC_TEXT_COLOR_MALE"
-    s += ("\nPalletTown_EventScript_Trainer{n}::\n"
-          "\tlock\n\tfaceplayer\n\ttextcolor {color}\n"
-          "\tgoto_if_defeated {const}, PalletTown_EventScript_Trainer{n}After\n"
-          "\tgoto_if_unset FLAG_SYS_POKEMON_GET, PalletTown_EventScript_Trainer{n}NoMon\n"
-          "\tmsgbox PalletTown_Text_{n}Ask, MSGBOX_YESNO\n"
-          "\tgoto_if_eq VAR_RESULT, NO, PalletTown_EventScript_Trainer{n}Decline\n"
-          "\tmsgbox PalletTown_Text_{n}Accept\n"
-          "\tcloseMessage\n"
-          "\ttrainerbattle_no_intro {const}, PalletTown_Text_{n}Defeat\n"
-          "\tmsgbox PalletTown_Text_{n}After\n"
-          "\trelease\n\tend\n"
-          "\nPalletTown_EventScript_Trainer{n}After::\n\tmsgbox PalletTown_Text_{n}After\n\trelease\n\tend\n"
-          "\nPalletTown_EventScript_Trainer{n}NoMon::\n\tmsgbox PalletTown_Text_{n}NoMon\n\trelease\n\tend\n"
-          "\nPalletTown_EventScript_Trainer{n}Decline::\n\tmsgbox PalletTown_Text_{n}Decline\n\trelease\n\tend\n"
-          ).format(n=n, const=const, color=color).replace("closeMessage", "closemessage")
-write("data/maps/PalletTown/scripts.inc", s)
-
+s = re.sub(r"(setobjectxyperm LOCALID_\w+), (\d+), (\d+)",
+           lambda mo: "%s, %d, %d" % (mo.group(1), int(mo.group(2)) + DX,
+                                      int(mo.group(3)) + (BOT if int(mo.group(3)) >= 17 else 0)), s)
+s = re.sub(r"(opendoor|closedoor) (\d+), (\d+)",
+           lambda mo: "%s %d, %s" % (mo.group(1), int(mo.group(2)) + DX, mo.group(3)), s)
+write("data/maps/PalletTown/scripts.inc", s + "".join(scripts))
 t = orig("data/maps/PalletTown/text.inc")
-t += ('\nPalletTown_Text_FountainGirl::\n'
-      '    .string "The fountain sparkles when the\\n"\n'
-      '    .string "sun comes up over the sea!$"\n')
-t += ('\nPalletTown_Text_PineOldMan::\n'
-      '    .string "I planted these pines the year\\n"\n'
-      '    .string "PROF. OAK built his lab.\\p"\n'
-      '    .string "They\'ve grown taller than me!$"\n')
-for name, *_r, family in HOUSES:
-    f = family.capitalize()
-    t += '\nPalletTown_Text_%sMailbox::\n    .string "%s\'s house$"\n' % (f, family)
-t += ('\nPalletTown_Text_ParkSign::\n'
-      '    .string "PALLET PARK\\n"\n'
-      '    .string "New TRAINERS, test your skills here!$"\n')
-for tr in TRAINERS:
-    n = tr["name"].capitalize()
-    for key in ("NoMon", "Ask", "Accept", "Decline", "Defeat", "After"):
-        t += "\nPalletTown_Text_%s%s::\n%s" % (n, key, as_strings(tr["text"][key]))
+t += "".join("\n%s::\n%s" % (label, reflow(text)) for label, text in texts)
 write("data/maps/PalletTown/text.inc", t)
-
-# ---------------- trainer data ----------------
-opp = orig("include/constants/opponents.h")
-first = int(re.search(r"#define NUM_TRAINERS\s+(\d+)", opp).group(1))
-defs = "".join("#define %-40s %d\n" % (tr["const"], first + i) for i, tr in enumerate(TRAINERS))
-opp = opp.replace("\n// NOTE: Because each Trainer", "\n" + defs + "\n// NOTE: Because each Trainer", 1)
-opp = re.sub(r"#define NUM_TRAINERS\s+\d+", "#define NUM_TRAINERS                             %d" % (first + len(TRAINERS)), opp)
-write("include/constants/opponents.h", opp)
-CLASS = {"YOUNGSTER": ("YOUNGSTER", "TRAINER_ENCOUNTER_MUSIC_MALE"),
-         "LASS": ("LASS", "TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE"),
-         "BUG_CATCHER": ("BUG_CATCHER", "TRAINER_ENCOUNTER_MUSIC_MALE"),
-         "CAMPER": ("CAMPER", "TRAINER_ENCOUNTER_MUSIC_MALE"),
-         "PICNICKER": ("PICNICKER", "TRAINER_ENCOUNTER_MUSIC_GIRL | F_TRAINER_FEMALE"),
-         "FISHERMAN": ("FISHERMAN", "TRAINER_ENCOUNTER_MUSIC_HIKER")}
-tdata = orig("src/data/trainers.h")
-entries = ""
-parties = orig("src/data/trainer_parties.h")
-for tr in TRAINERS:
-    cls, music = CLASS[tr["class"]]
-    party = "sParty_Pallet%s" % tr["name"].capitalize()
-    entries += ("    [%s] = {\n        .trainerClass = TRAINER_CLASS_%s,\n        .encounterMusic_gender = %s,\n"
-                "        .trainerPic = TRAINER_PIC_%s,\n        .trainerName = _(\"%s\"),\n        .items = {},\n"
-                "        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,\n"
-                "        .party = NO_ITEM_DEFAULT_MOVES(%s),\n    },\n") % (tr["const"], cls, music, cls, tr["name"], party)
-    parties += "\nstatic const struct TrainerMonNoItemDefaultMoves %s[] = {\n" % party
-    for species, lvl in tr["party"]:
-        parties += "    {\n        .iv = 0,\n        .lvl = %d,\n        .species = SPECIES_%s,\n    },\n" % (lvl, species)
-    parties += "};\n"
-i = tdata.rindex("};")
-tdata = tdata[:i] + entries + tdata[i:]
-write("src/data/trainers.h", tdata)
-write("src/data/trainer_parties.h", parties)
 
 # ---------------- heal location ----------------
 h = json.loads(orig("src/data/heal_locations.json"))
@@ -247,49 +347,57 @@ for loc in h["heal_locations"]:
         loc["x"] += DX
 write("src/data/heal_locations.json", dump(h))
 
-# ---------------- interior maps ----------------
+# ---------------- interiors ----------------
 groups = json.loads(orig("data/maps/map_groups.json"))
-for i, (name, layout, door, gfx, npc, mbox, family) in enumerate(HOUSES):
-    const = "MAP_PALLET_TOWN_" + name.split("_")[1].upper()
-    mj = {
-        "id": const, "name": name, "layout": layout, "music": "MUS_PALLET",
-        "region_map_section": "MAPSEC_PALLET_TOWN", "requires_flash": False, "weather": "WEATHER_NONE",
-        "map_type": "MAP_TYPE_INDOOR", "allow_cycling": False, "allow_escaping": False, "allow_running": False,
-        "show_map_name": False, "floor_number": 0, "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-        "connections": None,
-        "object_events": [{
-            "type": "object", "graphics_id": gfx, "x": npc[0], "y": npc[1], "elevation": 3,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND", "movement_range_x": 1, "movement_range_y": 1,
-            "trainer_type": "TRAINER_TYPE_NONE", "trainer_sight_or_berry_tree_id": "0",
-            "script": "%s_EventScript_Resident" % name, "flag": "0"}],
-        "warp_events": [{"x": x, "y": 7, "elevation": 3, "dest_map": "MAP_PALLET_TOWN",
-                         "dest_warp_id": str(3 + i)} for x in (3, 4, 5)],
-        "coord_events": [], "bg_events": [],
-    }
+for name, mj, sc, tx in interiors:
     write("data/maps/%s/map.json" % name, dump(mj))
-    write("data/maps/%s/scripts.inc" % name,
-          "%s_MapScripts::\n\t.byte 0\n\n%s_EventScript_Resident::\n\tmsgbox %s_Text_Resident, MSGBOX_NPC\n\tend\n"
-          % (name, name, name))
-    parts = re.split(r"(\\n|\\p)", NPC_TEXT[name])
-    out_lines = []
-    cur = ""
-    for p in parts:
-        cur += p
-        if p in ("\\n", "\\p"):
-            out_lines.append(cur)
-            cur = ""
-    out_lines.append(cur)
-    body = "".join('    .string "%s"\n' % l for l in out_lines if l)
-    write("data/maps/%s/text.inc" % name, "%s_Text_Resident::\n%s" % (name, body))
+    write("data/maps/%s/scripts.inc" % name, sc)
+    write("data/maps/%s/text.inc" % name, tx.lstrip("\n"))
     groups["gMapGroup_IndoorPallet"].append(name)
 write("data/maps/map_groups.json", dump(groups))
-
 es = orig("data/event_scripts.s")
-inc_s = "".join('\t.include "data/maps/%s/scripts.inc"\n' % h[0] for h in HOUSES)
-inc_t = "".join('\t.include "data/maps/%s/text.inc"\n' % h[0] for h in HOUSES)
+inc_s = "".join('\t.include "data/maps/%s/scripts.inc"\n' % n for n, *_ in interiors)
+inc_t = "".join('\t.include "data/maps/%s/text.inc"\n' % n for n, *_ in interiors)
 es = es.replace('\t.include "data/maps/PalletTown_ProfessorOaksLab/scripts.inc"\n',
                 '\t.include "data/maps/PalletTown_ProfessorOaksLab/scripts.inc"\n' + inc_s)
 es = es.replace('\t.include "data/maps/PalletTown_ProfessorOaksLab/text.inc"\n',
                 '\t.include "data/maps/PalletTown_ProfessorOaksLab/text.inc"\n' + inc_t)
 write("data/event_scripts.s", es)
-print("wired: layout %d wide, %d new houses" % (NEW_W, len(HOUSES)))
+
+# ---------------- trainer data ----------------
+opp = orig("include/constants/opponents.h")
+first = int(re.search(r"#define NUM_TRAINERS\s+(\d+)", opp).group(1))
+defs = "".join("#define %-40s %d\n" % (tr["const"], first + i) for i, tr in enumerate(TRAINERS))
+opp = opp.replace("\n// NOTE: Because each Trainer", "\n" + defs + "\n// NOTE: Because each Trainer", 1)
+opp = re.sub(r"#define NUM_TRAINERS\s+\d+", "#define NUM_TRAINERS                             %d" % (first + len(TRAINERS)), opp)
+write("include/constants/opponents.h", opp)
+MUSIC = {"YOUNGSTER": "TRAINER_ENCOUNTER_MUSIC_MALE",
+         "LASS": "TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE",
+         "BUG_CATCHER": "TRAINER_ENCOUNTER_MUSIC_MALE",
+         "CAMPER": "TRAINER_ENCOUNTER_MUSIC_MALE",
+         "PICNICKER": "TRAINER_ENCOUNTER_MUSIC_GIRL | F_TRAINER_FEMALE",
+         "FISHERMAN": "TRAINER_ENCOUNTER_MUSIC_HIKER",
+         "SAILOR": "TRAINER_ENCOUNTER_MUSIC_MALE",
+         "TUBER": "TRAINER_ENCOUNTER_MUSIC_GIRL | F_TRAINER_FEMALE",
+         "POKEMANIAC": "TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS"}
+PIC = {"TUBER": "TUBER_F"}
+tdata = orig("src/data/trainers.h")
+parties = orig("src/data/trainer_parties.h")
+entries = ""
+for tr in TRAINERS:
+    cls = tr["class"]
+    party = "sParty_Pallet%s" % tr["name"].capitalize()
+    entries += ("    [%s] = {\n        .trainerClass = TRAINER_CLASS_%s,\n        .encounterMusic_gender = %s,\n"
+                "        .trainerPic = TRAINER_PIC_%s,\n        .trainerName = _(\"%s\"),\n        .items = {},\n"
+                "        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,\n"
+                "        .party = NO_ITEM_DEFAULT_MOVES(%s),\n    },\n") % (tr["const"], cls, MUSIC[cls],
+                                                                         PIC.get(cls, cls), tr["name"], party)
+    parties += "\nstatic const struct TrainerMonNoItemDefaultMoves %s[] = {\n" % party
+    for species, lvl in tr["party"]:
+        parties += "    {\n        .iv = 0,\n        .lvl = %d,\n        .species = SPECIES_%s,\n    },\n" % (lvl, species)
+    parties += "};\n"
+i = tdata.rindex("};")
+write("src/data/trainers.h", tdata[:i] + entries + tdata[i:])
+write("src/data/trainer_parties.h", parties)
+print("wired: %dx%d town, %d buildings, %d interior maps, %d townsfolk, %d trainers"
+      % (NEW_W, NEW_H, len(CITY.BUILDINGS), len(interiors), len(CITY.OUTDOOR), len(TRAINERS)))
