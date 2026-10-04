@@ -25,21 +25,21 @@ index 88d7594..fb4c95e 100644
  	.include "data/maps/ViridianCity_Gym/text.inc"
  	.include "data/maps/ViridianCity_School/text.inc"
 diff --git a/data/layouts/PalletTown/map.bin b/data/layouts/PalletTown/map.bin
-index f2113394f22d6f0180f364071301b5ed06588773..b76973224045934d795e31b22804aabba28c25e4 100644
+index f2113394f22d6f0180f364071301b5ed06588773..2c87b85297b8ab3337912ec13750cfcea95e4dd7 100644
 GIT binary patch
 literal 1760
-zcma)7XLHj)5QXG;>rfJe?Sx_{fKwphgJ$&y=^fF#>3xPe^r3{_!Svoc1PC2M3FuVs
-zgeQ1*PPcw~`}Dk8pEDvWG9|4#F_K4dZAsj$NQtzl7Y!w>CNY}FaAOHvshJVd$5=PU
-z@pwP;KFjL_o)}`2c(RjE;i(}K@Kn|`_dBITjpM`S={$pH@+_Y1<WbDwxjc{OE64&~
-z$cuQfg4nFH@?7ovmAXr?6w9z2D-fyLyb`Oi25UoX9k0g*Y{KRck!+on*Zgk5R&2v|
-z?9eK9Vi$H}Pl)a1eb|o!I2a;QS7)hyTlo+U;|Px8m{M_^Pv9g@;dF?d;j=i0^SBTq
-zHpf}2-vTb;5-#Hkt|}GRa2=~~12;pgfLpkYJGdJnHpf}2-=L@W_`dc=0=$&{0Y7wW
-zRlh;qBYxba?h}6M$1{E&W4_>*zOFhCHoxN6F5bp(@D}gT7OS(lo!{ewA0P1vpZN=a
-z^;zHeyPxTPqZ#brANYx1=x}s?!;3P}=~U(U54w>T-KmVqEkQl3`0VTbjb;!QQGzN6
-zR-T3Fg<<w|>hs)-dQ%^&q$=u52KBR&lyY!=_I1C}45rEJcA6sHgs)poHPoLrVgL=K
-zL6ot)KIpTr`fb%FHA}Tr=lUxb6{cazCH)Sz<asb8%!aysh|j+2xA4!TO3$8-ceY5i
-zcFtK*baK7hhxqKPeuFvddT+2ANk*BF*Cyvl#Uk=MOmPwU39{kIoRKq{lf^WOVUb_2
-zgFz>QJwTg{7AHm+!E^q%w^;H&MV`NgnQ-2WzADWsQ?7&==<1B%zK(ht^7r-^k-O;7
+zcma)7XLHj)6a?qk=TH)a?S$eafKwphgXZZE(mSGe)B6l{=tBv;L+HJC2oO4i63|IH
+z=_H)sd2_n+&c4<9X)R|(mB<#gYQ#t$#nnY|t3+C4M6IYRVl{}-JcjFw;7ZM`kUqw`
+zHIB#oC-1YoPT+|FHi;)Y=P5ijKon1BO>@6fT2wkdY@W_DcqY%{+0HqvIXsu=@q7(g
+zzzca1FV+y7qpUnv_<p7C5-i0sEXN9jsy460YOKN909(iFu>qT~IY1;k%F0LlZoyV;
+z!*=Y5bnL_~?8cq|+spf~9|v$SK%{PzrTcB>LpY2hIErIh$8kP^lQ@Ob0d|JZ;vCN7
+zLV(yDXX$=ha1obq8CP&s>$ryNScMz78DK5Ah1<A;y8&WzoTd9!Grh<6BTq!(#q1CG
+zq1&tbReg{6ahJMJ_^Dsd_<4-^f?xW&dLC?k#jjnwmEYhk-k~+tXLB3B#|OVY;uAje
+z7yjzAzVUbe6!jZsu$_P4Cw`&b(fJLp5~9QD%JUy|Bd@wsf=VnwJ*;^4qw@_j2#Y95
+zr35R_!t}~8dpiAj?nS++50z0l^(BM)St&|8cr^P_zhMS5<V`z6p>ERGt)NQkPa83S
+z2GStPTHYL@+1LFxN0M4a)l}p9D-orpVag@_4z}d`U`TKp>dqmaecf-%KS`CIJst1e
+zBGuYBXNA?lweB3^+1LH5oOQj|S@k3<A>_5exl^GE{SMPygnra%cq(V)jK)+UjY3%H
+y*PEc4q}mnQXf!!B!ch15-`-@&{}lQDEi=o_&Q{V?x`vr_o}XHs@g**QZ+`)pU+DM%
 
 literal 960
 zcmZuvSxdt}7=*eE?TfOd>PxE+^#Ju@`Tn8zNxh91-c|*ziU*4Kt$3h5`E%Sa*>=-S

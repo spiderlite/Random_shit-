@@ -118,14 +118,17 @@ for y in (17, 18, 19):
 G[17][2 + DX] = 670          # was the bottom-left corner; lawn continues west now
 G[17][21 + DX] = LAWN        # was the right edge
 G[18][21 + DX] = 670         # was the bottom-right corner
-for x in range(2, 2 + DX):   # west extension: lawn edge, then dark grass
+# Row 19 holds tree tops (14/15), as the original does: the forest below the
+# map (border blocks) starts with mid-forest pieces, so without tops the trees
+# along the map's bottom edge would look sliced off.
+for x in range(2, 2 + DX):   # west extension: lawn edge, dark grass, tree tops
     G[17][x] = 694 if x == 2 else 670
     G[18][x] = 17 if x % 2 == 0 else 9
-    G[19][x] = 17 if x % 2 == 0 else 8
+    G[19][x] = 14 if x % 2 == 0 else 15
 for x in range(22 + DX, W - 2):  # east extension
     G[17][x] = 663 if x == W - 3 else LAWN
     G[18][x] = 671 if x == W - 3 else 670
-    G[19][x] = 17 if x % 2 == 0 else 8
+    G[19][x] = 14 if x % 2 == 0 else 15
 # kept original areas: Oak's lab block with its yard, fence and sign; the garden
 KEEP_AREAS = [(12, 9, 20, 16), (4, 11, 10, 15)]  # original coords, inclusive
 for (x0, y0, x1, y1) in KEEP_AREAS:
