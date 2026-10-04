@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/foundation.dart';
@@ -8,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../core/links.dart';
+import '../../platform/info.dart';
+import '../../platform/io.dart' as io;
 import '../../state/app_state.dart';
 import '../../state/queue.dart';
 import '../../theme/theme.dart';
@@ -161,14 +161,11 @@ class _HomeScreenState extends State<HomeScreen> {
         links.add(path);
         continue;
       }
-      try {
-        final file = File(path);
-        if (await file.length() > 20 * 1024 * 1024) continue; // not a link list
-        final text = utf8.decode(await file.readAsBytes(), allowMalformed: true);
-        final found = extractLinks(text);
-        if (found.isNotEmpty) files++;
-        links.addAll(found);
-      } catch (_) {}
+      final text = await io.readTextFile(path);
+      if (text == null) continue;
+      final found = extractLinks(text);
+      if (found.isNotEmpty) files++;
+      links.addAll(found);
     }
     if (!mounted) return;
     _add(links, source: files == 1 ? d.files.first.name : (files > 1 ? '$files files' : null));
@@ -178,9 +175,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final app = AppScope.of(context);
+    // Subscribe to settings too (e.g. the quality chip in the composer).
+    AppScope.of(context);
     final q = QueueScope.of(context);
-    final mobile = app.engine.isMobile;
 
     return LayoutBuilder(
       builder: (context, c) {
@@ -191,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
           duration: Motion.normal,
           switchInCurve: Motion.ease,
           child: items.isEmpty
-              ? EmptyState(key: ValueKey('empty-$_filter'), filter: _filter, mobile: mobile)
+              ? EmptyState(key: ValueKey('empty-$_filter'), filter: _filter, compact: compact, canShare: isAndroid, canDrop: isDesktop)
               : QueueList(
                   key: ValueKey('list-$_filter'),
                   items: items,
@@ -206,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         _toast?.extraInset = compact ? 76 : 0;
 
-        if (!mobile && !kIsWeb) {
+        if (isDesktop) {
           body = DropTarget(
             onDragEntered: (_) => setState(() => _dragging = true),
             onDragExited: (_) => setState(() => _dragging = false),

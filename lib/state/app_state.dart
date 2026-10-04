@@ -1,25 +1,33 @@
 import 'dart:async';
-import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import '../core/models.dart';
-import '../services/android_engine.dart';
-import '../services/desktop_engine.dart';
+import '../core/remote_protocol.dart';
+import '../platform/io.dart' as io;
 import '../services/engine.dart';
 import '../services/platform_bridge.dart';
+import '../services/remote_engine.dart';
+import '../services/remote_host.dart';
 import 'queue.dart';
-import 'store.dart';
+import 'store_base.dart';
 
-enum Phase { loading, setup, ready, unsupported }
+enum Phase {
+  loading,
+  /// Desktop first run: fetch yt-dlp and friends.
+  setup,
+  /// iOS / web: pair with a computer first.
+  connect,
+  ready,
+  unsupported,
+}
 
 /// The root of the app's state: settings, engine readiness and the queue.
 class AppState extends ChangeNotifier {
-  AppState({Engine? engine, PlatformBridge? bridge, Store? store})
-      : engine = engine ?? _defaultEngine(),
-        bridge = bridge ?? PlatformBridge(),
-        _store = store ?? Store() {
+  AppState({Engine? engine, PlatformBridge? bridge, KeyStore? store, this.webOrigin})
+      : engine = engine ?? io.createEngine(),
+        bridge = bridge ?? io.createBridge(),
+        _store = store ?? io.createStore() {
     queue = QueueController(
       engine: this.engine,
       bridge: this.bridge,
@@ -29,17 +37,17 @@ class AppState extends ChangeNotifier {
     );
   }
 
-  static Engine _defaultEngine() {
-    if (kIsWeb) return UnsupportedEngine();
-    if (Platform.isAndroid) return AndroidEngine();
-    if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) return DesktopEngine();
-    return UnsupportedEngine();
-  }
-
   final Engine engine;
   final PlatformBridge bridge;
-  final Store _store;
+  final KeyStore _store;
   late final QueueController queue;
+
+  /// When this app is a web page served by Haul on a computer, that
+  /// computer's address (the page's own origin).
+  final Uri? webOrigin;
+
+  /// The phone side of remote mode, when that's how this device works.
+  RemoteEngine? get remote => engine is RemoteEngine ? engine as RemoteEngine : null;
 
   Settings _settings = const Settings();
   Settings get settings => _settings;
@@ -48,9 +56,11 @@ class AppState extends ChangeNotifier {
   Phase get phase => _phase;
 
   String? _defaultDir;
-  String get downloadDir => _settings.downloadDir ?? _defaultDir ?? '';
+  String get downloadDir => remote != null ? (_defaultDir ?? '') : (_settings.downloadDir ?? _defaultDir ?? '');
 
   Future<String> resolvedDownloadDir() async {
+    // A remote computer decides where its files go.
+    if (remote != null) return remote!.defaultDownloadDir();
     if (_settings.downloadDir != null) return _settings.downloadDir!;
     return _defaultDir ??= await engine.defaultDownloadDir();
   }
@@ -74,8 +84,11 @@ class AppState extends ChangeNotifier {
       notifyListeners();
     });
 
+    if (remote != null) return _initRemote();
+
     await engine.detect();
     _defaultDir = await engine.defaultDownloadDir();
+    if (_settings.serverEnabled) unawaited(startServer());
 
     if (engine.ready && (_settings.onboarded || engine.isMobile)) {
       _goReady();
@@ -83,6 +96,51 @@ class AppState extends ChangeNotifier {
       _phase = Phase.setup;
       notifyListeners();
     }
+  }
+
+  Uri? get _savedHost => webOrigin ?? (_settings.remoteHost == null ? null : parseHost(_settings.remoteHost!));
+
+  Future<void> _initRemote() async {
+    final r = remote!;
+    final host = _savedHost;
+    if (host != null && _settings.remoteCode != null) {
+      await r.connect(host, _settings.remoteCode!);
+      _defaultDir = await r.defaultDownloadDir();
+    }
+    if (r.ready) {
+      _goReady();
+    } else {
+      _phase = Phase.connect;
+      notifyListeners();
+    }
+  }
+
+  /// Pair with a computer (iOS / web). Returns an error message or null.
+  Future<String?> connect(String hostInput, String code) async {
+    final r = remote;
+    if (r == null) return 'Not available here';
+    final host = webOrigin ?? parseHost(hostInput);
+    if (host == null) return 'That doesn\'t look like an address. Try something like 192.168.1.20';
+    final err = await r.connect(host, code);
+    if (err != null) {
+      notifyListeners();
+      return err;
+    }
+    update((s) => s.copyWith(
+          remoteHost: () => webOrigin == null ? host.authority : null,
+          remoteCode: () => normalizeCode(code),
+        ));
+    _defaultDir = await r.defaultDownloadDir();
+    _goReady();
+    return null;
+  }
+
+  Future<void> disconnect() async {
+    await queue.shutdown();
+    remote?.disconnect();
+    update((s) => s.copyWith(remoteHost: () => null, remoteCode: () => null));
+    _phase = Phase.connect;
+    notifyListeners();
   }
 
   void _goReady() {
@@ -97,6 +155,51 @@ class AppState extends ChangeNotifier {
     if (!engine.ready) return;
     _goReady();
   }
+
+  // ───────────────────────── phone access (computer side) ─────────────────────────
+
+  RemoteHost? _server;
+  String? _serverError;
+  String? get serverError => _serverError;
+  bool get serverRunning => _server?.running ?? false;
+  bool get canHostRemote => io.canHostRemote;
+
+  String get serverCode {
+    final c = _settings.serverCode;
+    if (c != null) return c;
+    final fresh = newPairingCode();
+    _settings = _settings.copyWith(serverCode: fresh);
+    _save();
+    return fresh;
+  }
+
+  Future<void> startServer() async {
+    if (!io.canHostRemote) return;
+    _server ??= io.createRemoteServer(engine: engine, code: () => serverCode, downloadDir: resolvedDownloadDir);
+    try {
+      await _server?.start();
+      _serverError = null;
+    } catch (_) {
+      _serverError = 'Couldn\'t open port $remoteDefaultPort — is another copy of Haul running?';
+      _server = null;
+    }
+    notifyListeners();
+  }
+
+  Future<void> stopServer() async {
+    await _server?.stop();
+    _server = null;
+    notifyListeners();
+  }
+
+  Future<void> setServerEnabled(bool on) async {
+    update((s) => s.copyWith(serverEnabled: on));
+    on ? await startServer() : await stopServer();
+  }
+
+  void newServerCode() => update((s) => s.copyWith(serverCode: newPairingCode()));
+
+  // ───────────────────────── settings ─────────────────────────
 
   void update(Settings Function(Settings s) change) {
     final before = _settings;
@@ -113,6 +216,13 @@ class AppState extends ChangeNotifier {
       });
 
   Future<void> flush() => _store.flush();
+
+  /// App quitting: stop work (partials stay for resume), close the server.
+  Future<void> shutdown() async {
+    await queue.shutdown();
+    await _server?.stop();
+    await flush();
+  }
 
   @override
   void dispose() {

@@ -7,9 +7,14 @@ import 'queue_header.dart';
 /// What an empty list says depends on which list it is. The "all" version
 /// doubles as a two-line tutorial.
 class EmptyState extends StatelessWidget {
-  const EmptyState({super.key, required this.filter, required this.mobile});
+  const EmptyState({super.key, required this.filter, required this.compact, required this.canShare, required this.canDrop});
   final QueueFilter filter;
-  final bool mobile;
+  /// Phone-width layout: the paste box sits below the list.
+  final bool compact;
+  /// Android: other apps can share links straight to Haul.
+  final bool canShare;
+  /// Desktop: files can be dropped on the window.
+  final bool canDrop;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +23,12 @@ class EmptyState extends StatelessWidget {
       QueueFilter.all => (
           Icons.south_rounded,
           'Nothing here yet',
-          mobile
+          canShare
               ? 'Share a video to Haul from YouTube, Instagram, TikTok or your browser — or paste links below.'
-              : 'Paste a link, a playlist or a whole channel above. You can also drop a text file full of links anywhere on this window.',
+              : [
+                  'Paste a link, a playlist or a whole channel ${compact ? 'below' : 'above'}.',
+                  if (canDrop) 'You can also drop a text file full of links anywhere on this window.',
+                ].join(' '),
         ),
       QueueFilter.active => (Icons.bedtime_outlined, 'All quiet', 'Nothing is downloading right now.'),
       QueueFilter.done => (Icons.inventory_2_outlined, 'No downloads yet', 'Finished videos will show up here.'),
@@ -50,7 +58,7 @@ class EmptyState extends StatelessWidget {
                 Text(title, style: context.text.titleLarge, textAlign: TextAlign.center),
                 const SizedBox(height: 6),
                 Text(body, style: context.text.bodyMedium!.copyWith(color: p.ink2), textAlign: TextAlign.center),
-                if (filter == QueueFilter.all && mobile) ...[
+                if (filter == QueueFilter.all && canShare) ...[
                   const SizedBox(height: 22),
                   const _ShareHint(),
                 ],

@@ -5,6 +5,7 @@ import 'core/models.dart';
 import 'state/app_state.dart';
 import 'theme/theme.dart';
 import 'ui/home/home_screen.dart';
+import 'ui/setup/connect_screen.dart';
 import 'ui/setup/setup_screen.dart';
 import 'ui/widgets/toast.dart';
 
@@ -69,6 +70,7 @@ class _Root extends StatelessWidget {
       child: switch (phase) {
         Phase.loading => const LoadingScreen(key: ValueKey('loading')),
         Phase.setup => const SetupScreen(key: ValueKey('setup')),
+        Phase.connect => const ConnectScreen(key: ValueKey('connect')),
         Phase.ready => const HomeScreen(key: ValueKey('home')),
         Phase.unsupported => const UnsupportedScreen(key: ValueKey('unsupported')),
       },

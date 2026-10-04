@@ -29,6 +29,24 @@ jobs:
       - run: flutter analyze
       - run: flutter test
 
+  web:
+    name: Web UI
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      # Self-contained (no CDN): phones load it from Haul on your computer.
+      - run: flutter build web --release --no-web-resources-cdn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-ui
+          path: build/web
+
   android:
     name: Android APKs
     needs: check
@@ -56,7 +74,7 @@ jobs:
 
   linux:
     name: Linux
-    needs: check
+    needs: [check, web]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -67,6 +85,10 @@ jobs:
           channel: stable
           cache: true
       - run: flutter build linux --release
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-ui
+          path: build/linux/x64/release/bundle/web
       - run: tar -C build/linux/x64/release -czf Haul-linux-x64.tar.gz bundle
       - uses: actions/upload-artifact@v4
         with:
@@ -75,7 +97,7 @@ jobs:
 
   windows:
     name: Windows
-    needs: check
+    needs: [check, web]
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -85,6 +107,10 @@ jobs:
           channel: stable
           cache: true
       - run: flutter build windows --release
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-ui
+          path: build/windows/x64/runner/Release/web
       - run: Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath Haul-windows-x64.zip
       - uses: actions/upload-artifact@v4
         with:
@@ -93,7 +119,7 @@ jobs:
 
   macos:
     name: macOS
-    needs: check
+    needs: [check, web]
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -103,22 +129,51 @@ jobs:
           channel: stable
           cache: true
       - run: flutter build macos --release
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-ui
+          path: build/macos/Build/Products/Release/Haul.app/Contents/Resources/web
+      # Adding files changes the bundle; re-sign it (ad hoc) so it launches.
+      - run: codesign --force --deep --sign - build/macos/Build/Products/Release/Haul.app
       - run: ditto -c -k --keepParent build/macos/Build/Products/Release/Haul.app Haul-macos.zip
       - uses: actions/upload-artifact@v4
         with:
           name: Haul-macos
           path: Haul-macos.zip
 
+  ios:
+    name: iOS (unsigned)
+    needs: check
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter build ios --release --no-codesign
+      # An unsigned .ipa: sign it with your Apple ID via AltStore/Sideloadly.
+      - run: |
+          mkdir -p Payload
+          cp -R build/ios/iphoneos/Runner.app Payload/
+          zip -qry Haul-ios-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Haul-ios
+          path: Haul-ios-unsigned.ipa
+
   release:
     name: Publish release
     if: startsWith(github.ref, 'refs/tags/v')
-    needs: [android, linux, windows, macos]
+    needs: [android, linux, windows, macos, ios]
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/download-artifact@v4
         with:
+          pattern: Haul-*
           path: dist
           merge-multiple: true
       - uses: softprops/action-gh-release@v2

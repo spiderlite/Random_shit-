@@ -83,7 +83,7 @@ void main() {
     await _settle(tester);
     expect(find.text('Quality'), findsOneWidget);
     expect(find.text('Show in folder'), findsOneWidget);
-  });
+  }, variant: TargetPlatformVariant.only(TargetPlatform.linux));
 
   testWidgets('settings open and the theme can change', (tester) async {
     final state = await _boot(tester, const Size(1100, 800));
@@ -99,5 +99,5 @@ void main() {
     await tester.tap(find.text('Dark'));
     await _settle(tester);
     expect(state.settings.theme.name, 'dark');
-  });
+  }, variant: TargetPlatformVariant.only(TargetPlatform.linux));
 }

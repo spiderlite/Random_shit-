@@ -1,34 +1,20 @@
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:window_manager/window_manager.dart';
 
 import 'app.dart';
+import 'platform/io.dart' as io;
 import 'state/app_state.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await io.setupWindow();
 
-  final desktop = !kIsWeb && (Platform.isMacOS || Platform.isWindows || Platform.isLinux);
-  if (desktop) {
-    await windowManager.ensureInitialized();
-    await windowManager.waitUntilReadyToShow(
-      const WindowOptions(
-        title: 'Haul',
-        size: Size(1000, 760),
-        minimumSize: Size(400, 560),
-        center: true,
-      ),
-      () async {
-        await windowManager.show();
-        await windowManager.focus();
-      },
-    );
-  }
-
-  final state = AppState();
+  // On the web, Haul is served by a computer running Haul: talk to it.
+  final state = AppState(
+    webOrigin: kIsWeb ? Uri(scheme: Uri.base.scheme, host: Uri.base.host, port: Uri.base.port) : null,
+  );
   runApp(HaulApp(state: state));
   // Load and probe tools after the first frame so the window paints at once.
   state.init();
@@ -36,12 +22,13 @@ Future<void> main() async {
   // Don't leave yt-dlp processes or unsaved state behind on quit.
   AppLifecycleListener(
     onExitRequested: () async {
-      await state.queue.shutdown();
-      await state.flush();
+      await state.shutdown();
       return AppExitResponse.exit;
     },
     onStateChange: (s) {
-      if (s == AppLifecycleState.paused || s == AppLifecycleState.detached) state.flush();
+      if (s == AppLifecycleState.paused || s == AppLifecycleState.detached || s == AppLifecycleState.hidden) {
+        state.flush();
+      }
     },
   );
 }

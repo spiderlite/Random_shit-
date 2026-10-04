@@ -1,30 +1,43 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/services.dart';
 
-/// OS integration that isn't about yt-dlp itself: opening files, the
-/// Android share sheet, the background-download notification.
-class PlatformBridge {
-  PlatformBridge() {
-    if (Platform.isAndroid) {
-      _channel.setMethodCallHandler((call) async {
-        if (call.method == 'sharedText' && call.arguments is String) {
-          _shared.add(call.arguments as String);
-        }
-      });
-    }
-  }
+import '../platform/info.dart';
 
+/// OS integration that isn't about yt-dlp itself: opening and sharing
+/// files, the Android share sheet, the background-download notification.
+///
+/// This base class talks to the native side over a channel (Android, iOS)
+/// and compiles everywhere; desktop and web subclasses fill in the rest.
+class PlatformBridge {
   static const _channel = MethodChannel('haul/platform');
   final _shared = StreamController<String>.broadcast();
+  bool _listening = false;
 
-  /// Text other apps shared to Haul (Android "Share → Haul").
-  Stream<String> get sharedText => _shared.stream;
+  /// Starts receiving shares from the native side (lazily, once the
+  /// binding exists).
+  void _listen() {
+    if (_listening || !(isAndroid || isIOS)) return;
+    _listening = true;
+    _channel.setMethodCallHandler((call) async {
+      if (call.method == 'sharedText' && call.arguments is String) {
+        _shared.add(call.arguments as String);
+      }
+    });
+  }
+
+  bool get _mobileNative => isAndroid || isIOS;
+
+  /// Text other apps shared to Haul ("Share → Haul").
+  Stream<String> get sharedText {
+    _listen();
+    return _shared.stream;
+  }
 
   /// Text shared before Flutter was listening (cold start from share).
   Future<String?> takeInitialShare() async {
-    if (!Platform.isAndroid) return null;
+    if (!_mobileNative) return null;
+    _listen();
     try {
       return await _channel.invokeMethod<String>('takeInitialShare');
     } catch (_) {
@@ -35,7 +48,7 @@ class PlatformBridge {
   /// Makes a finished file visible to galleries / file managers.
   /// Returns a content:// uri usable for open and share.
   Future<String?> publishFile(String path) async {
-    if (!Platform.isAndroid) return null;
+    if (!isAndroid) return null;
     try {
       return await _channel.invokeMethod<String>('scanFile', {'path': path});
     } catch (_) {
@@ -44,77 +57,47 @@ class PlatformBridge {
   }
 
   Future<bool> openFile(String path, {String? contentUri}) async {
+    if (!_mobileNative) return false;
     try {
-      if (Platform.isAndroid) {
-        return await _channel.invokeMethod<bool>('openFile', {'path': path, 'uri': contentUri}) ?? false;
-      }
-      if (Platform.isMacOS) return (await Process.run('open', [path])).exitCode == 0;
-      if (Platform.isWindows) return (await Process.run('cmd', ['/c', 'start', '', path])).exitCode == 0;
-      return (await Process.run('xdg-open', [path])).exitCode == 0;
+      return await _channel.invokeMethod<bool>('openFile', {'path': path, 'uri': contentUri}) ?? false;
     } catch (_) {
       return false;
     }
   }
 
-  Future<bool> revealFile(String path) async {
-    try {
-      if (Platform.isMacOS) return (await Process.run('open', ['-R', path])).exitCode == 0;
-      if (Platform.isWindows) {
-        await Process.run('explorer', ['/select,', path]);
-        return true; // explorer.exe returns 1 even on success
-      }
-      if (Platform.isLinux) {
-        // Ask the file manager to highlight the file; fall back to the folder.
-        final r = await Process.run('dbus-send', [
-          '--session', '--dest=org.freedesktop.FileManager1', '--type=method_call',
-          '/org/freedesktop/FileManager1', 'org.freedesktop.FileManager1.ShowItems',
-          'array:string:${Uri.file(path)}', 'string:',
-        ]);
-        if (r.exitCode == 0) return true;
-        return (await Process.run('xdg-open', [File(path).parent.path])).exitCode == 0;
-      }
-    } catch (_) {}
-    return false;
-  }
+  /// Desktop only: highlight the file in Finder / Explorer / Files.
+  Future<bool> revealFile(String path) async => false;
 
   Future<bool> openFolder(String dir) async {
+    if (!isAndroid) return false;
     try {
-      await Directory(dir).create(recursive: true);
-      if (Platform.isAndroid) return await _channel.invokeMethod<bool>('openDownloads') ?? false;
-      if (Platform.isMacOS) return (await Process.run('open', [dir])).exitCode == 0;
-      if (Platform.isWindows) {
-        await Process.run('explorer', [dir]);
-        return true;
-      }
-      return (await Process.run('xdg-open', [dir])).exitCode == 0;
+      return await _channel.invokeMethod<bool>('openDownloads') ?? false;
     } catch (_) {
       return false;
     }
   }
 
   Future<void> shareFile(String path, {String? contentUri, String? title}) async {
-    if (!Platform.isAndroid) return;
-    await _channel.invokeMethod('shareFile', {'path': path, 'uri': contentUri, 'title': title});
+    if (!_mobileNative) return;
+    try {
+      await _channel.invokeMethod('shareFile', {'path': path, 'uri': contentUri, 'title': title});
+    } catch (_) {}
   }
 
   Future<void> openUrl(String url) async {
+    if (!_mobileNative) return;
     try {
-      if (Platform.isAndroid) {
-        await _channel.invokeMethod('openUrl', {'url': url});
-      } else if (Platform.isMacOS) {
-        await Process.run('open', [url]);
-      } else if (Platform.isWindows) {
-        await Process.run('rundll32', ['url.dll,FileProtocolHandler', url]);
-      } else {
-        await Process.run('xdg-open', [url]);
-      }
+      await _channel.invokeMethod('openUrl', {'url': url});
     } catch (_) {}
   }
+
+  /// Web: hand a file to the browser's own downloader.
+  Future<void> downloadInBrowser(Uri url, String name) async {}
 
   /// Android: keeps downloads alive in the background with a quiet
   /// progress notification. `active == 0` stops it.
   Future<void> updateBackgroundWork({required int active, required int queued, double? progress, String? title}) async {
-    if (!Platform.isAndroid) return;
+    if (!isAndroid) return;
     try {
       await _channel.invokeMethod('background', {
         'active': active,
@@ -128,7 +111,7 @@ class PlatformBridge {
   /// Android 13+ asks before showing notifications; older storage asks
   /// before writing to Downloads. Returns whether we may write.
   Future<bool> ensurePermissions() async {
-    if (!Platform.isAndroid) return true;
+    if (!isAndroid) return true;
     try {
       return await _channel.invokeMethod<bool>('ensurePermissions') ?? true;
     } catch (_) {

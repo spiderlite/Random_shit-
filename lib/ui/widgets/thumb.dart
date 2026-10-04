@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import '../../core/links.dart';
+import '../../platform/io.dart' as io;
 import '../../theme/theme.dart';
 
 /// 16:9 thumbnail that fades in when loaded and falls back to a quiet tile
@@ -11,7 +10,8 @@ class VideoThumb extends StatelessWidget {
   static ImageProvider _provider(String url) {
     // Local files (e.g. thumbnails yt-dlp wrote next to a download).
     if (url.startsWith('/') || url.startsWith('file://')) {
-      return FileImage(File(url.replaceFirst('file://', '')));
+      final local = io.localImage(url);
+      if (local != null) return local;
     }
     return NetworkImage(url);
   }

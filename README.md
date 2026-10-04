@@ -1,6 +1,6 @@
 # Haul
 
-**Paste links, get videos.** A calm, fast front-end for [yt-dlp](https://github.com/yt-dlp/yt-dlp) for Android, macOS, Windows and Linux.
+**Paste links, get videos.** A calm, fast front-end for [yt-dlp](https://github.com/yt-dlp/yt-dlp) for Android, iPhone, macOS, Windows, Linux and any web browser.
 
 Share a video to Haul from YouTube, Instagram, TikTok, X or your browser, or paste a hundred links at once. Whole playlists and channels work too. Haul queues them, downloads several at a time, and saves them where your gallery and file manager can see them.
 
@@ -23,8 +23,20 @@ Every push builds the apps in GitHub Actions. Open the latest run of the **Build
 | macOS | `Haul-macos.zip` | Not notarized yet: right-click → **Open** the first time. |
 | Windows | `Haul-windows-x64.zip` | Unzip and run `haul.exe`. |
 | Linux | `Haul-linux-x64.tar.gz` | Unpack and run `bundle/haul`. |
+| iPhone / iPad | `Haul-ios-unsigned.ipa` | Install with AltStore or Sideloadly (signs it with your Apple ID). Works with Haul on your computer, see below. |
+| Any browser | (built into the desktop apps) | Turn on **Use from your phone** on your computer and open the address it shows. |
 
 Pushing a tag like `v0.1.0` publishes all of them as a GitHub release.
+
+## Phones and browsers: use your computer
+
+Android runs yt-dlp on the phone itself. iOS doesn't allow that, and neither do browsers, so Haul can borrow your computer instead:
+
+1. On your Mac, Windows or Linux computer, open Haul → **Settings → Use from your phone** and switch it on. It shows an address such as `192.168.1.20:8642` and a 6-letter code.
+2. On your iPhone, open the Haul app and enter both. **Or skip the app entirely** and visit `http://192.168.1.20:8642` in Safari or any other browser, then enter the code.
+3. Paste links on your phone as usual. Your computer downloads them. The iOS app copies finished videos onto the phone (Files → On My iPhone → Haul, and from there **Save Video** to Photos). In a browser, tap the download button.
+
+The connection is local to your Wi-Fi and protected by the code. A phone can only ask for downloads into the computer's Haul folder: every request is checked against the exact yt-dlp options Haul itself uses, so a paired phone can't run arbitrary commands on the computer.
 
 ## What it does
 
@@ -52,6 +64,8 @@ Pushing a tag like `v0.1.0` publishes all of them as a GitHub release.
 ## How it works
 
 ```
+ iPhone app / browser ── RemoteEngine ── HTTP (code, LAN) ──► RemoteServer on your computer ─┐
+                                                                                             ▼
                 ┌──────────────────────── Flutter (lib/) ────────────────────────┐
  paste/share →  │ links.dart → QueueController → ytdlp.dart (args + output parser)│
                 └──────────────┬──────────────────────────────────┬──────────────┘
@@ -64,7 +78,7 @@ Pushing a tag like `v0.1.0` publishes all of them as a GitHub release.
 - Both engines run **the same yt-dlp arguments** and feed stdout into the same parser. Haul adds `--progress-template` and `--print` hooks, so progress, final file paths and per-stream sizes arrive as structured lines rather than scraped text.
 - **Desktop**: on first run Haul downloads the official standalone `yt-dlp` and, optionally, ffmpeg (for HD merging and MP3) and Deno (for every YouTube quality). It uses system copies if you already have them. Everything can be updated from **Settings → Engine**.
 - **Android**: [youtubedl-android](https://github.com/JunkFood02/youtubedl-android) ships Python, ffmpeg and QuickJS inside the APK. yt-dlp updates itself at most once a day. Files go to `Download/Haul` and are registered with the media scanner, so they show up in Gallery and Files.
-- **iOS** isn't supported: iOS doesn't allow apps to run yt-dlp's Python and helper programs on the device.
+- **iOS and the web** use **remote mode**: a `RemoteEngine` sends the same arguments over HTTP to the computer's `RemoteServer`. The server checks each request against an allowlist of Haul's own options and runs it, and the phone polls for output lines. iOS doesn't allow apps to run yt-dlp's Python and helper programs on the device, so this is the reliable path there.
 
 ## Design
 
@@ -84,6 +98,8 @@ flutter analyze
 
 flutter build apk --release --split-per-abi
 flutter build macos | windows | linux
+flutter build ios --release --no-codesign
+flutter build web --release --no-web-resources-cdn   # copy build/web next to a desktop app to serve it
 
 # Regenerate the README screenshots from the real UI:
 HAUL_SCREENSHOTS=1 flutter test test/screenshots_test.dart
@@ -92,7 +108,9 @@ HAUL_SCREENSHOTS=1 flutter test test/screenshots_test.dart
 ```
 lib/
   core/       links, models, yt-dlp args + output parsing (pure Dart, unit tested)
-  services/   engines (desktop process / Android channel) and OS integration
+  services/   engines (desktop process / Android channel / remote HTTP),
+              the phone-access server, OS integration
+  platform/   dart:io vs web implementations behind one import
   state/      app state, queue scheduler, persistence
   theme/      palette, type, motion tokens
   ui/         home (composer, queue), details sheet, settings, setup
@@ -100,6 +118,7 @@ android/app/src/main/kotlin/dev/haul/haul/
   HaulEngine.kt       runs yt-dlp via youtubedl-android, streams output to Dart
   DownloadService.kt  foreground service + progress notification
   MainActivity.kt     share intent, open/share files, permissions
+ios/Runner/AppDelegate.swift  QuickLook playback and the share sheet
 ```
 
 ## Fair use

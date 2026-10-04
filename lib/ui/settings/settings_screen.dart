@@ -1,16 +1,17 @@
-import 'dart:io';
-
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/format.dart';
 import '../../core/models.dart';
+import '../../platform/info.dart';
+import '../../platform/io.dart' as io;
 import '../../services/engine.dart';
 import '../../state/app_state.dart';
 import '../../theme/theme.dart';
 import '../home/preset_picker.dart';
 import '../widgets/kit.dart';
 import '../widgets/toast.dart';
+import 'phone_access.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -33,6 +34,9 @@ class SettingsScreen extends StatelessWidget {
     final app = AppScope.of(context);
     final s = app.settings;
     final mobile = app.engine.isMobile;
+    final remote = app.remote;
+    // Only a local desktop engine can choose its own folder.
+    final pickable = !mobile && remote == null;
     final p = context.palette;
 
     final sections = <Widget>[
@@ -49,10 +53,10 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           _Row(
-            title: 'Save to',
+            title: remote != null ? 'Saved on ${remote.info?.name ?? 'your computer'} in' : 'Save to',
             subtitle: prettyPath(app.downloadDir, _home),
-            onTap: mobile ? null : () => _pickFolder(context),
-            trailing: mobile
+            onTap: pickable ? () => _pickFolder(context) : null,
+            trailing: !pickable
                 ? null
                 : Row(
                     mainAxisSize: MainAxisSize.min,
@@ -67,6 +71,13 @@ class SettingsScreen extends StatelessWidget {
                     ],
                   ),
           ),
+          if (remote != null && !isWeb)
+            _Switch(
+              title: 'Copy to this phone',
+              subtitle: 'Finished videos come over automatically and appear in the Files app.',
+              value: s.saveToDevice,
+              onChanged: (v) => app.update((s) => s.copyWith(saveToDevice: v)),
+            ),
           _Row(
             title: 'At the same time',
             subtitle: s.concurrency == 1 ? 'One download at a time' : '${s.concurrency} downloads at once',
@@ -137,7 +148,7 @@ class SettingsScreen extends StatelessWidget {
           ),
         ],
       ),
-      if (!mobile)
+      if (isDesktop && remote == null)
         _Section(
           title: 'Convenience',
           children: [
@@ -181,6 +192,28 @@ class SettingsScreen extends StatelessWidget {
           ),
         ],
       ),
+      if (app.canHostRemote) const _Section(title: 'Use from your phone', children: [PhoneAccess()]),
+      if (remote != null)
+        _Section(
+          title: 'Computer',
+          children: [
+            _Row(
+              title: remote.info?.name ?? 'Your computer',
+              subtitle: isWeb ? 'This page is served by it' : 'Connected at ${remote.base?.authority ?? ''}',
+              trailing: isWeb
+                  ? null
+                  : HaulButton(
+                      label: 'Disconnect',
+                      dense: true,
+                      tone: ButtonTone.danger,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        app.disconnect();
+                      },
+                    ),
+            ),
+          ],
+        ),
       _Section(title: 'Engine', children: [const _EngineTools()]),
       Padding(
         padding: const EdgeInsets.fromLTRB(4, 8, 4, 0),
@@ -242,7 +275,7 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
-String? get homeDirectory => Platform.environment['HOME'] ?? Platform.environment['USERPROFILE'];
+String? get homeDirectory => io.homeDir();
 
 class _Section extends StatelessWidget {
   const _Section({required this.title, required this.children});

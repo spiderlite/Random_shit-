@@ -93,7 +93,7 @@ class DownloadPlan {
 
 String sanitizeFolder(String name) {
   var n = name.replaceAll(RegExp(r'[<>:"/\\|?*\x00-\x1F]'), ' ').replaceAll(RegExp(r'\s+'), ' ').trim();
-  n = n.replaceAll(RegExp(r'^[. ]+|[. ]+$'), '');
+  n = n.replaceAll(RegExp(r'\.{2,}'), '.').replaceAll(RegExp(r'^[. ]+|[. ]+$'), '');
   if (n.length > 80) n = n.substring(0, 80).trim();
   return n.isEmpty ? 'Collection' : n;
 }

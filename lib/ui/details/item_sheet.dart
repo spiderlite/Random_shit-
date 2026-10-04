@@ -7,7 +7,9 @@ import '../../core/models.dart';
 import '../../core/ytdlp.dart';
 import '../../state/app_state.dart';
 import '../../theme/theme.dart';
+import '../../platform/info.dart';
 import '../home/preset_picker.dart';
+import '../item_actions.dart';
 import '../settings/settings_screen.dart';
 import '../widgets/kit.dart';
 import '../widgets/thumb.dart';
@@ -200,9 +202,15 @@ class _ItemDetailsState extends State<ItemDetails> {
         SelectableText(item.url, style: context.text.bodySmall),
         if (item.filePath != null) ...[
           const SizedBox(height: 14),
-          Text('Saved to', style: context.text.titleSmall),
+          Text(AppScope.of(context).remote != null ? 'On your computer' : 'Saved to', style: context.text.titleSmall),
           const SizedBox(height: 6),
           SelectableText(item.filePath!, style: context.text.bodySmall),
+        ],
+        if (item.localPath != null) ...[
+          const SizedBox(height: 14),
+          Text('On this phone', style: context.text.titleSmall),
+          const SizedBox(height: 6),
+          Text('Files app → On My iPhone → Haul', style: context.text.bodySmall),
         ],
       ],
     );
@@ -369,25 +377,23 @@ class _Actions extends StatelessWidget {
   Widget build(BuildContext context) {
     final app = AppScope.of(context);
     final q = QueueScope.of(context);
-    final mobile = app.engine.isMobile;
-    final file = item.filePath;
-    final done = item.status == DownloadStatus.done && file != null;
 
+    final reach = reachOf(app, item);
+    final here = localFileOf(app, item);
     final primary = <Widget>[
-      if (done)
+      if (item.saveProgress != null)
+        HaulButton(label: 'Copying ${(item.saveProgress! * 100).round()}%', icon: Icons.download_rounded, loading: true, onPressed: null)
+      else if (reach != Reach.none)
         HaulButton(
-          label: item.isAudio ? 'Play' : 'Open',
-          icon: Icons.play_arrow_rounded,
+          label: openLabel(app, item),
+          icon: openIcon(app, item),
           tone: ButtonTone.primary,
-          onPressed: () async {
-            final ok = await app.bridge.openFile(file, contentUri: item.contentUri);
-            if (!ok && context.mounted) ToastHost.show(context, 'Couldn\'t open it — was the file moved?');
-          },
+          onPressed: () => openItem(context, item),
         ),
-      if (done && mobile)
-        HaulButton(label: 'Share', icon: Icons.ios_share_rounded, onPressed: () => app.bridge.shareFile(file, contentUri: item.contentUri, title: item.title)),
-      if (done && !mobile)
-        HaulButton(label: 'Show in folder', icon: Icons.folder_open_rounded, onPressed: () => app.bridge.revealFile(file)),
+      if (reach == Reach.here && isHandheld)
+        HaulButton(label: 'Share', icon: Icons.ios_share_rounded, onPressed: () => app.bridge.shareFile(here!, contentUri: item.contentUri, title: item.title)),
+      if (reach == Reach.here && isDesktop)
+        HaulButton(label: 'Show in folder', icon: Icons.folder_open_rounded, onPressed: () => app.bridge.revealFile(here!)),
       if (item.status == DownloadStatus.done && item.skippedExisting)
         HaulButton(label: 'Download anyway', icon: Icons.download_rounded, tone: ButtonTone.primary, onPressed: () => q.redownload(item.id)),
       if (item.status.isActive || item.status == DownloadStatus.queued)

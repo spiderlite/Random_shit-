@@ -76,6 +76,7 @@ class DownloadItem {
     this.completedAt,
     this.skippedExisting = false,
     this.probed = false,
+    this.localPath,
   })  : id = id ?? newId(),
         addedAt = addedAt ?? DateTime.now();
 
@@ -106,6 +107,12 @@ class DownloadItem {
   String? filePath;
   /// Android: the MediaStore uri of the finished file, for open/share.
   String? contentUri;
+
+  /// Remote mode: `filePath` is on the computer; this is the copy saved
+  /// to this phone, once it has been fetched.
+  String? localPath;
+  /// Remote mode: 0..1 while the file is being copied to this device.
+  double? saveProgress;
   int? fileSize;
   String? error;
   DateTime? completedAt;
@@ -145,6 +152,7 @@ class DownloadItem {
         'completedAt': completedAt?.toIso8601String(),
         'skippedExisting': skippedExisting,
         'probed': probed,
+        'localPath': localPath,
       };
 
   static DownloadItem fromJson(Map<String, dynamic> j) => DownloadItem(
@@ -171,6 +179,7 @@ class DownloadItem {
         completedAt: DateTime.tryParse(j['completedAt'] as String? ?? ''),
         skippedExisting: j['skippedExisting'] as bool? ?? false,
         probed: j['probed'] as bool? ?? false,
+        localPath: j['localPath'] as String?,
       );
 }
 
@@ -203,6 +212,11 @@ class Settings {
     this.theme = ThemePref.system,
     this.watchClipboard = true,
     this.onboarded = false,
+    this.remoteHost,
+    this.remoteCode,
+    this.serverEnabled = false,
+    this.serverCode,
+    this.saveToDevice = true,
   });
 
   final FormatPreset preset;
@@ -221,6 +235,17 @@ class Settings {
   final bool watchClipboard;
   final bool onboarded;
 
+  /// Phone/browser side of remote mode: which computer to drive.
+  final String? remoteHost;
+  final String? remoteCode;
+
+  /// Computer side: let phones on the network use this Haul.
+  final bool serverEnabled;
+  final String? serverCode;
+
+  /// Remote mode on a phone: copy finished videos onto the phone.
+  final bool saveToDevice;
+
   Settings copyWith({
     FormatPreset? preset,
     String? downloadDir,
@@ -236,6 +261,11 @@ class Settings {
     ThemePref? theme,
     bool? watchClipboard,
     bool? onboarded,
+    String? Function()? remoteHost,
+    String? Function()? remoteCode,
+    bool? serverEnabled,
+    String? serverCode,
+    bool? saveToDevice,
   }) =>
       Settings(
         preset: preset ?? this.preset,
@@ -252,6 +282,11 @@ class Settings {
         theme: theme ?? this.theme,
         watchClipboard: watchClipboard ?? this.watchClipboard,
         onboarded: onboarded ?? this.onboarded,
+        remoteHost: remoteHost != null ? remoteHost() : this.remoteHost,
+        remoteCode: remoteCode != null ? remoteCode() : this.remoteCode,
+        serverEnabled: serverEnabled ?? this.serverEnabled,
+        serverCode: serverCode ?? this.serverCode,
+        saveToDevice: saveToDevice ?? this.saveToDevice,
       );
 
   Map<String, dynamic> toJson() => {
@@ -269,6 +304,11 @@ class Settings {
         'theme': theme.name,
         'watchClipboard': watchClipboard,
         'onboarded': onboarded,
+        'remoteHost': remoteHost,
+        'remoteCode': remoteCode,
+        'serverEnabled': serverEnabled,
+        'serverCode': serverCode,
+        'saveToDevice': saveToDevice,
       };
 
   static Settings fromJson(Map<String, dynamic> j) {
@@ -289,6 +329,11 @@ class Settings {
       theme: ThemePref.values.firstWhere((t) => t.name == j['theme'], orElse: () => d.theme),
       watchClipboard: pick('watchClipboard', d.watchClipboard),
       onboarded: pick('onboarded', d.onboarded),
+      remoteHost: j['remoteHost'] as String?,
+      remoteCode: j['remoteCode'] as String?,
+      serverEnabled: pick('serverEnabled', d.serverEnabled),
+      serverCode: j['serverCode'] as String?,
+      saveToDevice: pick('saveToDevice', d.saveToDevice),
     );
   }
 }

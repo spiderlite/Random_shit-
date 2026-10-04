@@ -4,10 +4,12 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
+import 'store_base.dart';
+
 /// A single JSON file in the app support folder. Writes are debounced and
 /// atomic (write to a temp file, then rename) so a crash mid-save never
 /// loses the queue.
-class Store {
+class Store implements KeyStore {
   Store([this._dirOverride]);
   final Directory? _dirOverride;
   File? _file;
@@ -21,6 +23,7 @@ class Store {
     return _file = File('${dir.path}${Platform.pathSeparator}haul.json');
   }
 
+  @override
   Future<Map<String, dynamic>> load() async {
     try {
       final f = await _target();
@@ -32,12 +35,14 @@ class Store {
     }
   }
 
+  @override
   void save(Map<String, dynamic> Function() snapshot) {
     _pending = snapshot;
     _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 600), flush);
   }
 
+  @override
   Future<void> flush() async {
     _debounce?.cancel();
     final snap = _pending;

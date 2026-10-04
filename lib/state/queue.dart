@@ -1,13 +1,15 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
 import '../core/links.dart';
 import '../core/models.dart';
 import '../core/ytdlp.dart';
+import '../platform/info.dart';
+import '../platform/io.dart' as io;
 import '../services/engine.dart';
 import '../services/platform_bridge.dart';
+import '../services/remote_engine.dart';
 
 /// Something worth a toast. [undo] makes it reversible.
 class Notice {
@@ -280,11 +282,8 @@ class QueueController extends ChangeNotifier {
       ignoreArchive: _ignoreArchive.contains(item.id),
       sep: engine.pathSeparator,
     );
-    if (!Platform.isAndroid) {
-      try {
-        await Directory(plan.outDir).create(recursive: true);
-      } catch (_) {}
-    }
+    // Local desktop engines need the folder; yt-dlp makes it elsewhere.
+    if (isDesktop && engine is! RemoteEngine) await io.ensureDir(plan.outDir);
 
     final parser = DownloadOutputParser();
     String? file;
@@ -356,15 +355,15 @@ class QueueController extends ChangeNotifier {
         ..filePath = file ?? item.filePath;
       final path = file;
       if (path != null) {
-        try {
-          item.fileSize = File(path).lengthSync();
-        } catch (_) {}
+        item.fileSize = io.fileSize(path) ?? item.fileSize ?? item.totalBytes;
         bridge.publishFile(path).then((uri) {
           if (uri != null) {
             item.contentUri = uri;
             persist();
           }
         });
+        // Remote mode on a phone: bring the file over automatically.
+        if (engine is RemoteEngine && !isWeb && settings().saveToDevice) unawaited(saveToDevice(item.id));
       }
     } else {
       _fail(item, r.stderr);
@@ -388,14 +387,35 @@ class QueueController extends ChangeNotifier {
   FriendlyError? errorFor(String id) => _errorDetail[id];
 
   void _deletePartials(List<String> paths) {
-    for (final p in paths) {
-      for (final f in [p, '$p.part', '$p.ytdl', '$p.part-Frag1']) {
-        try {
-          final file = File(f);
-          if (file.existsSync()) file.deleteSync();
-        } catch (_) {}
-      }
+    if (engine is RemoteEngine) return; // the computer tidies its own files
+    io.deleteFiles([
+      for (final p in paths) ...[p, '$p.part', '$p.ytdl', '$p.part-Frag1'],
+    ]);
+  }
+
+  /// Remote mode: copy a finished download from the computer to this
+  /// device (or, in a browser, hand it to the browser's downloads).
+  Future<bool> saveToDevice(String id) async {
+    final item = byId(id);
+    final remote = engine is RemoteEngine ? engine as RemoteEngine : null;
+    final path = item?.filePath;
+    if (item == null || remote == null || path == null || item.saveProgress != null) return false;
+    final name = path.split(remote.pathSeparator).last;
+    item.saveProgress = 0;
+    notifyListeners();
+    final local = await io.saveRemoteFile(remote.fileUri(path), name, (p) {
+      item.saveProgress = p;
+      _notifySoon();
+    });
+    item.saveProgress = null;
+    if (local != null) {
+      item.localPath = local;
+      final uri = await bridge.publishFile(local);
+      if (uri != null) item.contentUri = uri;
     }
+    notifyListeners();
+    persist();
+    return local != null || isWeb;
   }
 
   Timer? _notifyTimer;

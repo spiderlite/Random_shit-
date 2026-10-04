@@ -6,6 +6,8 @@ import '../../core/models.dart';
 import '../../core/ytdlp.dart';
 import '../../state/app_state.dart';
 import '../../theme/theme.dart';
+import '../../platform/info.dart';
+import '../item_actions.dart';
 import '../widgets/kit.dart';
 import '../widgets/thumb.dart';
 
@@ -238,11 +240,15 @@ class _Trailing extends StatelessWidget {
           color: p.ink,
           onPressed: () => q.retry(item.id),
         ),
+      DownloadStatus.done when item.saveProgress != null => Padding(
+          padding: const EdgeInsets.all(9),
+          child: ProgressRing(value: item.saveProgress, size: 18),
+        ),
       DownloadStatus.done when item.filePath != null => IconBtn(
-          icon: item.isAudio ? Icons.headphones_rounded : Icons.play_arrow_rounded,
-          tooltip: 'Open',
+          icon: openIcon(app, item),
+          tooltip: openLabel(app, item),
           color: p.ink,
-          onPressed: () => app.bridge.openFile(item.filePath!, contentUri: item.contentUri),
+          onPressed: () => openItem(context, item),
         ),
       DownloadStatus.done => const SizedBox(width: 36),
     };
@@ -251,19 +257,19 @@ class _Trailing extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (!compact && item.status == DownloadStatus.done && item.filePath != null)
+        if (!compact && reachOf(app, item) == Reach.here && isDesktop)
           _Fade(
             visible: hover,
             child: IconBtn(
               icon: Icons.folder_open_rounded,
               tooltip: 'Show in folder',
-              onPressed: () => app.bridge.revealFile(item.filePath!),
+              onPressed: () => app.bridge.revealFile(localFileOf(app, item)!),
             ),
           ),
         AnimatedSwitcher(
           duration: Motion.normal,
           transitionBuilder: (c, a) => ScaleTransition(scale: Tween(begin: 0.7, end: 1.0).animate(a), child: FadeTransition(opacity: a, child: c)),
-          child: KeyedSubtree(key: ValueKey('${item.status}-${item.filePath != null}'), child: primary),
+          child: KeyedSubtree(key: ValueKey('${item.status}-${item.filePath != null}-${item.saveProgress != null}-${item.localPath != null}'), child: primary),
         ),
         if (!compact)
           _Fade(
