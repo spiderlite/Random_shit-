@@ -1,0 +1,9 @@
+pokefirered/
+agbcc/
+pallet_upgrade/build/
+harness/gba
+harness/rec*/
+*.ss
+*.sav
+*.gba
+__pycache__/
