@@ -7,4 +7,5 @@ python3 build.py | grep -E 'unique tiles after|merged|metatiles used'
 python3 doors.py
 python3 wire.py
 make -C ../pokefirered -j4 > build/make.log 2>&1 || { tail -20 build/make.log; exit 1; }
+python3 check_reach.py
 echo "ROM built: ../pokefirered/pokefirered.gba"

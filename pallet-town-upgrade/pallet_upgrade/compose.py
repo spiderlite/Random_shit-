@@ -176,8 +176,14 @@ DOORS = {}    # (x, y) -> name
 SIGNS = set()
 
 
-def place(im, px, py, blocked=(), key=None):
-    objects.append((key if key is not None else py + im.height, im, px, py, set(blocked)))
+def place(im, px, py, blocked=(), base_rows=None, key=None):
+    """base_rows: the block rows the object stands in at ground level. Parts of the
+    sprite above those rows (roofs, tree crowns, lamp heads) are drawn above the
+    player; everything at ground level is drawn below the player, and any cell at
+    ground level that the object substantially covers is blocked."""
+    if base_rows is None:
+        base_rows = {(py + im.height - 1) // B}
+    objects.append((key if key is not None else py + im.height, im, px, py, set(blocked), set(base_rows)))
 
 
 def body_cells(im, px, py, rows):
@@ -200,8 +206,8 @@ def body_cells(im, px, py, rows):
 
 HOUSES = {  # sprite id, door centre x in the (unflipped) sprite
     "pink": (487, 24),
-    "orange": (489, 37),
-    "blue": (482, 15),
+    "orange": (489, 39),
+    "blue": (482, 19),
     "red": (468, 15),
 }
 
@@ -216,7 +222,7 @@ def house(name, design, flip, door):
     py = (dy + 1) * B - im.height
     cells = body_cells(im, px, py, range(dy - 3, dy + 1))
     cells.add((dx, dy))
-    place(im, px, py, cells)
+    place(im, px, py, cells, base_rows=range(dy - 3, dy + 1))
     DOORS[(dx, dy)] = name
     return cells
 
@@ -233,7 +239,7 @@ def mailbox(cell, color):
 def tree(cell, sid=62):
     t = sprite(sid)
     x, y = cell
-    place(t, x * B + 8 - t.width // 2, (y + 1) * B - t.height, {cell, (x, y - 1)} if t.height > 24 else {cell})
+    place(t, x * B + 8 - t.width // 2, (y + 1) * B - t.height, {cell, (x, y - 1)}, base_rows=(y - 1, y))
 
 
 # Core: player's and rival's houses on their original door squares.
@@ -271,12 +277,14 @@ def prop(im, cell, cells=None, align="bottom"):
 # Fountain plaza between the west district and the garden.
 fountain = dawn((48, 48, 96, 96))
 place(fountain, 11 * B + 8 - fountain.width // 2, 13 * B - fountain.height,
-      {(x, y) for x in (10, 11, 12) for y in (10, 11, 12)})
+      {(x, y) for x in (10, 11, 12) for y in (10, 11, 12)}, base_rows=(10, 11, 12))
 lamp = dawn((0, 95, 16, 145))
-prop(lamp, (9, 13))
-prop(lamp, (13, 13))
+# Lamp posts are solid for their base and pole squares; only the head overlaps.
+for lx in (9, 13):
+    place(lamp, lx * B + 8 - lamp.width // 2, 14 * B - lamp.height, {(lx, 12), (lx, 13)}, base_rows=(12, 13))
 bench = dawn((48, 96, 80, 112))
-place(bench, 10 * B + 8, 15 * B - bench.height, {(10, 14), (11, 14), (12, 14)} if bench.width > 32 else {(10, 14), (11, 14)})
+# Centred just below the fountain. It straddles three squares; all are blocked.
+place(bench, 11 * B + 8 - bench.width // 2, 15 * B - bench.height, {(10, 14), (11, 14), (12, 14)}, base_rows=(14,))
 
 # Pine grove on the east side, between Oak's lab and the east houses.
 for c in [(31, 12), (31, 15)]:
@@ -284,35 +292,69 @@ for c in [(31, 12), (31, 15)]:
 
 # Flower beds (walkable) in front of the new houses.
 pink, blue = sprite(283), sprite(271)
-# Flower beds on open lawn below the upper new houses (2 squares tall, walkable).
-FLOWERBEDS = [(7, 9, pink), (37, 9, blue)]
+FLOWERBEDS = []
 
 # ---------------- flatten objects ----------------
 objects.sort(key=lambda o: o[0])
-objlayer = Image.new("RGBA", under.size)
+ground_layer = Image.new("RGBA", under.size)  # object pixels at ground level
+high_layer = Image.new("RGBA", under.size)    # object pixels above their base (roofs, crowns)
 BLOCKED = set()
 DECAL = set()
-for _, im, px, py, cells in objects:
+
+
+def paste_clipped(layer, im, px, py):
     cx0, cy0 = max(0, -px), max(0, -py)
-    cx1, cy1 = min(im.width, under.width - px), min(im.height, under.height - py)
+    cx1, cy1 = min(im.width, layer.width - px), min(im.height, layer.height - py)
     if cx1 > cx0 and cy1 > cy0:
-        objlayer.alpha_composite(im.crop((cx0, cy0, cx1, cy1)), (px + cx0, py + cy0))
+        layer.alpha_composite(im.crop((cx0, cy0, cx1, cy1)), (px + cx0, py + cy0))
+
+
+for _, im, px, py, cells, base_rows in objects:
+    split = min(base_rows) * B - py  # sprite rows above this are "high"
+    high = im.copy()
+    low = im.copy()
+    if split > 0:
+        low.paste((0, 0, 0, 0), (0, 0, im.width, min(split, im.height)))
+        high.paste((0, 0, 0, 0), (0, max(split, 0), im.width, im.height))
+    else:
+        high = Image.new("RGBA", im.size)
+    # A later (lower on screen) object covers earlier ones in both layers.
+    for layer, part, other in ((ground_layer, low, high_layer), (high_layer, high, ground_layer)):
+        paste_clipped(layer, part, px, py)
+    # Ground-level cells this object substantially covers are blocked.
+    a = low.getchannel("A")
+    for y in base_rows:
+        for x in range(W):
+            box = (x * B - px, y * B - py, x * B - px + B, y * B - py + B)
+            if box[2] <= 0 or box[3] <= 0 or box[0] >= im.width or box[1] >= im.height:
+                continue
+            if sum(a.crop(box).histogram()[1:]) >= 0.25 * B * B:
+                cells.add((x, y))
     BLOCKED |= cells
 
+AUDIT = {"spill": [], "invisible_wall": []}
 for y in range(H):
     for x in range(W):
         box = (x * B, y * B, x * B + B, y * B + B)
-        obj = objlayer.crop(box)
-        if obj.getbbox() is None:
-            continue
+        low, high = ground_layer.crop(box), high_layer.crop(box)
+        base = under.crop(box)
         if (x, y) in BLOCKED:
-            base = under.crop(box)
-            base.alpha_composite(obj)
-            under.paste(base, box[:2])
+            base.alpha_composite(low)
+            base.alpha_composite(high)
+            if low.getbbox() is None and high.getbbox() is None:
+                AUDIT["invisible_wall"].append((x, y))
         else:
-            o = over.crop(box)
-            o.alpha_composite(obj)
-            over.paste(o, box[:2])
+            base.alpha_composite(low)
+            if low.getbbox() is not None:
+                AUDIT["spill"].append(((x, y), sum(low.getchannel("A").histogram()[1:])))
+            if high.getbbox() is not None:
+                o = over.crop(box)
+                o.alpha_composite(high)
+                over.paste(o, box[:2])
+        under.paste(base, box[:2])
+objlayer = Image.alpha_composite(ground_layer, high_layer)
+print("audit: ground-level pixels in walkable squares (drawn under the player):", AUDIT["spill"])
+print("audit: blocked squares with nothing visible:", AUDIT["invisible_wall"])
 for (x, y) in BLOCKED:
     COLL[y][x] = (1, 0)
 # Flower beds are walkable ground decoration, drawn straight onto the ground layer.

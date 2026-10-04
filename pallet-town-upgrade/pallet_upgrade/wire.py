@@ -80,14 +80,16 @@ for key in ("object_events", "warp_events", "coord_events", "bg_events"):
 for name, _, door, *_rest in HOUSES:
     m["warp_events"].append({"x": door[0], "y": door[1], "elevation": 0,
                              "dest_map": "MAP_PALLET_TOWN_" + name.split("_")[1].upper(),
-                             "dest_warp_id": "0"})
+                             # warp 1 is the middle doormat square, as every original house uses
+                             "dest_warp_id": "1"})
 for name, _, _, _, _, mbox, family in HOUSES:
     m["bg_events"].append({"type": "sign", "x": mbox[0], "y": mbox[1], "elevation": 0,
                            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
                            "script": "PalletTown_EventScript_%sMailbox" % family.capitalize()})
 m["object_events"] += [
-    {"type": "object", "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL", "x": 11, "y": 13, "elevation": 3,
-     "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT", "movement_range_x": 1, "movement_range_y": 0,
+    # On the open side of the bench, looking past it at the fountain.
+    {"type": "object", "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL", "x": 11, "y": 15, "elevation": 3,
+     "movement_type": "MOVEMENT_TYPE_FACE_UP", "movement_range_x": 1, "movement_range_y": 1,
      "trainer_type": "TRAINER_TYPE_NONE", "trainer_sight_or_berry_tree_id": "0",
      "script": "PalletTown_EventScript_FountainGirl", "flag": "0"},
     {"type": "object", "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_2", "x": 33, "y": 10, "elevation": 3,

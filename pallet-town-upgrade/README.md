@@ -4,7 +4,7 @@ A bigger Pallet Town for [pret/pokefirered](https://github.com/pret/pokefirered)
 
 - **Size:** the map goes from 24×20 to 44×20.
 - **New districts:** four new houses with working doors and their own interiors
-  (each with a resident to talk to), a fountain plaza, a pine grove and flower beds.
+  (each with a resident to talk to), a fountain plaza and a pine grove.
 - **Player and rival homes:** both houses get new art.
 - **Kept as in FireRed:** Oak's lab, the garden, the pond and the forest edge.
   All the original events still work, including Oak's "wait, it's unsafe!"
@@ -64,6 +64,9 @@ To change the design, edit `pallet_upgrade/compose.py` and run
 4. `wire.py` edits the map JSON, scripts, connections, heal location and the
    new interior maps. It always starts from the committed files, so you can
    re-run it.
+5. `check_reach.py` flood-fills the built map from the player's door and fails
+   the build if any NPC, sign or door can't be reached. `compose.py` also prints
+   an audit of squares where an object would be drawn wrongly or block invisibly.
 
 The `pallet_upgrade/orig/` folder is a copy of the original Pallet Town tileset
 and map that the pipeline reads from.
@@ -76,3 +79,5 @@ and map that the pipeline reads from.
 - `review.py` browses a recording: a summary, contact sheets, the frame on
   screen at a given time, diffs, and a rebuilt real-time video.
 - `tilesets.py` renders any tileset or map from the decomp with its real palettes.
+- `qa.py` runs a scripted walk from a save state and puts every screenshot side by
+  side, to check door arrivals and how objects are drawn around the player.

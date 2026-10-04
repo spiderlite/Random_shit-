@@ -15,7 +15,7 @@ credit, and the first one also sets license terms on anything built with it.
   Thedeadheroalistair, Shutwig, Asdsimone, Xxdevil, Steinnaples, Hek-el-grande,
   sylver1984, NikNak93, TeaAddiction, Cuddlesthefatcat, Magiscarf, Gigatom,
   The-Red-eX and ChaoticCherryCake.
-- Used for: the houses, pine trees, mailboxes and flower beds.
+- Used for: the houses, pine trees and mailboxes.
 
 ## Public Gen 3 Tileset — Dawn Bronze
 
