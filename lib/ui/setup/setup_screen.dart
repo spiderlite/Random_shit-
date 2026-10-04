@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../services/engine.dart';
 import '../../state/app_state.dart';
 import '../../theme/theme.dart';
 import '../widgets/kit.dart';
+import '../widgets/toast.dart';
 
 /// Desktop first run: fetch yt-dlp (+ optional helpers) once, with a clear
 /// picture of what's happening and why.
@@ -261,6 +263,101 @@ class UnsupportedScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Phones: the built-in engine (Python, yt-dlp, ffmpeg inside the app)
+/// failed to start. Say so plainly, show what went wrong, and offer a retry
+/// that visibly does something.
+class EngineErrorScreen extends StatefulWidget {
+  const EngineErrorScreen({super.key});
+
+  @override
+  State<EngineErrorScreen> createState() => _EngineErrorScreenState();
+}
+
+class _EngineErrorScreenState extends State<EngineErrorScreen> {
+  bool _busy = false;
+  int _attempts = 0;
+
+  Future<void> _retry() async {
+    final app = AppScope.read(context);
+    setState(() => _busy = true);
+    final ok = await app.retryEngine();
+    if (!mounted) return;
+    setState(() {
+      _busy = false;
+      if (!ok) _attempts++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final app = AppScope.of(context);
+    final p = context.palette;
+    final tool = app.engine.tools.isEmpty ? null : app.engine.tools.first;
+    final detail = app.engine.errorDetail;
+    final starting = _busy || tool?.state == ToolState.installing;
+
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 460),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(Icons.error_outline_rounded, size: 32, color: p.danger),
+                  const SizedBox(height: 16),
+                  Text('The download engine didn\'t start', style: context.text.headlineSmall),
+                  const SizedBox(height: 8),
+                  Text(
+                    _attempts == 0
+                        ? 'Haul carries its own copy of yt-dlp, Python and ffmpeg and unpacks them the first time it runs. That step failed on this phone.'
+                        : 'It failed again. Copy the details below and send them along so it can be fixed.',
+                    style: context.text.bodyLarge!.copyWith(color: p.ink2),
+                  ),
+                  if (tool?.error != null || detail != null) ...[
+                    const SizedBox(height: 20),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(color: p.sunken, borderRadius: BorderRadius.circular(Radii.md)),
+                      child: SelectableText(
+                        [?tool?.error, ?detail].join('\n'),
+                        maxLines: 8,
+                        style: context.mono.copyWith(fontSize: 12, color: p.ink),
+                      ),
+                    ),
+                  ],
+                  const SizedBox(height: 24),
+                  HaulButton(
+                    label: starting ? 'Starting…' : 'Try again',
+                    tone: ButtonTone.primary,
+                    expand: true,
+                    loading: starting,
+                    onPressed: starting ? null : _retry,
+                  ),
+                  const SizedBox(height: 8),
+                  HaulButton(
+                    label: 'Copy details',
+                    icon: Icons.copy_rounded,
+                    tone: ButtonTone.ghost,
+                    expand: true,
+                    onPressed: () {
+                      Clipboard.setData(ClipboardData(text: [?tool?.error, ?detail].join('\n')));
+                      ToastHost.of(context)?.show(ToastData('Details copied', icon: Icons.copy_rounded));
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

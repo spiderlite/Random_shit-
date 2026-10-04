@@ -52,6 +52,13 @@ android {
             // Signed with the debug key so CI builds install out of the box.
             // For store releases, add a real signing config here.
             signingConfig = signingConfigs.getByName("debug")
+            // No R8 shrinking/renaming: youtubedl-android (and the
+            // commons-compress code it uses to unpack Python on first run)
+            // looks classes up by name. Renaming them broke engine start-up
+            // in 0.1.0 ("r8"). The Java code is tiny next to the bundled
+            // Python and ffmpeg, so this costs almost nothing.
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }

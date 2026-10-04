@@ -54,7 +54,7 @@ class HaulEngine(private val context: Context) : EventChannel.StreamHandler {
                     )
                     post { result.success(info) }
                 } catch (e: Throwable) {
-                    post { result.error("init", e.message ?: "Couldn't start the download engine", null) }
+                    post { result.error("init", "Couldn't start the download engine.", describe(e)) }
                 }
             }
 
@@ -86,6 +86,20 @@ class HaulEngine(private val context: Context) : EventChannel.StreamHandler {
 
             else -> result.notImplemented()
         }
+    }
+
+    /** Exception type, message and root cause, for the error screen's "Copy details". */
+    private fun describe(e: Throwable): String = buildString {
+        var t: Throwable? = e
+        var depth = 0
+        while (t != null && depth < 4) {
+            if (depth > 0) append("\ncaused by ")
+            append(t.javaClass.name)
+            t.message?.let { append(": ").append(it) }
+            t = t.cause
+            depth++
+        }
+        e.stackTrace.take(6).forEach { append("\n  at ").append(it) }
     }
 
     @Synchronized

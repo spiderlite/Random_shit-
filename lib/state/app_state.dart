@@ -150,6 +150,18 @@ class AppState extends ChangeNotifier {
     queue.start();
   }
 
+  /// Phones: the built-in engine failed to start; try again.
+  Future<bool> retryEngine() async {
+    await engine.install();
+    if (engine.ready) {
+      _defaultDir = await engine.defaultDownloadDir();
+      _goReady();
+      return true;
+    }
+    notifyListeners();
+    return false;
+  }
+
   /// Called from the setup screen once the essentials are in place.
   void finishSetup() {
     if (!engine.ready) return;

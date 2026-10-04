@@ -1,5 +1,11 @@
 Paste links, get videos. Haul is a calm front-end for yt-dlp: share or paste one link, a hundred, or a whole channel, and it downloads them in parallel.
 
+## Fixed in 0.1.1
+
+On Android, 0.1.0 showed a "Set up Haul" screen with the error **r8**, and neither button worked. The release build's code shrinker (R8) had renamed part of the library that unpacks Haul's built-in Python and yt-dlp on first launch, so the engine never started. Shrinking is now off, the engine starts normally, and if it ever fails again you get a clear error screen with **Try again** and **Copy details**.
+
+**Updating from 0.1.0 on Android:** uninstall 0.1.0 first, then install this APK. Each build is signed with a different key, so Android won't install over it. You won't lose anything, because 0.1.0 couldn't download.
+
 ## Download
 
 | You have | Get this file |

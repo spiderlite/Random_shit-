@@ -68,7 +68,11 @@ class _Root extends StatelessWidget {
       transitionBuilder: (child, a) => FadeTransition(opacity: a, child: child),
       child: switch (phase) {
         Phase.loading => const LoadingScreen(key: ValueKey('loading')),
-        Phase.setup => const SetupScreen(key: ValueKey('setup')),
+        // Phones have the engine built in: "setup" there only means it
+        // failed to start, which deserves an honest error, not a wizard.
+        Phase.setup => AppScope.of(context).engine.isMobile
+            ? const EngineErrorScreen(key: ValueKey('engine-error'))
+            : const SetupScreen(key: ValueKey('setup')),
         Phase.connect => const ConnectScreen(key: ValueKey('connect')),
         Phase.ready => const HomeScreen(key: ValueKey('home')),
         Phase.unsupported => const UnsupportedScreen(key: ValueKey('unsupported')),

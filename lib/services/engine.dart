@@ -96,4 +96,7 @@ abstract class Engine {
   Future<String> defaultDownloadDir();
 
   Future<String?> archivePath();
+
+  /// Technical details of the last start-up failure, if any.
+  String? get errorDetail => null;
 }

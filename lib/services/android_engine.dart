@@ -26,6 +26,10 @@ class AndroidEngine extends Engine {
   final _cancelled = <String>{};
   final _toolCtrl = StreamController<List<ToolInfo>>.broadcast();
   bool _ready = false;
+
+  /// Technical details of the last start-up failure (for "Copy details").
+  @override
+  String? errorDetail;
   String? _downloadDir;
   String? _cacheDir;
   String? _jsRuntime;
@@ -90,7 +94,8 @@ class AndroidEngine extends Engine {
       _ready = true;
       _set((t) => t.copyWith(state: ToolState.ready, version: info?['version'] as String?, managed: true));
     } on PlatformException catch (e) {
-      _set((t) => t.copyWith(state: ToolState.failed, error: e.message ?? 'Couldn\'t start the engine'));
+      errorDetail = e.details is String ? e.details as String : null;
+      _set((t) => t.copyWith(state: ToolState.failed, error: e.message ?? 'Couldn\'t start the download engine.'));
     }
   }
 

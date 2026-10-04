@@ -1,7 +1,7 @@
 name: haul
 description: "Haul — paste links, get videos. A calm desktop front-end for yt-dlp."
 publish_to: 'none'
-version: 0.1.0+1
+version: 0.1.1+2
 
 environment:
   sdk: ^3.13.5

@@ -101,4 +101,28 @@ void main() {
     await _settle(tester);
     expect(state.settings.theme.name, 'dark');
   }, variant: TargetPlatformVariant.only(TargetPlatform.linux));
+
+  testWidgets('phone: engine fails to start, error is shown, Try again recovers', (tester) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    final dir = Directory.systemTemp.createTempSync('haul_engine_fail');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final engine = FakeEngine(mobile: true)..failStarts = 1;
+    final state = AppState(engine: engine, bridge: FakeBridge(), store: Store(dir));
+    await tester.runAsync(state.init);
+    await tester.pumpWidget(HaulApp(state: state));
+    await _settle(tester);
+
+    // Not the desktop setup wizard: an honest error with the real cause.
+    expect(find.text('Set up Haul'), findsNothing);
+    expect(find.text('The download engine didn\'t start'), findsOneWidget);
+    expect(find.textContaining('ClassNotFoundException'), findsOneWidget);
+
+    await tester.tap(find.text('Try again'));
+    await tester.runAsync(() => Future.delayed(const Duration(milliseconds: 20)));
+    await _settle(tester);
+    expect(state.phase, Phase.ready);
+    expect(find.text('No downloads yet'), findsOneWidget);
+  });
 }

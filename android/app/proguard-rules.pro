@@ -5,3 +5,6 @@
 -dontwarn com.fasterxml.jackson.**
 -dontwarn org.apache.commons.**
 -dontwarn java.beans.**
+# Unpacks Python/ffmpeg on first run; registers zip extra fields by reflection.
+-keep class org.apache.commons.compress.** { *; }
+-dontwarn org.apache.commons.compress.**

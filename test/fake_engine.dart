@@ -13,6 +13,22 @@ class FakeEngine extends Engine {
   final _cancel = <String, Completer<void>>{};
   /// When frozen the queue never starts anything (for screenshots).
   bool frozen = false;
+
+  /// Start-ups that should fail before one succeeds (like 0.1.0's "r8").
+  int failStarts = 0;
+  bool _started = true;
+
+  void _start() {
+    if (failStarts > 0) {
+      failStarts--;
+      _started = false;
+    } else {
+      _started = true;
+    }
+  }
+
+  @override
+  String? get errorDetail => _started ? null : 'java.lang.ClassNotFoundException: r8';
   int maxConcurrent = 0;
   int _live = 0;
   Duration step = const Duration(milliseconds: 5);
@@ -22,19 +38,21 @@ class FakeEngine extends Engine {
   @override
   String get pathSeparator => '/';
   @override
-  List<ToolInfo> get tools => const [
-        ToolInfo(id: 'yt-dlp', name: 'yt-dlp', purpose: '', state: ToolState.ready, required: true, version: '2026.01.01', managed: true),
+  List<ToolInfo> get tools => [
+        _started
+            ? const ToolInfo(id: 'yt-dlp', name: 'yt-dlp', purpose: '', state: ToolState.ready, required: true, version: '2026.01.01', managed: true)
+            : const ToolInfo(id: 'yt-dlp', name: 'yt-dlp', purpose: '', state: ToolState.failed, required: true, error: 'Couldn\'t start the download engine.'),
       ];
   @override
   Stream<List<ToolInfo>> get toolChanges => const Stream.empty();
   @override
-  bool get ready => !frozen;
+  bool get ready => !frozen && _started;
   @override
   EngineCaps get caps => const EngineCaps(hasFfmpeg: true);
   @override
-  Future<void> detect() async {}
+  Future<void> detect() async => _start();
   @override
-  Future<void> install({bool extras = true}) async {}
+  Future<void> install({bool extras = true}) async => _start();
   @override
   Future<void> installTool(String id) async {}
   @override
