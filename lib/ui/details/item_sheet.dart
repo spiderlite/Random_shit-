@@ -136,7 +136,7 @@ class _ItemDetailsState extends State<ItemDetails> {
             const Spacer(),
             if (_choices == null && item.status != DownloadStatus.downloading)
               HaulButton(
-                label: 'Exact formats',
+                label: 'Show all formats',
                 dense: true,
                 tone: ButtonTone.ghost,
                 icon: Icons.tune_rounded,
@@ -168,7 +168,7 @@ class _ItemDetailsState extends State<ItemDetails> {
               if (list.isEmpty) {
                 return Padding(
                   padding: const EdgeInsets.only(top: 14),
-                  child: Text('This site doesn\'t list separate formats.', style: context.text.bodySmall),
+                  child: Text('This site offers a single format, so the presets above are all there is.', style: context.text.bodySmall),
                 );
               }
               return Appear(
@@ -262,7 +262,7 @@ class _StatusBlock extends StatelessWidget {
               const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.only(left: 28),
-                child: SelectableText(err.raw!, style: context.text.bodySmall!.copyWith(color: p.ink2), maxLines: 4),
+                child: SelectableText(err.raw!, style: context.mono.copyWith(fontSize: 12, color: p.ink), maxLines: 4),
               ),
             ],
             const SizedBox(height: 12),
@@ -292,8 +292,8 @@ class _StatusBlock extends StatelessWidget {
     }
 
     final (String label, double? value, bool show) = switch (item.status) {
-      DownloadStatus.queued => (q.isProbing(item.id) ? 'Looking it up…' : 'Waiting for a free slot', null, true),
-      DownloadStatus.fetching => ('Looking it up…', null, true),
+      DownloadStatus.queued => (q.isProbing(item.id) ? 'Fetching details' : 'Queued. Starts when another download finishes.', null, true),
+      DownloadStatus.fetching => ('Fetching details', null, true),
       DownloadStatus.downloading => (
           [
             if (item.progress != null) '${(item.progress! * 100).toStringAsFixed(0)}%',
@@ -302,11 +302,11 @@ class _StatusBlock extends StatelessWidget {
           item.progress,
           true
         ),
-      DownloadStatus.processing => (item.isAudio ? 'Converting audio…' : 'Merging video and audio…', null, true),
+      DownloadStatus.processing => (item.isAudio ? 'Converting audio' : 'Merging video and audio', null, true),
       DownloadStatus.paused => ('Paused', item.progress ?? 0, true),
       DownloadStatus.done => (
           item.skippedExisting
-              ? 'You already downloaded this, so it was skipped.'
+              ? 'Skipped because you downloaded it before. Use Download anyway to get it again.'
               : 'Downloaded ${item.completedAt == null ? '' : relativeTime(item.completedAt!)}${item.fileSize == null ? '' : ' · ${formatBytes(item.fileSize)}'}',
           1.0,
           false

@@ -16,7 +16,7 @@ class VideoThumb extends StatelessWidget {
     return NetworkImage(url);
   }
 
-  const VideoThumb({super.key, required this.url, required this.link, this.width = 112, this.audio = false, this.radius = 10});
+  const VideoThumb({super.key, required this.url, required this.link, this.width = 112, this.audio = false, this.radius = Radii.sm});
 
   final String? url;
   final String link;

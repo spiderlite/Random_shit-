@@ -1,12 +1,18 @@
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../theme/theme.dart';
 
-/// Hover + press feedback without Material ink: a gentle scale on press
-/// and a background tint on hover. The base of every tappable thing.
+/// Phones and tablets get 48dp touch targets; mouse-driven layouts can be
+/// tighter. (Material: 48dp; Apple HIG: 44pt; WCAG 2.2: 24px minimum.)
+bool get _touch => defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS;
+
+/// The base of every tappable thing: hover tint, a small press scale, and
+/// full keyboard support (Tab to focus, a visible 2px focus ring,
+/// Enter/Space to activate). No Material ink ripple.
 class Pressable extends StatefulWidget {
   const Pressable({
     super.key,
@@ -21,6 +27,8 @@ class Pressable extends StatefulWidget {
     this.semanticLabel,
     this.padding,
     this.cursor,
+    this.focusNode,
+    this.autofocus = false,
   });
 
   final Widget child;
@@ -34,6 +42,8 @@ class Pressable extends StatefulWidget {
   final String? semanticLabel;
   final EdgeInsetsGeometry? padding;
   final MouseCursor? cursor;
+  final FocusNode? focusNode;
+  final bool autofocus;
 
   @override
   State<Pressable> createState() => _PressableState();
@@ -42,6 +52,7 @@ class Pressable extends StatefulWidget {
 class _PressableState extends State<Pressable> {
   bool _hover = false;
   bool _down = false;
+  bool _focus = false;
 
   bool get _enabled => widget.onTap != null || widget.onLongPress != null;
 
@@ -61,17 +72,30 @@ class _PressableState extends State<Pressable> {
         curve: Motion.easeOut,
         padding: widget.padding,
         decoration: BoxDecoration(color: bg, borderRadius: widget.borderRadius),
+        // Keyboard focus: a solid 2px ring in the accent (WCAG 2.4.7/2.4.13).
+        foregroundDecoration: _focus
+            ? BoxDecoration(borderRadius: widget.borderRadius, border: Border.all(color: p.accent, width: 2))
+            : null,
         child: widget.child,
       ),
     );
 
-    child = MouseRegion(
-      cursor: _enabled ? (widget.cursor ?? SystemMouseCursors.click) : MouseCursor.defer,
-      onEnter: (_) => setState(() => _hover = true),
-      onExit: (_) => setState(() {
-        _hover = false;
-        _down = false;
+    child = FocusableActionDetector(
+      enabled: _enabled,
+      focusNode: widget.focusNode,
+      autofocus: widget.autofocus,
+      mouseCursor: _enabled ? (widget.cursor ?? SystemMouseCursors.click) : MouseCursor.defer,
+      onShowHoverHighlight: (v) => setState(() {
+        _hover = v;
+        if (!v) _down = false;
       }),
+      onShowFocusHighlight: (v) => setState(() => _focus = v),
+      actions: {
+        ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) {
+          (widget.onTap ?? widget.onLongPress)?.call();
+          return null;
+        }),
+      },
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTapDown: _enabled ? (_) => setState(() => _down = true) : null,
@@ -88,7 +112,13 @@ class _PressableState extends State<Pressable> {
       ),
     );
 
-    child = Semantics(button: true, enabled: _enabled, label: widget.semanticLabel ?? widget.tooltip, child: child);
+    child = Semantics(
+      button: true,
+      enabled: _enabled,
+      label: widget.semanticLabel ?? widget.tooltip,
+      onLongPressHint: widget.onLongPress == null ? null : 'More actions',
+      child: child,
+    );
     if (widget.tooltip != null) child = Tooltip(message: widget.tooltip!, child: child);
     return child;
   }
@@ -126,44 +156,42 @@ class HaulButton extends StatelessWidget {
       ButtonTone.primary => (p.accent, p.onAccent),
       ButtonTone.secondary => (p.sunken, p.ink),
       ButtonTone.ghost => (Colors.transparent, p.ink),
-      ButtonTone.danger => (p.dangerSoft, p.danger),
+      ButtonTone.danger => (Colors.transparent, p.danger),
     };
-    final h = dense ? 34.0 : 42.0;
+    // Minimum heights, not fixed ones, so large system text still fits.
+    final minH = dense ? (_touch ? 40.0 : 34.0) : (_touch ? 48.0 : 40.0);
     return AnimatedOpacity(
       duration: Motion.fast,
-      opacity: enabled || loading ? 1 : 0.45,
+      opacity: enabled || loading ? 1 : 0.5,
       child: Pressable(
         onTap: enabled ? onPressed : null,
         tooltip: tooltip,
+        semanticLabel: label,
         color: bg,
-        hoverColor: tone == ButtonTone.primary ? Colors.white.withValues(alpha: 0.10) : p.ink.withValues(alpha: 0.06),
-        borderRadius: BorderRadius.circular(dense ? 10 : Radii.md),
-        child: SizedBox(
-          height: h,
-          width: expand ? double.infinity : null,
+        hoverColor: tone == ButtonTone.primary ? Colors.black.withValues(alpha: 0.12) : p.ink.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(Radii.md),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: minH, minWidth: expand ? double.infinity : 0),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: dense ? 12 : 16),
+            padding: EdgeInsets.symmetric(horizontal: dense ? 12 : 16, vertical: 8),
             child: Row(
               mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AnimatedSwitcher(
-                  duration: Motion.fast,
-                  child: loading
-                      ? Padding(
-                          key: const ValueKey('l'),
-                          padding: const EdgeInsets.only(right: 8),
-                          child: Spinner(size: 15, color: fg),
-                        )
-                      : icon == null
-                          ? const SizedBox.shrink()
-                          : Padding(
-                              key: const ValueKey('i'),
-                              padding: const EdgeInsets.only(right: 7),
-                              child: Icon(icon, size: dense ? 16 : 18, color: fg),
-                            ),
+                if (loading)
+                  Padding(padding: const EdgeInsets.only(right: 8), child: Spinner(size: 15, color: fg))
+                else if (icon != null)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 7),
+                    child: Icon(icon, size: dense ? 16 : 18, color: fg),
+                  ),
+                Flexible(
+                  child: Text(
+                    label,
+                    textAlign: TextAlign.center,
+                    style: context.text.labelLarge!.copyWith(color: fg, fontSize: dense ? 13 : 14),
+                  ),
                 ),
-                Text(label, style: context.text.labelLarge!.copyWith(color: fg, fontSize: dense ? 13 : 14)),
               ],
             ),
           ),
@@ -179,8 +207,8 @@ class IconBtn extends StatelessWidget {
     required this.icon,
     required this.tooltip,
     this.onPressed,
-    this.size = 36,
-    this.iconSize = 19,
+    this.size,
+    this.iconSize = 20,
     this.color,
     this.background,
   });
@@ -188,7 +216,8 @@ class IconBtn extends StatelessWidget {
   final IconData icon;
   final String tooltip;
   final VoidCallback? onPressed;
-  final double size;
+  /// Hit-target size. Defaults to 48 on touch devices, 36 with a mouse.
+  final double? size;
   final double iconSize;
   final Color? color;
   final Color? background;
@@ -196,15 +225,16 @@ class IconBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
+    final s = size ?? (_touch ? 48.0 : 36.0);
     return Pressable(
       onTap: onPressed,
       tooltip: tooltip,
       color: background,
-      borderRadius: BorderRadius.circular(size / 2),
-      pressScale: 0.9,
+      borderRadius: BorderRadius.circular(s / 2),
+      pressScale: 0.92,
       child: SizedBox(
-        width: size,
-        height: size,
+        width: s,
+        height: s,
         child: Icon(icon, size: iconSize, color: onPressed == null ? p.ink3 : (color ?? p.ink2)),
       ),
     );
@@ -400,18 +430,18 @@ class _RingPainter extends CustomPainter {
 
 /// Fades and lifts its child in once, when first built.
 class Appear extends StatefulWidget {
-  const Appear({super.key, required this.child, this.delay = Duration.zero, this.offset = 10, this.duration = Motion.normal});
+  const Appear({super.key, required this.child, this.delay = Duration.zero, this.offset = 10, this.duration});
   final Widget child;
   final Duration delay;
   final double offset;
-  final Duration duration;
+  final Duration? duration;
 
   @override
   State<Appear> createState() => _AppearState();
 }
 
 class _AppearState extends State<Appear> with SingleTickerProviderStateMixin {
-  late final _c = AnimationController(vsync: this, duration: widget.duration);
+  late final _c = AnimationController(vsync: this, duration: widget.duration ?? Motion.normal);
 
   @override
   void initState() {
@@ -459,7 +489,7 @@ class Segmented<T> extends StatelessWidget {
     final p = context.palette;
     return Container(
       padding: const EdgeInsets.all(3),
-      decoration: BoxDecoration(color: p.sunken, borderRadius: BorderRadius.circular(11)),
+      decoration: BoxDecoration(color: p.sunken, borderRadius: BorderRadius.circular(Radii.md)),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -548,13 +578,13 @@ class Tag extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2.5),
       decoration: BoxDecoration(
         color: c.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(Radii.sm),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (icon != null) ...[Icon(icon, size: 12, color: c), const SizedBox(width: 4)],
-          Text(label, style: context.text.labelSmall!.copyWith(color: c, fontWeight: FontWeight.w600, letterSpacing: 0.1)),
+          Text(label, style: context.text.labelSmall!.copyWith(color: c, fontWeight: FontWeight.w600)),
         ],
       ),
     );

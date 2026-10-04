@@ -7,6 +7,7 @@ import '../../core/links.dart';
 import '../../core/models.dart';
 import '../../theme/theme.dart';
 import '../widgets/kit.dart';
+import '../widgets/toast.dart';
 import 'preset_picker.dart';
 
 /// Where links go in. One field for one link or a hundred: anything with
@@ -68,7 +69,7 @@ class ComposerState extends State<Composer> {
       final clip = await Clipboard.getData(Clipboard.kTextPlain);
       final text = clip?.text ?? '';
       if (extractLinks(text).isEmpty) {
-        _nudge();
+        _nudge(text.trim().isEmpty ? 'Your clipboard is empty. Copy a link first.' : 'No links in what you copied.');
         if (mounted && text.trim().isEmpty) {
           widget.focusNode.requestFocus();
         } else if (mounted) {
@@ -81,7 +82,7 @@ class ComposerState extends State<Composer> {
       return;
     }
     if (_links == 0) {
-      _nudge();
+      _nudge('No links found. Links start with http:// or https://');
       return;
     }
     HapticFeedback.lightImpact();
@@ -90,8 +91,12 @@ class ComposerState extends State<Composer> {
     }
   }
 
-  void _nudge() {
+  /// Says what's wrong (a toast, which screen readers announce) and gives
+  /// a small shake, unless the user asked for reduced motion.
+  void _nudge(String message) {
     HapticFeedback.heavyImpact();
+    ToastHost.of(context)?.show(ToastData(message, icon: Icons.link_off_rounded));
+    if (Motion.reduced) return;
     setState(() => _shake = true);
     Future.delayed(const Duration(milliseconds: 420), () {
       if (mounted) setState(() => _shake = false);
@@ -106,7 +111,7 @@ class ComposerState extends State<Composer> {
   }
 
   String get _buttonLabel {
-    if (_controller.text.trim().isEmpty) return 'Paste';
+    if (_controller.text.trim().isEmpty) return 'Paste and download';
     if (_links <= 1) return 'Download';
     return 'Download $_links';
   }
@@ -114,7 +119,7 @@ class ComposerState extends State<Composer> {
   @override
   Widget build(BuildContext context) => widget.compact ? _buildCompact(context) : _buildWide(context);
 
-  Widget _field(BuildContext context, {required String hint, required int maxLines}) {
+  Widget _field(BuildContext context, {required String hint, required int maxLines, double vPad = 0}) {
     final p = context.palette;
     return Shortcuts(
       shortcuts: {
@@ -137,6 +142,8 @@ class ComposerState extends State<Composer> {
           enableSuggestions: false,
           decoration: InputDecoration(
             isCollapsed: true,
+            // On phones the field itself is a 48dp touch target.
+            contentPadding: EdgeInsets.symmetric(vertical: vPad),
             border: InputBorder.none,
             hintText: hint,
             hintStyle: context.text.bodyLarge!.copyWith(color: p.ink3),
@@ -167,22 +174,16 @@ class ComposerState extends State<Composer> {
         decoration: BoxDecoration(
           color: p.surface,
           borderRadius: BorderRadius.circular(Radii.lg),
-          border: Border.all(color: focused ? p.accent.withValues(alpha: 0.55) : p.line, width: focused ? 1.5 : 1),
-          boxShadow: [
-            BoxShadow(
-              color: (focused ? p.accent : Colors.black).withValues(alpha: focused ? 0.10 : 0.03),
-              blurRadius: focused ? 22 : 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
+          // Focus is a solid border change; no coloured glow.
+          border: Border.all(color: focused ? p.accent : p.line, width: focused ? 2 : 1),
         ),
-        padding: const EdgeInsets.fromLTRB(18, 16, 10, 10),
+        padding: EdgeInsets.fromLTRB(focused ? 17 : 18, focused ? 15 : 16, focused ? 9 : 10, focused ? 9 : 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 8),
-              child: _field(context, hint: 'Paste links — one, or a hundred', maxLines: 7),
+              child: _field(context, hint: 'Paste one link or many', maxLines: 7),
             ),
             const SizedBox(height: 14),
             Row(
@@ -234,25 +235,20 @@ class ComposerState extends State<Composer> {
                 child: AnimatedContainer(
                   duration: Motion.normal,
                   curve: Motion.ease,
-                  constraints: const BoxConstraints(minHeight: 50),
-                  padding: const EdgeInsets.fromLTRB(16, 14, 6, 6),
+                  constraints: const BoxConstraints(minHeight: 52),
+                  padding: const EdgeInsets.fromLTRB(14, 0, 2, 0),
                   decoration: BoxDecoration(
                     color: p.sunken,
-                    borderRadius: BorderRadius.circular(25),
+                    borderRadius: BorderRadius.circular(Radii.lg),
                     border: Border.all(
-                      color: widget.focusNode.hasFocus ? p.accent.withValues(alpha: 0.5) : Colors.transparent,
-                      width: 1.5,
+                      color: widget.focusNode.hasFocus ? p.accent : Colors.transparent,
+                      width: 2,
                     ),
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: _field(context, hint: 'Paste links', maxLines: 5),
-                        ),
-                      ),
+                      Expanded(child: _field(context, hint: 'Paste links', maxLines: 5, vPad: 14)),
                       PresetChip(value: widget.preset, onChanged: widget.onPresetChanged, compact: true),
                     ],
                   ),
@@ -263,14 +259,14 @@ class ComposerState extends State<Composer> {
                 onTap: _primary,
                 semanticLabel: empty ? 'Paste from clipboard and download' : 'Download',
                 color: p.accent,
-                hoverColor: Colors.white.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(25),
-                pressScale: 0.9,
+                hoverColor: Colors.black.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(Radii.lg),
+                pressScale: 0.94,
+                tooltip: empty ? 'Paste and download' : 'Download',
                 child: SizedBox.square(
-                  dimension: 50,
+                  dimension: 52,
                   child: AnimatedSwitcher(
-                    duration: Motion.normal,
-                    transitionBuilder: (c, a) => ScaleTransition(scale: a, child: FadeTransition(opacity: a, child: c)),
+                    duration: Motion.fast,
                     child: Icon(
                       empty ? Icons.content_paste_rounded : Icons.arrow_downward_rounded,
                       key: ValueKey(empty),
@@ -301,9 +297,9 @@ class _LinkCount extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = context.palette;
     final (text, color) = empty
-        ? ('Videos, playlists, channels — 1,800+ sites', p.ink3)
+        ? ('Video, playlist or channel links from most sites', p.ink3)
         : count == 0
-            ? ('No links found yet', p.ink3)
+            ? ('No links yet', p.ink2)
             : (count == 1 ? '1 link' : '$count links', p.accent);
     return AnimatedSwitcher(
       duration: Motion.fast,

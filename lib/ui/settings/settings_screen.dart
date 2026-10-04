@@ -79,8 +79,8 @@ class SettingsScreen extends StatelessWidget {
               onChanged: (v) => app.update((s) => s.copyWith(saveToDevice: v)),
             ),
           _Row(
-            title: 'At the same time',
-            subtitle: s.concurrency == 1 ? 'One download at a time' : '${s.concurrency} downloads at once',
+            title: 'Simultaneous downloads',
+            subtitle: s.concurrency == 1 ? '1 at a time' : '${s.concurrency} at a time',
             below: Slider(
               value: s.concurrency.toDouble(),
               min: 1,
@@ -91,14 +91,14 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           _Switch(
-            title: 'Plays everywhere',
-            subtitle: 'Prefer H.264 + AAC in MP4. Turn off for the absolute best quality (VP9/AV1).',
+            title: 'Most compatible format',
+            subtitle: 'Saves H.264 video in MP4, which every phone, TV and editor can play. Turn off for the highest quality (VP9 or AV1).',
             value: s.preferCompatible,
             onChanged: (v) => app.update((s) => s.copyWith(preferCompatible: v)),
           ),
           _Switch(
-            title: 'Skip what you already have',
-            subtitle: 'Re-adding a playlist or channel only fetches new videos.',
+            title: 'Skip videos you already downloaded',
+            subtitle: 'Adding a playlist or channel again only fetches its new videos.',
             value: s.skipDownloaded,
             onChanged: (v) => app.update((s) => s.copyWith(skipDownloaded: v)),
           ),
@@ -129,14 +129,14 @@ class SettingsScreen extends StatelessWidget {
             onChanged: (v) => app.update((s) => s.copyWith(collectionFolders: v)),
           ),
           _Switch(
-            title: 'Embed cover art',
-            subtitle: 'Thumbnail shows up in players and file browsers.',
+            title: 'Embed thumbnail',
+            subtitle: 'Players and file browsers show it as cover art.',
             value: s.embedThumbnail,
             onChanged: (v) => app.update((s) => s.copyWith(embedThumbnail: v)),
           ),
           _Switch(
-            title: 'Embed details',
-            subtitle: 'Title, creator and date inside the file.',
+            title: 'Embed title and creator',
+            subtitle: 'Stored inside the file, so it stays with it when moved.',
             value: s.embedMetadata,
             onChanged: (v) => app.update((s) => s.copyWith(embedMetadata: v)),
           ),
@@ -153,14 +153,14 @@ class SettingsScreen extends StatelessWidget {
           title: 'Convenience',
           children: [
             _Switch(
-              title: 'Notice copied links',
-              subtitle: 'When you come back to Haul with a link on your clipboard, offer to add it.',
+              title: 'Offer copied links',
+              subtitle: 'When you switch to Haul with a link on your clipboard, show a button to download it.',
               value: s.watchClipboard,
               onChanged: (v) => app.update((s) => s.copyWith(watchClipboard: v)),
             ),
             _Row(
-              title: 'Sign in with your browser',
-              subtitle: 'For private, age-restricted or members-only videos, use the cookies from a browser you\'re logged into.',
+              title: 'Use a browser\'s login',
+              subtitle: 'Needed for private, age-restricted or members-only videos. Haul reads that browser\'s cookies when downloading.',
               below: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Wrap(
@@ -180,12 +180,12 @@ class SettingsScreen extends StatelessWidget {
           ],
         ),
       _Section(
-        title: 'Look',
+        title: 'Appearance',
         children: [
           _Row(
             title: 'Theme',
             trailing: Segmented<ThemePref>(
-              items: const [(ThemePref.system, 'Auto'), (ThemePref.light, 'Light'), (ThemePref.dark, 'Dark')],
+              items: const [(ThemePref.system, 'System'), (ThemePref.light, 'Light'), (ThemePref.dark, 'Dark')],
               value: s.theme,
               onChanged: (v) => app.update((s) => s.copyWith(theme: v)),
             ),
@@ -218,7 +218,7 @@ class SettingsScreen extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.fromLTRB(4, 8, 4, 0),
         child: Text(
-          'Haul is powered by yt-dlp. Please only download what you have the right to keep, and support the people who make it.',
+          'Haul runs on yt-dlp. Only download what you have the right to keep.',
           style: context.text.bodySmall!.copyWith(color: p.ink3),
         ),
       ),
@@ -245,7 +245,7 @@ class SettingsScreen extends StatelessWidget {
                   child: ListView.builder(
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 40),
                     itemCount: sections.length,
-                    itemBuilder: (_, i) => Appear(delay: Duration(milliseconds: 30 * i), offset: 8, child: sections[i]),
+                    itemBuilder: (_, i) => sections[i],
                   ),
                 ),
               ),
@@ -292,7 +292,7 @@ class _Section extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 4, bottom: 8),
-            child: Text(title.toUpperCase(), style: context.text.labelSmall!.copyWith(letterSpacing: 0.8, fontWeight: FontWeight.w600)),
+            child: Text(title, style: context.text.labelMedium!.copyWith(color: p.ink2, fontWeight: FontWeight.w600)),
           ),
           Container(
             decoration: BoxDecoration(

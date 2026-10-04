@@ -180,7 +180,7 @@ class AppState extends ChangeNotifier {
       await _server?.start();
       _serverError = null;
     } catch (_) {
-      _serverError = 'Couldn\'t open port $remoteDefaultPort — is another copy of Haul running?';
+      _serverError = 'Port $remoteDefaultPort is in use. Is another copy of Haul running?';
       _server = null;
     }
     notifyListeners();

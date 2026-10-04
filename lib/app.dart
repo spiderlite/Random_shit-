@@ -35,6 +35,8 @@ class HaulApp extends StatelessWidget {
             themeAnimationDuration: Motion.slow,
             themeAnimationCurve: Motion.ease,
             builder: (context, child) {
+              // Respect "reduce motion" / "remove animations" from the OS.
+              Motion.reduced = MediaQuery.disableAnimationsOf(context);
               final dark = Theme.of(context).brightness == Brightness.dark;
               return AnnotatedRegion<SystemUiOverlayStyle>(
                 value: (dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(
@@ -63,10 +65,7 @@ class _Root extends StatelessWidget {
       duration: Motion.slow,
       switchInCurve: Motion.ease,
       switchOutCurve: Motion.easeIn,
-      transitionBuilder: (child, a) => FadeTransition(
-        opacity: a,
-        child: ScaleTransition(scale: Tween(begin: 0.985, end: 1.0).animate(a), child: child),
-      ),
+      transitionBuilder: (child, a) => FadeTransition(opacity: a, child: child),
       child: switch (phase) {
         Phase.loading => const LoadingScreen(key: ValueKey('loading')),
         Phase.setup => const SetupScreen(key: ValueKey('setup')),

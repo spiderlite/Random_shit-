@@ -35,10 +35,10 @@ class PhoneAccess extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Use Haul from your phone', style: context.text.titleSmall),
+                      Text('Allow phone connections', style: context.text.titleSmall),
                       const SizedBox(height: 2),
                       Text(
-                        'iPhones, Android phones and any browser on your Wi-Fi can add downloads here.',
+                        'Phones and browsers on the same Wi-Fi can send downloads to this computer.',
                         style: context.text.bodySmall,
                       ),
                     ],
@@ -79,63 +79,61 @@ class _Details extends StatelessWidget {
     final p = context.palette;
     final code = app.serverCode;
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-      child: Appear(
-        offset: 6,
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(color: p.sunken, borderRadius: BorderRadius.circular(Radii.md)),
-          child: FutureBuilder<List<String>>(
-            future: io.lanAddresses(),
-            builder: (context, snap) {
-              final addrs = snap.data ?? const [];
-              final first = addrs.isEmpty ? null : '${addrs.first}:$remoteDefaultPort';
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    // Plain rows inside the existing card: no box-in-a-box.
+    return FutureBuilder<List<String>>(
+      future: io.lanAddresses(),
+      builder: (context, snap) {
+        final addrs = snap.data ?? const [];
+        final first = addrs.isEmpty ? null : '${addrs.first}:$remoteDefaultPort';
+        Widget row(String label, Widget value, {Widget? trailing}) => Padding(
+              padding: const EdgeInsets.fromLTRB(16, 10, 12, 10),
+              child: Row(
                 children: [
-                  Text('ADDRESS', style: context.text.labelSmall!.copyWith(letterSpacing: 0.8)),
-                  const SizedBox(height: 4),
-                  if (snap.connectionState != ConnectionState.done)
-                    const Spinner(size: 14)
-                  else if (addrs.isEmpty)
-                    Text('No network found. Connect this computer to Wi-Fi.', style: context.text.bodyMedium)
-                  else
-                    for (final a in addrs.take(3))
-                      _Copyable(text: '$a:$remoteDefaultPort', style: context.text.titleMedium!),
-                  const SizedBox(height: 14),
-                  Text('CODE', style: context.text.labelSmall!.copyWith(letterSpacing: 0.8)),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      _Copyable(
-                        text: code,
-                        style: context.text.headlineSmall!.copyWith(letterSpacing: 5, color: p.accent),
-                      ),
-                      const Spacer(),
-                      HaulButton(
-                        label: 'New code',
-                        dense: true,
-                        tone: ButtonTone.ghost,
-                        icon: Icons.refresh_rounded,
-                        tooltip: 'Phones using the old code will need the new one',
-                        onPressed: app.newServerCode,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    first == null
-                        ? 'Then open the Haul app on your phone and enter the address and code.'
-                        : 'On your phone: open the Haul app and enter these — or simply visit http://$first in any browser.',
-                    style: context.text.bodySmall,
-                  ),
+                  SizedBox(width: 72, child: Text(label, style: context.text.labelMedium)),
+                  Expanded(child: value),
+                  ?trailing,
                 ],
-              );
-            },
-          ),
-        ),
-      ),
+              ),
+            );
+        final big = context.mono.copyWith(fontSize: 17, color: p.ink, fontWeight: FontWeight.w500);
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Divider(color: p.line, indent: 16, endIndent: 16),
+            row(
+              'Address',
+              snap.connectionState != ConnectionState.done
+                  ? const Align(alignment: Alignment.centerLeft, child: Spinner(size: 14))
+                  : addrs.isEmpty
+                      ? Text('No network found. Connect this computer to Wi-Fi.', style: context.text.bodyMedium)
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [for (final a in addrs.take(3)) _Copyable(text: '$a:$remoteDefaultPort', style: big)],
+                        ),
+            ),
+            row(
+              'Code',
+              _Copyable(text: code, style: big.copyWith(fontSize: 22, letterSpacing: 2, color: p.accent)),
+              trailing: HaulButton(
+                label: 'New code',
+                dense: true,
+                tone: ButtonTone.ghost,
+                tooltip: 'Phones using the old code will need the new one',
+                onPressed: app.newServerCode,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+              child: Text(
+                first == null
+                    ? 'Then enter the address and code in the Haul app on your phone.'
+                    : 'Enter these in the Haul app on your phone, or open http://$first in any phone browser and enter the code.',
+                style: context.text.bodySmall,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

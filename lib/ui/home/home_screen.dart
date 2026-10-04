@@ -188,7 +188,14 @@ class _HomeScreenState extends State<HomeScreen> {
           duration: Motion.normal,
           switchInCurve: Motion.ease,
           child: items.isEmpty
-              ? EmptyState(key: ValueKey('empty-$_filter'), filter: _filter, compact: compact, canShare: isAndroid, canDrop: isDesktop)
+              ? EmptyState(
+                  key: ValueKey('empty-$_filter'),
+                  filter: _filter,
+                  compact: compact,
+                  canShare: isAndroid,
+                  canDrop: isDesktop,
+                  onPaste: _pasteAnywhere,
+                )
               : QueueList(
                   key: ValueKey('list-$_filter'),
                   items: items,
@@ -236,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
       preset: app.settings.preset,
       onPresetChanged: (v) {
         app.update((s) => s.copyWith(preset: v));
-        _toast?.show(ToastData('New downloads: ${v.label} — ${v.description.toLowerCase()}', icon: Icons.tune_rounded));
+        _toast?.show(ToastData('New downloads will use ${v.label}', icon: Icons.tune_rounded));
       },
       onSubmit: (text) => _add(extractLinks(text)),
     );
@@ -411,16 +418,11 @@ class _DropOverlay extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(color: p.accentSoft, borderRadius: BorderRadius.circular(20)),
-                      child: Icon(Icons.south_rounded, color: p.accent, size: 28),
-                    ),
+                    Icon(Icons.file_download_outlined, color: p.accent, size: 32),
                     const SizedBox(height: 16),
-                    Text('Drop to download', style: context.text.titleLarge),
+                    Text('Drop to add these links', style: context.text.titleLarge),
                     const SizedBox(height: 4),
-                    Text('Text files, link lists, bookmarks — we\'ll find the links', style: context.text.bodyMedium!.copyWith(color: p.ink2)),
+                    Text('Any text file with links in it works', style: context.text.bodyMedium!.copyWith(color: p.ink2)),
                   ],
                 ),
               ),
@@ -442,7 +444,7 @@ class _DashedBorder extends CustomPainter {
       ..color = color.withValues(alpha: 0.6)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.6;
-    final path = Path()..addRRect(RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(Radii.xl)));
+    final path = Path()..addRRect(RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(Radii.lg)));
     for (final m in path.computeMetrics()) {
       var d = 0.0;
       while (d < m.length) {

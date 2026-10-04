@@ -30,7 +30,7 @@ Future<FormatPreset?> pickPreset(BuildContext context, FormatPreset current, {bo
     context: context,
     position: RelativeRect.fromLTRB(origin.dx, origin.dy + size.height + 6, overlay.size.width - origin.dx - size.width, 0),
     constraints: const BoxConstraints(minWidth: 260, maxWidth: 300),
-    popUpAnimationStyle: const AnimationStyle(duration: Motion.normal, reverseDuration: Motion.fast),
+    popUpAnimationStyle: AnimationStyle(duration: Motion.normal, reverseDuration: Motion.fast),
     items: [
       for (final p in FormatPreset.values)
         PopupMenuItem(
@@ -95,20 +95,16 @@ class _PresetSheet extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
               child: Text(title ?? 'Quality', style: context.text.titleLarge),
             ),
-            for (final (i, preset) in FormatPreset.values.indexed)
-              Appear(
-                delay: Duration(milliseconds: 18 * i),
-                offset: 6,
-                child: Pressable(
-                  onTap: () {
-                    HapticFeedback.selectionClick();
-                    Navigator.pop(context, preset);
-                  },
-                  color: preset == current ? p.accentSoft : null,
-                  borderRadius: BorderRadius.circular(Radii.md),
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
-                  child: _PresetRow(preset: preset, selected: preset == current),
-                ),
+            for (final preset in FormatPreset.values)
+              Pressable(
+                onTap: () {
+                  HapticFeedback.selectionClick();
+                  Navigator.pop(context, preset);
+                },
+                color: preset == current ? p.accentSoft : null,
+                borderRadius: BorderRadius.circular(Radii.md),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                child: _PresetRow(preset: preset, selected: preset == current),
               ),
           ],
         ),
@@ -147,24 +143,35 @@ class PresetChip extends StatelessWidget {
           final picked = await pickPreset(ctx, value, compact: compact);
           if (picked != null) onChanged(picked);
         },
-        color: p.sunken,
-        borderRadius: BorderRadius.circular(compact ? 20 : 10),
-        padding: EdgeInsets.symmetric(horizontal: compact ? 10 : 11, vertical: compact ? 8 : 9),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(presetIcon(value), size: 15, color: p.ink2),
-            const SizedBox(width: 6),
-            AnimatedSwitcher(
-              duration: Motion.fast,
-              transitionBuilder: (c, a) => FadeTransition(opacity: a, child: c),
-              child: Text(value.label, key: ValueKey(value), style: context.text.labelLarge!.copyWith(fontSize: 13)),
-            ),
-            const SizedBox(width: 2),
-            Icon(Icons.expand_more_rounded, size: 17, color: p.ink3),
-          ],
-        ),
+        color: compact ? null : p.sunken,
+        borderRadius: BorderRadius.circular(Radii.md),
+        padding: EdgeInsets.symmetric(horizontal: compact ? 10 : 11, vertical: compact ? 2 : 9),
+        child: compact
+            ? ConstrainedBox(
+                // Inside the phone composer the chip is quiet but still a
+                // full 48dp target.
+                constraints: const BoxConstraints(minHeight: 48),
+                child: _chipBody(context),
+              )
+            : _chipBody(context),
       ),
+    );
+  }
+
+  Widget _chipBody(BuildContext context) {
+    final p = context.palette;
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(presetIcon(value), size: 15, color: p.ink2),
+        const SizedBox(width: 6),
+        AnimatedSwitcher(
+          duration: Motion.fast,
+          child: Text(value.label, key: ValueKey(value), style: context.text.labelLarge!.copyWith(fontSize: 13)),
+        ),
+        const SizedBox(width: 2),
+        Icon(Icons.expand_more_rounded, size: 17, color: p.ink3),
+      ],
     );
   }
 }

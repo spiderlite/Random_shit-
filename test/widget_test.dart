@@ -33,8 +33,8 @@ Future<AppState> _boot(WidgetTester tester, Size size, {bool mobile = false}) as
   }
   // Desktop first run: the setup screen, with everything already found.
   expect(state.phase, Phase.setup);
-  expect(find.text('Let\'s get Haul ready'), findsOneWidget);
-  await tester.tap(find.text('Start hauling'));
+  expect(find.text('Set up Haul'), findsOneWidget);
+  await tester.tap(find.text('Continue'));
   await _settle(tester);
   expect(state.phase, Phase.ready);
   return state;
@@ -52,8 +52,9 @@ void main() {
   testWidgets('phone: paste links, watch them download', (tester) async {
     final state = await _boot(tester, const Size(390, 844), mobile: true);
 
-    expect(find.text('Nothing here yet'), findsOneWidget);
-    expect(find.text('Tap Share on any video'), findsOneWidget);
+    expect(find.text('No downloads yet'), findsOneWidget);
+    expect(find.text('In any app, tap Share on a video'), findsOneWidget);
+    expect(find.text('Paste and download'), findsOneWidget);
 
     await tester.enterText(find.byType(TextField), 'look https://v.test/one and https://v.test/two');
     await tester.pump();
@@ -64,7 +65,7 @@ void main() {
 
     expect(state.queue.doneCount, 2);
     expect(find.text('Title of https://v.test/one'), findsOneWidget);
-    expect(find.textContaining('All done'), findsOneWidget);
+    expect(find.text('2 downloads finished'), findsOneWidget);
   });
 
   testWidgets('desktop: playlist expands and details open', (tester) async {

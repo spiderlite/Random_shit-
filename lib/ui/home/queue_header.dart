@@ -4,6 +4,7 @@ import '../../core/format.dart';
 import '../../core/models.dart';
 import '../../state/app_state.dart';
 import '../../theme/theme.dart';
+import '../settings/settings_screen.dart' show homeDirectory;
 import '../widgets/kit.dart';
 
 enum QueueFilter { all, active, done, failed }
@@ -41,11 +42,15 @@ class QueueSummary extends StatelessWidget {
       text = '${q.pausedCount} paused';
       lead = Icon(Icons.pause_circle_outline_rounded, size: 16, color: p.ink3);
     } else if (q.doneCount > 0) {
-      text = q.failedCount > 0 ? '${q.doneCount} done · ${q.failedCount} failed' : 'All done · ${plural(q.doneCount, 'video')}';
+      text = q.failedCount > 0 ? '${q.doneCount} done · ${q.failedCount} failed' : '${plural(q.doneCount, 'download')} finished';
       lead = Icon(Icons.check_circle_rounded, size: 16, color: q.failedCount > 0 ? p.ink3 : p.accent);
     } else {
-      text = 'Ready when you are';
-      lead = Icon(Icons.circle, size: 8, color: p.accent);
+      // Idle: say something useful (where files go) instead of a
+      // decorative status dot.
+      final app = AppScope.of(context);
+      final dir = app.downloadDir;
+      text = dir.isEmpty ? 'No downloads yet' : 'Saving to ${prettyPath(dir, homeDirectory)}';
+      lead = Icon(Icons.folder_outlined, size: 16, color: p.ink3);
     }
 
     return Row(
@@ -157,7 +162,7 @@ class _MoreMenu extends StatelessWidget {
           final action = await showMenu<VoidCallback>(
             context: ctx,
             position: RelativeRect.fromLTRB(pos.dx - 180, pos.dy + box.size.height + 4, overlay.size.width - pos.dx - box.size.width, 0),
-            popUpAnimationStyle: const AnimationStyle(duration: Motion.normal, reverseDuration: Motion.fast),
+            popUpAnimationStyle: AnimationStyle(duration: Motion.normal, reverseDuration: Motion.fast),
             items: [
               if (anyRunning) item(Icons.pause_rounded, 'Pause all', q.pauseAll),
               if (q.pausedCount > 0) item(Icons.play_arrow_rounded, 'Resume all', q.resumeAll),

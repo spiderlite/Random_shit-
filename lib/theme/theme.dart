@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart' show CupertinoPageTransitionsBuilder;
 import 'package:flutter/material.dart';
 
-/// Haul's whole palette. Deliberately tiny: paper, ink in three strengths,
-/// one accent, one warning colour. Everything else is opacity.
+/// Haul's whole palette: warm paper, ink in three strengths, one accent and
+/// one warning colour. Everything else is opacity.
+///
+/// The accent is hi-vis orange (the colour of things that haul cargo), not
+/// the indigo every generated UI defaults to. Every text pair here meets
+/// WCAG AA (4.5:1); see docs/DESIGN.md for the numbers.
 @immutable
 class Palette extends ThemeExtension<Palette> {
   const Palette({
@@ -34,29 +38,29 @@ class Palette extends ThemeExtension<Palette> {
   Color get dangerSoft => danger.withValues(alpha: 0.10);
 
   static const light = Palette(
-    bg: Color(0xFFF6F6F4),
-    surface: Color(0xFFFFFFFF),
-    sunken: Color(0xFFEFEFEC),
-    line: Color(0xFFE4E4E0),
-    ink: Color(0xFF151515),
-    ink2: Color(0xFF66665F),
-    ink3: Color(0xFF9D9D96),
-    accent: Color(0xFF4B45E0),
+    bg: Color(0xFFF5F4F0),
+    surface: Color(0xFFFBFAF7),
+    sunken: Color(0xFFECEBE6),
+    line: Color(0xFFE0DED8),
+    ink: Color(0xFF1A1917),
+    ink2: Color(0xFF5C5A55),
+    ink3: Color(0xFF65635D),
+    accent: Color(0xFFB53F0B),
     onAccent: Color(0xFFFFFFFF),
-    danger: Color(0xFFD13F3F),
+    danger: Color(0xFFB3123E),
   );
 
   static const dark = Palette(
-    bg: Color(0xFF0D0D0E),
-    surface: Color(0xFF171718),
-    sunken: Color(0xFF1F1F21),
-    line: Color(0xFF29292C),
-    ink: Color(0xFFF2F2EF),
-    ink2: Color(0xFFA3A39C),
-    ink3: Color(0xFF6E6E69),
-    accent: Color(0xFF8E89FF),
-    onAccent: Color(0xFF0D0D0E),
-    danger: Color(0xFFFF7468),
+    bg: Color(0xFF111110),
+    surface: Color(0xFF1A1918),
+    sunken: Color(0xFF242321),
+    line: Color(0xFF302F2C),
+    ink: Color(0xFFEFEDE8),
+    ink2: Color(0xFFADABA4),
+    ink3: Color(0xFF93918A),
+    accent: Color(0xFFFF8A4C),
+    onAccent: Color(0xFF111110),
+    danger: Color(0xFFFF6B8B),
   );
 
   @override
@@ -81,26 +85,38 @@ class Palette extends ThemeExtension<Palette> {
   }
 }
 
-/// Motion tokens. Short and soft: things should feel quick, never busy.
+/// Motion tokens. Motion here only ever reports a change of state (added,
+/// finished, moved); nothing loops for decoration and nothing bounces.
+///
+/// When the OS asks for reduced motion ([reduced], set from
+/// `MediaQuery.disableAnimations` at the root), every duration collapses
+/// to zero and changes simply happen.
 abstract final class Motion {
-  static const fast = Duration(milliseconds: 140);
-  static const normal = Duration(milliseconds: 240);
-  static const slow = Duration(milliseconds: 420);
+  static bool reduced = false;
+  static Duration _d(int ms) => reduced ? Duration.zero : Duration(milliseconds: ms);
+  static Duration get fast => _d(140);
+  static Duration get normal => _d(220);
+  static Duration get slow => _d(360);
   static const ease = Cubic(0.2, 0.0, 0.0, 1.0);
   static const easeOut = Curves.easeOutCubic;
   static const easeIn = Curves.easeInCubic;
 }
 
+/// Radius is semantic, not decorative: small for controls, a little more
+/// for containers, only sheets get a soft top edge.
 abstract final class Radii {
-  static const sm = 8.0;
-  static const md = 12.0;
-  static const lg = 18.0;
-  static const xl = 24.0;
+  static const sm = 6.0; // chips, tags, inline controls
+  static const md = 8.0; // buttons, inputs, rows, thumbnails
+  static const lg = 12.0; // cards, dialogs, toasts
+  static const xl = 16.0; // bottom sheets
 }
 
 extension PaletteX on BuildContext {
   Palette get palette => Theme.of(this).extension<Palette>()!;
   TextTheme get text => Theme.of(this).textTheme;
+
+  /// For text that really is code: pairing codes, addresses, file paths.
+  TextStyle get mono => TextStyle(fontFamily: 'PlexMono', fontSize: 13, color: palette.ink2, height: 1.4);
 }
 
 const _tabular = [FontFeature.tabularFigures()];
@@ -109,7 +125,7 @@ ThemeData buildTheme(Brightness brightness) {
   final p = brightness == Brightness.dark ? Palette.dark : Palette.light;
 
   TextStyle s(double size, FontWeight w, Color c, {double ls = 0, double h = 1.35}) => TextStyle(
-        fontFamily: 'Inter',
+        fontFamily: 'Plex',
         fontSize: size,
         fontWeight: w,
         color: c,
@@ -118,19 +134,22 @@ ThemeData buildTheme(Brightness brightness) {
         fontFeatures: _tabular,
       );
 
+  // A 1.2 modular scale from a 14px body. Headings at 600, never 700:
+  // weight does the work a gradient or a giant size would do elsewhere.
   final text = TextTheme(
-    displaySmall: s(30, FontWeight.w700, p.ink, ls: -0.9, h: 1.1),
-    headlineSmall: s(22, FontWeight.w700, p.ink, ls: -0.5, h: 1.2),
-    titleLarge: s(18, FontWeight.w600, p.ink, ls: -0.3),
-    titleMedium: s(15, FontWeight.w600, p.ink, ls: -0.15),
-    titleSmall: s(14, FontWeight.w600, p.ink, ls: -0.1),
-    bodyLarge: s(15, FontWeight.w400, p.ink, ls: -0.1, h: 1.45),
-    bodyMedium: s(14, FontWeight.w400, p.ink, ls: -0.05, h: 1.45),
-    bodySmall: s(12.5, FontWeight.w400, p.ink2, h: 1.4),
-    labelLarge: s(14, FontWeight.w600, p.ink, ls: -0.1),
+    displaySmall: s(28, FontWeight.w600, p.ink, ls: -0.5, h: 1.15),
+    headlineSmall: s(22, FontWeight.w600, p.ink, ls: -0.3, h: 1.2),
+    titleLarge: s(18, FontWeight.w600, p.ink, ls: -0.2, h: 1.3),
+    titleMedium: s(15.5, FontWeight.w600, p.ink, ls: -0.1),
+    titleSmall: s(14, FontWeight.w600, p.ink),
+    bodyLarge: s(15.5, FontWeight.w400, p.ink, h: 1.45),
+    bodyMedium: s(14, FontWeight.w400, p.ink, h: 1.45),
+    bodySmall: s(13, FontWeight.w400, p.ink2, h: 1.4),
+    labelLarge: s(14, FontWeight.w600, p.ink),
     labelMedium: s(13, FontWeight.w500, p.ink2),
-    labelSmall: s(11.5, FontWeight.w500, p.ink3, ls: 0.2),
+    labelSmall: s(12, FontWeight.w500, p.ink3, h: 1.3),
   );
+
 
   final scheme = ColorScheme(
     brightness: brightness,
@@ -153,7 +172,7 @@ ThemeData buildTheme(Brightness brightness) {
     colorScheme: scheme,
     scaffoldBackgroundColor: p.bg,
     canvasColor: p.bg,
-    fontFamily: 'Inter',
+    fontFamily: 'Plex',
     textTheme: text,
     extensions: [p],
     splashFactory: NoSplash.splashFactory,
@@ -179,7 +198,7 @@ ThemeData buildTheme(Brightness brightness) {
       thickness: const WidgetStatePropertyAll(6),
     ),
     switchTheme: SwitchThemeData(
-      thumbColor: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.selected) ? p.onAccent : p.ink3),
+      thumbColor: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.selected) ? Colors.white : p.ink3),
       trackColor: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.selected) ? p.accent : p.sunken),
       trackOutlineColor: WidgetStateProperty.resolveWith(
           (st) => st.contains(WidgetState.selected) ? Colors.transparent : p.line),

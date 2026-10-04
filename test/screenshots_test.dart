@@ -26,11 +26,16 @@ final _out = Directory('docs/screenshots');
 final _shotKey = GlobalKey();
 
 Future<void> _loadFonts() async {
-  final inter = FontLoader('Inter');
+  final inter = FontLoader('Plex');
   for (final w in ['Regular', 'Medium', 'SemiBold', 'Bold']) {
-    inter.addFont(rootBundle.load('assets/fonts/Inter-$w.ttf'));
+    inter.addFont(rootBundle.load('assets/fonts/IBMPlexSans-$w.ttf'));
   }
   await inter.load();
+  final mono = FontLoader('PlexMono');
+  for (final w in ['Regular', 'Medium']) {
+    mono.addFont(rootBundle.load('assets/fonts/IBMPlexMono-$w.ttf'));
+  }
+  await mono.load();
   final flutterRoot = Platform.environment['FLUTTER_ROOT'] ?? '/opt/flutter';
   final icons = File('$flutterRoot/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf');
   await (FontLoader('MaterialIcons')..addFont(Future.value(ByteData.sublistView(icons.readAsBytesSync())))).load();
@@ -40,13 +45,15 @@ Future<void> _loadFonts() async {
 /// else's artwork.
 Future<List<String>> _thumbs(Directory dir) async {
   const palettes = [
-    [Color(0xFFFFB38A), Color(0xFF7A5CFA)],
-    [Color(0xFF9BE7C4), Color(0xFF2A7FBA)],
-    [Color(0xFFFFE08A), Color(0xFFEF6F6C)],
-    [Color(0xFFB8C6FF), Color(0xFF1F2A44)],
-    [Color(0xFFF7C6E0), Color(0xFF6C4AB6)],
-    [Color(0xFFCDEAC0), Color(0xFF4F772D)],
-    [Color(0xFF8EC5FC), Color(0xFFE0C3FC)],
+    // Natural, varied tones (dawn, sea, dusk, slate, desert, meadow, fog)
+    // rather than the purple-blue gradients generated UIs default to.
+    [Color(0xFFF2C79B), Color(0xFF8C5A3C)],
+    [Color(0xFFA9D6CF), Color(0xFF2F6B6A)],
+    [Color(0xFFF6D58E), Color(0xFFC0563A)],
+    [Color(0xFFB9C3C9), Color(0xFF3B4A55)],
+    [Color(0xFFE9D3B4), Color(0xFF9A6B45)],
+    [Color(0xFFCFE3B5), Color(0xFF55703A)],
+    [Color(0xFFDDE3E6), Color(0xFF7D8C93)],
   ];
   final paths = <String>[];
   for (final (i, c) in palettes.indexed) {
@@ -103,7 +110,7 @@ List<Map<String, dynamic>> _demoItems(List<String> t) {
       };
   return [
     item('a1', 'Slow morning in the mountains', 'downloading', 0, uploader: 'Quiet Trails', dur: 1325),
-    item('a2', 'Building a tiny cabin — day 3', 'downloading', 1, uploader: 'Handmade Haus', dur: 2011, collection: 'Cabin build'),
+    item('a2', 'Building a tiny cabin, day 3', 'downloading', 1, uploader: 'Handmade Haus', dur: 2011, collection: 'Cabin build'),
     item('a3', 'Rainy night synth session', 'processing', 4, uploader: 'Night Loops', dur: 3600, preset: 'mp3'),
     item('a4', 'How suspension bridges stay up', 'queued', 3, uploader: 'Pocket Physics', dur: 845, collection: 'Cabin build'),
     item('a5', 'Street food tour after dark', 'failed', 2, uploader: 'Wander Bites', dur: 1490,

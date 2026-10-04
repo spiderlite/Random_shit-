@@ -66,35 +66,38 @@ class _ConnectScreenState extends State<ConnectScreen> {
     final app = AppScope.of(context);
 
     InputDecoration deco(String hint) => InputDecoration(
-          hintText: hint,
-          hintStyle: context.text.bodyLarge!.copyWith(color: p.ink3),
-          filled: true,
-          fillColor: p.sunken,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.md), borderSide: BorderSide.none),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Radii.md),
-            borderSide: BorderSide(color: p.accent.withValues(alpha: 0.6), width: 1.5),
-          ),
-        );
+      hintText: hint,
+      hintStyle: context.text.bodyLarge!.copyWith(color: p.ink3),
+      filled: true,
+      fillColor: p.sunken,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.md), borderSide: BorderSide.none),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(Radii.md),
+        borderSide: BorderSide(color: p.accent.withValues(alpha: 0.6), width: 1.5),
+      ),
+    );
 
     Widget step(String n, String text) => Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 22,
-                height: 22,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(color: p.sunken, shape: BoxShape.circle),
-                child: Text(n, style: context.text.labelSmall!.copyWith(color: p.ink2, fontWeight: FontWeight.w700)),
-              ),
-              const SizedBox(width: 12),
-              Expanded(child: Text(text, style: context.text.bodyMedium)),
-            ],
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 22,
+            height: 22,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(color: p.sunken, shape: BoxShape.circle),
+            child: Text(
+              n,
+              style: context.text.labelSmall!.copyWith(color: p.ink2, fontWeight: FontWeight.w700),
+            ),
           ),
-        );
+          const SizedBox(width: 12),
+          Expanded(child: Text(text, style: context.text.bodyMedium)),
+        ],
+      ),
+    );
 
     return Scaffold(
       body: SafeArea(
@@ -107,40 +110,31 @@ class _ConnectScreenState extends State<ConnectScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Appear(child: Align(alignment: Alignment.centerLeft, child: HaulMark(size: 44))),
+                    const Align(alignment: Alignment.centerLeft, child: HaulMark(size: 40)),
                     const SizedBox(height: 26),
-                    Appear(
-                      delay: const Duration(milliseconds: 60),
-                      child: Text(isWeb ? 'Enter your code' : 'Connect to your computer', style: context.text.displaySmall),
-                    ),
+                    Text(isWeb ? 'Enter your code' : 'Connect to your computer', style: context.text.displaySmall),
                     const SizedBox(height: 10),
-                    Appear(
-                      delay: const Duration(milliseconds: 120),
-                      child: Text(
-                        isWeb
-                            ? 'This page is Haul on ${app.webOrigin?.host ?? 'your computer'}. Downloads run there; you can save them to this device.'
-                            : 'Your computer does the downloading, and your phone gets the videos. '
+                    Text(
+                      isWeb
+                          ? 'Downloads run on ${app.webOrigin?.host ?? 'the computer'} and you can save them to this device. Enter the code shown in Haul on that computer.'
+                          : 'Haul on this phone sends downloads to your computer, then copies the videos back here. '
                                 'Both need to be on the same Wi-Fi.',
-                        style: context.text.bodyLarge!.copyWith(color: p.ink2),
-                      ),
+                      style: context.text.bodyLarge!.copyWith(color: p.ink2),
                     ),
                     const SizedBox(height: 24),
-                    Appear(
-                      delay: const Duration(milliseconds: 180),
-                      child: Container(
-                        padding: const EdgeInsets.fromLTRB(16, 16, 16, 6),
-                        decoration: BoxDecoration(
-                          color: p.surface,
-                          borderRadius: BorderRadius.circular(Radii.lg),
-                          border: Border.all(color: p.line),
-                        ),
-                        child: Column(
-                          children: [
-                            step('1', 'Open Haul on your Mac, Windows or Linux computer'),
-                            step('2', 'Settings → Use from your phone → turn it on'),
-                            step('3', isWeb ? 'Type the 6-letter code it shows' : 'Type the address and code it shows'),
-                          ],
-                        ),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 6),
+                      decoration: BoxDecoration(
+                        color: p.surface,
+                        borderRadius: BorderRadius.circular(Radii.lg),
+                        border: Border.all(color: p.line),
+                      ),
+                      child: Column(
+                        children: [
+                          step('1', 'Open Haul on your Mac, Windows or Linux computer'),
+                          step('2', 'In Settings, turn on Allow phone connections'),
+                          step('3', isWeb ? 'Type the 6-letter code it shows' : 'Type the address and code it shows'),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 22),
@@ -153,7 +147,7 @@ class _ConnectScreenState extends State<ConnectScreen> {
                         autocorrect: false,
                         textInputAction: TextInputAction.next,
                         onSubmitted: (_) => _codeFocus.requestFocus(),
-                        style: context.text.bodyLarge,
+                        style: context.mono.copyWith(fontSize: 16, color: p.ink),
                         decoration: deco('192.168.1.20'),
                       ),
                       const SizedBox(height: 14),
@@ -170,7 +164,12 @@ class _ConnectScreenState extends State<ConnectScreen> {
                       maxLength: 7,
                       textInputAction: TextInputAction.go,
                       onSubmitted: (_) => _connect(),
-                      style: context.text.headlineSmall!.copyWith(letterSpacing: 6, fontWeight: FontWeight.w600),
+                      style: context.mono.copyWith(
+                        fontSize: 24,
+                        letterSpacing: 4,
+                        color: p.ink,
+                        fontWeight: FontWeight.w500,
+                      ),
                       decoration: deco('K7P2QX').copyWith(counterText: ''),
                     ),
                     AnimatedSize(
@@ -185,7 +184,9 @@ class _ConnectScreenState extends State<ConnectScreen> {
                                 children: [
                                   Icon(Icons.error_outline_rounded, size: 17, color: p.danger),
                                   const SizedBox(width: 8),
-                                  Expanded(child: Text(_error!, style: context.text.bodyMedium!.copyWith(color: p.danger))),
+                                  Expanded(
+                                    child: Text(_error!, style: context.text.bodyMedium!.copyWith(color: p.danger)),
+                                  ),
                                 ],
                               ),
                             ),

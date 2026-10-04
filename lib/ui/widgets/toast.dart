@@ -124,7 +124,7 @@ class _ToastCard extends StatelessWidget {
           constraints: const BoxConstraints(minHeight: 46),
           decoration: BoxDecoration(
             color: bg,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(Radii.lg),
             boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.18), blurRadius: 24, offset: const Offset(0, 8))],
           ),
           child: Row(

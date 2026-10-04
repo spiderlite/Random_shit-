@@ -82,9 +82,9 @@ The connection is local to your Wi-Fi and protected by the code. A phone can onl
 
 ## Design
 
-The whole palette is paper, ink in three strengths, one indigo accent and one warning red. Everything else is opacity. Type is Inter with tabular figures, so numbers don't jitter while they count. Motion is short (140–420 ms) and soft: rows fold in and out, progress glides, statuses cross-fade. Long lists stay smooth because the queue is a plain lazy `ListView` with per-row animations.
+The palette is warm paper neutrals, ink in three strengths, one hi-vis orange accent and one raspberry warning colour. Type is IBM Plex Sans with tabular figures, plus Plex Mono for text that is code (pairing codes, addresses, paths). Motion only reports a change of state: rows fold in and out, progress glides. Nothing loops for decoration or bounces, and everything respects the system's reduce-motion setting.
 
-Tokens live in `lib/theme/theme.dart`.
+The redesign deliberately avoids the habits of AI-generated interfaces (default indigo, Inter everywhere, oversized radii, glow shadows, hover-only actions, low-contrast grey text, cute copy) and is tested for WCAG AA contrast, 48dp/44pt touch targets, 200% text and keyboard-only use. **[docs/DESIGN.md](docs/DESIGN.md)** has the research, sources, the full audit and the checklist. Tokens live in `lib/theme/theme.dart`.
 
 ## Development
 
@@ -93,7 +93,7 @@ Requires Flutter 3.47+ (stable). For Android, an SDK with platform 36. For Linux
 ```sh
 flutter pub get
 flutter run                       # pick a device: Android phone, macos, windows, linux
-flutter test                      # unit + widget tests (uses a fake engine)
+flutter test                      # unit, widget and accessibility tests (fake engine)
 flutter analyze
 
 flutter build apk --release --split-per-abi
@@ -134,5 +134,5 @@ GPL-3.0 (see `LICENSE`). The Android app bundles GPL-3.0 components (youtubedl-a
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp): does all the actual work (Unlicense).
 - [youtubedl-android](https://github.com/JunkFood02/youtubedl-android): yt-dlp on Android (GPL-3.0).
 - [yoinks](https://github.com/pablostanley/yoinks) by Pablo Stanley: the "paste. yoink. done." spirit.
-- [Inter](https://rsms.me/inter/) by Rasmus Andersson (SIL Open Font License, `assets/fonts/Inter-LICENSE.txt`).
+- [IBM Plex](https://github.com/IBM/plex) Sans and Mono (SIL Open Font License, `assets/fonts/IBMPlex-LICENSE.txt`).
 - ffmpeg builds from [yt-dlp/FFmpeg-Builds](https://github.com/yt-dlp/FFmpeg-Builds) and [Martin Riedl](https://ffmpeg.martin-riedl.de/); [Deno](https://deno.com).
