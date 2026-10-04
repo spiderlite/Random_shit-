@@ -30,8 +30,14 @@ credit, and the first one also sets license terms on anything built with it.
   the same page (`assets/dawn_outdoor.png`), shrunk to half size
   (`assets/dawn16.png`).
 
+## Overworld Pokémon from Emerald
+
+The Poochyena and Zigzagoon walking sprites come from
+[pret/pokeemerald](https://github.com/pret/pokeemerald)
+(`graphics/object_events/pics/pokemon/`). They are Game Freak's art.
+
 ## Everything else
 
-The ground, sand streets, forest, garden, pond, Pokémon Center, Poké Mart and
+The ground, sand streets, park trees, forest, garden, pond, Pokémon Center, Poké Mart and
 Oak's lab are the original FireRed metatiles from the pret/pokefirered decompilation. Pokémon and its art belong to
 Nintendo / Game Freak / Creatures. This is a non-commercial fan project.

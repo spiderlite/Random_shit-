@@ -98,9 +98,11 @@ def obj(gfx, pos, move, rng, script, flag="0"):
 def npc_script(label, text_label, who):
     color = "NPC_TEXT_COLOR_FEMALE" if who.get("female") else "NPC_TEXT_COLOR_MALE"
     if who.get("cry"):
-        return ("\n%s::\n\tlock\n\tfaceplayer\n\twaitse\n\tplaymoncry %s, CRY_MODE_NORMAL\n"
-                "\tmsgbox %s\n\twaitmoncry\n\trelease\n\tend\n" % (label, who["cry"], text_label))
-    return "\n%s::\n\tlock\n\tfaceplayer\n\ttextcolor %s\n\tmsgbox %s\n\trelease\n\tend\n" % (label, color, text_label)
+        face = "\tfaceplayer\n" if who.get("face", True) else ""
+        return ("\n%s::\n\tlock\n%s\twaitse\n\tplaymoncry %s, CRY_MODE_NORMAL\n"
+                "\tmsgbox %s\n\twaitmoncry\n\trelease\n\tend\n" % (label, face, who["cry"], text_label))
+    face = "\tfaceplayer\n" if who.get("face", True) else ""
+    return "\n%s::\n\tlock\n%s\ttextcolor %s\n\tmsgbox %s\n\trelease\n\tend\n" % (label, face, color, text_label)
 
 
 tracked = set(subprocess.run(["git", "-C", ROOT, "ls-files", "data/maps"], capture_output=True, text=True).stdout.split())
@@ -272,7 +274,7 @@ for i, b in enumerate(CITY.BUILDINGS):
         interiors.append((name, mj, sc, tx))
 
 # ---- townsfolk, Pokémon and the park sign ----
-m["bg_events"].append({"type": "sign", "x": 21, "y": 18, "elevation": 0,
+m["bg_events"].append({"type": "sign", "x": CITY.PARK["sign"][0], "y": CITY.PARK["sign"][1], "elevation": 0,
                        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY", "script": "PalletTown_EventScript_ParkSign"})
 scripts.append("\nPalletTown_EventScript_ParkSign::\n\tmsgbox PalletTown_Text_ParkSign, MSGBOX_SIGN\n\tend\n")
 texts.append(("PalletTown_Text_ParkSign", "PALLET PARK\\nNew TRAINERS, test your skills here!$"))

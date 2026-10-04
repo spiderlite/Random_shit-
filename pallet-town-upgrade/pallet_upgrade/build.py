@@ -25,7 +25,7 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.join(HERE, "..", "pokefirered")
 B = 16
-NUM_PALS, PAL0 = 6, 7
+NUM_PALS, PAL0 = 6, 7  # palettes 7-12
 MAX_TILES = 384
 RESERVED = {682, 683, 690, 698}
 BEHAVIOR_SIGN, BEHAVIOR_DOOR = 0x84, 0x69
@@ -159,6 +159,30 @@ rest = [i for i in range(len(tile_list)) if i not in prim_entry]
 print("8x8 tiles found in the primary tileset:", len(prim_entry))
 all_tiles, tile_list = tile_list, [tile_list[i] for i in rest]
 
+# ---------------- roof recolours ----------------
+# Houses tagged with a roof variant reuse the base design's tiles with a second
+# palette: a copy of the roof palette with the roof colours swapped. All tiles
+# carrying roof colours share one palette (R), which keeps those colours exactly.
+sys.path.insert(0, HERE)
+import city_data as CITY  # noqa: E402
+RECOLOR = {pos: c["recolor"] for pos, c in cells.items() if c.get("recolor")}
+VARIANTS = sorted(set(RECOLOR.values()))
+ROOF_KEYS = sorted({tuple(int(v) for v in to5(k)) for k in CITY.PINK_ROOF})
+local = {g: i for i, g in enumerate(rest)}
+forced = set()
+for pos in RECOLOR:
+    if pos not in art_blocks:
+        continue
+    bt, tt, _, _ = art_blocks[pos]
+    for g in list(bt) + [t for t in (tt or []) if t is not None]:
+        if g in local:
+            rgb, mask = tile_list[local[g]]
+            px = {tuple(int(v) for v in c) for c in to5(rgb.reshape(-1, 3))[mask.reshape(-1)]}
+            if px & set(ROOF_KEYS):
+                forced.add(local[g])
+NUM_CLUSTER = NUM_PALS - len(VARIANTS)
+print("roof variants:", VARIANTS, " roof tiles:", len(forced))
+
 # ---------------- palette clustering ----------------
 # Work in 5-bit GBA colour space.
 tiles5 = [(to5(rgb.reshape(-1, 3)), mask.reshape(-1)) for rgb, mask in tile_list]
@@ -184,10 +208,15 @@ def kmeans_colors(colors, weights, k, iters=25):
     return np.clip(cent.round(), 0, 31).astype(int)
 
 
-def fit_palette(member_ids):
+def fit_palette(member_ids, fixed=()):
     px = np.concatenate([tiles5[i][0][tiles5[i][1]] for i in member_ids]) if member_ids else np.zeros((1, 3), int)
     cols, counts = np.unique(px, axis=0, return_counts=True)
-    return kmeans_colors(cols, counts.astype(float), 15)
+    if not fixed:
+        return kmeans_colors(cols, counts.astype(float), 15)
+    fixed = np.array(fixed, int)
+    keep = ~(cols[:, None, :] == fixed[None]).all(-1).any(1)
+    other = kmeans_colors(cols[keep], counts[keep].astype(float), 15 - len(fixed)) if keep.any() else np.zeros((0, 3), int)
+    return np.vstack([fixed, other])
 
 
 def tile_error(i, pal):
@@ -201,24 +230,47 @@ def tile_error(i, pal):
 
 # Initial clusters: k-means on each tile's mean colour.
 means = np.array([px[m].mean(0) if m.any() else np.zeros(3) for px, m in tiles5])
-cent = means[rng.choice(len(means), NUM_PALS, replace=False)]
+cent = means[rng.choice(len(means), NUM_CLUSTER, replace=False)]
 for _ in range(20):
     lab = np.argmin(((means[:, None] - cent[None]) ** 2).sum(-1), 1)
-    for j in range(NUM_PALS):
+    for j in range(NUM_CLUSTER):
         if (lab == j).any():
             cent[j] = means[lab == j].mean(0)
 assign = lab
+ROOF_PAL = int(np.bincount([assign[i] for i in forced]).argmax()) if forced else None
+FORCED = sorted(forced)
+
+
+def fit_all(assign):
+    return [fit_palette([i for i in range(len(tiles5)) if assign[i] == j],
+                        fixed=ROOF_KEYS if j == ROOF_PAL else ()) for j in range(NUM_CLUSTER)]
+
+
+if forced:
+    assign[FORCED] = ROOF_PAL
 for it in range(12):
-    pals = [fit_palette([i for i in range(len(tiles5)) if assign[i] == j]) for j in range(NUM_PALS)]
-    errs = np.array([[tile_error(i, pals[j]) for j in range(NUM_PALS)] for i in range(len(tiles5))])
+    pals = fit_all(assign)
+    errs = np.array([[tile_error(i, pals[j]) for j in range(NUM_CLUSTER)] for i in range(len(tiles5))])
     new = errs.argmin(1)
+    if forced:
+        new[FORCED] = ROOF_PAL
     total = errs[np.arange(len(tiles5)), new].sum()
     print("iter %d: total error %.0f, moved %d" % (it, total, (new != assign).sum()))
     if (new == assign).all():
         break
     assign = new
-pals = [fit_palette([i for i in range(len(tiles5)) if assign[i] == j]) for j in range(NUM_PALS)]
+pals = fit_all(assign)
 pals = [np.vstack([p, np.zeros((15 - len(p), 3), int)]) if len(p) < 15 else p for p in pals]
+# Variant palettes: the roof palette with the roof colours swapped.
+VARIANT_PAL = {}
+for v in VARIANTS:
+    vp = pals[ROOF_PAL].copy()
+    for base, newc in CITY.ROOFS[v].items():
+        k = tuple(int(x) for x in to5(base))
+        j = [n for n in range(15) if tuple(int(x) for x in vp[n]) == k][0]
+        vp[j] = to5(newc)
+    VARIANT_PAL[v] = PAL0 + len(pals)
+    pals.append(vp)
 
 # ---------------- index tiles, dedupe with flips ----------------
 indexed = []
@@ -329,11 +381,16 @@ door_by_key = {}
 block_id = {}
 for pos in sorted(art_blocks, key=lambda p: (p[1], p[0])):
     bt, tt, behavior, layer = art_blocks[pos]
-    bottom = [entry_for[t] for t in bt]
+    def ent(t):
+        e = entry_for[t]
+        if pos in RECOLOR and t in local and local[t] in forced:
+            e = (e & 0x0FFF) | (VARIANT_PAL[RECOLOR[pos]] << 12)
+        return e
+    bottom = [ent(t) for t in bt]
     if tt is None:
         top = [BLANK] * 4
     else:
-        top = [entry_for[t] if t is not None else BLANK for t in tt]
+        top = [ent(t) if t is not None else BLANK for t in tt]
     attr = behavior | (layer << 29)
     key = (tuple(bottom), tuple(top), attr)
     if pos in DOORS:

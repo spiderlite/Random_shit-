@@ -215,6 +215,26 @@ for (x, y) in [(45, 20), (51, 20), (45, 23), (51, 23)]:
     G[y][x] = 5
     COLL[y][x] = (1, 0)
 
+# ---------------- Pallet Park: a small wood ----------------
+# Dark forest-floor grass with Pallet's lawn edges, FireRed's own standalone
+# trees (the Route 1 kind; all primary metatiles, so no tile cost), and a sandy
+# clearing in the middle where two trainers battle. Trees are solid, crowns too.
+PARK = CITY.PARK
+yard(*PARK["area"], fill=1)
+for (tx, ty) in PARK["trees"]:
+    for (dx, dy), mid in {(0, 0): 0x0E, (1, 0): 0x0F, (0, 1): 0x1E, (1, 1): 0x1F}.items():
+        G[ty + dy][tx + dx] = mid
+        COLL[ty + dy][tx + dx] = (1, 0)
+cx0, cy0, cx1, cy1 = PARK["clearing"]   # FireRed's sand-patch pieces, made for this grass
+for y in range(cy0, cy1 + 1):
+    for x in range(cx0, cx1 + 1):
+        row = 0 if y == cy0 else (2 if y == cy1 else 1)
+        col = 0 if x == cx0 else (2 if x == cx1 else 1)
+        G[y][x] = [[0xD3, 0xD4, 0xD5], [0xDB, 0xDC, 0xDD], [0xE3, 0xE4, 0xE5]][row][col]
+PARK_SIGN = PARK["sign"]
+G[PARK_SIGN[1]][PARK_SIGN[0]] = 2  # the original FireRed signpost (on this same grass)
+COLL[PARK_SIGN[1]][PARK_SIGN[0]] = (1, 0)
+
 # ---------------- render ground ----------------
 under = Image.new("RGBA", (W * B, H * B))
 over = Image.new("RGBA", (W * B, H * B))
@@ -367,7 +387,10 @@ HOUSES = {  # sprite id, door centre x in the (unflipped) sprite
 }
 
 
-def house(name, design, flip, door):
+RECOLOR = {}  # (x, y) -> roof variant name; build.py swaps the roof palette there
+
+
+def house(name, design, flip, door, roof=None):
     sid, dcx = HOUSES[design]
     im = sprite(sid, flip=flip)
     if flip:
@@ -379,6 +402,13 @@ def house(name, design, flip, door):
     cells.add((dx, dy))
     place(im, px, py, cells, base_rows=range(dy - 3, dy + 1))
     DOORS[(dx, dy)] = name
+    if roof:
+        a = im.getchannel("A")
+        for y in range(py // B, dy + 1):
+            for x in range(px // B, (px + im.width - 1) // B + 1):
+                box = (x * B - px, y * B - py, x * B - px + B, y * B - py + B)
+                if a.crop(box).getbbox():
+                    RECOLOR[(x, y)] = roof
     return cells
 
 
@@ -410,7 +440,7 @@ mailbox(CITY.RIVAL_MAILBOX, "blue")
 # repeated designs share all their tiles).
 for b in CITY.BUILDINGS:
     if b["design"] in ("pink", "blue", "orange"):
-        house(b["key"], b["design"], b["design"] == "orange", b["door"])
+        house(b["key"], b["design"], b["design"] == "orange", b["door"], b.get("roof"))
     if b.get("mailbox"):
         cell, color = b["mailbox"]
         mailbox(cell, color)
@@ -455,21 +485,19 @@ pink, blue = sprite(283), sprite(271)
 FLOWERBEDS = []
 
 # ---------------- south district (rows 17-26) ----------------
-# The park: pines on either side, a lamp-lit bench, and a sign.
+# Trees outside the park, a lamp-lit bench at its head, spectator benches by the clearing.
 for c in [(12, 22), (32, 22)]:
     tree(c)
-for lx in (16, 27):
-    place(lamp, lx * B + 8 - lamp.width // 2, 20 * B - lamp.height, {(lx, 18), (lx, 19)}, base_rows=(18, 19))
-place(bench, 21 * B + 8 - bench.width // 2, 21 * B - bench.height, {(20, 20), (21, 20), (22, 20)}, base_rows=(20,))
+for lx in PARK["lamps"]:
+    ly = PARK["lamp_row"]
+    place(lamp, lx * B + 8 - lamp.width // 2, (ly + 1) * B - lamp.height, {(lx, ly - 1), (lx, ly)}, base_rows=(ly - 1, ly))
+bx, by = PARK["bench"]
+place(bench, bx * B + 8 - bench.width // 2, (by + 1) * B - bench.height, {(bx - 1, by), (bx, by), (bx + 1, by)}, base_rows=(by,))
+for (sx, sy) in PARK["side_benches"]:   # two squares wide, sitting exactly on them
+    place(bench, sx * B, (sy + 1) * B - bench.height, {(sx, sy), (sx + 1, sy)}, base_rows=(sy,))
 # Lamps on either side of the flower garden.
 for lx in (43, 53):
     place(lamp, lx * B + 8 - lamp.width // 2, 23 * B - lamp.height, {(lx, 21), (lx, 22)}, base_rows=(21, 22))
-PARK_SIGN = (21, 18)
-G[PARK_SIGN[1]][PARK_SIGN[0]] = 2  # the original FireRed signpost
-COLL[PARK_SIGN[1]][PARK_SIGN[0]] = (1, 0)
-bot, _ = layers(2)
-under.paste(bot, (PARK_SIGN[0] * B, PARK_SIGN[1] * B))
-BEHAVIOR[PARK_SIGN] = attr(2) & 0x1FF
 
 # Farmers' market stall: a canopy on two poles (drawn below the player so the
 # vendor stands in front of it) and baskets of produce in front as a counter.
@@ -579,6 +607,7 @@ for y in range(H):
             "coll": COLL[y][x][0], "elev": COLL[y][x][1],
             "behavior": BEHAVIOR.get((x, y), 0),
             "door": DOORS.get((x, y)),
+            "recolor": RECOLOR.get((x, y)),
         }
 json.dump({"width": W, "height": H, "cells": cells}, open(os.path.join(OUT, "plan.json"), "w"))
 prev = under.copy()

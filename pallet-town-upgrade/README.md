@@ -8,6 +8,12 @@ event are kept as they are in FireRed.
 - **Streets:** sand paths in FireRed's own style. There's a main street from the Route 1
   gate, three avenues past every row of front doors, an east street, a
   fountain square and lanes around the park.
+- **Varied houses:** pink, green, blue and orange cottages. The green roofs are a palette
+  recolour of the pink design, so they cost no extra tiles.
+- **Pallet Park, a small wood:** FireRed's own trees on a forest floor. A lamp-lit
+  bench sits at its head, with benches either side of a sandy clearing where two
+  trainers battle with Poochyena and Zigzagoon (Emerald's own overworld
+  sprites, imported with their exact colours).
 - **12 enterable buildings, each with its own interior and residents:**
   - **Pokémon Center:** the nurse heals you and sets your respawn point, and the 2F link rooms work.
   - **Poké Mart:** sells Potions, Antidotes, Paralyze Heals, Awakenings, Burn Heals and Escape Ropes.
@@ -18,12 +24,12 @@ event are kept as they are in FireRed.
     one of them with an upstairs.
 - **Farmers' market stall** in the east square: a canopy and baskets of produce,
   and a vendor you talk to across the baskets. He sells Fresh Water, Soda Pop and Lemonade.
-- **Townsfolk:** 12 townsfolk, each with their own personality. There's a policeman at the gate,
+- **Townsfolk:** 14 townsfolk, each with their own personality. There's a policeman at the gate,
   a mail carrier on his round, a jogger running laps of East Street, a shopper
   at the stall, a gentleman walking his Meowth, a man napping in the sun,
   kids playing tag, a construction worker, and May visiting from Littleroot in the
-  Pokémon Center. Five Pokémon wander about too (two Pidgey, Meowth, Slowpoke, Psyduck),
-  and talking to one plays its cry.
+  Pokémon Center, and two kids mid-battle in the park. Seven Pokémon are out and about
+  (two Pidgey, Meowth, Slowpoke, Psyduck, Poochyena, Zigzagoon), and talking to one plays its cry.
 - **14 beginner trainers** spread across town. Some are relaxing in the park or the
   flower garden, some wander about, and some are waiting at the harbour to head
   for Cinnabar ("I'll use my newly caught POKéMON on you, rookie!").
@@ -34,7 +40,7 @@ event are kept as they are in FireRed.
 ![overview](screenshots/pallet_city_overview.png)
 
 In-game screenshots: `screenshots/pallet_city_tour.png` (eight spots around town),
-`pallet_market_stall.png`, `pallet_pokemon_center.png` and
+`pallet_park_battle.png`, `pallet_market_stall.png`, `pallet_pokemon_center.png` and
 `pallet_cinnabar_trainer.png`. Every interior, with residents marked, is in
 `pallet_city_interiors.png`, and the original town is in `pallet_original.png`.
 
@@ -46,13 +52,14 @@ ChaoticCherryCake tiles are CC BY-NC-SA, so this is **non-commercial only**.
 | | |
 |---|---|
 | Layout | `PalletTown_Layout` is now 62×30. The original town sits in the middle (shifted 10 columns right), and ten rows were inserted above the original bottom edge, so the pond and the seams with Route 1 and Route 21 are unchanged. |
-| Tileset | `gTileset_PalletTown` was redrawn: 375 of the 376 usable tiles (the last 8 of the 384 are reserved for door animations), 6 palettes, 215 metatiles. No tiles were merged lossily. Tiles that already exist in the General tileset are referenced from there. Ground-level objects sit on the metatile's second layer, so they cost the same tiles on any ground. Metatiles 682/683/690/698 are unchanged, because Route 1 uses them. |
+| Tileset | `gTileset_PalletTown` was redrawn: 373 of the 376 usable tiles (the last 8 of the 384 are reserved for door animations), 6 palettes (one is the green-roof recolour), 239 metatiles. No tiles were merged lossily. Tiles that already exist in the General tileset are referenced from there. Ground-level objects sit on the metatile's second layer, so they cost the same tiles on any ground. Metatiles 682/683/690/698 are unchanged, because Route 1 uses them. |
 | Neighbours | The Route 1 and Route 21 North connections were re-aligned. Nothing on those routes was changed. |
 | Events | All original warps, signs, triggers and NPCs moved with the town. Hard-coded positions in `PalletTown/scripts.inc` and the Pallet heal location were moved too. |
 | New maps | 14 interior maps (`PalletTown_*`), in a new map group. They reuse FireRed's interior layouts, and their door warps are aligned to each layout's doormat. |
 | Doors | New door-opening animations for each house design, registered in `src/field_door.c`. The Pokémon Center and Mart use FireRed's sliding doors. |
 | Trainers | 14 new trainers (`TRAINER_PALLET_*`, ids 743–756; `NUM_TRAINERS` is now 757 of the 768 that fit), defined in `pallet_upgrade/trainers_data.py`. |
-| Data | Every building, resident, townsperson, street and the market stall is defined in `pallet_upgrade/city_data.py`. |
+| Sprites | `OBJ_EVENT_GFX_POOCHYENA` and `OBJ_EVENT_GFX_ZIGZAGOON` were added (`pallet_upgrade/sprites.py`), copied from pret/pokeemerald. They share one 14-colour palette in the special NPC palette slot. |
+| Data | Every building, resident, townsperson, street, the park and the market stall is defined in `pallet_upgrade/city_data.py`. |
 
 Checked in the emulator, on the final ROM:
 
@@ -62,6 +69,8 @@ Checked in the emulator, on the final ROM:
   the square in front of their door.
 - **Services:** the Pokémon Center heals, and the Mart and the stall vendor open their shops.
 - **Trainers:** battles with Lass Mila and Sailor Duncan, from the YES/NO prompt through the after-battle line.
+- **The park:** the imported Pokémon animate facing each other. Talking to them plays their cries,
+  and they and their trainers keep facing the battle instead of turning to you.
 
 Checked automatically on every rebuild (`check_reach.py`, `compose.py` audits):
 
@@ -93,6 +102,7 @@ art) and run `pallet_upgrade/rebuild.sh`:
 3. `doors.py` makes the door animations and registers them.
 4. `wire.py` writes the map JSON, scripts, trainers, shops, interiors,
    connections and heal location. It always starts from the committed files.
+   `sprites.py` imports the Emerald overworld Pokémon.
 5. `check_reach.py` runs the checks above and fails the build on any problem.
 
 `pallet_upgrade/orig/` is a copy of the original Pallet Town tileset and map

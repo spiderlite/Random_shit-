@@ -18,14 +18,15 @@ WANDER, LOOK = "MOVEMENT_TYPE_WANDER_AROUND", "MOVEMENT_TYPE_LOOK_AROUND"
 PACE_LR, PACE_UD = "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT", "MOVEMENT_TYPE_WANDER_UP_AND_DOWN"
 
 
-def npc(gfx, pos, move, text, rng=1, cry=None, female=None):
+def npc(gfx, pos, move, text, rng=1, cry=None, female=None, face=True):
+    """face=False: they keep looking where they were (busy people, battling Pokémon)."""
     return {"gfx": "OBJ_EVENT_GFX_" + gfx, "pos": pos, "move": move, "range": rng, "text": text, "cry": cry,
-            "female": female}
+            "female": female, "face": face}
 
 
-def mon(gfx, species, pos, move, cry_text, rng=1):
+def mon(gfx, species, pos, move, cry_text, rng=1, face=True):
     """A Pokémon wandering about: it cries, then says something in its own way."""
-    return npc(gfx, pos, move, cry_text, rng, cry=species)
+    return npc(gfx, pos, move, cry_text, rng, cry=species, face=face)
 
 
 BUILDINGS = [
@@ -79,7 +80,7 @@ BUILDINGS = [
              "when I'm ten. Six more years!$"),
      ]}]},
     # ---------------- east of the lab ----------------
-    {"key": "ValeHouse", "design": "pink", "door": (35, 7), "mailbox": ((33, 7), "red"),
+    {"key": "ValeHouse", "design": "pink", "roof": "green", "door": (35, 7), "mailbox": ((33, 7), "red"),
      "mailbox_text": "VALE$",
      "floors": [{"source": "LavenderTown_House1", "residents": [
          npc("LITTLE_BOY", (2, 5), RIGHT,
@@ -149,7 +150,7 @@ BUILDINGS = [
              "berry tea! We have nothing like\\l"
              "it in LITTLEROOT.$"),
      ]}]},
-    {"key": "Nursery", "design": "pink", "door": (43, 15), "sign": (41, 15),
+    {"key": "Nursery", "design": "pink", "roof": "green", "door": (43, 15), "sign": (41, 15),
      "sign_text": "POKéMON NURSERY\\n"
                   "Little ones welcome. Please be gentle!$",
      "floors": [{"source": "LavenderTown_VolunteerPokemonHouse", "residents": [
@@ -284,6 +285,23 @@ OUTDOOR = [
         "with ORAN BERRIES, you know.\p"
         "…At least, that's what the\n"
         "sign says. I can't taste it.$", female=True),
+    # A practice battle in the park clearing (Poochyena and Zigzagoon are
+    # Emerald's own overworld sprites, imported by sprites.py).
+    npc("BOY", (19, 22), RIGHT,
+        "Go, POOCHYENA! TACKLE!\\p"
+        "…Huh? Don't distract us!\\n"
+        "My cousin mailed me this\\l"
+        "POOCHYENA all the way from\\l"
+        "HOENN!$", face=False),
+    mon("POOCHYENA", "SPECIES_POOCHYENA", (20, 22), "MOVEMENT_TYPE_WALK_IN_PLACE_FAST_RIGHT",
+        "POOCHYENA: Grrrr… Ruff! Ruff!$", face=False),
+    mon("ZIGZAGOON", "SPECIES_ZIGZAGOON", (22, 22), "MOVEMENT_TYPE_WALK_IN_PLACE_FAST_LEFT",
+        "ZIGZAGOON: Zig! Zagoo!$", face=False),
+    npc("COOLTRAINER_F", (23, 22), LEFT,
+        "ZIGZAGOON, HEADBUTT!\\p"
+        "We're tied, three wins each.\\n"
+        "Loser buys the LEMONADE at\\l"
+        "the market stall!$", female=True, face=False),
     mon("PSYDUCK", "SPECIES_PSYDUCK", (16, 26), DOWN, "PSYDUCK: Psy…? …Duck!$"),
 ]
 
@@ -316,4 +334,32 @@ STALL = {
     "bye": "Stay hydrated out there, kid!\n"
            "Your POKéMON too!$",
     "items": ["ITEM_FRESH_WATER", "ITEM_SODA_POP", "ITEM_LEMONADE"],
+}
+
+# Roof recolours: the pink cottage drawn with a different roof palette (same
+# tiles, so they cost nothing from the tile budget). The roof's shading ramp is
+# hue-shifted, keeping its light and dark steps.
+PINK_ROOF = [(245, 170, 170), (238, 141, 145), (222, 113, 118), (206, 97, 102),
+             (183, 76, 84), (157, 58, 58), (123, 50, 50), (101, 40, 40)]
+
+
+def _shift(c, hue, sat, val):
+    import colorsys
+    h, s_, v = colorsys.rgb_to_hsv(*(x / 255 for x in c))
+    return tuple(int(round(x * 255)) for x in colorsys.hsv_to_rgb(hue, min(1, s_ * sat), min(1, v * val)))
+
+
+ROOFS = {"green": {c: _shift(c, 0.30, 0.85, 0.92) for c in PINK_ROOF}}
+
+# ---------------------------------------------------------------- Pallet Park
+PARK = {
+    "area": (15, 18, 27, 25),          # forest-floor yard (edges are lawn transitions)
+    # top-left squares of 2x2 trees: a grove either side of the bench, and a tree
+    # line along the south side with a gap in the middle as the south entrance
+    "trees": [(16, 19), (25, 19), (16, 23), (18, 23), (23, 23), (25, 23)],
+    "clearing": (18, 21, 24, 22),      # sandy battle clearing
+    "sign": (21, 19),
+    "lamps": (19, 23), "lamp_row": 20,  # lamp bases at rows 19-20, flanking the bench
+    "bench": (21, 20),
+    "side_benches": [(16, 21), (25, 21)],
 }

@@ -31,7 +31,7 @@ TRAINERS = [
     },
     {
         "name": "MILA", "class": "LASS", "const": "TRAINER_PALLET_LASS_MILA",
-        "gfx": "OBJ_EVENT_GFX_LASS", "pos": (18, 22), "facing": "MOVEMENT_TYPE_FACE_RIGHT",
+        "gfx": "OBJ_EVENT_GFX_LASS", "pos": (10, 17), "facing": "MOVEMENT_TYPE_FACE_RIGHT",
         "female": True,
         "party": [("ODDISH", 4), ("NIDORAN_F", 3)],
         "text": {
@@ -76,7 +76,7 @@ TRAINERS = [
     },
     {
         "name": "DREW", "class": "CAMPER", "const": "TRAINER_PALLET_CAMPER_DREW",
-        "gfx": "OBJ_EVENT_GFX_CAMPER", "pos": (25, 23), "facing": "MOVEMENT_TYPE_FACE_UP",
+        "gfx": "OBJ_EVENT_GFX_CAMPER", "pos": (26, 22), "facing": "MOVEMENT_TYPE_FACE_LEFT",
         "female": False,
         "party": [("SANDSHREW", 4), ("MANKEY", 3)],
         "text": {
@@ -99,7 +99,7 @@ TRAINERS = [
     },
     {
         "name": "ROSA", "class": "PICNICKER", "const": "TRAINER_PALLET_PICNICKER_ROSA",
-        "gfx": "OBJ_EVENT_GFX_PICNICKER", "pos": (15, 25), "facing": "MOVEMENT_TYPE_FACE_UP",
+        "gfx": "OBJ_EVENT_GFX_PICNICKER", "pos": (17, 22), "facing": "MOVEMENT_TYPE_FACE_RIGHT",
         "female": True,
         "party": [("BELLSPROUT", 4), ("MEOWTH", 3)],
         "text": {

@@ -45,32 +45,34 @@ index 88d7594..6a83d89 100644
  	.include "data/maps/ViridianCity_Gym/text.inc"
  	.include "data/maps/ViridianCity_School/text.inc"
 diff --git a/data/layouts/PalletTown/map.bin b/data/layouts/PalletTown/map.bin
-index f2113394f22d6f0180f364071301b5ed06588773..b06084f93995265274a49cfb7e16163982305130 100644
+index f2113394f22d6f0180f364071301b5ed06588773..d4e32dac239bd6ff29effc2a7ff13a80b71b27b5 100644
 GIT binary patch
 literal 3720
-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
+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
 
 literal 960
 zcmZuvSxdt}7=*eE?TfOd>PxE+^#Ju@`Tn8zNxh91-c|*ziU*4Kt$3h5`E%Sa*>=-S
@@ -97,7 +99,7 @@ index 41d0eb1..07e9a49 100644
        "border_height": 2,
        "primary_tileset": "gTileset_General",
 diff --git a/data/maps/PalletTown/map.json b/data/maps/PalletTown/map.json
-index 802d32d..8316afb 100644
+index 802d32d..4ab97ee 100644
 --- a/data/maps/PalletTown/map.json
 +++ b/data/maps/PalletTown/map.json
 @@ -16,12 +16,12 @@
@@ -144,7 +146,7 @@ index 802d32d..8316afb 100644
        "y": 8,
        "elevation": 3,
        "movement_type": "MOVEMENT_TYPE_FACE_UP",
-@@ -70,35 +70,553 @@
+@@ -70,35 +70,609 @@
        "trainer_sight_or_berry_tree_id": "0",
        "script": "0x0",
        "flag": "FLAG_HIDE_OAK_IN_PALLET_TOWN"
@@ -361,6 +363,62 @@ index 802d32d..8316afb 100644
 +    },
 +    {
 +      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_BOY",
++      "x": 19,
++      "y": 22,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk16",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_POOCHYENA",
++      "x": 20,
++      "y": 22,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_FAST_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk17",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_ZIGZAGOON",
++      "x": 22,
++      "y": 22,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_FAST_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk18",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
++      "x": 23,
++      "y": 22,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_EventScript_Townsfolk19",
++      "flag": "0"
++    },
++    {
++      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
 +      "x": 16,
 +      "y": 26,
@@ -370,7 +428,7 @@ index 802d32d..8316afb 100644
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
 +      "trainer_sight_or_berry_tree_id": "0",
-+      "script": "PalletTown_EventScript_Townsfolk16",
++      "script": "PalletTown_EventScript_Townsfolk20",
 +      "flag": "0"
 +    },
 +    {
@@ -404,8 +462,8 @@ index 802d32d..8316afb 100644
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_LASS",
-+      "x": 18,
-+      "y": 22,
++      "x": 10,
++      "y": 17,
 +      "elevation": 3,
 +      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
 +      "movement_range_x": 1,
@@ -432,10 +490,10 @@ index 802d32d..8316afb 100644
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
-+      "x": 25,
-+      "y": 23,
++      "x": 26,
++      "y": 22,
 +      "elevation": 3,
-+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
 +      "movement_range_x": 1,
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
@@ -446,10 +504,10 @@ index 802d32d..8316afb 100644
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
-+      "x": 15,
-+      "y": 25,
++      "x": 17,
++      "y": 22,
 +      "elevation": 3,
-+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
 +      "movement_range_x": 1,
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
@@ -702,7 +760,7 @@ index 802d32d..8316afb 100644
        "y": 1,
        "elevation": 3,
        "var": "VAR_MAP_SCENE_PALLET_TOWN_OAK",
-@@ -107,7 +625,7 @@
+@@ -107,7 +681,7 @@
      },
      {
        "type": "trigger",
@@ -711,7 +769,7 @@ index 802d32d..8316afb 100644
        "y": 1,
        "elevation": 3,
        "var": "VAR_MAP_SCENE_PALLET_TOWN_OAK",
-@@ -116,7 +634,7 @@
+@@ -116,7 +690,7 @@
      },
      {
        "type": "trigger",
@@ -720,7 +778,7 @@ index 802d32d..8316afb 100644
        "y": 2,
        "elevation": 3,
        "var": "VAR_TEMP_2",
-@@ -127,7 +645,7 @@
+@@ -127,7 +701,7 @@
    "bg_events": [
      {
        "type": "sign",
@@ -729,7 +787,7 @@ index 802d32d..8316afb 100644
        "y": 16,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -135,7 +653,7 @@
+@@ -135,7 +709,7 @@
      },
      {
        "type": "sign",
@@ -738,7 +796,7 @@ index 802d32d..8316afb 100644
        "y": 7,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -143,7 +661,7 @@
+@@ -143,7 +717,7 @@
      },
      {
        "type": "sign",
@@ -747,7 +805,7 @@ index 802d32d..8316afb 100644
        "y": 7,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -151,7 +669,7 @@
+@@ -151,7 +725,7 @@
      },
      {
        "type": "sign",
@@ -756,7 +814,7 @@ index 802d32d..8316afb 100644
        "y": 11,
        "elevation": 0,
        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-@@ -159,11 +677,99 @@
+@@ -159,11 +733,99 @@
      },
      {
        "type": "sign",
@@ -850,7 +908,7 @@ index 802d32d..8316afb 100644
 +    {
 +      "type": "sign",
 +      "x": 21,
-+      "y": 18,
++      "y": 19,
 +      "elevation": 0,
 +      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
 +      "script": "PalletTown_EventScript_ParkSign"
@@ -858,7 +916,7 @@ index 802d32d..8316afb 100644
    ]
  }
 diff --git a/data/maps/PalletTown/scripts.inc b/data/maps/PalletTown/scripts.inc
-index 1384b7d..cc053d8 100644
+index 1384b7d..830a326 100644
 --- a/data/maps/PalletTown/scripts.inc
 +++ b/data/maps/PalletTown/scripts.inc
 @@ -24,12 +24,12 @@ PalletTown_EventScript_SetSignLadyDone::
@@ -915,7 +973,7 @@ index 1384b7d..cc053d8 100644
  	waitdooranim
  	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1
  	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
-@@ -447,3 +447,626 @@ PalletTown_EventScript_SignLadyStartShowSign::
+@@ -447,3 +447,658 @@ PalletTown_EventScript_SignLadyStartShowSign::
  	call PalletTown_EventScript_SignLadyShowSign
  	release
  	end
@@ -1094,10 +1152,42 @@ index 1384b7d..cc053d8 100644
 +
 +PalletTown_EventScript_Townsfolk16::
 +	lock
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox PalletTown_Text_Townsfolk16
++	release
++	end
++
++PalletTown_EventScript_Townsfolk17::
++	lock
++	waitse
++	playmoncry SPECIES_POOCHYENA, CRY_MODE_NORMAL
++	msgbox PalletTown_Text_Townsfolk17
++	waitmoncry
++	release
++	end
++
++PalletTown_EventScript_Townsfolk18::
++	lock
++	waitse
++	playmoncry SPECIES_ZIGZAGOON, CRY_MODE_NORMAL
++	msgbox PalletTown_Text_Townsfolk18
++	waitmoncry
++	release
++	end
++
++PalletTown_EventScript_Townsfolk19::
++	lock
++	textcolor NPC_TEXT_COLOR_FEMALE
++	msgbox PalletTown_Text_Townsfolk19
++	release
++	end
++
++PalletTown_EventScript_Townsfolk20::
++	lock
 +	faceplayer
 +	waitse
 +	playmoncry SPECIES_PSYDUCK, CRY_MODE_NORMAL
-+	msgbox PalletTown_Text_Townsfolk16
++	msgbox PalletTown_Text_Townsfolk20
 +	waitmoncry
 +	release
 +	end
@@ -1543,10 +1633,10 @@ index 1384b7d..cc053d8 100644
 +	release
 +	end
 diff --git a/data/maps/PalletTown/text.inc b/data/maps/PalletTown/text.inc
-index 726aea8..7cfd710 100644
+index 726aea8..e0b07f2 100644
 --- a/data/maps/PalletTown/text.inc
 +++ b/data/maps/PalletTown/text.inc
-@@ -65,3 +65,530 @@ PalletTown_Text_OakYouEnjoyingTraveling::
+@@ -65,3 +65,550 @@ PalletTown_Text_OakYouEnjoyingTraveling::
      .string "Good for you, good for you.\n"
      .string "Hohoho.$"
  
@@ -1669,6 +1759,26 @@ index 726aea8..7cfd710 100644
 +    .string "sign says. I can't taste it.$"
 +
 +PalletTown_Text_Townsfolk16::
++    .string "Go, POOCHYENA! TACKLE!\p"
++    .string "…Huh? Don't distract us! My\n"
++    .string "cousin mailed me this\l"
++    .string "POOCHYENA all the way from\l"
++    .string "HOENN!$"
++
++PalletTown_Text_Townsfolk17::
++    .string "POOCHYENA: Grrrr… Ruff!\n"
++    .string "Ruff!$"
++
++PalletTown_Text_Townsfolk18::
++    .string "ZIGZAGOON: Zig! Zagoo!$"
++
++PalletTown_Text_Townsfolk19::
++    .string "ZIGZAGOON, HEADBUTT!\p"
++    .string "We're tied, three wins each.\n"
++    .string "Loser buys the LEMONADE at\l"
++    .string "the market stall!$"
++
++PalletTown_Text_Townsfolk20::
 +    .string "PSYDUCK: Psy…? …Duck!$"
 +
 +PalletTown_Text_StallVendor::
@@ -4063,52 +4173,55 @@ index 8c382f5..e8882b9 100644
    "gMapGroup_IndoorViridian": [
      "ViridianCity_House",
 diff --git a/data/tilesets/secondary/pallet_town/metatile_attributes.bin b/data/tilesets/secondary/pallet_town/metatile_attributes.bin
-index 2ba2894bc2e11a75b7ec3f11cc340c767e7cfb85..8313c8989f5ca39bbeaa7147188b4d5708457684 100644
+index 2ba2894bc2e11a75b7ec3f11cc340c767e7cfb85..3972c452debea4c312b6999e86d6ae743a5231a4 100644
 GIT binary patch
-literal 860
-zcmb_XK@NZ*4C52t`#pc*!H3%#t8+jg(I#c3>qaQ0pwy&w15}~`3b6&yG;@FCV|`|w
-zt?EpM4_9+PdtBFiqvyl<{hG`Fu<x8|&cxoNW~>XaV=5$_fo$+D&!p_mITNe$0?zY&
-d$ooQVi}Sv#3P@~uF*E98<4%#mn+vrl?*JgF7#9El
+literal 956
+zcmdT=K@Na04C*Jm^F4pz!G{aR*4k~+7%!3#8Kt<)%wR2P1wbWMfQHxuXgceB<lEf#
+zc{aXBCeC*L=MNsQ8}E|uJMwd8*Xyxg-@$zr#ZJxS*$d5;A;5`KA?XTKBb_yK%9gGG
+hjUGLxSp{f(N$>Ygouvib@JZ&<v9MFL#EDvzw*iBa8aDs{
 
 literal 356
 zcmah=$q4`;4C})c{1>-#4+poYC{ZgGLUW2-r{sXMrfAV$jv_h}Mz>Q_j{5FkusUsU
 Zczntt;J-YWxP@H=50T|01(?S1wF5Z)1q}cI
 
 diff --git a/data/tilesets/secondary/pallet_town/metatiles.bin b/data/tilesets/secondary/pallet_town/metatiles.bin
-index 41db2701509573f5a57d38ddb349e9a243b518ee..249a2d613c69ca3533ed74f5e3fe2538395517a4 100644
+index 41db2701509573f5a57d38ddb349e9a243b518ee..16d74fc74c28f02be08b9281c7f5a04ac5c6a5d0 100644
 GIT binary patch
-literal 3440
-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
+literal 3824
+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
+TKkkW5e;2PGsQz8#M?n5BfGCc!
 
 literal 1424
 zcmb_b&rcIk5T0x{*n`0)o2Vz{aX{1*!yXDs(2!6LdeOvsBe7Q#jb8L(HC<6$kdltL
@@ -4127,7 +4240,7 @@ z#DXI2Dxr#Okmn*6y>+a5tFlt(@2>v}dA~q^yZimQ=Fa7MmRY9ldb8eKec5}KtL0>F
 lW8%xsLUJt$5aNlATrv4|2Vk8v|92IMo3b`5#9j3o-XCo{c7Xr@
 
 diff --git a/data/tilesets/secondary/pallet_town/palettes/07.pal b/data/tilesets/secondary/pallet_town/palettes/07.pal
-index 995731c..7b29fd8 100644
+index 995731c..8ca26ee 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/07.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/07.pal
 @@ -1,19 +1,19 @@
@@ -4151,23 +4264,23 @@ index 995731c..7b29fd8 100644
 -0 0 0
 -0 0 0
 +255 0 255
++123 173 214
++247 247 247
++66 74 90
 +66 123 189
-+231 239 222
-+66 74 99
++132 132 140
++198 198 214
 +132 173 173
-+181 198 231
-+132 123 132
-+49 107 156
-+123 173 206
++49 99 148
 +90 140 198
-+189 239 214
-+66 49 33
-+99 99 115
++90 90 115
++222 222 222
++115 123 239
 +165 173 181
-+107 140 239
-+148 148 140
++189 239 214
++57 107 165
 diff --git a/data/tilesets/secondary/pallet_town/palettes/08.pal b/data/tilesets/secondary/pallet_town/palettes/08.pal
-index dcecb9c..7d8e09d 100644
+index dcecb9c..12c85fe 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/08.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/08.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -4189,23 +4302,23 @@ index dcecb9c..7d8e09d 100644
 -222 139 106
 -189 98 74
 -123 205 164
-+74 82 107
-+247 247 247
-+198 173 107
-+123 123 132
-+132 74 74
-+189 198 198
-+156 140 99
-+49 173 107
-+90 57 49
-+66 123 189
-+41 49 82
-+140 189 99
-+206 140 156
-+181 214 107
-+156 107 99
++99 41 41
++123 49 49
++156 57 57
++181 74 82
++206 99 99
++222 115 115
++239 140 148
++247 173 173
++198 115 57
++198 198 189
++90 156 206
++90 57 33
++107 99 99
++239 239 239
++156 90 41
 diff --git a/data/tilesets/secondary/pallet_town/palettes/09.pal b/data/tilesets/secondary/pallet_town/palettes/09.pal
-index 90bb775..c85a8b8 100644
+index 90bb775..b2b8b0c 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/09.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/09.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -4227,23 +4340,23 @@ index 90bb775..c85a8b8 100644
 -213 189 106
 -197 148 74
 -222 205 123
-+74 148 90
-+66 49 33
-+57 115 181
-+206 189 173
-+148 189 99
-+49 90 140
-+33 107 66
-+33 66 90
-+214 123 57
-+140 99 82
-+115 173 90
-+107 148 198
-+90 74 57
-+189 156 132
-+57 123 82
++66 74 107
++231 214 173
++165 140 107
++132 74 74
++82 66 49
++198 165 156
++57 107 181
++198 222 214
++181 214 107
++49 173 107
++123 123 132
++198 173 107
++41 49 90
++140 189 99
++148 107 99
 diff --git a/data/tilesets/secondary/pallet_town/palettes/10.pal b/data/tilesets/secondary/pallet_town/palettes/10.pal
-index 1958eff..0fe489c 100644
+index 1958eff..a70f2f2 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/10.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/10.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -4265,23 +4378,23 @@ index 1958eff..0fe489c 100644
 -164 90 106
 -139 65 82
 -32 172 98
-+189 239 214
-+74 74 99
-+115 206 165
-+231 214 148
-+123 123 132
-+247 247 247
-+189 231 165
-+82 148 214
-+239 231 206
-+239 156 156
-+156 231 198
-+198 198 206
-+156 123 82
-+140 181 214
-+198 173 132
++66 74 107
++214 132 66
++115 173 90
++66 123 189
++74 57 41
++41 107 66
++198 181 165
++49 99 148
++74 148 90
++132 132 123
++115 107 90
++107 148 198
++33 66 90
++148 189 99
++57 123 82
 diff --git a/data/tilesets/secondary/pallet_town/palettes/11.pal b/data/tilesets/secondary/pallet_town/palettes/11.pal
-index 896c792..0ff57f4 100644
+index 896c792..e2ec80b 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/11.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/11.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -4303,23 +4416,23 @@ index 896c792..0ff57f4 100644
 -115 205 164
 -255 0 255
 -255 0 255
-+206 123 57
-+222 206 173
-+99 49 24
-+239 148 156
-+148 82 33
-+165 140 115
-+222 115 115
-+206 173 148
-+181 74 82
-+123 49 41
-+189 107 41
-+206 99 90
-+222 231 214
-+82 74 66
-+222 140 82
++189 239 214
++66 74 107
++115 206 165
++239 222 148
++123 123 132
++189 231 165
++247 239 198
++181 198 231
++90 148 231
++165 123 90
++247 247 255
++156 231 198
++156 181 198
++231 239 222
++222 198 132
 diff --git a/data/tilesets/secondary/pallet_town/palettes/12.pal b/data/tilesets/secondary/pallet_town/palettes/12.pal
-index 2bfc45b..4291247 100644
+index 2bfc45b..6db1ce4 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/12.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/12.pal
 @@ -1,19 +1,19 @@
@@ -4343,147 +4456,145 @@ index 2bfc45b..4291247 100644
 -90 57 74
 -189 238 213
 +255 0 255
-+66 74 107
-+206 206 189
-+198 115 49
-+99 41 33
-+181 74 82
-+99 107 107
-+148 148 156
-+148 115 90
-+156 57 57
-+206 99 99
-+165 90 41
-+140 66 82
-+123 99 66
-+198 132 140
-+90 66 33
++57 90 41
++66 115 57
++82 148 66
++99 165 82
++123 189 107
++140 206 115
++156 222 140
++181 222 165
++198 115 57
++198 198 189
++90 156 206
++90 57 33
++107 99 99
++239 239 239
++156 90 41
 diff --git a/data/tilesets/secondary/pallet_town/tiles.png b/data/tilesets/secondary/pallet_town/tiles.png
-index 771eed906cc7721e5126a6badd7a1df3136e0fe3..b75b849181b747f17bcb5cff6dba9bb1338b4220 100644
+index 771eed906cc7721e5126a6badd7a1df3136e0fe3..1b37a7d74810da1aca94e0c86c6cdf2a38ff4989 100644
 GIT binary patch
-literal 6142
-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
-QdjJ3c07*qoM6N<$f`*#RivR!s
+literal 6067
+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
 
 delta 920
-zcmV;J184mHFQEsJ7k?-O0{{R3#9!}w0000mP)t-s|NsB)?(W{+-p$R;y}iAxtgM`z
+zcmV;J184lRFQEsJ7k?-O0{{R3#9!}w0000mP)t-s|NsB)?(W{+-p$R;y}iAxtgM`z
 zoQsQ#b8~ZIVq#KKQb9pMF)=Y9ARrJB5C8xGL-gVL0009lNkl<ZNQsTrPixa)90%~+
 zJb4JhdeKV{zJap%2I_nPGX`M@!|kyS|8`5WIn&){z@C-9fqw}V*|A{O77x-wA9vew
 zu$k^+L2RyqBJub9&6Bjt_JuZENIre?`#sMSO@o9ymmHaAmMLSCFOA1$=d3=zP*VZB
@@ -4500,84 +4611,176 @@ zZV<5m@Z6x=LZAS<<duN1=i!Y6fcFajdH6>K)(!gCSOErz?aIj8NFLil5BRWa2&q8r
 z2?wB(qKE_WVz~%VkEQ_}av=lIE3<$otWhjpR{{EVya*sxBb4Gt8h}_y=WNH}08At|
 zkbnJ@zhJ<KDG<k#&ev!^)-u^{b6~q|sw2o=r^VfHG6_%iv*+EmPk*$t9hfe!Tr{2m
 z{D~%H^xvj{fCKJ1z-tEl%mbWA#F+*@M6k@m(U)96S(#HnH~Ow=mvJ`_NbSPeoX~y7
-uALaq`dBFP<3VfUa$R$ko2>!`l_aBc&g%PcJAHlu=0000<MNUMnLSTY-L!)m1
+uALaq`dBFP<3VfUa$R$ko2>!`l_aBc&g%PcJAHlu=0000<MNUMnLSTYvtfM3V
 
 diff --git a/graphics/door_anims/oaks_lab.png b/graphics/door_anims/oaks_lab.png
-index c8bc9ebeab395b93b7a553724bb27d0e39b1ad2f..dc1e3c174ef5af7879e92b804f8c6714ec4c9b87 100644
+index c8bc9ebeab395b93b7a553724bb27d0e39b1ad2f..41612bad711e48b2693486f86dcc44462732271d 100644
 GIT binary patch
-delta 254
-zcmV<a00IA$0-pkqDSrR}0784c=kMM^N@Ikrt+mGIgnNWBYn*$n&RUGdz3<jSF(G4P
-zbEU1dYmD!dl#EvD0)qem0IEquK~#90osKaI!cY)I-~N1!+C>lq8_~k{SK8WIX=NQO
-zOdIe5Uc)Z8u*nq!Yl~b#5J5!(7FmT9638|?Ff+`Pse@~N#&<$9Tmwe3&1f5fp)~}+
-zp!X9p>$N%D=NO(b0QTai>9~_1-Q@&4hq2$*`>3sck$p*^mh~I}xhX!Ly}8CJDve4O
-z>iS<E1F;I_k-*=%qQ1~fJ)XxN$~?7%43f%>%}<p)ACbExNqQ9<%m4rY07*qoM6N<$
-Ef}4VL&;S4c
+delta 243
+zcmV<P01W?>0+a%fDSrR}0KM<lLP~3M&ZY0(lzV%Gz2~L(@5Z&p=USBKrF&ZU_y3&d
+z#+<dr=kMO$#)OtN5>EgC0G~-jK~#90osK;U!ax*+zqc+3cH2q7CXm8zZzXniUL#;-
+zr{}Qo0zxj3Tp_8VQ5G%U`hzGzUo{LfZ$8O95DF}W0>Fl<U2M|j7_JKd4DlYqLJemy
+z$VM%fY@M5wrHtoO82Fb~w^kuZ4!}{|{m)3-t?Z&BnOBVGR;cQ@{*}i-qxIBj*w&|&
+t2Qb6gd-x}w^uyL4!d~|MnQ-XkxdBYlE{^$oo=X4#002ovPDHLkV1j)XdE)>8
 
 delta 243
-zcmV<P01W@10+a%fDS!U}|5DAA_V)k1#onB(y?c9uT3T~KN@|?V_F|mwVw~>Hi<G^4
+zcmV<P01W?>0+a%fDS!U}|5DAA_V)k1#onB(y?c9uT3T~KN@|?V_F|mwVw~>Hi<G^4
 zgQQw&i$PK#tYZ7;=YaqK0G~-jK~xx(h0w7P!ypU=P*z};43H@l>J*?mH&lVrdt?N*
 zbK_Q#1ma>E|LUC(NQbL6Z>_!2{o`!k4%#{r`Q#bpk-Z-{6l{D%9hvA*AaP0Xsaz67
 zV96~279)ZPofJ6eV1%3br6fIyd_~D;M|#qPHkVf(fPn~TfZe7C1MId&Fu>d=*giq0
-tbMOX<qlo%W?K3WjD+;WLE9U>$tRE7|t2NN*W|jZ|002ovPDHLkV1lQUaw`A;
+tbMOX<qlo%W?K3WjD+;WLE9U>$tRE7|t2NN*W|jZ|002ovPDHLkV1k_@av%Tz
 
 diff --git a/graphics/door_anims/pallet.png b/graphics/door_anims/pallet.png
-index 1bc68a6e7887aea4a5d06051eb428693790f4ef7..c253a87e3450ffb614c0d000398b4e1e865fea64 100644
+index 1bc68a6e7887aea4a5d06051eb428693790f4ef7..d92b1c79fc6a5fac8d18b107a041f8862545785f 100644
 GIT binary patch
-delta 254
-zcmV<a00IA(0-pkqDSrR}07_D8_xJb4t!sOGgoH{;y~f6zjAJpaYg#!mLVLX_F;a}Z
-zW6q46wbpB#Yh&JB?gan<0IEquK~#90rH&yE!ax*6-)=sF)@%)$tiUxvlQdb99-v3!
-z2sJgu)Zi;gsKDY#n@UbX1)^I5h7kDbWoCY6RM9(72BA5o!*?Y|2c(DtVQ65Uq3Mz?
-zxq?PE6@XCYixr>|;{b?T8{b-Mh42J`#-FkiM3B`UUNRM^h}j)L75&zXR<j#30nUeq
-zvxjc&K_;urC&i3i@geg{SpTzUzvTV>H+YtQ%6zfs0Vf(IO0)@>r~m)}07*qoM6N<$
-Ef^(H|q5uE@
+delta 257
+zcmV+c0sj7%0-^$tDSrR}0AndBdoeMbIXSgTQqE&z-g9&BjFk7St;TaX#>Tx`oX%P~
+zA!}n}@9*!NS}Eh1JO}^)0If+xK~#90jgBD>!axv3-wqRkYmd?d(cqfE0cy|`$1#vd
+z6bgaG5DtLAVcIJ+BwT=ov;xE;c8fu@qh98}<bP9?Av766GJ0kZfr`Dr0~DRX3xuEw
+zst|;F8UZNr?Fb-n2EZ(Knf;vZ2=;yOkvlU77_BiI|M^A#V2W~>xr(H5k=UzuH1QBT
+zJ=Cd(xOMy<-R7&@eQYbYUClCdT|M^bB<*zifbR27r_Y`*oY^SC#_KF_00000NkvXX
+Hu0mjf_H1>I
 
 delta 246
-zcmV<S015w}0+#}iDS!U}|MvF(-sbkb#onB(y?c9uT3T~KN@|?V_F|mwIeXs!&9wHU
+zcmV<S015x10+#}iDS!U}|MvF(-sbkb#onB(y?c9uT3T~KN@|?V_F|mwIeXs!&9wHU
 zgWij3y<$px&7`!TY+(QZ0HR4mK~xx(h0wbZ!ypU>V0KEMEfgjIU3?e1K<7a+Knf4!
 zj@F%-A$lP0Oq0L*P6(vKm6De2`$8w!3?IeuRK&I~jC@OV?{7G3)uX0Jt(^jFRARgf
 zl^6j?d<%d?2*5(e1qwRop=Nq1a*rTgk<+1w_ckES`H?!HBLEs;wdvjftF7S;F!u4b
-wkC*8b{DVjl1bL_Ej0?hy3^T%v@jo`}2a_1EyUD@2>Hq)$07*qoM6N<$f|zo4Y5)KL
+wkC*8b{DVjl1bL_Ej0?hy3^T%v@jo`}2a_1EyUD@2>Hq)$07*qoM6N<$f}2!!Z2$lO
 
 diff --git a/graphics/door_anims/pallet_house1.png b/graphics/door_anims/pallet_house1.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..e29e296c9637fa2a7f1c5c1f2e8896c22ada6b61
+index 0000000000000000000000000000000000000000..9b3d6aae7272df0812b530a7329b53c56584ef89
 GIT binary patch
-literal 265
-zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!FMx_1@?2?>TuTx2#>e
-z_1N>4>K4Q7In`^=MfDup`~I4fp<;4!@zS+hvwPl8nbH&Xim4f>XNsqbV@SoEWRaBa
-zQ=&hr8yh<rxn@|c3UiPs5M*O((^uo;;ps7+`fsJdpXvh#4uuq@$uUo6VirEk+95Tq
-zzWSe|XuP+>)pHsr#I`mxW-~G`HuOmmoph3ihg(8IBHZxLg9a_XLWhgzE`40g9m<mU
-z$wzesM{p-|2-ico8A&?t8Y3L1R4)-<5P9lK!#f@>$pY<;LVkv82h_I592X7;x{txr
-L)z4*}Q$iB}s*Gco
+literal 290
+zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!FNcSN63Qr{c9yPStz8
+zEHyQ=osMl?YM4C5Yf4m0OLcK}RQ8l(icV2e_9k0a2Yr|#Vgb~%*3-o?q+(8QpCaEO
+z2NBkEb9++-Eel6~hbC7s&md=8^9KwZDXG=WHNLhS1{N~UH8_}beHk`-XD}~WGi%SD
+z@8whU4=e3Bcj1P5py1cWD5j9(Of5%_?rxZJuXfYE#$~4%F0|+7=Z6JPe`fP`2_t_1
+z^XwIOnqD4RP;@Sq;pu4&j@QMqXU)$xn|hpy531_(y=Uk5<F5O1?aMz;r^`5BPXD;_
+mBHyOye{WLsEw=u)Vbnfgz<;-3)efM;89ZJ6T-G@yGywoA`Ef4*
 
 literal 0
 HcmV?d00001
 
 diff --git a/graphics/door_anims/pallet_rival.png b/graphics/door_anims/pallet_rival.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..b434224f48a0410b64e12e33755dc2e4016f1014
+index 0000000000000000000000000000000000000000..8ebd8b28a0ade9b3be015728661f43891699470c
 GIT binary patch
-literal 280
-zcmV+z0q6dSP)<h;3K|Lk000e1NJLTq000mG001xq0{{R3>T%~}0000mP)t-s0000&
-zd%frH-a<-agsrW$#^;24gfVNJd#%n|jK;n1)<Q8MV`Fort+i{6@065`R_X$S0001^
-zNkl<Zc$}S%F$%&!5JlfC8?a0~ft7d+8~Yp~g}r4O3$KxY5G-?rSmXxgAi|^)U4*sB
-z3W{LRfq}=H5A)@i&zFhB7+0Lm+ZGJC{k;VXHLDvKfWs_+4a>R;=8^@|_#R6ML@ClR
-zj8y=MF~AP5Ds?y+04k80>jc0~^F;<=T+zK`2B<#FC|JrU1>X8d95Q~R`n^x`!>>P~
-ee}Y#X>+=9;!!(E!=DuD40000<MNUMnLSTa1+;U|A
+literal 293
+zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!D15re?LF;T%iLtzJRr
+zl9TTh7r*bB@_p^vW5t%oj_r+_b1uqKF*`Z={rmTGqBI}RwBZ2i+2HBo7*a8(_kwO7
+zQ=mxO!{>a{mvD+sE@5AjAQWWp?XdV&RAlpetB6BA2a^RjcqD9c8W@_)GG|TT(i3H6
+za^L&&TzTDLo%zrA#idN?Wt!-=P+?Q5f6Lb?K3zQXx>yv|ZN695%5-O~>bc<f`=PT;
+z;suo)jp~&(f3B+^lsgh?SLyHda({aHvY6%{*Z${)cf2|rXsHvN^<?wwip<x`_ia4C
+psJi%?t$@`Ez3Mjg^RoYcvd(#|y8T)}crDQF44$rjF6*2UngEZgc{cz6
 
 literal 0
 HcmV?d00001
 
+diff --git a/graphics/object_events/palettes/hoenn_mons.pal b/graphics/object_events/palettes/hoenn_mons.pal
+new file mode 100644
+index 0000000..da77b53
+--- /dev/null
++++ b/graphics/object_events/palettes/hoenn_mons.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++115 197 164
++148 139 156
++115 106 123
++57 65 82
++41 41 57
++255 197 90
++172 123 90
++197 65 65
++139 49 65
++0 0 0
++255 222 205
++238 180 164
++205 131 115
++123 90 82
++222 230 238
++0 0 0
+diff --git a/graphics/object_events/pics/pokemon/poochyena.png b/graphics/object_events/pics/pokemon/poochyena.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..557fb990c895a2b85fbb3551277f973f437cee26
+GIT binary patch
+literal 851
+zcmV-Z1FZasP)<h;3K|Lk000e1NJLTq00AHX001Ba0{{R3K-#zm0000mP)t-sbH${T
+zi=1<6dpSW;DJePs#agU;TE#&@i!ng}0095q&F-|M&4Y7$T2kKT?f?J)bfukl0008s
+zNkl<Zc%1E&ziSg=7{|X)&Lmtb_Px{;GT0_ZDRhyPOx^quC@5$$gyNQha^Q4T+6Y4F
+zC<V*KtCZ{14vK?I2X`I%7r5wRW5vOxN$L<0>^UU&zVE%)l!}8OdEnsvzR$z=`*~hM
+zfI$svP=gxOpa%6n)+|58{xv|i?l{5ej6kZv-<ALX0BF#H;~9YzgJ=~Br?#&E=S~Iy
+z09=l(1_5USQVk*iZnGJBL<K<q2t0L!mH+@iPdPr62qi!<oY@$4LVedXWdJ>6nsrCk
+zfUGrR);02?eSI?JNC0|a!<@#97&svyWT+ZM0JOU2Wh6fZ0CmGKj7&cO-8JiG&NT`W
+zvKpXlq;8-Bxb=%yGtx#10IrSZQZtj>P65~~Jilw2hGC2%_znGhRI5GN76$A1u!3*g
+zV6FKJKir1K5ga^z1zpVhI}=AkEunW~jIzUGp~iU2KR6CHUf+KB9<+i_U%Hx%w~ZW9
+zF}lQo)PS&|Y7ha?>nR|oJ6wkW0QwAEU|h)n0A8c%@57(Se&;}HK-f?<hyZ}nK$!=s
+z000OOG6Vo%uLxp5tL^7|K+%AZp=uBXz<EaRBpC((CdPq-qd@JU2hh`<)zV@2HLAf2
+zMFK*GszC&xWA76?Oxk?_&?ynX;z7St=>a5yw0IQ+_ze7yQQ0tT7%_+dyn&X-O##qd
+zNc4Bwj7EmIw3ey>1Brzk7z9{$4@eDA4FdzK4*+gdh*e$)U1~ELi3`0jMr>hB=nk;R
+zn9yrfySHq^LGVIxXnB;xK)KCmBrO>b77b+k0{Cm?wAT`v62z)f;PJ4X+-*P_pu~JN
+z&KIO9%d%<@vK;7sg;-@%nja&!AQ@try}XTz&Gl9}y(P7gu&iom+)mQGbn&%j-IC{N
+z%Ccfv?zc1tptCf``+CvyijJ7qy=T*&qyZ1QC-sYt9-4Q$Utd3^AH7h^1H911snaLS
+d|6#v>{RVU7`Zr$x>5~8e002ovPDHLkV1g1*dHVnW
+
+literal 0
+HcmV?d00001
+
+diff --git a/graphics/object_events/pics/pokemon/zigzagoon.png b/graphics/object_events/pics/pokemon/zigzagoon.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c7ed424bb8f34c675ac71642819b8b5c4cbb4d9c
+GIT binary patch
+literal 925
+zcmV;O17iG%P)<h;3K|Lk000e1NJLTq00AHX001Ba0{{R3K-#zm0000mP)t-sbH${T
+zi=1<6dpSW;DJePs#agU;TE#&@i!ng}0095q&F-|M&4Y7$T2kKT?f?J)bfukl0009h
+zNkl<Zc%1E(O-K}B7{~v!W3BH&oAshbnIBNn#Q`H*>L4UR2aje2!GhqH7)*$11ok0h
+z2Eo_{HK1Sz4YWWg5JX`KOM+d{LZXAzdg>yMNWKZS)4`pYcb;kOgHEvzEbM>ZcYe?B
+znRkZ)a+RxG<tkUX%GLi^Vdq=m9}#8sF9o)%MYq5GrVs@X0a-oPyOR<F0A2W@Mfa@B
+zkO2UyEA)#ADS!&Zy6=k4R3N4UOxPd@006?@R9yz-4qJ#epg;<s0>=D}FW-&q0tf>!
+zF}eZ(AnPh)b+xF2bB9O+3M2rZ0FIhgix7zbQ{`|>m7NJi0RY&2CLg-SY9Bz&2>BX#
+zffPUmm?}?R7aCFlzMwojE#+%=76kyXdx!v=x`tqfeTRGvJU{~Q3GfB1*PuXivsVDm
+z=L%An=N-H#0HA-kZv#dUL9IM<Wc~&oAO(OYv0j6u+tAu*ZjG4kL|y@~-k@n|k8Qq3
+z06=iStdNvI8o>Q+Avz%eQUD-tG`B`nx8cFtid5o0i9`TULTgs&iJd$G0A7|H-n7n^
+z2c$08M@A+jKnm~)@OLA?$bNSquK;jCswh(4*vTURVEWl!UBYJ^z$HC%WTXKBQh-l@
+zsS}Dc;T|~=0B(gOB~)yuX-N<Oz?FC?IFL@Kt|pV2Bcl^~ffV2u$nU>%vHxZ^0r1LI
+z(^{>v`FvUs0Dvo7Q4K|bQVl?!-C%7()-@4m6|Xpeym~&cnojk6a0H&dzcV)LG)zvd
+zU_9Ym&MQA*&uY~v$0%M_m`WEqG0Kjkt0+(!&0N8wLnmfO&9P2f$k%`XeE=c=O@Gmy
+z;O-qF0^nu9a*vSD)x8}x-9H(tkA7{whT%h*$DSvrfN|k5j$4H(b4vsm%Y9MB$qh5T
+z)rkgo9Y-1$PYRKj0m~6LcgA1s+iHebgN<!MiZ;z@JPz2ej<%WJ>cpe$K(u4<{Mc*9
+zINs2>*dPeQ;+iQ$pFrhSywc;-Ij3Ql!{bd+0PT~`GFvi?CEeZ5jG>Q)kO2csc(t%4
+zor(Kl0OFg6^5{C4zWvEs^n#st|78Cku4k_wfs}<A`kqR`00000NkvXXu0mjfp=FZD
+
+literal 0
+HcmV?d00001
+
+diff --git a/include/constants/event_objects.h b/include/constants/event_objects.h
+index 9d8c514..882e06b 100644
+--- a/include/constants/event_objects.h
++++ b/include/constants/event_objects.h
+@@ -156,7 +156,9 @@
+ #define OBJ_EVENT_GFX_DEOXYS_N 150
+ #define OBJ_EVENT_GFX_SS_ANNE 151
+ 
+-#define NUM_OBJ_EVENT_GFX     152
++#define OBJ_EVENT_GFX_POOCHYENA 152
++#define OBJ_EVENT_GFX_ZIGZAGOON 153
++#define NUM_OBJ_EVENT_GFX     154
+ 
+ // These are dynamic object gfx ids.
+ // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.
 diff --git a/include/constants/metatile_labels.h b/include/constants/metatile_labels.h
-index 7f42269..7ffba65 100644
+index 7f42269..653be59 100644
 --- a/include/constants/metatile_labels.h
 +++ b/include/constants/metatile_labels.h
 @@ -87,6 +87,8 @@
  // gTileset_PalletTown
  #define METATILE_PalletTown_Door         0x2A3
  #define METATILE_PalletTown_OaksLabDoor  0x2AC
-+#define METATILE_PalletTown_RivalDoor    0x2E7
-+#define METATILE_PalletTown_HouseDoor1   0x2DE
++#define METATILE_PalletTown_RivalDoor    0x2F7
++#define METATILE_PalletTown_HouseDoor1   0x2EE
  
  // gTileset_PewterCity
  #define METATILE_PewterCity_Door  0x2CE
@@ -4613,6 +4816,20 @@ index 3b893f2..5263656 100644
  #define MAX_TRAINERS_COUNT                       768
  
  #endif  // GUARD_CONSTANTS_OPPONENTS_H
+diff --git a/spritesheet_rules.mk b/spritesheet_rules.mk
+index 50cfd49..5a6ba73 100644
+--- a/spritesheet_rules.mk
++++ b/spritesheet_rules.mk
+@@ -396,3 +396,9 @@ $(OBJEVENTGFXDIR)/pokemon/voltorb.4bpp: %.4bpp: %.png
+ 
+ $(OBJEVENTGFXDIR)/pokemon/wigglytuff.4bpp: %.4bpp: %.png
+ 	$(GFX) $< $@ -mwidth 2 -mheight 2
++
++$(OBJEVENTGFXDIR)/pokemon/poochyena.4bpp: %.4bpp: %.png
++	$(GFX) $< $@ -mwidth 4 -mheight 4
++
++$(OBJEVENTGFXDIR)/pokemon/zigzagoon.4bpp: %.4bpp: %.png
++	$(GFX) $< $@ -mwidth 4 -mheight 4
 diff --git a/src/data/heal_locations.json b/src/data/heal_locations.json
 index 9802525..2e606a0 100644
 --- a/src/data/heal_locations.json
@@ -4626,6 +4843,128 @@ index 9802525..2e606a0 100644
        "y": 8,
        "respawn_map": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
        "respawn_npc": "LOCALID_MOM"
+diff --git a/src/data/object_events/object_event_graphics.h b/src/data/object_events/object_event_graphics.h
+index 4e229cb..2d3cb07 100644
+--- a/src/data/object_events/object_event_graphics.h
++++ b/src/data/object_events/object_event_graphics.h
+@@ -144,6 +144,8 @@ const u16 gObjectEventPic_Kangaskhan[] = INCBIN_U16("graphics/object_events/pics
+ const u16 gObjectEventPic_NidoranF[] = INCBIN_U16("graphics/object_events/pics/pokemon/nidoran_f.4bpp");
+ const u16 gObjectEventPic_NidoranM[] = INCBIN_U16("graphics/object_events/pics/pokemon/nidoran_m.4bpp");
+ const u16 gObjectEventPic_Nidorino[] = INCBIN_U16("graphics/object_events/pics/pokemon/nidorino.4bpp");
++const u16 gObjectEventPic_Poochyena[] = INCBIN_U16("graphics/object_events/pics/pokemon/poochyena.4bpp");
++const u16 gObjectEventPic_Zigzagoon[] = INCBIN_U16("graphics/object_events/pics/pokemon/zigzagoon.4bpp");
+ const u16 gObjectEventPic_Meowth[] = INCBIN_U16("graphics/object_events/pics/pokemon/meowth.4bpp");
+ const u16 gObjectEventPic_Seel[] = INCBIN_U16("graphics/object_events/pics/pokemon/seel.4bpp");
+ const u16 gObjectEventPic_Voltorb[] = INCBIN_U16("graphics/object_events/pics/pokemon/voltorb.4bpp");
+@@ -178,6 +180,7 @@ const u16 gObjectEventPic_Clipboard[] = INCBIN_U16("graphics/object_events/pics/
+ const u16 gObjectEventPal_Meteorite[] = INCBIN_U16("graphics/object_events/palettes/meteorite.gbapal");
+ const u16 gObjectEventPic_BirthIslandStone[] = INCBIN_U16("graphics/object_events/pics/misc/birth_island_stone.4bpp");
+ const u16 gObjectEventPic_LaprasDoll[] = INCBIN_U16("graphics/object_events/pics/misc/lapras_doll.4bpp");
++const u16 gObjectEventPal_HoennMons[] = INCBIN_U16("graphics/object_events/palettes/hoenn_mons.gbapal");
+ const u16 gObjectEventPal_Seagallop[] = INCBIN_U16("graphics/object_events/palettes/seagallop.gbapal");
+ const u16 gObjectEventPic_Seagallop[] = INCBIN_U16("graphics/object_events/pics/misc/seagallop.4bpp");
+ const u16 gObjectEventPal_SSAnne[] = INCBIN_U16("graphics/object_events/palettes/ss_anne.gbapal");
+diff --git a/src/data/object_events/object_event_graphics_info.h b/src/data/object_events/object_event_graphics_info.h
+index 78ee95a..e503d90 100644
+--- a/src/data/object_events/object_event_graphics_info.h
++++ b/src/data/object_events/object_event_graphics_info.h
+@@ -2923,3 +2923,41 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SSAnne = {
+     .images = sPicTable_SSAnne,
+     .affineAnims = gDummySpriteAffineAnimTable,
+ };
++
++const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Poochyena = {
++    .tileTag = TAG_NONE,
++    .paletteTag = OBJ_EVENT_PAL_TAG_HOENN_MONS,
++    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
++    .size = 512,
++    .width = 32,
++    .height = 32,
++    .paletteSlot = PALSLOT_NPC_SPECIAL,
++    .shadowSize = SHADOW_SIZE_M,
++    .inanimate = FALSE,
++    .disableReflectionPaletteLoad = FALSE,
++    .tracks = TRACKS_FOOT,
++    .oam = &gObjectEventBaseOam_32x32,
++    .subspriteTables = gObjectEventSpriteOamTables_32x32,
++    .anims = sAnimTable_Standard,
++    .images = sPicTable_Poochyena,
++    .affineAnims = gDummySpriteAffineAnimTable,
++};
++
++const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Zigzagoon = {
++    .tileTag = TAG_NONE,
++    .paletteTag = OBJ_EVENT_PAL_TAG_HOENN_MONS,
++    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
++    .size = 512,
++    .width = 32,
++    .height = 32,
++    .paletteSlot = PALSLOT_NPC_SPECIAL,
++    .shadowSize = SHADOW_SIZE_M,
++    .inanimate = FALSE,
++    .disableReflectionPaletteLoad = FALSE,
++    .tracks = TRACKS_FOOT,
++    .oam = &gObjectEventBaseOam_32x32,
++    .subspriteTables = gObjectEventSpriteOamTables_32x32,
++    .anims = sAnimTable_Standard,
++    .images = sPicTable_Zigzagoon,
++    .affineAnims = gDummySpriteAffineAnimTable,
++};
+diff --git a/src/data/object_events/object_event_graphics_info_pointers.h b/src/data/object_events/object_event_graphics_info_pointers.h
+index af2f8af..b5af9bc 100644
+--- a/src/data/object_events/object_event_graphics_info_pointers.h
++++ b/src/data/object_events/object_event_graphics_info_pointers.h
+@@ -124,6 +124,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_NidoranF;
+ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_NidoranM;
+ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Nidorino;
+ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Meowth;
++const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Zigzagoon;
++const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Poochyena;
+ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Seel;
+ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Voltorb;
+ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Slowpoke;
+@@ -305,4 +307,6 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
+     [OBJ_EVENT_GFX_DEOXYS_A]                 = &gObjectEventGraphicsInfo_DeoxysA,
+     [OBJ_EVENT_GFX_DEOXYS_N]                 = &gObjectEventGraphicsInfo_DeoxysN,
+     [OBJ_EVENT_GFX_SS_ANNE]                  = &gObjectEventGraphicsInfo_SSAnne,
++    [OBJ_EVENT_GFX_POOCHYENA] = &gObjectEventGraphicsInfo_Poochyena,
++    [OBJ_EVENT_GFX_ZIGZAGOON] = &gObjectEventGraphicsInfo_Zigzagoon,
+ };
+diff --git a/src/data/object_events/object_event_pic_tables.h b/src/data/object_events/object_event_pic_tables.h
+index 70889d7..6e4cee4 100644
+--- a/src/data/object_events/object_event_pic_tables.h
++++ b/src/data/object_events/object_event_pic_tables.h
+@@ -1345,6 +1345,30 @@ static const struct SpriteFrameImage sPicTable_Nidorino[] = {
+     overworld_frame(gObjectEventPic_Nidorino, 2, 2, 2),
+ };
+ 
++static const struct SpriteFrameImage sPicTable_Poochyena[] = {
++    overworld_frame(gObjectEventPic_Poochyena, 4, 4, 0),
++    overworld_frame(gObjectEventPic_Poochyena, 4, 4, 1),
++    overworld_frame(gObjectEventPic_Poochyena, 4, 4, 2),
++    overworld_frame(gObjectEventPic_Poochyena, 4, 4, 3),
++    overworld_frame(gObjectEventPic_Poochyena, 4, 4, 4),
++    overworld_frame(gObjectEventPic_Poochyena, 4, 4, 5),
++    overworld_frame(gObjectEventPic_Poochyena, 4, 4, 6),
++    overworld_frame(gObjectEventPic_Poochyena, 4, 4, 7),
++    overworld_frame(gObjectEventPic_Poochyena, 4, 4, 8),
++};
++
++static const struct SpriteFrameImage sPicTable_Zigzagoon[] = {
++    overworld_frame(gObjectEventPic_Zigzagoon, 4, 4, 0),
++    overworld_frame(gObjectEventPic_Zigzagoon, 4, 4, 1),
++    overworld_frame(gObjectEventPic_Zigzagoon, 4, 4, 2),
++    overworld_frame(gObjectEventPic_Zigzagoon, 4, 4, 3),
++    overworld_frame(gObjectEventPic_Zigzagoon, 4, 4, 4),
++    overworld_frame(gObjectEventPic_Zigzagoon, 4, 4, 5),
++    overworld_frame(gObjectEventPic_Zigzagoon, 4, 4, 6),
++    overworld_frame(gObjectEventPic_Zigzagoon, 4, 4, 7),
++    overworld_frame(gObjectEventPic_Zigzagoon, 4, 4, 8),
++};
++
+ static const struct SpriteFrameImage sPicTable_Meowth[] = {
+     overworld_frame(gObjectEventPic_Meowth, 2, 2, 0),
+     overworld_frame(gObjectEventPic_Meowth, 2, 2, 1),
 diff --git a/src/data/trainer_parties.h b/src/data/trainer_parties.h
 index 2e57800..b2eab6b 100644
 --- a/src/data/trainer_parties.h
@@ -4965,8 +5304,28 @@ index 02afbfd..66f51a4 100644
 +        .party = NO_ITEM_DEFAULT_MOVES(sParty_PalletIvy),
 +    },
  };
+diff --git a/src/event_object_movement.c b/src/event_object_movement.c
+index 8e82824..8358990 100644
+--- a/src/event_object_movement.c
++++ b/src/event_object_movement.c
+@@ -468,6 +468,7 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
+ #define OBJ_EVENT_PAL_TAG_RS_GROUDON                  0x1119
+ #define OBJ_EVENT_PAL_TAG_RS_GROUDON_REFLECTION       0x111A
+ #define OBJ_EVENT_PAL_TAG_RS_SUBMARINE_SHADOW         0x111B
++#define OBJ_EVENT_PAL_TAG_HOENN_MONS                  0x111C
+ #define OBJ_EVENT_PAL_TAG_NONE                        0x11FF
+ 
+ #include "data/object_events/object_event_graphics_info_pointers.h"
+@@ -497,6 +498,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
+     {gObjectEventPal_Meteorite,               OBJ_EVENT_PAL_TAG_METEORITE},
+     {gObjectEventPal_SSAnne,                  OBJ_EVENT_PAL_TAG_SS_ANNE},
+     {gObjectEventPal_Seagallop,               OBJ_EVENT_PAL_TAG_SEAGALLOP},
++    {gObjectEventPal_HoennMons,               OBJ_EVENT_PAL_TAG_HOENN_MONS},
+     {},
+ };
+ 
 diff --git a/src/field_door.c b/src/field_door.c
-index c3be102..0eb45a3 100644
+index c3be102..f12019c 100644
 --- a/src/field_door.c
 +++ b/src/field_door.c
 @@ -47,6 +47,8 @@ static const u8 sDoorAnimTiles_SlidingDouble[] = INCBIN_U8("graphics/door_anims/
@@ -4984,10 +5343,10 @@ index c3be102..0eb45a3 100644
  static const u8 sDoorAnimPalettes_SlidingDouble[] = {3, 3, 3, 3, 3, 3, 3, 3};
 -static const u8 sDoorAnimPalettes_Pallet[] = {8, 8, 8, 8, 8, 8, 8, 8};
 -static const u8 sDoorAnimPalettes_OaksLab[] = {10, 10, 10, 10, 10, 10, 10, 10};
-+static const u8 sDoorAnimPalettes_Pallet[] = {8, 8, 10, 10, 8, 8, 10, 10};
-+static const u8 sDoorAnimPalettes_PalletHouse1[] = {7, 7, 7, 7, 7, 7, 7, 7};
-+static const u8 sDoorAnimPalettes_PalletRival[] = {7, 8, 7, 7, 7, 8, 7, 7};
-+static const u8 sDoorAnimPalettes_OaksLab[] = {7, 10, 8, 8, 7, 10, 8, 8};
++static const u8 sDoorAnimPalettes_Pallet[] = {8, 8, 9, 9, 8, 8, 9, 9};
++static const u8 sDoorAnimPalettes_PalletHouse1[] = {10, 7, 7, 7, 10, 7, 7, 7};
++static const u8 sDoorAnimPalettes_PalletRival[] = {8, 8, 7, 9, 8, 8, 7, 9};
++static const u8 sDoorAnimPalettes_OaksLab[] = {11, 11, 9, 9, 11, 11, 9, 9};
  static const u8 sDoorAnimPalettes_Viridian[] = {8, 8, 8, 8, 8, 8, 8, 8};
  static const u8 sDoorAnimPalettes_Pewter[] = {8, 8, 8, 8, 8, 8, 8, 8};
  static const u8 sDoorAnimPalettes_Saffron[] = {8, 8, 8, 8, 8, 8, 8, 8};
