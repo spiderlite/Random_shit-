@@ -86,6 +86,9 @@ Played through automatically in the emulator on the final ROM, by the scripts in
   - YES starts a real battle, which the test wins; afterwards they give a parting line and never rematch.
 - `test_services.py`: buying at the Poké Mart and at the market stall (money
   goes down), the nurse heal, and walking onto Route 1 and back at the right square.
+- `test_nomon.py`: before you have a Pokémon, the nurse explains she needs one to
+  heal (the empty-party heal used to hang the game). The PC and the link-room
+  receptionists also answer and let you go.
 - `test_collision.py`: walks into every solid square of the town that borders a
   walkable one (trees, bushes, benches, lamps, walls, fences, signs, the stall)
   and checks the game stops you.

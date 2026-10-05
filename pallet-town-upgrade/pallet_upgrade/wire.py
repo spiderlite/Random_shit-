@@ -223,8 +223,13 @@ for i, b in enumerate(CITY.BUILDINGS):
             sc += ("%s_MapScripts::\n\tmap_script MAP_SCRIPT_ON_TRANSITION, %s_OnTransition\n"
                    "\tmap_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume\n\t.byte 0\n\n"
                    "%s_OnTransition::\n\tsetrespawn HEAL_LOCATION_PALLET_TOWN\n\tend\n\n"
-                   "%s_EventScript_Nurse::\n\tlock\n\tfaceplayer\n\tcall EventScript_PkmnCenterNurse\n"
-                   "\trelease\n\tend\n") % (name, name, name, name)
+                   "%s_EventScript_Nurse::\n\tlock\n\tfaceplayer\n"
+                   # with no Pokémon the healing machine has nothing to hold: explain instead
+                   "\tgetpartysize\n\tgoto_if_eq VAR_RESULT, 0, %s_EventScript_NurseNoMon\n"
+                   "\tcall EventScript_PkmnCenterNurse\n\trelease\n\tend\n\n"
+                   "%s_EventScript_NurseNoMon::\n\tmsgbox %s_Text_NurseNoMon\n\trelease\n\tend\n"
+                   ) % (name, name, name, name, name, name, name)
+            tx += "\n%s_Text_NurseNoMon::\n%s" % (name, reflow(CITY.NURSE_NO_MON))
             residents = CITY.PC_RESIDENTS
         elif b["design"] == "pc":
             objects = src["object_events"]

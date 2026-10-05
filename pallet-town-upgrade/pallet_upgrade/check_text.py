@@ -31,7 +31,7 @@ for f in sorted(glob.glob(os.path.join(ROOT, "data/maps/PalletTown*/text.inc")))
             text += s
     if label: blocks.append((label, text))
     for label, text in blocks:
-        if label in orig_labels or not (label.startswith("PalletTown_Text_") or "_Text_Resident" in label or "_Text_Wing" in label):
+        if label in orig_labels or not (label.startswith("PalletTown_Text_") or "_Text_Resident" in label or "_Text_Wing" in label or "_Text_Nurse" in label):
             continue  # FireRed's own text
         text = text.replace('\\"', '"')
         text = re.sub(r"\{[A-Z_0-9 ]+\}", "XXXXXXX", text)   # placeholders: assume 7 wide chars

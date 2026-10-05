@@ -3616,10 +3616,10 @@ index 0000000..29292a9
 +}
 diff --git a/data/maps/PalletTown_PokemonCenter_1F/scripts.inc b/data/maps/PalletTown_PokemonCenter_1F/scripts.inc
 new file mode 100644
-index 0000000..3ca187a
+index 0000000..5f24fe4
 --- /dev/null
 +++ b/data/maps/PalletTown_PokemonCenter_1F/scripts.inc
-@@ -0,0 +1,39 @@
+@@ -0,0 +1,46 @@
 +PalletTown_PokemonCenter_1F_MapScripts::
 +	map_script MAP_SCRIPT_ON_TRANSITION, PalletTown_PokemonCenter_1F_OnTransition
 +	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
@@ -3632,7 +3632,14 @@ index 0000000..3ca187a
 +PalletTown_PokemonCenter_1F_EventScript_Nurse::
 +	lock
 +	faceplayer
++	getpartysize
++	goto_if_eq VAR_RESULT, 0, PalletTown_PokemonCenter_1F_EventScript_NurseNoMon
 +	call EventScript_PkmnCenterNurse
++	release
++	end
++
++PalletTown_PokemonCenter_1F_EventScript_NurseNoMon::
++	msgbox PalletTown_PokemonCenter_1F_Text_NurseNoMon
 +	release
 +	end
 +
@@ -3661,10 +3668,20 @@ index 0000000..3ca187a
 +	end
 diff --git a/data/maps/PalletTown_PokemonCenter_1F/text.inc b/data/maps/PalletTown_PokemonCenter_1F/text.inc
 new file mode 100644
-index 0000000..b5b1ec1
+index 0000000..e592d8d
 --- /dev/null
 +++ b/data/maps/PalletTown_PokemonCenter_1F/text.inc
-@@ -0,0 +1,20 @@
+@@ -0,0 +1,30 @@
++PalletTown_PokemonCenter_1F_Text_NurseNoMon::
++	.string "Welcome to our POKéMON CENTER!\p"
++	.string "We heal tired POKéMON back to\n"
++	.string "perfect health…\p"
++	.string "…but you don't have any POKéMON\n"
++	.string "with you yet!\p"
++	.string "Once you have a partner POKéMON,\n"
++	.string "come and see me. I'll take good\l"
++	.string "care of it!$"
++
 +PalletTown_PokemonCenter_1F_Text_Resident1::
 +	.string "Hi! I'm MAY. I'm visiting from\n"
 +	.string "LITTLEROOT TOWN in HOENN.\p"

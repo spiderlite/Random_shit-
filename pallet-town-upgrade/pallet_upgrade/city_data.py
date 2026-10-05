@@ -371,3 +371,13 @@ ORANGE_ROOF = [(221, 142, 85), (217, 129, 65), (206, 119, 55), (188, 106, 45),
                (162, 91, 39), (144, 79, 35), (100, 50, 17)]
 BLUE_ROOF = [(135, 171, 211), (122, 162, 207), (88, 138, 194), (69, 125, 188),
              (59, 108, 162), (53, 96, 144), (34, 62, 93)]
+
+# What the Pokémon Center nurse says before you have any Pokémon.
+NURSE_NO_MON = ("Welcome to our POKéMON CENTER!\\p"
+                "We heal tired POKéMON back to\\n"
+                "perfect health…\\p"
+                "…but you don't have any POKéMON\\n"
+                "with you yet!\\p"
+                "Once you have a partner POKéMON,\\n"
+                "come and see me. I'll take good\\l"
+                "care of it!$")
