@@ -318,6 +318,20 @@ int main(int argc, char** argv) {
 			run(keys, atoi(argv[++i]));
 		} else if (!strcmp(cmd, "shot") && i + 1 < argc) {
 			writePng(argv[++i]);
+		} else if (!strcmp(cmd, "peek") && i + 2 < argc) {
+			uint32_t addr = (uint32_t) strtoul(argv[++i], NULL, 16);
+			int n = atoi(argv[++i]);
+			printf("PEEK %08x", addr);
+			for (int k = 0; k < n; k++)
+				printf(" %02x", core->busRead8(core, addr + k));
+			printf("\n");
+		} else if (!strcmp(cmd, "poke") && i + 2 < argc) {
+			uint32_t addr = (uint32_t) strtoul(argv[++i], NULL, 16);
+			const char* hex = argv[++i];
+			for (int k = 0; hex[k] && hex[k + 1]; k += 2) {
+				char b[3] = {hex[k], hex[k + 1], 0};
+				core->busWrite8(core, addr + k / 2, (uint8_t) strtoul(b, NULL, 16));
+			}
 		} else if (!strcmp(cmd, "pos")) {
 			int x, y, g, n, f;
 			if (playerPos(&x, &y, &g, &n, &f)) {

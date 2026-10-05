@@ -45,34 +45,34 @@ index 88d7594..6a83d89 100644
  	.include "data/maps/ViridianCity_Gym/text.inc"
  	.include "data/maps/ViridianCity_School/text.inc"
 diff --git a/data/layouts/PalletTown/map.bin b/data/layouts/PalletTown/map.bin
-index f2113394f22d6f0180f364071301b5ed06588773..03eb04182ee8702ab6b8694812808112c8014c80 100644
+index f2113394f22d6f0180f364071301b5ed06588773..bcb7b5310a4bd43b59c6a7e964212ecf841f5125 100644
 GIT binary patch
 literal 3720
-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
+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
 
 literal 960
 zcmZuvSxdt}7=*eE?TfOd>PxE+^#Ju@`Tn8zNxh91-c|*ziU*4Kt$3h5`E%Sa*>=-S
@@ -1633,560 +1633,518 @@ index 1384b7d..830a326 100644
 +	release
 +	end
 diff --git a/data/maps/PalletTown/text.inc b/data/maps/PalletTown/text.inc
-index 726aea8..e0b07f2 100644
+index 726aea8..1778d59 100644
 --- a/data/maps/PalletTown/text.inc
 +++ b/data/maps/PalletTown/text.inc
-@@ -65,3 +65,550 @@ PalletTown_Text_OakYouEnjoyingTraveling::
+@@ -65,3 +65,508 @@ PalletTown_Text_OakYouEnjoyingTraveling::
      .string "Good for you, good for you.\n"
      .string "Hohoho.$"
  
 +
 +PalletTown_Text_HarperHouseMailbox::
-+    .string "HARPER's house$"
++	.string "HARPER's house$"
 +
 +PalletTown_Text_AokiHouseMailbox::
-+    .string "AOKI's house$"
++	.string "AOKI's house$"
 +
 +PalletTown_Text_BellHouseMailbox::
-+    .string "BELL's house$"
++	.string "BELL's house$"
 +
 +PalletTown_Text_ValeHouseMailbox::
-+    .string "VALE's house$"
++	.string "VALE's house$"
 +
 +PalletTown_Text_MarshHouseMailbox::
-+    .string "MARSH's house$"
++	.string "MARSH's house$"
 +
 +PalletTown_Text_KowalskiHouseMailbox::
-+    .string "KOWALSKI's house$"
++	.string "KOWALSKI's house$"
 +
 +PalletTown_Text_CafeSign::
-+    .string "PALLET CAFÉ Fresh berry tea\n"
-+    .string "every morning!$"
++	.string "PALLET CAFÉ\n"
++	.string "Fresh berry tea every morning!$"
 +
 +PalletTown_Text_NurserySign::
-+    .string "POKéMON NURSERY Little ones\n"
-+    .string "welcome. Please be gentle!$"
++	.string "POKéMON NURSERY\n"
++	.string "Little ones welcome. Please\l"
++	.string "be gentle!$"
 +
 +PalletTown_Text_SchoolSign::
-+    .string "PALLET TRAINER SCHOOL Every\n"
-+    .string "champion started somewhere!$"
++	.string "PALLET TRAINER SCHOOL\n"
++	.string "Every champion started somewhere!$"
 +
 +PalletTown_Text_BreederHouseMailbox::
-+    .string "LILA's house$"
++	.string "LILA's house$"
 +
 +PalletTown_Text_ParkSign::
-+    .string "PALLET PARK New TRAINERS,\n"
-+    .string "test your skills here!$"
++	.string "PALLET PARK\n"
++	.string "New TRAINERS, test your\l"
++	.string "skills here!$"
 +
 +PalletTown_Text_Townsfolk1::
-+    .string "Welcome to PALLET TOWN!\p"
-+    .string "It's gotten busy since the\n"
-+    .string "market district opened.\p"
-+    .string "Mind the little ones by the\n"
-+    .string "fountain, now!$"
++	.string "Welcome to PALLET TOWN!\p"
++	.string "It's gotten busy since the\n"
++	.string "market district opened.\p"
++	.string "Mind the little ones by the\n"
++	.string "fountain, now!$"
 +
 +PalletTown_Text_Townsfolk2::
-+    .string "Mail for the HARPERS… mail\n"
-+    .string "for the AOKIS…\p"
-+    .string "PALLET's gotten so big, my\n"
-+    .string "bag is twice as heavy as\l"
-+    .string "last year!$"
++	.string "Mail for the HARPERS… mail for\n"
++	.string "the AOKIS…\p"
++	.string "PALLET's gotten so big, my bag\n"
++	.string "is twice as heavy as last year!$"
 +
 +PalletTown_Text_Townsfolk3::
-+    .string "The fountain sparkles when\n"
-+    .string "the sun comes up over the\l"
-+    .string "sea!$"
++	.string "The fountain sparkles when the\n"
++	.string "sun comes up over the sea!$"
 +
 +PalletTown_Text_Townsfolk4::
-+    .string "Ahh… a bench in the park.\p"
-+    .string "This is the life. No\n"
-+    .string "battles, no homework. Just\l"
-+    .string "sunshine.$"
++	.string "Ahh… a bench in the park.\p"
++	.string "This is the life. No battles,\n"
++	.string "no homework. Just sunshine.$"
 +
 +PalletTown_Text_Townsfolk5::
-+    .string "Tag! You're it! …Wait,\n"
-+    .string "you're not playing?$"
++	.string "Tag! You're it!\n"
++	.string "…Wait, you're not playing?$"
 +
 +PalletTown_Text_Townsfolk6::
-+    .string "PIDGEY: Pijji! Pijji!$"
++	.string "PIDGEY: Pijji! Pijji!$"
 +
 +PalletTown_Text_Townsfolk7::
-+    .string "PIDGEY: Pijji?$"
++	.string "PIDGEY: Pijji?$"
 +
 +PalletTown_Text_Townsfolk8::
-+    .string "I planted these pines the\n"
-+    .string "year PROF. OAK built his\l"
-+    .string "lab.\p"
-+    .string "They've grown taller than\n"
-+    .string "me!$"
++	.string "I planted these pines the year\n"
++	.string "PROF. OAK built his lab.\p"
++	.string "They've grown taller than me!$"
 +
 +PalletTown_Text_Townsfolk9::
-+    .string "We just finished the POKéMON\n"
-+    .string "CENTER and the MART.\p"
-+    .string "Next up, the mayor wants a\n"
-+    .string "ferry pier down by the pond!$"
++	.string "We just finished the POKéMON\n"
++	.string "CENTER and the MART.\p"
++	.string "Next up, the mayor wants a\n"
++	.string "ferry pier down by the pond!$"
 +
 +PalletTown_Text_Townsfolk10::
-+    .string "My MEOWTH and I take a\n"
-+    .string "stroll every afternoon.\p"
-+    .string "She chooses the route. I\n"
-+    .string "merely follow.$"
++	.string "My MEOWTH and I take a stroll\n"
++	.string "every afternoon.\p"
++	.string "She chooses the route.\n"
++	.string "I merely follow.$"
 +
 +PalletTown_Text_Townsfolk11::
-+    .string "MEOWTH: Meowth! Nya!$"
++	.string "MEOWTH: Meowth! Nya!$"
 +
 +PalletTown_Text_Townsfolk12::
-+    .string "Zzz… Zzz…\p"
-+    .string "…Huh? Oh, I'm just napping\n"
-+    .string "in the sun. Best spot in\l"
-+    .string "town.\p"
-+    .string "Zzz…$"
++	.string "Zzz… Zzz…\p"
++	.string "…Huh? Oh, I'm just napping in\n"
++	.string "the sun. Best spot in town.\p"
++	.string "Zzz…$"
 +
 +PalletTown_Text_Townsfolk13::
-+    .string "SLOWPOKE: …… …… Yawn?$"
++	.string "SLOWPOKE: …… …… Yawn?$"
 +
 +PalletTown_Text_Townsfolk14::
-+    .string "Hup! Hup! Hup!\p"
-+    .string "Five laps of EAST STREET\n"
-+    .string "before breakfast!\p"
-+    .string "My MANKEY says I'm slow.\n"
-+    .string "Hmph! Not for long!$"
++	.string "Hup! Hup! Hup!\p"
++	.string "Five laps of EAST STREET\n"
++	.string "before breakfast!\p"
++	.string "My MANKEY says I'm slow.\n"
++	.string "Hmph! Not for long!$"
 +
 +PalletTown_Text_Townsfolk15::
-+    .string "The LEMONADE here is made\n"
-+    .string "with ORAN BERRIES, you know.\p"
-+    .string "…At least, that's what the\n"
-+    .string "sign says. I can't taste it.$"
++	.string "The LEMONADE here is made\n"
++	.string "with ORAN BERRIES, you know.\p"
++	.string "…At least, that's what the\n"
++	.string "sign says. I can't taste it.$"
 +
 +PalletTown_Text_Townsfolk16::
-+    .string "Go, POOCHYENA! TACKLE!\p"
-+    .string "…Huh? Don't distract us! My\n"
-+    .string "cousin mailed me this\l"
-+    .string "POOCHYENA all the way from\l"
-+    .string "HOENN!$"
++	.string "Go, POOCHYENA! TACKLE!\p"
++	.string "…Huh? Don't distract us!\p"
++	.string "My cousin in HOENN mailed\n"
++	.string "me this POOCHYENA!$"
 +
 +PalletTown_Text_Townsfolk17::
-+    .string "POOCHYENA: Grrrr… Ruff!\n"
-+    .string "Ruff!$"
++	.string "POOCHYENA: Grrrr… Ruff! Ruff!$"
 +
 +PalletTown_Text_Townsfolk18::
-+    .string "ZIGZAGOON: Zig! Zagoo!$"
++	.string "ZIGZAGOON: Zig! Zagoo!$"
 +
 +PalletTown_Text_Townsfolk19::
-+    .string "ZIGZAGOON, HEADBUTT!\p"
-+    .string "We're tied, three wins each.\n"
-+    .string "Loser buys the LEMONADE at\l"
-+    .string "the market stall!$"
++	.string "ZIGZAGOON, HEADBUTT!\p"
++	.string "We're tied, three wins each.\n"
++	.string "Loser buys the LEMONADE at\l"
++	.string "the market stall!$"
 +
 +PalletTown_Text_Townsfolk20::
-+    .string "PSYDUCK: Psy…? …Duck!$"
++	.string "PSYDUCK: Psy…? …Duck!$"
 +
 +PalletTown_Text_StallVendor::
-+    .string "Morning! Fresh from the\n"
-+    .string "farms up on ROUTE 1!\p"
-+    .string "The veggies are for the\n"
-+    .string "café, but the drinks are\l"
-+    .string "ice-cold and for sale!$"
++	.string "Morning! Fresh from the farms\n"
++	.string "up on ROUTE 1!\p"
++	.string "The veggies are for the café,\n"
++	.string "but the drinks are ice-cold\l"
++	.string "and for sale!$"
 +
 +PalletTown_Text_StallBye::
-+    .string "Stay hydrated out there,\n"
-+    .string "kid! Your POKéMON too!$"
++	.string "Stay hydrated out there, kid!\n"
++	.string "Your POKéMON too!$"
 +
 +PalletTown_Text_TimmyNoMon::
-+    .string "Shorts are comfy and easy to\n"
-+    .string "battle in!\p"
-+    .string "Huh? You don't even have a\n"
-+    .string "POKéMON? Get one, then we'll\l"
-+    .string "talk!$"
++	.string "Shorts are comfy and easy to\n"
++	.string "battle in!\p"
++	.string "Huh? You don't even have a\n"
++	.string "POKéMON? Get one, then we'll talk!$"
 +
 +PalletTown_Text_TimmyAsk::
-+    .string "My RATTATA is in the top\n"
-+    .string "percentage of RATTATA!\p"
-+    .string "You've got a POKéMON now,\n"
-+    .string "huh? Wanna battle?$"
++	.string "My RATTATA is in the top\n"
++	.string "percentage of RATTATA!\p"
++	.string "You've got a POKéMON now, huh?\n"
++	.string "Wanna battle?$"
 +
 +PalletTown_Text_TimmyAccept::
-+    .string "Yes! Get ready to be\n"
-+    .string "schooled!$"
++	.string "Yes! Get ready to be schooled!$"
 +
 +PalletTown_Text_TimmyDecline::
-+    .string "Scared, huh? I get it. We're\n"
-+    .string "pretty much unbeatable.$"
++	.string "Scared, huh? I get it.\n"
++	.string "We're pretty much unbeatable.$"
 +
 +PalletTown_Text_TimmyDefeat::
-+    .string "Wh-what?! My top percentage\n"
-+    .string "RATTATA lost?!$"
++	.string "Wh-what?! My top percentage\n"
++	.string "RATTATA lost?!$"
 +
 +PalletTown_Text_TimmyAfter::
-+    .string "I'm gonna train every day\n"
-+    .string "until RATTATA is the top-top\l"
-+    .string "percentage!$"
++	.string "I'm gonna train every day until\n"
++	.string "RATTATA is the top-top percentage!$"
 +
 +PalletTown_Text_MilaNoMon::
-+    .string "I named my ODDISH “Sprout”\n"
-+    .string "and my NIDORAN “Blossom.”\p"
-+    .string "Once you have a POKéMON, you\n"
-+    .string "should give it a cute name\l"
-+    .string "too!$"
++	.string "I named my ODDISH “Sprout” and\n"
++	.string "my NIDORAN “Blossom.”\p"
++	.string "Once you have a POKéMON, you\n"
++	.string "should give it a cute name too!$"
 +
 +PalletTown_Text_MilaAsk::
-+    .string "Oh! Is that your very first\n"
-+    .string "POKéMON? It's adorable!\p"
-+    .string "Sprout and Blossom would\n"
-+    .string "love to play. Will you\l"
-+    .string "battle us?$"
++	.string "Oh! Is that your very first\n"
++	.string "POKéMON? It's adorable!\p"
++	.string "Sprout and Blossom would love\n"
++	.string "to play. Will you battle us?$"
 +
 +PalletTown_Text_MilaAccept::
-+    .string "Yay! Let's do our best,\n"
-+    .string "girls!$"
++	.string "Yay! Let's do our best, girls!$"
 +
 +PalletTown_Text_MilaDecline::
-+    .string "Aww. Maybe after your\n"
-+    .string "POKéMON has had a little\l"
-+    .string "nap.$"
++	.string "Aww. Maybe after your POKéMON\n"
++	.string "has had a little nap.$"
 +
 +PalletTown_Text_MilaDefeat::
-+    .string "Oh no, Sprout! Blossom! You\n"
-+    .string "were both so brave!$"
++	.string "Oh no, Sprout! Blossom!\n"
++	.string "You were both so brave!$"
 +
 +PalletTown_Text_MilaAfter::
-+    .string "Losing is OK as long as we\n"
-+    .string "have fun together. Right,\l"
-+    .string "Sprout?$"
++	.string "Losing is OK as long as we\n"
++	.string "have fun together. Right, Sprout?$"
 +
 +PalletTown_Text_WesNoMon::
-+    .string "Shh! I'm watching this pine\n"
-+    .string "tree. Something wiggled up\l"
-+    .string "there!\p"
-+    .string "Come back with a POKéMON and\n"
-+    .string "I'll show you my bug team!$"
++	.string "Shh! I'm watching this pine tree.\n"
++	.string "Something wiggled up there!\p"
++	.string "Come back with a POKéMON and\n"
++	.string "I'll show you my bug team!$"
 +
 +PalletTown_Text_WesAsk::
-+    .string "BUG POKéMON grow up so fast!\n"
-+    .string "That's what makes them the\l"
-+    .string "best!\p"
-+    .string "Want to see how tough my\n"
-+    .string "bugs are? Battle me!$"
++	.string "BUG POKéMON grow up so fast!\n"
++	.string "That's what makes them the best!\p"
++	.string "Want to see how tough my bugs\n"
++	.string "are? Battle me!$"
 +
 +PalletTown_Text_WesAccept::
-+    .string "Go, my creepy-crawly crew!$"
++	.string "Go, my creepy-crawly crew!$"
 +
 +PalletTown_Text_WesDecline::
-+    .string "Fine! I'll go back to\n"
-+    .string "staring at this tree.$"
++	.string "Fine! I'll go back to staring\n"
++	.string "at this tree.$"
 +
 +PalletTown_Text_WesDefeat::
-+    .string "My bugs got squished!$"
++	.string "My bugs got squished!$"
 +
 +PalletTown_Text_WesAfter::
-+    .string "Someday CATERPIE will be a\n"
-+    .string "BUTTERFREE. Then watch out!$"
++	.string "Someday CATERPIE will be a\n"
++	.string "BUTTERFREE. Then watch out!$"
 +
 +PalletTown_Text_DrewNoMon::
-+    .string "I pitched my tent right here\n"
-+    .string "in the park. Best spot in\l"
-+    .string "PALLET!\p"
-+    .string "Every camper needs a\n"
-+    .string "partner. Go get yourself a\l"
-+    .string "POKéMON!$"
++	.string "I pitched my tent right here in\n"
++	.string "the park. Best spot in PALLET!\p"
++	.string "Every camper needs a partner.\n"
++	.string "Go get yourself a POKéMON!$"
 +
 +PalletTown_Text_DrewAsk::
-+    .string "Nothing like a battle under\n"
-+    .string "the open sky!\p"
-+    .string "You and your partner up for\n"
-+    .string "a match? Let's go!$"
++	.string "Nothing like a battle under the\n"
++	.string "open sky!\p"
++	.string "You and your partner up for a\n"
++	.string "match? Let's go!$"
 +
 +PalletTown_Text_DrewAccept::
-+    .string "That's the spirit! Here I\n"
-+    .string "come!$"
++	.string "That's the spirit! Here I come!$"
 +
 +PalletTown_Text_DrewDecline::
-+    .string "No worries. The sky's not\n"
-+    .string "going anywhere. Come back\l"
-+    .string "anytime!$"
++	.string "No worries. The sky's not going\n"
++	.string "anywhere. Come back anytime!$"
 +
 +PalletTown_Text_DrewDefeat::
-+    .string "Whoa! You've got real\n"
-+    .string "outdoor grit!$"
++	.string "Whoa! You've got real\n"
++	.string "outdoor grit!$"
 +
 +PalletTown_Text_DrewAfter::
-+    .string "Toughen up out here, and\n"
-+    .string "VIRIDIAN FOREST won't scare\l"
-+    .string "you one bit.$"
++	.string "Toughen up out here, and VIRIDIAN\n"
++	.string "FOREST won't scare you one bit.$"
 +
 +PalletTown_Text_RosaNoMon::
-+    .string "I packed sandwiches for a\n"
-+    .string "picnic, but MEOWTH ate them\l"
-+    .string "all!\p"
-+    .string "When you have a POKéMON,\n"
-+    .string "let's have a battle picnic!$"
++	.string "I packed sandwiches for a picnic,\n"
++	.string "but MEOWTH ate them all!\p"
++	.string "When you have a POKéMON, let's\n"
++	.string "have a battle picnic!$"
 +
 +PalletTown_Text_RosaAsk::
-+    .string "A battle before lunch builds\n"
-+    .string "an appetite!\p"
-+    .string "Will you battle with me and\n"
-+    .string "my hungry friends?$"
++	.string "A battle before lunch\n"
++	.string "builds an appetite!\p"
++	.string "Will you battle with me and my\n"
++	.string "hungry friends?$"
 +
 +PalletTown_Text_RosaAccept::
-+    .string "Hooray! Ready, set, picnic!$"
++	.string "Hooray! Ready, set, picnic!$"
 +
 +PalletTown_Text_RosaDecline::
-+    .string "OK! I'll save you a\n"
-+    .string "sandwich. If MEOWTH doesn't\l"
-+    .string "find it first.$"
++	.string "OK! I'll save you a sandwich.\n"
++	.string "If MEOWTH doesn't find it first.$"
 +
 +PalletTown_Text_RosaDefeat::
-+    .string "Oh! Now we're even hungrier!$"
++	.string "Oh! Now we're even hungrier!$"
 +
 +PalletTown_Text_RosaAfter::
-+    .string "Battling outdoors is the\n"
-+    .string "best. Even better with\l"
-+    .string "snacks!$"
++	.string "Battling outdoors is the best.\n"
++	.string "Even better with snacks!$"
 +
 +PalletTown_Text_OttoNoMon::
-+    .string "Thirty years I've fished\n"
-+    .string "this pond. Thirty years!\p"
-+    .string "Come back with a POKéMON and\n"
-+    .string "I'll show you what I've\l"
-+    .string "caught.$"
++	.string "Thirty years I've fished this\n"
++	.string "pond. Thirty years!\p"
++	.string "Come back with a POKéMON and\n"
++	.string "I'll show you what I've caught.$"
 +
 +PalletTown_Text_OttoAsk::
-+    .string "Patience, youngster. That's\n"
-+    .string "the secret to fishing and\l"
-+    .string "battling.\p"
-+    .string "Let's see if you have any.\n"
-+    .string "Care for a battle?$"
++	.string "Patience, youngster. That's the\n"
++	.string "secret to fishing and battling.\p"
++	.string "Let's see if you have any.\n"
++	.string "Care for a battle?$"
 +
 +PalletTown_Text_OttoAccept::
-+    .string "Heh heh. Reel 'em in!$"
++	.string "Heh heh. Reel 'em in!$"
 +
 +PalletTown_Text_OttoDecline::
-+    .string "Patient AND careful. You'll\n"
-+    .string "make a fine angler someday.$"
++	.string "Patient AND careful. You'll make\n"
++	.string "a fine angler someday.$"
 +
 +PalletTown_Text_OttoDefeat::
-+    .string "Ho! You landed a big one!$"
++	.string "Ho! You landed a big one!$"
 +
 +PalletTown_Text_OttoAfter::
-+    .string "My MAGIKARP will grow into\n"
-+    .string "something fierce. I can\l"
-+    .string "wait.\p"
-+    .string "I've waited thirty years\n"
-+    .string "already!$"
++	.string "My MAGIKARP will grow into\n"
++	.string "something fierce. I can wait.\p"
++	.string "I've waited thirty years already!$"
 +
 +PalletTown_Text_DuncanNoMon::
-+    .string "Ahoy! I ship out for\n"
-+    .string "CINNABAR on the next tide.\p"
-+    .string "Come back with a POKéMON and\n"
-+    .string "I'll show you what sailors\l"
-+    .string "do!$"
++	.string "Ahoy! I ship out for CINNABAR\n"
++	.string "on the next tide.\p"
++	.string "Come back with a POKéMON and\n"
++	.string "I'll show you what sailors do!$"
 +
 +PalletTown_Text_DuncanAsk::
-+    .string "I'm sailing for CINNABAR,\n"
-+    .string "but the tide can wait!\p"
-+    .string "I'll use my newly caught\n"
-+    .string "POKéMON on you, rookie!\l"
-+    .string "Ready?$"
++	.string "I'm sailing for CINNABAR, but\n"
++	.string "the tide can wait!\p"
++	.string "I'll use my newly caught\n"
++	.string "POKéMON on you, rookie! Ready?$"
 +
 +PalletTown_Text_DuncanAccept::
-+    .string "Anchors aweigh!$"
++	.string "Anchors aweigh!$"
 +
 +PalletTown_Text_DuncanDecline::
-+    .string "Ha! Smart. Never fight a\n"
-+    .string "sailor in his own harbor.$"
++	.string "Ha! Smart. Never fight a\n"
++	.string "sailor in his own harbor.$"
 +
 +PalletTown_Text_DuncanDefeat::
-+    .string "Sunk! Sunk like a stone!$"
++	.string "Sunk! Sunk like a stone!$"
 +
 +PalletTown_Text_DuncanAfter::
-+    .string "I'll train KRABBY all the\n"
-+    .string "way to CINNABAR. Next time,\l"
-+    .string "rookie!$"
++	.string "I'll train KRABBY all the way\n"
++	.string "to CINNABAR. Next time, rookie!$"
 +
 +PalletTown_Text_KaiNoMon::
-+    .string "I'm going to CINNABAR to\n"
-+    .string "train under BLAINE! FIRE all\l"
-+    .string "the way!\p"
-+    .string "You don't even have a\n"
-+    .string "POKéMON? Better hurry up!$"
++	.string "I'm going to CINNABAR to train\n"
++	.string "under BLAINE! FIRE all the way!\p"
++	.string "You don't even have a POKéMON?\n"
++	.string "Better hurry up!$"
 +
 +PalletTown_Text_KaiAsk::
-+    .string "I just caught GROWLITHE! Now\n"
-+    .string "I'm ready for CINNABAR!\p"
-+    .string "I'll use my newly caught\n"
-+    .string "POKéMON on you, rookie!\l"
-+    .string "Battle?$"
++	.string "I just caught GROWLITHE! Now I'm\n"
++	.string "ready for CINNABAR!\p"
++	.string "I'll use my newly caught\n"
++	.string "POKéMON on you, rookie! Battle?$"
 +
 +PalletTown_Text_KaiAccept::
-+    .string "Fire it up!$"
++	.string "Fire it up!$"
 +
 +PalletTown_Text_KaiDecline::
-+    .string "Huh. Afraid of getting\n"
-+    .string "burned, rookie?$"
++	.string "Huh. Afraid of getting\n"
++	.string "burned, rookie?$"
 +
 +PalletTown_Text_KaiDefeat::
-+    .string "My flames… fizzled out…$"
++	.string "My flames… fizzled out…$"
 +
 +PalletTown_Text_KaiAfter::
-+    .string "Guess I need more training\n"
-+    .string "before I face BLAINE.$"
++	.string "Guess I need more training\n"
++	.string "before I face BLAINE.$"
 +
 +PalletTown_Text_OwenNoMon::
-+    .string "They say there's a volcano\n"
-+    .string "on CINNABAR. I want to climb\l"
-+    .string "it!\p"
-+    .string "Get a POKéMON and we'll see\n"
-+    .string "who the tougher hiker is!$"
++	.string "They say there's a volcano on\n"
++	.string "CINNABAR. I want to climb it!\p"
++	.string "Get a POKéMON and we'll see who\n"
++	.string "the tougher hiker is!$"
 +
 +PalletTown_Text_OwenAsk::
-+    .string "I'm waiting for my friend so\n"
-+    .string "we can head for CINNABAR.\p"
-+    .string "Want to warm up with a\n"
-+    .string "battle while I wait?$"
++	.string "I'm waiting for my friend so we\n"
++	.string "can head for CINNABAR.\p"
++	.string "Want to warm up with a battle\n"
++	.string "while I wait?$"
 +
 +PalletTown_Text_OwenAccept::
-+    .string "Rock solid! Let's go!$"
++	.string "Rock solid! Let's go!$"
 +
 +PalletTown_Text_OwenDecline::
-+    .string "No problem. I'll just keep\n"
-+    .string "waiting… and waiting…$"
++	.string "No problem. I'll just keep\n"
++	.string "waiting… and waiting…$"
 +
 +PalletTown_Text_OwenDefeat::
-+    .string "You crushed us like gravel!$"
++	.string "You crushed us like gravel!$"
 +
 +PalletTown_Text_OwenAfter::
-+    .string "KAI's late again. He's\n"
-+    .string "probably battling somebody.$"
++	.string "KAI's late again. He's probably\n"
++	.string "battling somebody.$"
 +
 +PalletTown_Text_BreeNoMon::
-+    .string "Mommy says CINNABAR has the\n"
-+    .string "best beaches in KANTO!\p"
-+    .string "Do you have a POKéMON? No?\n"
-+    .string "Then we can't play!$"
++	.string "Mommy says CINNABAR has the\n"
++	.string "best beaches in KANTO!\p"
++	.string "Do you have a POKéMON? No?\n"
++	.string "Then we can't play!$"
 +
 +PalletTown_Text_BreeAsk::
-+    .string "I'm going to CINNABAR on a\n"
-+    .string "big boat! I'm practicing\l"
-+    .string "first!\p"
-+    .string "Will you battle me? Please?$"
++	.string "I'm going to CINNABAR on a big\n"
++	.string "boat! I'm practicing first!\p"
++	.string "Will you battle me? Please?$"
 +
 +PalletTown_Text_BreeAccept::
-+    .string "Yay! Splash, splash!$"
++	.string "Yay! Splash, splash!$"
 +
 +PalletTown_Text_BreeDecline::
-+    .string "Aww… meanie.$"
++	.string "Aww… meanie.$"
 +
 +PalletTown_Text_BreeDefeat::
-+    .string "Waaah! I lost!$"
++	.string "Waaah! I lost!$"
 +
 +PalletTown_Text_BreeAfter::
-+    .string "When I grow up, I'll SURF\n"
-+    .string "all the way to CINNABAR\l"
-+    .string "myself!$"
++	.string "When I grow up, I'll SURF all\n"
++	.string "the way to CINNABAR myself!$"
 +
 +PalletTown_Text_JuneNoMon::
-+    .string "I come to this garden to\n"
-+    .string "relax after school.\p"
-+    .string "The flowers smell so nice.\n"
-+    .string "Don't you think so?$"
++	.string "I come to this garden to relax\n"
++	.string "after school.\p"
++	.string "The flowers smell so nice.\n"
++	.string "Don't you think so?$"
 +
 +PalletTown_Text_JuneAsk::
-+    .string "Relaxing is nice, but a\n"
-+    .string "gentle battle is nice too.\p"
-+    .string "Would you like to have one?$"
++	.string "Relaxing is nice, but a gentle\n"
++	.string "battle is nice too.\p"
++	.string "Would you like to have one?$"
 +
 +PalletTown_Text_JuneAccept::
-+    .string "Let's take it easy, OK?$"
++	.string "Let's take it easy, OK?$"
 +
 +PalletTown_Text_JuneDecline::
-+    .string "That's fine. Stop and smell\n"
-+    .string "the flowers for a while.$"
++	.string "That's fine. Stop and smell\n"
++	.string "the flowers for a while.$"
 +
 +PalletTown_Text_JuneDefeat::
-+    .string "Oh my. That wasn't very\n"
-+    .string "relaxing at all!$"
++	.string "Oh my. That wasn't very\n"
++	.string "relaxing at all!$"
 +
 +PalletTown_Text_JuneAfter::
-+    .string "Back to my flowers. Come\n"
-+    .string "relax here anytime.$"
++	.string "Back to my flowers. Come relax\n"
++	.string "here anytime.$"
 +
 +PalletTown_Text_PipNoMon::
-+    .string "The flower garden is full of\n"
-+    .string "BUG POKéMON at night!\p"
-+    .string "Get a POKéMON and I'll show\n"
-+    .string "you my collection!$"
++	.string "The flower garden is full of\n"
++	.string "BUG POKéMON at night!\p"
++	.string "Get a POKéMON and I'll show you\n"
++	.string "my collection!$"
 +
 +PalletTown_Text_PipAsk::
-+    .string "WES says his bugs are the\n"
-+    .string "best in PALLET. He's wrong!\p"
-+    .string "Battle me and you'll see!$"
++	.string "WES says his bugs are the best\n"
++	.string "in PALLET. He's wrong!\p"
++	.string "Battle me and you'll see!$"
 +
 +PalletTown_Text_PipAccept::
-+    .string "Bzzzt! Here we go!$"
++	.string "Bzzzt! Here we go!$"
 +
 +PalletTown_Text_PipDecline::
-+    .string "Fine! I'll go find more\n"
-+    .string "bugs.$"
++	.string "Fine! I'll go find more bugs.$"
 +
 +PalletTown_Text_PipDefeat::
-+    .string "Aww! Don't tell WES!$"
++	.string "Aww! Don't tell WES!$"
 +
 +PalletTown_Text_PipAfter::
-+    .string "VENONAT can see in the dark.\n"
-+    .string "That's how we find more\l"
-+    .string "bugs!$"
++	.string "VENONAT can see in the dark.\n"
++	.string "That's how we find more bugs!$"
 +
 +PalletTown_Text_MiloNoMon::
-+    .string "I've read every book about\n"
-+    .string "POKéMON in the SCHOOL\l"
-+    .string "library!\p"
-+    .string "Now I just need a POKéMON to\n"
-+    .string "battle with. Same as you!$"
++	.string "I've read every book about\n"
++	.string "POKéMON in the SCHOOL library!\p"
++	.string "Now I just need a POKéMON\n"
++	.string "to battle with. Same as you!$"
 +
 +PalletTown_Text_MiloAsk::
-+    .string "Did you know SLOWPOKE takes\n"
-+    .string "a whole five seconds to feel\l"
-+    .string "pain?\p"
-+    .string "Let's test that! Battle?$"
++	.string "Did you know SLOWPOKE takes a\n"
++	.string "whole five seconds to feel pain?\p"
++	.string "Let's test that! Battle?$"
 +
 +PalletTown_Text_MiloAccept::
-+    .string "For science!$"
++	.string "For science!$"
 +
 +PalletTown_Text_MiloDecline::
-+    .string "Hmph. A missed opportunity\n"
-+    .string "for research.$"
++	.string "Hmph. A missed opportunity\n"
++	.string "for research.$"
 +
 +PalletTown_Text_MiloDefeat::
-+    .string "Fascinating! Utterly\n"
-+    .string "fascinating!$"
++	.string "Fascinating!\n"
++	.string "Utterly fascinating!$"
 +
 +PalletTown_Text_MiloAfter::
-+    .string "I'll write all about our\n"
-+    .string "battle in my notebook\l"
-+    .string "tonight.$"
++	.string "I'll write all about our battle\n"
++	.string "in my notebook tonight.$"
 +
 +PalletTown_Text_IvyNoMon::
-+    .string "I'm on my way to the CAFÉ\n"
-+    .string "for berry tea!\p"
-+    .string "Get yourself a POKéMON, then\n"
-+    .string "we'll battle over a cup!$"
++	.string "I'm on my way to the CAFÉ for\n"
++	.string "berry tea!\p"
++	.string "Get yourself a POKéMON, then\n"
++	.string "we'll battle over a cup!$"
 +
 +PalletTown_Text_IvyAsk::
-+    .string "A quick battle before tea?\n"
-+    .string "Sounds perfect to me!$"
++	.string "A quick battle before tea?\n"
++	.string "Sounds perfect to me!$"
 +
 +PalletTown_Text_IvyAccept::
-+    .string "Ready, set, sip!$"
++	.string "Ready, set, sip!$"
 +
 +PalletTown_Text_IvyDecline::
-+    .string "Suit yourself! More tea for\n"
-+    .string "me.$"
++	.string "Suit yourself! More tea for me.$"
 +
 +PalletTown_Text_IvyDefeat::
-+    .string "Oh! My tea's gone cold.$"
++	.string "Oh! My tea's gone cold.$"
 +
 +PalletTown_Text_IvyAfter::
-+    .string "Next time, the tea's on you!$"
++	.string "Next time, the tea's on you!$"
 diff --git a/data/maps/PalletTown_AokiHouse_1F/map.json b/data/maps/PalletTown_AokiHouse_1F/map.json
 new file mode 100644
 index 0000000..50068f0
@@ -2276,17 +2234,15 @@ index 0000000..8e4897d
 +	end
 diff --git a/data/maps/PalletTown_AokiHouse_1F/text.inc b/data/maps/PalletTown_AokiHouse_1F/text.inc
 new file mode 100644
-index 0000000..4f1b067
+index 0000000..75b8b8d
 --- /dev/null
 +++ b/data/maps/PalletTown_AokiHouse_1F/text.inc
-@@ -0,0 +1,7 @@
+@@ -0,0 +1,5 @@
 +PalletTown_AokiHouse_1F_Text_Resident1::
-+    .string "KEN is upstairs playing\n"
-+    .string "games again instead of\l"
-+    .string "studying.\p"
-+    .string "He says he's “training his\n"
-+    .string "reflexes” for POKéMON\l"
-+    .string "battles.$"
++	.string "KEN is upstairs playing games\n"
++	.string "again instead of studying.\p"
++	.string "He says he's “training his\n"
++	.string "reflexes” for POKéMON battles.$"
 diff --git a/data/maps/PalletTown_AokiHouse_2F/map.json b/data/maps/PalletTown_AokiHouse_2F/map.json
 new file mode 100644
 index 0000000..4e8b2af
@@ -2355,16 +2311,15 @@ index 0000000..48eb197
 +	end
 diff --git a/data/maps/PalletTown_AokiHouse_2F/text.inc b/data/maps/PalletTown_AokiHouse_2F/text.inc
 new file mode 100644
-index 0000000..6833dc3
+index 0000000..d9c0842
 --- /dev/null
 +++ b/data/maps/PalletTown_AokiHouse_2F/text.inc
-@@ -0,0 +1,6 @@
+@@ -0,0 +1,5 @@
 +PalletTown_AokiHouse_2F_Text_Resident1::
-+    .string "Shh! I'm about to beat my\n"
-+    .string "high score!\p"
-+    .string "When I'm a TRAINER, I'll\n"
-+    .string "have the fastest fingers in\l"
-+    .string "KANTO!$"
++	.string "Shh! I'm about to beat my\n"
++	.string "high score!\p"
++	.string "When I'm a TRAINER, I'll have\n"
++	.string "the fastest fingers in KANTO!$"
 diff --git a/data/maps/PalletTown_BellHouse/map.json b/data/maps/PalletTown_BellHouse/map.json
 new file mode 100644
 index 0000000..fbd4741
@@ -2469,23 +2424,21 @@ index 0000000..8801f77
 +	end
 diff --git a/data/maps/PalletTown_BellHouse/text.inc b/data/maps/PalletTown_BellHouse/text.inc
 new file mode 100644
-index 0000000..8c9f2c9
+index 0000000..c740398
 --- /dev/null
 +++ b/data/maps/PalletTown_BellHouse/text.inc
-@@ -0,0 +1,13 @@
+@@ -0,0 +1,11 @@
 +PalletTown_BellHouse_Text_Resident1::
-+    .string "My grandson watches the park\n"
-+    .string "battles from the window.\p"
-+    .string "Be kind to those young\n"
-+    .string "TRAINERS, dear. They're just\l"
-+    .string "starting out.$"
++	.string "My grandson watches the park\n"
++	.string "battles from the window.\p"
++	.string "Be kind to those young TRAINERS,\n"
++	.string "dear. They're just starting out.$"
 +
 +PalletTown_BellHouse_Text_Resident2::
-+    .string "Whoa! That BUG CATCHER's\n"
-+    .string "WEEDLE is so cool!\p"
-+    .string "Grandma says I can go battle\n"
-+    .string "when I'm ten. Six more\l"
-+    .string "years!$"
++	.string "Whoa! That BUG CATCHER's\n"
++	.string "WEEDLE is so cool!\p"
++	.string "Grandma says I can go battle\n"
++	.string "when I'm ten. Six more years!$"
 diff --git a/data/maps/PalletTown_BreederHouse/map.json b/data/maps/PalletTown_BreederHouse/map.json
 new file mode 100644
 index 0000000..b157a89
@@ -2578,21 +2531,21 @@ index 0000000..517f7fc
 +	end
 diff --git a/data/maps/PalletTown_BreederHouse/text.inc b/data/maps/PalletTown_BreederHouse/text.inc
 new file mode 100644
-index 0000000..387e822
+index 0000000..5cf41f5
 --- /dev/null
 +++ b/data/maps/PalletTown_BreederHouse/text.inc
 @@ -0,0 +1,8 @@
 +PalletTown_BreederHouse_Text_Resident1::
-+    .string "I moved here to raise\n"
-+    .string "POKéMON by the sea.\p"
-+    .string "CLEFAIRY loves the moonlight\n"
-+    .string "over the water. So do I.$"
++	.string "I moved here to raise POKéMON\n"
++	.string "by the sea.\p"
++	.string "CLEFAIRY loves the moonlight\n"
++	.string "over the water. So do I.$"
 +
 +PalletTown_BreederHouse_Text_Resident2::
-+    .string "CLEFAIRY: Pi pippi!$"
++	.string "CLEFAIRY: Pi pippi!$"
 diff --git a/data/maps/PalletTown_Cafe/map.json b/data/maps/PalletTown_Cafe/map.json
 new file mode 100644
-index 0000000..860d58c
+index 0000000..15a41cd
 --- /dev/null
 +++ b/data/maps/PalletTown_Cafe/map.json
 @@ -0,0 +1,100 @@
@@ -2616,8 +2569,8 @@ index 0000000..860d58c
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_CHEF",
-+      "x": 12,
-+      "y": 4,
++      "x": 11,
++      "y": 5,
 +      "elevation": 3,
 +      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
 +      "movement_range_x": 1,
@@ -2738,37 +2691,35 @@ index 0000000..761f549
 +	end
 diff --git a/data/maps/PalletTown_Cafe/text.inc b/data/maps/PalletTown_Cafe/text.inc
 new file mode 100644
-index 0000000..ebd78d3
+index 0000000..91d60dc
 --- /dev/null
 +++ b/data/maps/PalletTown_Cafe/text.inc
-@@ -0,0 +1,27 @@
+@@ -0,0 +1,25 @@
 +PalletTown_Cafe_Text_Resident1::
-+    .string "Welcome to PALLET CAFÉ!\p"
-+    .string "Today's special is ORAN\n"
-+    .string "BERRY tea with honey.\p"
-+    .string "TRAINERS swear it gets them\n"
-+    .string "through a whole day of\l"
-+    .string "battles!$"
++	.string "Welcome to PALLET CAFÉ!\p"
++	.string "Today's special is ORAN BERRY\n"
++	.string "tea with honey.\p"
++	.string "TRAINERS swear it gets them\n"
++	.string "through a whole day of battles!$"
 +
 +PalletTown_Cafe_Text_Resident2::
-+    .string "I wait tables here to save\n"
-+    .string "up for my first POKé BALL.\p"
-+    .string "Can you believe what they\n"
-+    .string "cost in the big cities?$"
++	.string "I wait tables here to save up\n"
++	.string "for my first POKé BALL.\p"
++	.string "Can you believe what they cost\n"
++	.string "in the big cities?$"
 +
 +PalletTown_Cafe_Text_Resident3::
-+    .string "I come here every morning to\n"
-+    .string "read the paper.\p"
-+    .string "Today's headline: “PALLET\n"
-+    .string "TOWN now bigger than\l"
-+    .string "VIRIDIAN?!”$"
++	.string "I come here every morning to\n"
++	.string "read the paper.\p"
++	.string "Today's headline: “PALLET TOWN\n"
++	.string "now bigger than VIRIDIAN?!”$"
 +
 +PalletTown_Cafe_Text_Resident4::
-+    .string "I'm visiting from HOENN with\n"
-+    .string "my friend MAY.\p"
-+    .string "Your KANTO café makes a mean\n"
-+    .string "berry tea! We have nothing\l"
-+    .string "like it in LITTLEROOT.$"
++	.string "I'm visiting from HOENN with\n"
++	.string "my friend MAY.\p"
++	.string "Your KANTO café makes a mean\n"
++	.string "berry tea! We have nothing like\l"
++	.string "it in LITTLEROOT.$"
 diff --git a/data/maps/PalletTown_HarperHouse/map.json b/data/maps/PalletTown_HarperHouse/map.json
 new file mode 100644
 index 0000000..3a37a00
@@ -2873,25 +2824,23 @@ index 0000000..de70b13
 +	end
 diff --git a/data/maps/PalletTown_HarperHouse/text.inc b/data/maps/PalletTown_HarperHouse/text.inc
 new file mode 100644
-index 0000000..4457d9a
+index 0000000..98fdc32
 --- /dev/null
 +++ b/data/maps/PalletTown_HarperHouse/text.inc
-@@ -0,0 +1,15 @@
+@@ -0,0 +1,13 @@
 +PalletTown_HarperHouse_Text_Resident1::
-+    .string "When I was a boy, PALLET was\n"
-+    .string "two houses and a lab.\p"
-+    .string "Now there's a POKéMON\n"
-+    .string "CENTER, a café, even a\l"
-+    .string "school!\p"
-+    .string "Still the same sea breeze,\n"
-+    .string "though. That never changes.$"
++	.string "When I was a boy, PALLET was\n"
++	.string "two houses and a lab.\p"
++	.string "Now there's a POKéMON CENTER,\n"
++	.string "a café, even a school!\p"
++	.string "Still the same sea breeze,\n"
++	.string "though. That never changes.$"
 +
 +PalletTown_HarperHouse_Text_Resident2::
-+    .string "Oh, don't mind me, dear.\n"
-+    .string "Stew's almost ready.\p"
-+    .string "Grandpa tells that “two\n"
-+    .string "houses and a lab” story\l"
-+    .string "every dinner.$"
++	.string "Oh, don't mind me, dear.\n"
++	.string "Stew's almost ready.\p"
++	.string "Grandpa tells that “two houses\n"
++	.string "and a lab” story every dinner.$"
 diff --git a/data/maps/PalletTown_KowalskiHouse/map.json b/data/maps/PalletTown_KowalskiHouse/map.json
 new file mode 100644
 index 0000000..84fa004
@@ -2998,18 +2947,18 @@ index 0000000..443a9ea
 +	end
 diff --git a/data/maps/PalletTown_KowalskiHouse/text.inc b/data/maps/PalletTown_KowalskiHouse/text.inc
 new file mode 100644
-index 0000000..bd4d1a8
+index 0000000..2dc2e24
 --- /dev/null
 +++ b/data/maps/PalletTown_KowalskiHouse/text.inc
 @@ -0,0 +1,8 @@
 +PalletTown_KowalskiHouse_Text_Resident1::
-+    .string "OTTO has fished that pond\n"
-+    .string "for thirty years.\p"
-+    .string "Thirty years, and all he's\n"
-+    .string "ever caught is MAGIKARP!$"
++	.string "OTTO has fished that pond for\n"
++	.string "thirty years.\p"
++	.string "Thirty years, and all he's ever\n"
++	.string "caught is MAGIKARP!$"
 +
 +PalletTown_KowalskiHouse_Text_Resident2::
-+    .string "PSYDUCK: Psy…? Psyy…$"
++	.string "PSYDUCK: Psy…? Psyy…$"
 diff --git a/data/maps/PalletTown_MarshHouse/map.json b/data/maps/PalletTown_MarshHouse/map.json
 new file mode 100644
 index 0000000..e597918
@@ -3100,26 +3049,23 @@ index 0000000..30bea26
 +	end
 diff --git a/data/maps/PalletTown_MarshHouse/text.inc b/data/maps/PalletTown_MarshHouse/text.inc
 new file mode 100644
-index 0000000..fdc6caa
+index 0000000..94574ab
 --- /dev/null
 +++ b/data/maps/PalletTown_MarshHouse/text.inc
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,13 @@
 +PalletTown_MarshHouse_Text_Resident1::
-+    .string "The sea south of town\n"
-+    .string "reaches all the way to\l"
-+    .string "CINNABAR.\p"
-+    .string "Lately every rookie in town\n"
-+    .string "wants to head down there.\p"
-+    .string "You'll need a POKéMON that\n"
-+    .string "knows SURF, though!$"
++	.string "The sea south of town reaches\n"
++	.string "all the way to CINNABAR.\p"
++	.string "Lately every rookie in town\n"
++	.string "wants to head down there.\p"
++	.string "You'll need a POKéMON that\n"
++	.string "knows SURF, though!$"
 +
 +PalletTown_MarshHouse_Text_Resident2::
-+    .string "My husband swears he'll\n"
-+    .string "catch something bigger than\l"
-+    .string "OTTO.\p"
-+    .string "So far it's been one boot\n"
-+    .string "and a very surprised\l"
-+    .string "MAGIKARP.$"
++	.string "My husband swears he'll catch\n"
++	.string "something bigger than OTTO.\p"
++	.string "So far it's been one boot and\n"
++	.string "a very surprised MAGIKARP.$"
 diff --git a/data/maps/PalletTown_Mart/map.json b/data/maps/PalletTown_Mart/map.json
 new file mode 100644
 index 0000000..5d9192e
@@ -3261,20 +3207,20 @@ index 0000000..9c9f8d4
 +	end
 diff --git a/data/maps/PalletTown_Mart/text.inc b/data/maps/PalletTown_Mart/text.inc
 new file mode 100644
-index 0000000..f903f58
+index 0000000..bdf5acf
 --- /dev/null
 +++ b/data/maps/PalletTown_Mart/text.inc
 @@ -0,0 +1,10 @@
 +PalletTown_Mart_Text_Resident1::
-+    .string "POTION or SUPER POTION…?\p"
-+    .string "Oh, they only have POTIONS.\n"
-+    .string "Well, that settles that!$"
++	.string "POTION or SUPER POTION…?\p"
++	.string "Oh, they only have POTIONS.\n"
++	.string "Well, that settles that!$"
 +
 +PalletTown_Mart_Text_Resident2::
-+    .string "Stocking up before I sail\n"
-+    .string "for CINNABAR.\p"
-+    .string "ANTIDOTES! Never leave port\n"
-+    .string "without ANTIDOTES.$"
++	.string "Stocking up before I sail\n"
++	.string "for CINNABAR.\p"
++	.string "ANTIDOTES! Never leave port\n"
++	.string "without ANTIDOTES.$"
 diff --git a/data/maps/PalletTown_Nursery/map.json b/data/maps/PalletTown_Nursery/map.json
 new file mode 100644
 index 0000000..6d9eb58
@@ -3453,29 +3399,28 @@ index 0000000..722e265
 +	end
 diff --git a/data/maps/PalletTown_Nursery/text.inc b/data/maps/PalletTown_Nursery/text.inc
 new file mode 100644
-index 0000000..7f3d3c9
+index 0000000..b3e2786
 --- /dev/null
 +++ b/data/maps/PalletTown_Nursery/text.inc
-@@ -0,0 +1,19 @@
+@@ -0,0 +1,18 @@
 +PalletTown_Nursery_Text_Resident1::
-+    .string "Welcome to the NURSERY!\p"
-+    .string "Folks who are busy at work\n"
-+    .string "leave their POKéMON with me.\p"
-+    .string "They're a handful, but I\n"
-+    .string "wouldn't trade them for\l"
-+    .string "anything.$"
++	.string "Welcome to the NURSERY!\p"
++	.string "Folks who are busy at work\n"
++	.string "leave their POKéMON with me.\p"
++	.string "They're a handful, but I\n"
++	.string "wouldn't trade them for anything.$"
 +
 +PalletTown_Nursery_Text_Resident2::
-+    .string "CLEFAIRY: Pippi! Pi!$"
++	.string "CLEFAIRY: Pippi! Pi!$"
 +
 +PalletTown_Nursery_Text_Resident3::
-+    .string "PIKACHU: Pika pika!$"
++	.string "PIKACHU: Pika pika!$"
 +
 +PalletTown_Nursery_Text_Resident4::
-+    .string "JIGGLYPUFF: Jiggly… puu…$"
++	.string "JIGGLYPUFF: Jiggly… puu…$"
 +
 +PalletTown_Nursery_Text_Resident5::
-+    .string "NIDORAN♀: Nido!$"
++	.string "NIDORAN♀: Nido!$"
 diff --git a/data/maps/PalletTown_PokemonCenter_1F/map.json b/data/maps/PalletTown_PokemonCenter_1F/map.json
 new file mode 100644
 index 0000000..3dcdfa5
@@ -3636,32 +3581,28 @@ index 0000000..3ca187a
 +	end
 diff --git a/data/maps/PalletTown_PokemonCenter_1F/text.inc b/data/maps/PalletTown_PokemonCenter_1F/text.inc
 new file mode 100644
-index 0000000..d88eab6
+index 0000000..818a32b
 --- /dev/null
 +++ b/data/maps/PalletTown_PokemonCenter_1F/text.inc
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,18 @@
 +PalletTown_PokemonCenter_1F_Text_Resident1::
-+    .string "Hi! I'm MAY. I'm visiting\n"
-+    .string "from LITTLEROOT TOWN in\l"
-+    .string "HOENN.\p"
-+    .string "I came all this way to see\n"
-+    .string "PROF. OAK's lab! It's\l"
-+    .string "smaller than my dad's, hee\l"
-+    .string "hee.$"
++	.string "Hi! I'm MAY. I'm visiting from\n"
++	.string "LITTLEROOT TOWN in HOENN.\p"
++	.string "I came all this way to see\n"
++	.string "PROF. OAK's lab! It's smaller\l"
++	.string "than my dad's, hee hee.$"
 +
 +PalletTown_PokemonCenter_1F_Text_Resident2::
-+    .string "This POKéMON CENTER is brand\n"
-+    .string "new! It still smells like\l"
-+    .string "paint.\p"
-+    .string "Before, we had to walk all\n"
-+    .string "the way to VIRIDIAN to heal\l"
-+    .string "up!$"
++	.string "This POKéMON CENTER is brand\n"
++	.string "new! It still smells like paint.\p"
++	.string "Before, we had to walk all the\n"
++	.string "way to VIRIDIAN to heal up!$"
 +
 +PalletTown_PokemonCenter_1F_Text_Resident3::
-+    .string "The NURSE here is my\n"
-+    .string "granddaughter's best friend.\p"
-+    .string "She treats every POKéMON\n"
-+    .string "like it's her very own.$"
++	.string "The NURSE here is my\n"
++	.string "granddaughter's best friend.\p"
++	.string "She treats every POKéMON like\n"
++	.string "it's her very own.$"
 diff --git a/data/maps/PalletTown_PokemonCenter_2F/map.json b/data/maps/PalletTown_PokemonCenter_2F/map.json
 new file mode 100644
 index 0000000..6f20f16
@@ -3950,28 +3891,25 @@ index 0000000..8491533
 +	end
 diff --git a/data/maps/PalletTown_School/text.inc b/data/maps/PalletTown_School/text.inc
 new file mode 100644
-index 0000000..22d59e1
+index 0000000..2ad24b0
 --- /dev/null
 +++ b/data/maps/PalletTown_School/text.inc
-@@ -0,0 +1,18 @@
+@@ -0,0 +1,15 @@
 +PalletTown_School_Text_Resident1::
-+    .string "Good morning, class!\p"
-+    .string "Oh, a new student? Have a\n"
-+    .string "look at the blackboard,\l"
-+    .string "dear.\p"
-+    .string "Type matchups are the first\n"
-+    .string "thing every TRAINER must\l"
-+    .string "learn!$"
++	.string "Good morning, class!\p"
++	.string "Oh, a new student? Have a look\n"
++	.string "at the blackboard, dear.\p"
++	.string "Type matchups are the first\n"
++	.string "thing every TRAINER must learn!$"
 +
 +PalletTown_School_Text_Resident2::
-+    .string "FIRE beats GRASS… GRASS\n"
-+    .string "beats WATER… WATER beats…\p"
-+    .string "Um… CAMPERS?$"
++	.string "FIRE beats GRASS… GRASS beats\n"
++	.string "WATER… WATER beats…\p"
++	.string "Um… CAMPERS?$"
 +
 +PalletTown_School_Text_Resident3::
-+    .string "I'm going to be the first\n"
-+    .string "girl from PALLET to become\l"
-+    .string "CHAMPION!$"
++	.string "I'm going to be the first girl\n"
++	.string "from PALLET to become CHAMPION!$"
 diff --git a/data/maps/PalletTown_ValeHouse/map.json b/data/maps/PalletTown_ValeHouse/map.json
 new file mode 100644
 index 0000000..b65d56e
@@ -4100,25 +4038,23 @@ index 0000000..36477a9
 +	end
 diff --git a/data/maps/PalletTown_ValeHouse/text.inc b/data/maps/PalletTown_ValeHouse/text.inc
 new file mode 100644
-index 0000000..4c9a0f0
+index 0000000..caf7df7
 --- /dev/null
 +++ b/data/maps/PalletTown_ValeHouse/text.inc
-@@ -0,0 +1,15 @@
+@@ -0,0 +1,13 @@
 +PalletTown_ValeHouse_Text_Resident1::
-+    .string "PROF. OAK lets me watch his\n"
-+    .string "POKéMON through the lab\l"
-+    .string "window!\p"
-+    .string "My MEOWTH watches too. I\n"
-+    .string "think she wants to be a\l"
-+    .string "TRAINER too.$"
++	.string "PROF. OAK lets me watch his\n"
++	.string "POKéMON through the lab window!\p"
++	.string "My MEOWTH watches too. I think\n"
++	.string "she wants to be a TRAINER too.$"
 +
 +PalletTown_ValeHouse_Text_Resident2::
-+    .string "MEOWTH: Meow! Mrrr…$"
++	.string "MEOWTH: Meow! Mrrr…$"
 +
 +PalletTown_ValeHouse_Text_Resident3::
-+    .string "We moved here from SAFFRON\n"
-+    .string "for the quiet. Then the city\l"
-+    .string "came to us!$"
++	.string "We moved here from SAFFRON for\n"
++	.string "the quiet. Then the city came\l"
++	.string "to us!$"
 diff --git a/data/maps/Route1/map.json b/data/maps/Route1/map.json
 index b2145ee..7ee7261 100644
 --- a/data/maps/Route1/map.json
@@ -4173,55 +4109,55 @@ index 8c382f5..e8882b9 100644
    "gMapGroup_IndoorViridian": [
      "ViridianCity_House",
 diff --git a/data/tilesets/secondary/pallet_town/metatile_attributes.bin b/data/tilesets/secondary/pallet_town/metatile_attributes.bin
-index 2ba2894bc2e11a75b7ec3f11cc340c767e7cfb85..3b6ed76fb7467fdbb09c7c95034f37c94cfa2907 100644
+index 2ba2894bc2e11a75b7ec3f11cc340c767e7cfb85..089f477eee589017267fbd09edf4cfcc9115ed68 100644
 GIT binary patch
-literal 956
-zcmdUrK@Na02n6|rcfRK@Jos>T4Io+Di+Yh{Qy3Q7)Xd!O0;+Iil!gOPqj12K_GjGI
-z`@Zzn8J?=`y5|oJ&#iyy@161PIrBZ{^&gUBQO&5Q_a5XJnTDg2qKUbND~OtWq-fVM
-d@{nbCCha8qQn^}pk}G>%Z`es$(}J8LI{@jD8n*xd
+literal 960
+zcmdUrK@Na02n6|rcfRK@Jos>TO+m7yC%s6rDGUp3YG!V;fHE8zrQrZn7Y-QG{)*c^
+z?+b69!;`f=_xyq3x%n^ky(?ZlcYcm}{fFRKlr!q7J?7nvdZb3V3`ZwK6LSq$FlzEn
+gqn$_RA&c-x%1QR6VzurhSN6I-u#>W)4LL=20Z0@ZTL1t6
 
 literal 356
 zcmah=$q4`;4C})c{1>-#4+poYC{ZgGLUW2-r{sXMrfAV$jv_h}Mz>Q_j{5FkusUsU
 Zczntt;J-YWxP@H=50T|01(?S1wF5Z)1q}cI
 
 diff --git a/data/tilesets/secondary/pallet_town/metatiles.bin b/data/tilesets/secondary/pallet_town/metatiles.bin
-index 41db2701509573f5a57d38ddb349e9a243b518ee..d348c8b5dd254a495943d91592c9e6278ffc911e 100644
+index 41db2701509573f5a57d38ddb349e9a243b518ee..fa28819b63a1e90fa02d8331075fbd1d41c417e7 100644
 GIT binary patch
-literal 3824
-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
-KzAj2*$o~QY(T@=T
+literal 3840
+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
 
 literal 1424
 zcmb_b&rcIk5T0x{*n`0)o2Vz{aX{1*!yXDs(2!6LdeOvsBe7Q#jb8L(HC<6$kdltL
@@ -4240,7 +4176,7 @@ z#DXI2Dxr#Okmn*6y>+a5tFlt(@2>v}dA~q^yZimQ=Fa7MmRY9ldb8eKec5}KtL0>F
 lW8%xsLUJt$5aNlATrv4|2Vk8v|92IMo3b`5#9j3o-XCo{c7Xr@
 
 diff --git a/data/tilesets/secondary/pallet_town/palettes/07.pal b/data/tilesets/secondary/pallet_town/palettes/07.pal
-index 995731c..88f4912 100644
+index 995731c..708aa1e 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/07.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/07.pal
 @@ -1,19 +1,19 @@
@@ -4264,23 +4200,23 @@ index 995731c..88f4912 100644
 -0 0 0
 -0 0 0
 +255 0 255
-+206 165 156
-+74 82 107
-+148 107 90
-+189 214 206
-+82 66 49
-+231 214 173
-+57 115 181
-+132 74 74
-+49 181 115
-+173 148 123
-+123 123 132
-+247 247 247
-+198 173 107
-+41 49 90
-+156 140 99
++99 41 41
++123 49 49
++156 57 57
++181 74 82
++206 99 99
++222 115 115
++239 140 148
++247 173 173
++198 198 198
++82 148 206
++206 99 82
++247 247 239
++82 74 57
++132 181 222
++165 140 107
 diff --git a/data/tilesets/secondary/pallet_town/palettes/08.pal b/data/tilesets/secondary/pallet_town/palettes/08.pal
-index dcecb9c..bee2179 100644
+index dcecb9c..230588b 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/08.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/08.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -4302,23 +4238,23 @@ index dcecb9c..bee2179 100644
 -222 139 106
 -189 98 74
 -123 205 164
-+99 41 41
-+123 49 49
-+156 57 57
-+181 74 82
-+206 99 99
-+222 115 115
-+239 140 148
-+247 173 173
-+198 115 57
-+198 198 189
-+90 57 33
-+82 148 206
-+107 99 99
-+156 82 41
-+239 239 231
++33 66 90
++49 99 148
++57 107 165
++66 123 189
++90 140 198
++123 165 206
++132 173 214
++148 115 90
++41 49 90
++231 222 206
++107 148 198
++198 173 123
++82 74 57
++57 115 165
++189 189 181
 diff --git a/data/tilesets/secondary/pallet_town/palettes/09.pal b/data/tilesets/secondary/pallet_town/palettes/09.pal
-index 90bb775..325e16a 100644
+index 90bb775..6863781 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/09.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/09.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -4340,23 +4276,23 @@ index 90bb775..325e16a 100644
 -213 189 106
 -197 148 74
 -222 205 123
-+66 74 107
-+247 247 247
-+123 173 214
-+66 123 189
-+123 132 132
-+49 99 156
-+206 214 214
-+132 173 173
-+90 140 198
-+99 99 115
-+165 173 181
-+82 74 57
-+115 123 239
-+148 148 148
-+33 66 90
++99 49 16
++148 82 33
++165 90 41
++189 107 41
++206 115 57
++214 132 66
++222 140 82
++239 214 165
++132 107 82
++206 173 148
++247 247 255
++198 206 206
++173 148 123
++82 66 57
++132 181 222
 diff --git a/data/tilesets/secondary/pallet_town/palettes/10.pal b/data/tilesets/secondary/pallet_town/palettes/10.pal
-index 1958eff..7b85120 100644
+index 1958eff..47a336d 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/10.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/10.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -4378,23 +4314,23 @@ index 1958eff..7b85120 100644
 -164 90 106
 -139 65 82
 -32 172 98
-+74 148 90
-+214 132 66
-+66 57 33
-+140 189 99
-+82 132 189
-+57 74 107
-+206 189 173
-+41 107 66
-+181 214 107
-+132 99 66
-+115 173 90
-+189 165 148
-+57 123 82
-+49 99 148
-+148 132 115
++66 74 107
++247 239 198
++123 123 132
++189 198 222
++123 74 74
++222 206 123
++82 156 239
++156 173 189
++247 247 247
++49 173 115
++206 140 148
++99 99 123
++189 132 66
++82 206 148
++165 90 107
 diff --git a/data/tilesets/secondary/pallet_town/palettes/11.pal b/data/tilesets/secondary/pallet_town/palettes/11.pal
-index 896c792..70d686a 100644
+index 896c792..9093d44 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/11.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/11.pal
 @@ -2,18 +2,18 @@ JASC-PAL
@@ -4417,22 +4353,22 @@ index 896c792..70d686a 100644
 -255 0 255
 -255 0 255
 +189 239 214
-+66 74 107
-+115 206 165
-+239 231 148
-+123 123 132
++57 49 33
++115 173 90
++132 173 173
++239 231 140
++41 115 66
 +189 231 165
-+247 239 198
-+181 189 231
-+99 156 231
-+173 132 74
-+156 231 198
-+247 255 255
++181 189 239
 +231 239 222
-+222 198 123
-+181 115 123
++156 231 198
++181 214 107
++115 206 165
++90 90 115
++74 148 82
++132 132 140
 diff --git a/data/tilesets/secondary/pallet_town/palettes/12.pal b/data/tilesets/secondary/pallet_town/palettes/12.pal
-index 2bfc45b..8e25a96 100644
+index 2bfc45b..f40357c 100644
 --- a/data/tilesets/secondary/pallet_town/palettes/12.pal
 +++ b/data/tilesets/secondary/pallet_town/palettes/12.pal
 @@ -1,19 +1,19 @@
@@ -4464,139 +4400,136 @@ index 2bfc45b..8e25a96 100644
 +140 206 115
 +156 222 140
 +181 222 165
-+198 115 57
-+198 198 189
-+90 57 33
++198 198 198
 +82 148 206
-+107 99 99
-+156 82 41
-+239 239 231
++206 99 82
++247 247 239
++82 74 57
++132 181 222
++165 140 107
 diff --git a/data/tilesets/secondary/pallet_town/tiles.png b/data/tilesets/secondary/pallet_town/tiles.png
-index 771eed906cc7721e5126a6badd7a1df3136e0fe3..4ffc66dbfe909ed13c08580a9d005c817adebac1 100644
+index 771eed906cc7721e5126a6badd7a1df3136e0fe3..ad518c359f5354a5acebc78563c77dce10acaf4f 100644
 GIT binary patch
-literal 6126
-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
-Apa1{>
+literal 5992
+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
+WZb_JcV2D8g0000<MNUMnLSTYq=9?4%
 
 delta 920
-zcmV;J184m1FQEsJ7k?-O0{{R3#9!}w0000mP)t-s|NsB)?(W{+-p$R;y}iAxtgM`z
+zcmV;J184l`E};jI7k?-O0{{R3#9!}w0000mP)t-s|NsB)?(W{+-p$R;y}iAxtgM`z
 zoQsQ#b8~ZIVq#KKQb9pMF)=Y9ARrJB5C8xGL-gVL0009lNkl<ZNQsTrPixa)90%~+
 zJb4JhdeKV{zJap%2I_nPGX`M@!|kyS|8`5WIn&){z@C-9fqw}V*|A{O77x-wA9vew
 zu$k^+L2RyqBJub9&6Bjt_JuZENIre?`#sMSO@o9ymmHaAmMLSCFOA1$=d3=zP*VZB
@@ -4613,69 +4546,68 @@ zZV<5m@Z6x=LZAS<<duN1=i!Y6fcFajdH6>K)(!gCSOErz?aIj8NFLil5BRWa2&q8r
 z2?wB(qKE_WVz~%VkEQ_}av=lIE3<$otWhjpR{{EVya*sxBb4Gt8h}_y=WNH}08At|
 zkbnJ@zhJ<KDG<k#&ev!^)-u^{b6~q|sw2o=r^VfHG6_%iv*+EmPk*$t9hfe!Tr{2m
 z{D~%H^xvj{fCKJ1z-tEl%mbWA#F+*@M6k@m(U)96S(#HnH~Ow=mvJ`_NbSPeoX~y7
-uALaq`dBFP<3VfUa$R$ko2>!`l_aBc&g%PcJAHlu=0000<MNUMnLSTYD!=qmS
+uALaq`dBFP<3VfUa$R$ko2>!`l_aBc&g%PcJAHlu=0000<MNUMnLSTX<oTFF(
 
 diff --git a/graphics/door_anims/oaks_lab.png b/graphics/door_anims/oaks_lab.png
-index c8bc9ebeab395b93b7a553724bb27d0e39b1ad2f..50b410d8d65e2be922db7dfbb92f25a94ff04c64 100644
+index c8bc9ebeab395b93b7a553724bb27d0e39b1ad2f..a5a545b928b8e4c27928f81b8f6e52b1559527a8 100644
 GIT binary patch
-delta 243
-zcmV<P01W?>0+a%fDSrR}0KM<lLP~3M&ZY0?lzV%Gz2~L(@5Z&g=VP4bt%ORP=f?N{
-z|L5=C-o|^ib9)7MGv@#R0G~-jK~#90osJ<6!axv3-)x2uni@<G(4+#_qi_xsu7*SG
-z5%3%V!vPRIK`pYVmO>T~y9)+V!l<7=Gygv+O2E}9xEerR(`;1?7Q<r=fFaCFD70_|
-zgKUG-tt{ygO|ogl1k5FV-A`V~!siW=$DEl3pqG7cq$oYcyUR6gX#dJ%;OyV?c^i2)
-tO8`x>aPuEeTzxG4U1)k3zq##3d7feAE|gB^Q9=L!002ovPDHLkV1kD=ax?${
+delta 240
+zcmV<M01y9^0+9lcDSrR}076P@_wUAgdxX8l-g`<)-p+ecobQ~iz4!O`F|BjXjFe+z
+zd%c80QqGj6T5A$M9%BFi0GvrgK~#90t&TAY!axv3-wq2g<&sJf*#lYRMB)+l9yVed
+z3ojtp+N~Ez7XpSX7CR9HMFgjr55xTTOyz+Tu}}uO8e25i9cgzE(jEXo=NT-VVFW?8
+z0GQ=r73pf2uiLi0IcEos(1Xl2`O7Q<0KIWjk9Yu*Zp2hR#aC$21f_rU5x8hjACZ_V
+qWmLKhoO1ZdXF9!w{x{h2yUznYvMK{^4Z(K+0000<MNUMnLSTZQvuBzB
 
 delta 243
-zcmV<P01W?>0+a%fDS!U}|5DAA_V)k1#onB(y?c9uT3T~KN@|?V_F|mwVw~>Hi<G^4
+zcmV<P01W?;0+a%fDS!U}|5DAA_V)k1#onB(y?c9uT3T~KN@|?V_F|mwVw~>Hi<G^4
 zgQQw&i$PK#tYZ7;=YaqK0G~-jK~xx(h0w7P!ypU=P*z};43H@l>J*?mH&lVrdt?N*
 zbK_Q#1ma>E|LUC(NQbL6Z>_!2{o`!k4%#{r`Q#bpk-Z-{6l{D%9hvA*AaP0Xsaz67
 zV96~279)ZPofJ6eV1%3br6fIyd_~D;M|#qPHkVf(fPn~TfZe7C1MId&Fu>d=*giq0
-tbMOX<qlo%W?K3WjD+;WLE9U>$tRE7|t2NN*W|jZ|002ovPDHLkV1k_@av%Tz
+tbMOX<qlo%W?K3WjD+;WLE9U>$tRE7|t2NN*W|jZ|002ovPDHLkV1k-SavcBw
 
 diff --git a/graphics/door_anims/pallet.png b/graphics/door_anims/pallet.png
-index 1bc68a6e7887aea4a5d06051eb428693790f4ef7..d7b38a3b9f9557f559f2b744ecf282b4fa9720cb 100644
+index 1bc68a6e7887aea4a5d06051eb428693790f4ef7..318b23fdef702ae77bc2c2c7a108f4a022277dc9 100644
 GIT binary patch
-delta 252
-zcmV<Y00aM*0-XYoDSrR}0M4bHN>Xc-Yg)b5&Qd}#=hm$`bG3v@N-?!_t(1FvdxZD*
-z_r|SjDKT1{jALZB16lw80H{esK~#90wU99i!axv3UnUDKRw*n*2&4=M5<G*4@DM4s
-zv<Yl!=}BzUdIU+awKv!Ugn-4Yf?8<fRFC<8<`0wYV*@jXp>^{x2N}^a*dquCZQu3|
-zglVW$s+~Op1}T=>35R?Q2>Ip)AZZOE<xmb4WIOO41ztU1HFOcTPCMOIrSa*pK0$j)
-zFeMMQOCUvp@G$4iTb7hMWg;<ryJvO!l>P+2{O1lVmmzUgcUV*a0000<MNUMnLSTZc
-C?`Y@%
+delta 248
+zcmV<U00;k<0+|AkDSrR}0An!_lu{w3S}DD2Db8~_)`UXdj8gB`rG#rz&aIU9_y5Mu
+z&aIStQbIX|wcg)dVLku=0HjGoK~#90wT>|g!axv3UxrPe6jnCk3HBPnCXM&7^H4T6
+z>C=f|FegYUq=_p5352i~J0fC}#;G3v|C#x;SMU8JO$Apm)p1~$r~nN94o@&NzyLzL
+z&4ZPlPfI|Mas?n1`%SRM13}S=I)L61UBD%3C7+B10S`4q?QN|GU9EQ}6ucw6Xa-f{
+yTp@dhrBo<(3ghvoPj7))eayo0z5YL#)8_?S05oN#iYwdz0000<MNUMnLSTZERcwR+
 
 delta 246
-zcmV<S015w{0+#}iDS!U}|MvF(-sbkb#onB(y?c9uT3T~KN@|?V_F|mwIeXs!&9wHU
+zcmV<S015w@0+#}iDS!U}|MvF(-sbkb#onB(y?c9uT3T~KN@|?V_F|mwIeXs!&9wHU
 zgWij3y<$px&7`!TY+(QZ0HR4mK~xx(h0wbZ!ypU>V0KEMEfgjIU3?e1K<7a+Knf4!
 zj@F%-A$lP0Oq0L*P6(vKm6De2`$8w!3?IeuRK&I~jC@OV?{7G3)uX0Jt(^jFRARgf
 zl^6j?d<%d?2*5(e1qwRop=Nq1a*rTgk<+1w_ckES`H?!HBLEs;wdvjftF7S;F!u4b
-wkC*8b{DVjl1bL_Ej0?hy3^T%v@jo`}2a_1EyUD@2>Hq)$07*qoM6N<$f|iDMXaE2J
+wkC*8b{DVjl1bL_Ej0?hy3^T%v@jo`}2a_1EyUD@2>Hq)$07*qoM6N<$f|9OwWB>pF
 
 diff --git a/graphics/door_anims/pallet_house1.png b/graphics/door_anims/pallet_house1.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..f2bfe5640e325d136c2e3d3d624dc9484036d5f2
+index 0000000000000000000000000000000000000000..9a048b8918565b1e17e98562da3e1ecce8991217
 GIT binary patch
-literal 283
-zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!FNcSN8Ys->cVNbE@83
-z-O^&1Jm=iCYb|TnM)e#^PA*=$c59HAWpVZUDO08>Iz_GIyA9I2%+tj&q+(8TN#dmL
-zkc6Owgro+hX&3HCOG-#c2q^jR@bK(U(@jW7NZerX_sO9{2M!#Wv!v$zJ!UpGwKnE}
-z*!uT>Tea*iHmsU^vDNb(BlCAQwqySdCKjnomXu(TkeDGMQD<yW1JrMMddbc1MRQfZ
-ze9!aw?yy8cXN{uL8BeYN%@x%%{@tr?IBcu4dZvluIfX;EJpcYHG9*?r>@wC!&1tY~
-c=J*cuv!x#MiT4Lmfi7n7boFyt=akR{0ImFPwEzGB
+literal 275
+zcmV+u0qp*XP)<h;3K|Lk000e1NJLTq000mG001xq0{{R3>T%~}0000mP)t-s0000X
+zLRv9nlsRjqLVLYhjK+JV&V;Sjlyh1sF<R%|&TEv$#;to&N;x@mrM<niv$5>`0001<
+zNkl<Zc$}q<F%E)25Jlf^7Ap%jw0Z}k7odQ`&PHobW~{C3vCxKEPXaU)hGZ-lB2bYy
+z)z6#xnP*a|pT#-BqT{?+?l2%gu-#NRvNkw;E;tvhkGKTO>H&al-%CBt>yS~slv)VD
+zcqQhlp}TqYAqJC5a~jvZEEti2Sf<29v95kTp_2SIX_eA+8gqPh`^i%qPBs1wRj)C_
+Z=L;1*CXc7!yfOd)002ovPDHLkV1j<dati<e
 
 literal 0
 HcmV?d00001
 
 diff --git a/graphics/door_anims/pallet_rival.png b/graphics/door_anims/pallet_rival.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..0777dbc884f86e17e94a14b93dff1dacc42f78c7
+index 0000000000000000000000000000000000000000..cb40f72028bfe52d73cc06046d0f6a23e474c54e
 GIT binary patch
-literal 299
-zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!FNcSN8Ys->cVNbE@83
-z-O^&1Jm=iCYb|TnM)e#^PA*=$c59HAWpVZUDO08>Iz_GIyA9I2&C|s(q+(8QpDouR
-z2LZSHd18MQ%j6Cy-?;sZYuQJkY168ib49jn5^HG?_gLI$5*4}3J9T4Nql8O$?COLq
-z5*25@^L}>G`rf?8)HU?yy8Ex2ny%++I?5E!_-QDVAd={~>){ev8~p`goD3S*8rYL~
-zE<`TiamYM9ONqxdVfVK?j?xShPc@r0tl6~U+QqGB%>^bO>7U!5zW8`rHZSke;H5jV
-v7My%;!}9t0Wwja7$@^Ts_ZKt#YCkU>$FIA!-OJYw=mQ2%S3j3^P6<r_BoKT!
+literal 273
+zcmeAS@N?(olHy`uVBq!ia0vp^0zhoQ!VDx|6+TY^aRPioT!Hl7_tz{96^qwKwX9wH
+z{&|mPvD4n?OSkTQ|NQ;EInR%6y_Q{kZfR6hvDcKKmX;ou6qyS^J##!=978JROzkt|
+zI^-bWdY?~Q!))fgtm=d3t{sXBs^VV1p|>_Ki7)A)U{SNElY-bTvE7Xg2_D}o{v^)3
+zdF{9Cd^W*9zZp4n&RrMMky*G}pdr|~Np1tfcB9#)a~TgjY7px=eN3Z4Q{aHGvq#&*
+zRZNR@su^zHiC?u!t4TgrNT%+LN<_?TBRAV+CuUc0KFseAjW}Cp#Xpbvh`_R{eVf}f
+VSZ`g>3kJHA!PC{xWt~$(69DPiZuI~F
 
 literal 0
 HcmV?d00001
@@ -5327,7 +5259,7 @@ index 8e82824..8358990 100644
  };
  
 diff --git a/src/field_door.c b/src/field_door.c
-index c3be102..a3a5e22 100644
+index c3be102..b483217 100644
 --- a/src/field_door.c
 +++ b/src/field_door.c
 @@ -47,6 +47,8 @@ static const u8 sDoorAnimTiles_SlidingDouble[] = INCBIN_U8("graphics/door_anims/
@@ -5339,19 +5271,17 @@ index c3be102..a3a5e22 100644
  static const u8 sDoorAnimTiles_OaksLab[] = INCBIN_U8("graphics/door_anims/oaks_lab.4bpp");
  static const u16 sDoorNullPalette5[16] = {};
  static const u8 sDoorAnimTiles_Viridian[] = INCBIN_U8("graphics/door_anims/viridian.4bpp");
-@@ -217,8 +219,10 @@ static const struct DoorAnimFrame sDoorAnimFrames_CloseLarge[] = {
+@@ -217,7 +219,9 @@ static const struct DoorAnimFrame sDoorAnimFrames_CloseLarge[] = {
  static const u8 sDoorAnimPalettes_General[] = {2, 2, 2, 2, 2, 2, 2, 2};
  static const u8 sDoorAnimPalettes_SlidingSingle[] = {3, 3, 3, 3, 3, 3, 3, 3};
  static const u8 sDoorAnimPalettes_SlidingDouble[] = {3, 3, 3, 3, 3, 3, 3, 3};
 -static const u8 sDoorAnimPalettes_Pallet[] = {8, 8, 8, 8, 8, 8, 8, 8};
--static const u8 sDoorAnimPalettes_OaksLab[] = {10, 10, 10, 10, 10, 10, 10, 10};
-+static const u8 sDoorAnimPalettes_Pallet[] = {7, 7, 7, 7, 7, 7, 7, 7};
-+static const u8 sDoorAnimPalettes_PalletHouse1[] = {9, 9, 9, 9, 9, 9, 9, 9};
-+static const u8 sDoorAnimPalettes_PalletRival[] = {9, 7, 7, 7, 9, 7, 7, 7};
-+static const u8 sDoorAnimPalettes_OaksLab[] = {11, 11, 7, 7, 11, 11, 7, 7};
++static const u8 sDoorAnimPalettes_Pallet[] = {9, 9, 9, 9, 9, 9, 9, 9};
++static const u8 sDoorAnimPalettes_PalletHouse1[] = {8, 8, 8, 8, 8, 8, 8, 8};
++static const u8 sDoorAnimPalettes_PalletRival[] = {11, 11, 11, 11, 11, 11, 11, 11};
+ static const u8 sDoorAnimPalettes_OaksLab[] = {10, 10, 10, 10, 10, 10, 10, 10};
  static const u8 sDoorAnimPalettes_Viridian[] = {8, 8, 8, 8, 8, 8, 8, 8};
  static const u8 sDoorAnimPalettes_Pewter[] = {8, 8, 8, 8, 8, 8, 8, 8};
- static const u8 sDoorAnimPalettes_Saffron[] = {8, 8, 8, 8, 8, 8, 8, 8};
 @@ -252,6 +256,8 @@ static const struct DoorGraphics sDoorGraphics[] = {
      {METATILE_General_SlidingSingleDoor,                   DOOR_SOUND_SLIDING, DOOR_SIZE_1x1, sDoorAnimTiles_SlidingSingle, sDoorAnimPalettes_SlidingSingle},
      {METATILE_General_SlidingDoubleDoor,                   DOOR_SOUND_SLIDING, DOOR_SIZE_1x1, sDoorAnimTiles_SlidingDouble, sDoorAnimPalettes_SlidingDouble},

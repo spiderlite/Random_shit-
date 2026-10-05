@@ -29,7 +29,9 @@ def map_info(name):
     lay = next(l for l in lays if l.get("id") == m["layout"])
     data = open(os.path.join(ROOT, lay["blockdata_filepath"]), "rb").read()
     w, h = lay["width"], lay["height"]
-    solid = [[(struct.unpack_from("<H", data, (y * w + x) * 2)[0] >> 10) & 3 != 0 for x in range(w)] for y in range(h)]
+    def blocked(v):
+        return (v >> 10) & 3 != 0 or (v >> 12) == 1   # collision, or water (elevation 1 needs Surf)
+    solid = [[blocked(struct.unpack_from("<H", data, (y * w + x) * 2)[0]) for x in range(w)] for y in range(h)]
     return m, w, h, solid
 
 class Game:
@@ -40,6 +42,39 @@ class Game:
         r = subprocess.run([os.path.join(HERE, "gba"), ROM, self.state] + a, capture_output=True, text=True, env=ENV)
         if self.log: print(" ".join(a)); print(r.stdout.strip())
         return r.stdout
+    def objects(self):
+        """Live object events: {localId: (x, y)} for active NPCs on the current map (not the player)."""
+        base = int(ENV["GBA_OBJECT_EVENTS"], 16)
+        out = self.cmd("peek %x %d" % (base, 16 * 0x24))
+        raw = bytes(int(b, 16) for b in out.split("PEEK", 1)[1].split()[1:])
+        objs = {}
+        for k in range(16):
+            o = raw[k * 0x24:(k + 1) * 0x24]
+            active, is_player = o[0] & 1, o[2] & 1
+            if not active or is_player:
+                continue
+            x = int.from_bytes(o[0x10:0x12], "little", signed=True) - 7
+            y = int.from_bytes(o[0x12:0x14], "little", signed=True) - 7
+            objs[o[8]] = (x, y)
+        return objs
+    def textbox(self, path=None):
+        """True if a message box is on screen (its border pixels)."""
+        import tempfile
+        from PIL import Image
+        p = path or tempfile.mktemp(suffix=".png")
+        self.shot(p)
+        im = Image.open(p).convert("RGB")
+        px = [im.getpixel((x, y)) for x in range(16, 224, 2) for y in range(124, 148, 2)]
+        return sum(1 for q in px if q == (255, 255, 255)) > 0.5 * len(px)   # any message box style
+    def in_field(self):
+        """True when the overworld is running (not a battle, menu screen or transition)."""
+        if "CB2_OVERWORLD" not in ENV:
+            out = subprocess.run(["arm-none-eabi-nm", os.path.join(ROOT, "pokefirered.elf")], capture_output=True, text=True).stdout
+            sym = {l.split()[2]: l.split()[0] for l in out.splitlines() if len(l.split()) == 3}
+            ENV["CB2_OVERWORLD"], ENV["GMAIN"] = sym["CB2_Overworld"], sym["gMain"]
+        out = self.cmd("peek %x 4" % (int(ENV["GMAIN"], 16) + 4))
+        cb2 = int.from_bytes(bytes(int(b, 16) for b in out.split("PEEK", 1)[1].split()[1:5]), "little")
+        return (cb2 & ~1) == int(ENV["CB2_OVERWORLD"], 16) & ~1
     def shot(self, path):
         self.cmd("wait 2 shot", path)   # the first frame after loading a state is not drawn yet
     def pos(self):
@@ -47,9 +82,11 @@ class Game:
             if l.startswith("POS"):
                 x, y, g, n, f = map(int, l.split()[1:])
                 return x, y, map_name(g, n)
-    def path(self, start, goal, name, extra_block=()):
+    def path(self, start, goal, name, extra_block=(), live=None):
         m, w, h, solid = map_info(name)
-        block = {(o["x"], o["y"]) for o in m["object_events"] if "WANDER" not in o["movement_type"]} | set(extra_block)
+        if live is None:   # where the characters actually are (scripts move some of them)
+            live = set(self.objects().values())
+        block = set(live) | set(extra_block)
         warps = {(wp["x"], wp["y"]) for wp in m["warp_events"]}
         prev = {start: None}; q = collections.deque([start])
         while q:
@@ -58,7 +95,9 @@ class Game:
             for d, (dx, dy) in DIRS.items():
                 n = (c[0] + dx, c[1] + dy)
                 if not (0 <= n[0] < w and 0 <= n[1] < h) or n in prev: continue
-                if solid[n[1]][n[0]] or (n in block and n != goal) or (n in warps and n != goal): continue
+                # Doormat warps only fire when you press towards the exit, so walking
+                # sideways along a doormat (bottom rows) is safe; never onto stairs or vertically.
+                if solid[n[1]][n[0]] or (n in block and n != goal) or (n in warps and n != goal and (dy != 0 or n[1] < h - 2)): continue
                 prev[n] = (c, d); q.append(n)
         if goal not in prev: return None
         out = []; c = goal

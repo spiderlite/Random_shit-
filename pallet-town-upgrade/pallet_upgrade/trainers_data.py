@@ -91,8 +91,8 @@ TRAINERS = [
             "Accept": "That's the spirit! Here I come!$",
             "Decline": "No worries. The sky's not going\\n"
                        "anywhere. Come back anytime!$",
-            "Defeat": "Whoa! You've got real outdoor\\n"
-                      "grit!$",
+            "Defeat": "Whoa! You've got real\\n"
+                      "outdoor grit!$",
             "After": "Toughen up out here, and VIRIDIAN\\n"
                      "FOREST won't scare you one bit.$",
         },
@@ -107,8 +107,8 @@ TRAINERS = [
                      "but MEOWTH ate them all!\\p"
                      "When you have a POKéMON, let's\\n"
                      "have a battle picnic!$",
-            "Ask": "A battle before lunch builds an\\n"
-                   "appetite!\\p"
+            "Ask": "A battle before lunch\\n"
+                   "builds an appetite!\\p"
                    "Will you battle with me and my\\n"
                    "hungry friends?$",
             "Accept": "Hooray! Ready, set, picnic!$",
@@ -287,8 +287,8 @@ TRAINERS = [
             "Accept": "For science!$",
             "Decline": "Hmph. A missed opportunity\\n"
                        "for research.$",
-            "Defeat": "Fascinating! Utterly\\n"
-                      "fascinating!$",
+            "Defeat": "Fascinating!\\n"
+                      "Utterly fascinating!$",
             "After": "I'll write all about our battle\\n"
                      "in my notebook tonight.$",
         },

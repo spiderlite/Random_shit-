@@ -190,10 +190,13 @@ def copy_viridian(sx, sy, w, h, dx, dy):
 SIGNPOSTS = {}  # cell -> text key
 
 
+SIGNPOSTS_ON_LAWN = []
+
+
 def signpost(cell, mid=3):
-    x, y = cell
-    G[y][x] = mid
-    COLL[y][x] = (1, 0)
+    """FireRed's wooden signpost. Its metatile carries a square of darker grass, so on
+    Pallet's light lawn only the post itself is used, stood on the cell like a prop."""
+    SIGNPOSTS_ON_LAWN.append(cell)
 
 
 for b in CITY.BUILDINGS:
@@ -515,6 +518,21 @@ for i, box in enumerate([(96, 1168, 112, 1184), (112, 1168, 128, 1184), (96, 116
     basket = dawn(box)
     prop(basket, (cx + i, cy + 3))
     COUNTERS.add((cx + i, cy + 3))
+
+# Signposts on the lawn: FireRed's post without its grass square (the pixels that
+# differ from the plain grass metatile underneath it in the same tile).
+if SIGNPOSTS_ON_LAWN:
+    post_full, _ = layers(3)
+    grass, _ = layers(1)
+    post = Image.new("RGBA", (B, B))
+    for py_ in range(B):
+        for px_ in range(B):
+            c = post_full.getpixel((px_, py_))
+            if c != grass.getpixel((px_, py_)):
+                post.putpixel((px_, py_), c)
+    for cell in SIGNPOSTS_ON_LAWN:
+        place(post, cell[0] * B, cell[1] * B, {cell}, base_rows=(cell[1],))
+        SIGNS.add(cell)
 
 # ---------------- flatten objects ----------------
 under.save(os.path.join(OUT, "ground.png"))  # ground only, before objects

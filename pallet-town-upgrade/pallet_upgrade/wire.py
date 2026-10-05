@@ -26,7 +26,8 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "pokefirered"))
 sys.path.insert(0, HERE)
-import city_data as CITY  # noqa: E402
+import city_data as CITY
+import fontwidth  # noqa: E402
 from trainers_data import TRAINERS  # noqa: E402
 
 DX = 10    # original column c is now c + DX
@@ -59,33 +60,40 @@ def map_const(name):
 
 
 def reflow(text):
-    """Re-wrap a message so no line is too long: \\n after the first line of a box,
-    \\l (scroll) after the rest, \\p between boxes, $ at the end."""
+    """Keep the authored line breaks; wrap only lines too wide for the message box
+    (measured in the game's own font). \\n after a box's first line, \\l (scroll)
+    after the rest, \\p between boxes, $ at the end."""
     body = text.rstrip("$")
-    out = []
+    boxes = []
     for para in body.split("\\p"):
-        words = re.sub(r"\\[nl]", " ", para).split()
-        lines, cur = [], ""
-        for w in words:
-            if cur and len(cur) + 1 + len(w) > WRAP:
-                lines.append(cur)
-                cur = w
-            else:
-                cur = (cur + " " + w) if cur else w
-        if cur:
-            lines.append(cur)
-        out.append(lines)
+        lines = []
+        for authored in re.split(r"\\[nl]", para):
+            seg, cur = [], ""
+            for w in authored.split():
+                if cur and fontwidth.width(cur + " " + w) > fontwidth.MAX:
+                    seg.append(cur)
+                    cur = w
+                else:
+                    cur = (cur + " " + w) if cur else w
+            if cur:
+                seg.append(cur)
+            # no lone word on a wrapped last line: borrow one from the line above
+            if len(seg) >= 2 and len(seg[-1].split()) == 1 and len(seg[-2].split()) >= 3:
+                head, last = seg[-2].rsplit(" ", 1)
+                if fontwidth.width(last + " " + seg[-1]) <= fontwidth.MAX:
+                    seg[-2], seg[-1] = head, last + " " + seg[-1]
+            lines += seg
+        boxes.append(lines)
     strings = []
-    for pi, lines in enumerate(out):
+    for bi, lines in enumerate(boxes):
         for li, line in enumerate(lines):
-            last_line = li == len(lines) - 1
-            if not last_line:
+            if li < len(lines) - 1:
                 strings.append(line + ("\\n" if li == 0 else "\\l"))
-            elif pi < len(out) - 1:
+            elif bi < len(boxes) - 1:
                 strings.append(line + "\\p")
             else:
                 strings.append(line + "$")
-    return "".join('    .string "%s"\n' % s for s in strings)
+    return "".join('\t.string "%s"\n' % x for x in strings)
 
 
 def obj(gfx, pos, move, rng, script, flag="0"):

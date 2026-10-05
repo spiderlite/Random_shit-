@@ -127,7 +127,7 @@ BUILDINGS = [
      "sign_text": "PALLET CAFÉ\\n"
                   "Fresh berry tea every morning!$",
      "floors": [{"source": "CeladonCity_Restaurant", "music": "MUS_CELADON", "residents": [
-         npc("CHEF", (12, 4), LEFT,
+         npc("CHEF", (11, 5), LEFT,
              "Welcome to PALLET CAFÉ!\\p"
              "Today's special is ORAN BERRY\\n"
              "tea with honey.\\p"
@@ -220,8 +220,8 @@ MART_RESIDENTS = [
         "Oh, they only have POTIONS.\\n"
         "Well, that settles that!$", female=True),
     npc("SAILOR", (8, 2), UP,
-        "Stocking up before I sail for\\n"
-        "CINNABAR.\\p"
+        "Stocking up before I sail\\n"
+        "for CINNABAR.\\p"
         "ANTIDOTES! Never leave port\\n"
         "without ANTIDOTES.$"),
 ]
@@ -275,24 +275,23 @@ OUTDOOR = [
         "Zzz…$"),
     mon("SLOWPOKE", "SPECIES_SLOWPOKE", (58, 25), DOWN, "SLOWPOKE: …… …… Yawn?$"),
     npc("CRUSH_GIRL", (40, 12), "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
-        "Hup! Hup! Hup!\p"
-        "Five laps of EAST STREET\n"
-        "before breakfast!\p"
-        "My MANKEY says I'm slow.\n"
+        "Hup! Hup! Hup!\\p"
+        "Five laps of EAST STREET\\n"
+        "before breakfast!\\p"
+        "My MANKEY says I'm slow.\\n"
         "Hmph! Not for long!$", rng=4, female=True),
     npc("WOMAN_2", (54, 23), RIGHT,
-        "The LEMONADE here is made\n"
-        "with ORAN BERRIES, you know.\p"
-        "…At least, that's what the\n"
+        "The LEMONADE here is made\\n"
+        "with ORAN BERRIES, you know.\\p"
+        "…At least, that's what the\\n"
         "sign says. I can't taste it.$", female=True),
     # A practice battle in the park clearing (Poochyena and Zigzagoon are
     # Emerald's own overworld sprites, imported by sprites.py).
     npc("BOY", (19, 22), RIGHT,
         "Go, POOCHYENA! TACKLE!\\p"
-        "…Huh? Don't distract us!\\n"
-        "My cousin mailed me this\\l"
-        "POOCHYENA all the way from\\l"
-        "HOENN!$", face=False),
+        "…Huh? Don't distract us!\\p"
+        "My cousin in HOENN mailed\\n"
+        "me this POOCHYENA!$", face=False),
     mon("POOCHYENA", "SPECIES_POOCHYENA", (20, 22), "MOVEMENT_TYPE_WALK_IN_PLACE_FAST_RIGHT",
         "POOCHYENA: Grrrr… Ruff! Ruff!$", face=False),
     mon("ZIGZAGOON", "SPECIES_ZIGZAGOON", (22, 22), "MOVEMENT_TYPE_WALK_IN_PLACE_FAST_LEFT",
@@ -326,12 +325,12 @@ RIVAL_MAILBOX = (28, 7)
 STALL = {
     "canopy": (55, 19),
     "vendor": npc("FAT_MAN", (56, 21), DOWN,
-                  "Morning! Fresh from the farms\n"
-                  "up on ROUTE 1!\p"
-                  "The veggies are for the café,\n"
-                  "but the drinks are ice-cold\l"
+                  "Morning! Fresh from the farms\\n"
+                  "up on ROUTE 1!\\p"
+                  "The veggies are for the café,\\n"
+                  "but the drinks are ice-cold\\l"
                   "and for sale!$"),
-    "bye": "Stay hydrated out there, kid!\n"
+    "bye": "Stay hydrated out there, kid!\\n"
            "Your POKéMON too!$",
     "items": ["ITEM_FRESH_WATER", "ITEM_SODA_POP", "ITEM_LEMONADE"],
 }
@@ -363,3 +362,10 @@ PARK = {
     "bench": (21, 20),
     "side_benches": [(16, 21), (25, 21)],
 }
+
+# The shading ramps of the other two roofs: kept exact in their designs' palettes
+# (like the pink roof above) so their stripes survive the colour reduction.
+ORANGE_ROOF = [(221, 142, 85), (217, 129, 65), (206, 119, 55), (188, 106, 45),
+               (162, 91, 39), (144, 79, 35), (100, 50, 17)]
+BLUE_ROOF = [(135, 171, 211), (122, 162, 207), (88, 138, 194), (69, 125, 188),
+             (59, 108, 162), (53, 96, 144), (34, 62, 93)]

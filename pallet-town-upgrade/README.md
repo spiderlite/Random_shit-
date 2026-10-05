@@ -54,7 +54,7 @@ ChaoticCherryCake tiles are CC BY-NC-SA, so this is **non-commercial only**.
 | | |
 |---|---|
 | Layout | `PalletTown_Layout` is now 62×30. The original town sits in the middle (shifted 10 columns right), and ten rows were inserted above the original bottom edge, so the pond and the seams with Route 1 and Route 21 are unchanged. |
-| Tileset | `gTileset_PalletTown` was redrawn: 373 of the 376 usable tiles (the last 8 of the 384 are reserved for door animations), 6 palettes (one is the green-roof recolour), 239 metatiles. No tiles were merged lossily. Tiles that already exist in the General tileset are referenced from there. Ground-level objects sit on the metatile's second layer, so they cost the same tiles on any ground. Metatiles 682/683/690/698 are unchanged, because Route 1 uses them. |
+| Tileset | `gTileset_PalletTown` was redrawn: the 376 usable tiles (the last 8 of the 384 are reserved for door animations), 6 palettes (one is the green-roof recolour), 239 metatiles. Four near-identical tiles were merged; each pair differs by a single pixel one shade apart. The art has about 190 colours for 90 palette slots. Palettes start from object groups (each cottage design, the lab, the rest), so one object's tiles share a palette with no blocky seams. The three roof shading ramps are kept exact, and every palette colour is a real source colour. Tiles that already exist in the General tileset are referenced from there. Ground-level objects sit on the metatile's second layer, so they cost the same tiles on any ground. Metatiles 682/683/690/698 are unchanged, because Route 1 uses them. |
 | Neighbours | The Route 1 and Route 21 North connections were re-aligned. Nothing on those routes was changed. |
 | Events | All original warps, signs, triggers and NPCs moved with the town. Hard-coded positions in `PalletTown/scripts.inc` and the Pallet heal location were moved too. |
 | New maps | 14 interior maps (`PalletTown_*`), in a new map group. They reuse FireRed's interior layouts, and their door warps are aligned to each layout's doormat. |
@@ -63,16 +63,25 @@ ChaoticCherryCake tiles are CC BY-NC-SA, so this is **non-commercial only**.
 | Sprites | `OBJ_EVENT_GFX_POOCHYENA` and `OBJ_EVENT_GFX_ZIGZAGOON` were added (`pallet_upgrade/sprites.py`), copied from pret/pokeemerald. They share one 14-colour palette in the special NPC palette slot. |
 | Data | Every building, resident, townsperson, street, the park and the market stall is defined in `pallet_upgrade/city_data.py`. |
 
-Checked in the emulator, on the final ROM:
+Played through automatically in the emulator on the final ROM, by the scripts in
+`harness/` (they walk using the player's real position from RAM):
 
-- **New game:** the intro leads into the new town. Oak's cutscene at the Route 1 gate takes you
-  to the lab, where you pick a starter and battle the rival.
-- **Buildings:** all 12 put you on the middle of the doormat and return you to
-  the square in front of their door.
-- **Services:** the Pokémon Center heals, and the Mart and the stall vendor open their shops.
-- **Trainers:** battles with Lass Mila and Sailor Duncan, from the YES/NO prompt through the after-battle line.
-- **The park:** the imported Pokémon animate facing each other. Talking to them plays their cries,
-  and they and their trainers keep facing the battle instead of turning to you.
+- `test_doors.py`: every door and staircase. You arrive on the exact doormat
+  square and leave in front of the same door.
+- `test_talk.py`: every character and every sign in town and in all 14
+  interiors (111 in all) opens its dialogue. Wanderers are tracked live.
+- `test_trainers.py`: all 14 trainers.
+  - Before you have a Pokémon, they only chat.
+  - Walking into their line of sight never starts a battle.
+  - They ask YES/NO; NO lets you go.
+  - YES starts a real battle, which the test wins; afterwards they give a parting line and never rematch.
+- `test_services.py`: buying at the Poké Mart and at the market stall (money
+  goes down), the nurse heal, and walking onto Route 1 and back at the right square.
+- `test_collision.py`: walks into every solid square of the town that borders a
+  walkable one (trees, bushes, benches, lamps, walls, fences, signs, the stall)
+  and checks the game stops you.
+- New game: the intro, Oak's cutscene, choosing a starter and the rival battle
+  (`mkstarter.py`).
 
 Checked automatically on every rebuild (`check_reach.py`, `compose.py` audits):
 
@@ -81,6 +90,8 @@ Checked automatically on every rebuild (`check_reach.py`, `compose.py` audits):
 - **Interiors:** every resident stands on open floor (not furniture or the doormat), and every exit
   is on a real doormat.
 - **Drawing:** nothing at ground level is drawn over the player, and no blocked square is invisible.
+- **Text:** every line of new dialogue fits the message box in the game's own font, measured
+  against the widest line in FireRed itself (`check_text.py`), with no box holding three lines.
 - **Hidden characters:** no character can stand or wander in a square where a roof, tree crown or
   lamp head is drawn over them (`check_cover.py`). Lamp heads and tree crowns are solid.
 

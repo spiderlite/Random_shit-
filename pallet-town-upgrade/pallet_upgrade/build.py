@@ -189,6 +189,13 @@ tiles5 = [(to5(rgb.reshape(-1, 3)), mask.reshape(-1)) for rgb, mask in tile_list
 uniq_per_tile = [np.unique(px[m], axis=0) for px, m in tiles5]
 
 
+SNAP = float(os.environ.get("PAL_SNAP", 99))  # 5-bit units
+# Colour weights grow with the square root of pixel count: thin details (roof
+# stripes, outlines, flowers) keep their own shades instead of being swallowed by
+# big flat areas, which the medoid snap below keeps exact anyway.
+WEIGHT_EXP = float(os.environ.get("PAL_WEIGHT_EXP", 1.0))
+
+
 def kmeans_colors(colors, weights, k, iters=25):
     colors = colors.astype(float)
     if len(colors) <= k:
@@ -205,6 +212,18 @@ def kmeans_colors(colors, weights, k, iters=25):
             sel = lab == j
             if sel.any():
                 cent[j] = (colors[sel] * weights[sel, None]).sum(0) / weights[sel].sum()
+    # Snap each palette colour to a real source colour (the cluster's weighted
+    # medoid): big flat areas then keep their exact colour in every palette, so
+    # neighbouring tiles in different palettes still match (no seams).
+    lab = np.argmin(((colors[:, None, :] - cent[None]) ** 2).sum(-1), axis=1)
+    for j in range(k):
+        sel = np.nonzero(lab == j)[0]
+        if len(sel):
+            m = colors[sel]
+            cost = (((m[:, None, :] - m[None]) ** 2).sum(-1) * weights[sel][None, :]).sum(1)
+            med = m[int(np.argmin(cost))]
+            if ((med - cent[j]) ** 2).sum() <= SNAP ** 2:   # tight cluster (a flat area): exact
+                cent[j] = med
     return np.clip(cent.round(), 0, 31).astype(int)
 
 
@@ -212,10 +231,10 @@ def fit_palette(member_ids, fixed=()):
     px = np.concatenate([tiles5[i][0][tiles5[i][1]] for i in member_ids]) if member_ids else np.zeros((1, 3), int)
     cols, counts = np.unique(px, axis=0, return_counts=True)
     if not fixed:
-        return kmeans_colors(cols, counts.astype(float), 15)
+        return kmeans_colors(cols, counts.astype(float) ** WEIGHT_EXP, 15)
     fixed = np.array(fixed, int)
     keep = ~(cols[:, None, :] == fixed[None]).all(-1).any(1)
-    other = kmeans_colors(cols[keep], counts[keep].astype(float), 15 - len(fixed)) if keep.any() else np.zeros((0, 3), int)
+    other = kmeans_colors(cols[keep], counts[keep].astype(float) ** WEIGHT_EXP, 15 - len(fixed)) if keep.any() else np.zeros((0, 3), int)
     return np.vstack([fixed, other])
 
 
@@ -228,27 +247,52 @@ def tile_error(i, pal):
     return d.min(1).sum()
 
 
-# Initial clusters: k-means on each tile's mean colour.
-means = np.array([px[m].mean(0) if m.any() else np.zeros(3) for px, m in tiles5])
-cent = means[rng.choice(len(means), NUM_CLUSTER, replace=False)]
-for _ in range(20):
-    lab = np.argmin(((means[:, None] - cent[None]) ** 2).sum(-1), 1)
-    for j in range(NUM_CLUSTER):
-        if (lab == j).any():
-            cent[j] = means[lab == j].mean(0)
+# Initial clusters by object: each cottage design, Oak's lab and everything else
+# start in their own palette, so an object's tiles tend to share one palette and
+# a colour comes out the same in neighbouring tiles (no blocky seams). k-means
+# then refines from there.
+import collections  # noqa: E402
+GROUP = {"pink": 0, "blue": 1, "orange": 2, "lab": 3}
+cell_group = {}
+for (dx, dy), d in [(b["door"], b["design"]) for b in CITY.BUILDINGS if b["design"] in GROUP] + [((16, 7), "pink"), ((25, 7), "orange")]:
+    for y in range(dy - 6, dy + 1):
+        for x in range(dx - 3, dx + 4):
+            cell_group[(x, y)] = GROUP[d]
+for y in range(9, 17):            # Oak's lab
+    for x in range(22, 31):
+        cell_group.setdefault((x, y), GROUP["lab"])
+votes = collections.defaultdict(collections.Counter)
+for pos, (bt, tt, _, _) in art_blocks.items():
+    for t in list(bt) + [t for t in (tt or []) if t is not None]:
+        if t in local:
+            votes[local[t]][cell_group.get(pos, NUM_CLUSTER - 1)] += 1
+lab = np.array([min(votes[i].most_common(1)[0][0], NUM_CLUSTER - 1) if votes[i] else NUM_CLUSTER - 1
+                for i in range(len(tiles5))])
 assign = lab
-ROOF_PAL = int(np.bincount([assign[i] for i in forced]).argmax()) if forced else None
+ROOF_PAL = GROUP["pink"] if forced else None   # the pink cottage's palette holds the roof keys
 FORCED = sorted(forced)
 
 
+def keys(cols):
+    return sorted({tuple(int(v) for v in to5(c)) for c in cols})
+
+
+FIXED = {GROUP["pink"]: ROOF_KEYS, GROUP["orange"]: keys(CITY.ORANGE_ROOF), GROUP["blue"]: keys(CITY.BLUE_ROOF)}
+
+
 def fit_all(assign):
-    return [fit_palette([i for i in range(len(tiles5)) if assign[i] == j],
-                        fixed=ROOF_KEYS if j == ROOF_PAL else ()) for j in range(NUM_CLUSTER)]
+    out = []
+    for j in range(NUM_CLUSTER):
+        members = [i for i in range(len(tiles5)) if assign[i] == j]
+        present = {tuple(int(v) for v in c) for i in members for c in tiles5[i][0][tiles5[i][1]]}
+        fixed = [k for k in FIXED.get(j, ()) if k in present or (j == ROOF_PAL and forced)]
+        out.append(fit_palette(members, fixed=fixed))
+    return out
 
 
 if forced:
     assign[FORCED] = ROOF_PAL
-for it in range(12):
+for it in range(20):
     pals = fit_all(assign)
     errs = np.array([[tile_error(i, pals[j]) for j in range(NUM_CLUSTER)] for i in range(len(tiles5))])
     new = errs.argmin(1)

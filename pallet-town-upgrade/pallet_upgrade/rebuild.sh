@@ -10,4 +10,5 @@ python3 sprites.py
 make -C ../pokefirered -j4 > build/make.log 2>&1 || { tail -20 build/make.log; exit 1; }
 python3 check_reach.py
 python3 check_cover.py
+python3 check_text.py
 echo "ROM built: ../pokefirered/pokefirered.gba"
