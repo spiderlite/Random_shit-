@@ -22,6 +22,14 @@ event are kept as they are in FireRed.
   - **Trainers' School:** a teacher and two pupils at their desks.
   - **Pokémon breeder's house**, plus six family homes (Harper, Aoki, Bell, Vale, Marsh, Kowalski),
     one of them with an upstairs.
+- **Bigger Oak's Lab, Pokémon Center and Poké Mart:**
+  - **Lab:** a new east research wing with a second computer desk, a research table, a healing
+    machine, notice boards and three new staff. The original room and Oak's cutscenes are untouched.
+  - **Pokémon Center:** it grows to One Island's larger plan, with a lounge (TV, bookshelf, plant,
+    table) where visitors sit.
+  - **Mart:** two more shelf aisles and fridge sets.
+  - All three are built from FireRed's own furniture tiles (`pallet_upgrade/interiors.py`);
+    see `screenshots/pallet_interiors_expanded.png`.
 - **Farmers' market stall** in the east square: a canopy and baskets of produce,
   and a vendor you talk to across the baskets. He sells Fresh Water, Soda Pop and Lemonade.
 - **Townsfolk:** 14 townsfolk, each with their own personality. There's a policeman at the gate,
@@ -57,6 +65,7 @@ ChaoticCherryCake tiles are CC BY-NC-SA, so this is **non-commercial only**.
 | Tileset | `gTileset_PalletTown` was redrawn: the 376 usable tiles (the last 8 of the 384 are reserved for door animations), 6 palettes (one is the green-roof recolour), 239 metatiles. Four near-identical tiles were merged; each pair differs by a single pixel one shade apart. The art has about 190 colours for 90 palette slots. Palettes start from object groups (each cottage design, the lab, the rest), so one object's tiles share a palette with no blocky seams. The three roof shading ramps are kept exact, and every palette colour is a real source colour. Tiles that already exist in the General tileset are referenced from there. Ground-level objects sit on the metatile's second layer, so they cost the same tiles on any ground. Metatiles 682/683/690/698 are unchanged, because Route 1 uses them. |
 | Neighbours | The Route 1 and Route 21 North connections were re-aligned. Nothing on those routes was changed. |
 | Events | All original warps, signs, triggers and NPCs moved with the town. Hard-coded positions in `PalletTown/scripts.inc` and the Pallet heal location were moved too. |
+| Interiors | Oak's Lab widened from 13×14 to 21×14. The Pokémon Center 1F gets its own 19×11 layout (based on One Island's) and the Mart its own 17×9 layout. The standard shared layouts are not changed. |
 | New maps | 14 interior maps (`PalletTown_*`), in a new map group. They reuse FireRed's interior layouts, and their door warps are aligned to each layout's doormat. |
 | Doors | New door-opening animations for each house design, registered in `src/field_door.c`. The Pokémon Center and Mart use FireRed's sliding doors. |
 | Trainers | 14 new trainers (`TRAINER_PALLET_*`, ids 743–756; `NUM_TRAINERS` is now 757 of the 768 that fit), defined in `pallet_upgrade/trainers_data.py`. |

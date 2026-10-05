@@ -83,10 +83,59 @@ zehzSGaD-!g=>}|m-tR$xnBYD=I>Wia1ujw0OxWKep#n%1^m&UreB&Muc*K*h5Bpnv
 z+~{BNhCl4$9Uu6t;9n&YN-7@qFK;SGBToKcKR9>XBcBJ0;E%%j-G;`fAB>pb>ww=t
 yG5=}F=_i?$S^1lE-{xoAk2JXxs!g_QbV!@Tu9i#vSF0Mu6EEqdUfU_|bN+vQvI_11
 
+diff --git a/data/layouts/PalletTown_Mart/map.bin b/data/layouts/PalletTown_Mart/map.bin
+new file mode 100644
+index 0000000000000000000000000000000000000000..e95041507f035aa56943f778661c0ebf879c8c68
+GIT binary patch
+literal 306
+zcmZXMR|*0_6a+zr#xtm==o{|3D(GU)IVUiJ5f$`gz8&{t1}UcKfkzdQLRwx%Q$__<
+zm@c7-6Y{8`plPFnE=;#D#2FrYNYWF=oN#J+ge6y8M`p;;5$bIGd5;5**n}5-3}o4M
+xdErC)zHZF1kPF)`-}r<Dhg<Aq+kP@Dg)48oOC{L8<rkwWAg1Cfq1W$k`U?s2V8;Le
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/layouts/PalletTown_PokemonCenter_1F/map.bin b/data/layouts/PalletTown_PokemonCenter_1F/map.bin
+new file mode 100644
+index 0000000000000000000000000000000000000000..a7e8726d835c08c0a65bbed1ebe827457c92fbd8
+GIT binary patch
+literal 418
+zcmZ9GSxN&z6h$Evhpa(e#dQZ+ims$lBWj!y=Xu5%GiV|>fD<??{^*}BqCW+zDrwUl
+zE>ykY-1puJy$xmQ_fa2HO!J|7e$NA2Y?EV$UG^AZlzk59GD|Eo?DHItJaNd8dQ_xD
+znK5;DRybx-cdBZ_)}5a9q7&5==#(?78ULPhYb!}z=uPihPgSiu(q#+d9G`q;f=rN#
+z+yffakmo}E{`24ZQIiQYuDlAqyTBr^3VrPEio0etr+MGmVAI}MpXaE!E83j=S1lEH
+aUFljkewO3hmQZU-o21%IyXk1DrOh8<(~$!J
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/layouts/PalletTown_ProfessorOaksLab/map.bin b/data/layouts/PalletTown_ProfessorOaksLab/map.bin
+index 1067109ab0843e5ededaa96558c30c64e0dab04a..93471e4eba197e34a1140722f627aeceea11e3fa 100644
+GIT binary patch
+literal 588
+zcma)2$!bDD5WF;n-&21TTrNiMlDG_s;1c1vp<oCu3Ai8px}>M+F^4Fjsp+X@7J7=J
+z6s05&Kh;JXndGGqq0Bs0GWo&>DpHlYG-QAQ=2Di&2xaD}GM5w2tg{hOqt+9jBXn<`
+zDmBiq;5)<JvcwD<eBzp1Vuf|$#w^j|0mtM7Zn@(=y<p4|t)yP>{d;%e3tuD5ccxtx
+z=Yi!k6-)Yzw5#Ggu$iV}NuQB+Rh$R@|DXMM((b#rzHyu;)M1yso98CTiC2apM!&f0
+G-oF7ABfcL1
+
+delta 126
+zcmX@Z@`h=G)I=>Q$*o4)j9QJ_z_`%}1e=XoKzL%Uw8VV2)og3nI*nj(1=~utRY3m4
+y3o?_JFiK5UW0YX*ne5LfDO<wQ4$}x#4K)U6SjS{WM#;(N7$qiu1L{#=k^unp%_^w?
+
 diff --git a/data/layouts/layouts.json b/data/layouts/layouts.json
-index 41d0eb1..07e9a49 100644
+index 41d0eb1..e3d1f5f 100644
 --- a/data/layouts/layouts.json
 +++ b/data/layouts/layouts.json
+@@ -52,7 +52,7 @@
+     {
+       "id": "LAYOUT_PALLET_TOWN_PROFESSOR_OAKS_LAB",
+       "name": "PalletTown_ProfessorOaksLab_Layout",
+-      "width": 13,
++      "width": 21,
+       "height": 14,
+       "border_width": 2,
+       "border_height": 2,
 @@ -741,8 +741,8 @@
      {
        "id": "LAYOUT_PALLET_TOWN",
@@ -98,6 +147,37 @@ index 41d0eb1..07e9a49 100644
        "border_width": 2,
        "border_height": 2,
        "primary_tileset": "gTileset_General",
+@@ -4398,6 +4398,30 @@
+       "secondary_tileset": "gTileset_MtEmber",
+       "border_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa/border.bin",
+       "blockdata_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa/map.bin"
++    },
++    {
++      "id": "LAYOUT_PALLET_TOWN_POKEMON_CENTER_1F",
++      "name": "PalletTown_PokemonCenter_1F_Layout",
++      "width": 19,
++      "height": 11,
++      "border_width": 2,
++      "border_height": 2,
++      "primary_tileset": "gTileset_Building",
++      "secondary_tileset": "gTileset_PokemonCenter",
++      "border_filepath": "data/layouts/PokemonCenter_1F/border.bin",
++      "blockdata_filepath": "data/layouts/PalletTown_PokemonCenter_1F/map.bin"
++    },
++    {
++      "id": "LAYOUT_PALLET_TOWN_MART",
++      "name": "PalletTown_Mart_Layout",
++      "width": 17,
++      "height": 9,
++      "border_width": 2,
++      "border_height": 2,
++      "primary_tileset": "gTileset_Building",
++      "secondary_tileset": "gTileset_Mart",
++      "border_filepath": "data/layouts/Mart/border.bin",
++      "blockdata_filepath": "data/layouts/PalletTown_Mart/map.bin"
+     }
+   ]
+ }
 diff --git a/data/maps/PalletTown/map.json b/data/maps/PalletTown/map.json
 index 802d32d..a7f2262 100644
 --- a/data/maps/PalletTown/map.json
@@ -3068,14 +3148,14 @@ index 0000000..94574ab
 +	.string "a very surprised MAGIKARP.$"
 diff --git a/data/maps/PalletTown_Mart/map.json b/data/maps/PalletTown_Mart/map.json
 new file mode 100644
-index 0000000..5d9192e
+index 0000000..7c55c83
 --- /dev/null
 +++ b/data/maps/PalletTown_Mart/map.json
 @@ -0,0 +1,86 @@
 +{
 +  "id": "MAP_PALLET_TOWN_MART",
 +  "name": "PalletTown_Mart",
-+  "layout": "LAYOUT_MART",
++  "layout": "LAYOUT_PALLET_TOWN_MART",
 +  "music": "MUS_POKE_CENTER",
 +  "region_map_section": "MAPSEC_PALLET_TOWN",
 +  "requires_flash": false,
@@ -3423,14 +3503,14 @@ index 0000000..b3e2786
 +	.string "NIDORAN♀: Nido!$"
 diff --git a/data/maps/PalletTown_PokemonCenter_1F/map.json b/data/maps/PalletTown_PokemonCenter_1F/map.json
 new file mode 100644
-index 0000000..3dcdfa5
+index 0000000..29292a9
 --- /dev/null
 +++ b/data/maps/PalletTown_PokemonCenter_1F/map.json
 @@ -0,0 +1,107 @@
 +{
 +  "id": "MAP_PALLET_TOWN_POKEMON_CENTER_1_F",
 +  "name": "PalletTown_PokemonCenter_1F",
-+  "layout": "LAYOUT_POKEMON_CENTER_1F",
++  "layout": "LAYOUT_PALLET_TOWN_POKEMON_CENTER_1F",
 +  "music": "MUS_POKE_CENTER",
 +  "region_map_section": "MAPSEC_PALLET_TOWN",
 +  "requires_flash": false,
@@ -3447,7 +3527,7 @@ index 0000000..3dcdfa5
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_NURSE",
-+      "x": 7,
++      "x": 5,
 +      "y": 2,
 +      "elevation": 3,
 +      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -3461,10 +3541,10 @@ index 0000000..3dcdfa5
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_RS_MAY",
-+      "x": 10,
++      "x": 16,
 +      "y": 6,
 +      "elevation": 3,
-+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
 +      "movement_range_x": 1,
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
@@ -3475,10 +3555,10 @@ index 0000000..3dcdfa5
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-+      "x": 3,
++      "x": 14,
 +      "y": 3,
 +      "elevation": 3,
-+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
 +      "movement_range_x": 1,
 +      "movement_range_y": 1,
 +      "trainer_type": "TRAINER_TYPE_NONE",
@@ -3489,8 +3569,8 @@ index 0000000..3dcdfa5
 +    {
 +      "type": "object",
 +      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
-+      "x": 12,
-+      "y": 3,
++      "x": 13,
++      "y": 5,
 +      "elevation": 3,
 +      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
 +      "movement_range_x": 1,
@@ -3503,29 +3583,29 @@ index 0000000..3dcdfa5
 +  ],
 +  "warp_events": [
 +    {
-+      "x": 6,
-+      "y": 8,
-+      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "9"
-+    },
-+    {
-+      "x": 7,
-+      "y": 8,
-+      "elevation": 3,
-+      "dest_map": "MAP_PALLET_TOWN",
-+      "dest_warp_id": "9"
-+    },
-+    {
 +      "x": 8,
-+      "y": 8,
++      "y": 9,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "9"
++    },
++    {
++      "x": 9,
++      "y": 9,
++      "elevation": 3,
++      "dest_map": "MAP_PALLET_TOWN",
++      "dest_warp_id": "9"
++    },
++    {
++      "x": 10,
++      "y": 9,
 +      "elevation": 3,
 +      "dest_map": "MAP_PALLET_TOWN",
 +      "dest_warp_id": "9"
 +    },
 +    {
 +      "x": 1,
-+      "y": 6,
++      "y": 5,
 +      "elevation": 4,
 +      "dest_map": "MAP_PALLET_TOWN_POKEMON_CENTER_2_F",
 +      "dest_warp_id": "0"
@@ -3581,18 +3661,20 @@ index 0000000..3ca187a
 +	end
 diff --git a/data/maps/PalletTown_PokemonCenter_1F/text.inc b/data/maps/PalletTown_PokemonCenter_1F/text.inc
 new file mode 100644
-index 0000000..818a32b
+index 0000000..b5b1ec1
 --- /dev/null
 +++ b/data/maps/PalletTown_PokemonCenter_1F/text.inc
-@@ -0,0 +1,18 @@
+@@ -0,0 +1,20 @@
 +PalletTown_PokemonCenter_1F_Text_Resident1::
 +	.string "Hi! I'm MAY. I'm visiting from\n"
 +	.string "LITTLEROOT TOWN in HOENN.\p"
 +	.string "I came all this way to see\n"
-+	.string "PROF. OAK's lab! It's smaller\l"
-+	.string "than my dad's, hee hee.$"
++	.string "PROF. OAK's lab! The new wing\l"
++	.string "is even bigger than my dad's!$"
 +
 +PalletTown_PokemonCenter_1F_Text_Resident2::
++	.string "Shh! The INDIGO PLATEAU match\n"
++	.string "is on TV!\p"
 +	.string "This POKéMON CENTER is brand\n"
 +	.string "new! It still smells like paint.\p"
 +	.string "Before, we had to walk all the\n"
@@ -3724,6 +3806,163 @@ index 0000000..a23ad75
 diff --git a/data/maps/PalletTown_PokemonCenter_2F/text.inc b/data/maps/PalletTown_PokemonCenter_2F/text.inc
 new file mode 100644
 index 0000000..e69de29
+diff --git a/data/maps/PalletTown_ProfessorOaksLab/map.json b/data/maps/PalletTown_ProfessorOaksLab/map.json
+index be72653..6fbae87 100644
+--- a/data/maps/PalletTown_ProfessorOaksLab/map.json
++++ b/data/maps/PalletTown_ProfessorOaksLab/map.json
+@@ -161,6 +161,48 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "PalletTown_ProfessorOaksLab_EventScript_Pokedex",
+       "flag": "FLAG_HIDE_POKEDEX"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
++      "x": 16,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 0,
++      "movement_range_y": 0,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_ProfessorOaksLab_EventScript_WingAide1",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
++      "x": 16,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_UP",
++      "movement_range_x": 0,
++      "movement_range_y": 0,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_ProfessorOaksLab_EventScript_WingAide2",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
++      "x": 19,
++      "y": 11,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "PalletTown_ProfessorOaksLab_EventScript_WingAide3",
++      "flag": "0"
+     }
+   ],
+   "warp_events": [
+@@ -274,6 +316,38 @@
+       "elevation": 0,
+       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+       "script": "PalletTown_ProfessorOaksLab_EventScript_RightSign"
++    },
++    {
++      "type": "sign",
++      "x": 16,
++      "y": 1,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_ProfessorOaksLab_EventScript_WingComputer"
++    },
++    {
++      "type": "sign",
++      "x": 17,
++      "y": 1,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_ProfessorOaksLab_EventScript_WingComputer"
++    },
++    {
++      "type": "sign",
++      "x": 13,
++      "y": 1,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_ProfessorOaksLab_EventScript_WingBoard"
++    },
++    {
++      "type": "sign",
++      "x": 14,
++      "y": 1,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "PalletTown_ProfessorOaksLab_EventScript_WingBoard"
+     }
+   ]
+ }
+diff --git a/data/maps/PalletTown_ProfessorOaksLab/scripts.inc b/data/maps/PalletTown_ProfessorOaksLab/scripts.inc
+index 90adf86..42c7418 100644
+--- a/data/maps/PalletTown_ProfessorOaksLab/scripts.inc
++++ b/data/maps/PalletTown_ProfessorOaksLab/scripts.inc
+@@ -1299,3 +1299,23 @@ PalletTown_ProfessorOaksLab_EventScript_RightSignAlt::
+ 	msgbox PalletTown_ProfessorOaksLab_Text_AllMonTypesHaveStrongAndWeakPoints
+ 	releaseall
+ 	end
++
++PalletTown_ProfessorOaksLab_EventScript_WingAide1::
++	msgbox PalletTown_ProfessorOaksLab_Text_WingAide1, MSGBOX_NPC
++	end
++
++PalletTown_ProfessorOaksLab_EventScript_WingAide2::
++	msgbox PalletTown_ProfessorOaksLab_Text_WingAide2, MSGBOX_NPC
++	end
++
++PalletTown_ProfessorOaksLab_EventScript_WingAide3::
++	msgbox PalletTown_ProfessorOaksLab_Text_WingAide3, MSGBOX_NPC
++	end
++
++PalletTown_ProfessorOaksLab_EventScript_WingComputer::
++	msgbox PalletTown_ProfessorOaksLab_Text_WingComputer, MSGBOX_SIGN
++	end
++
++PalletTown_ProfessorOaksLab_EventScript_WingBoard::
++	msgbox PalletTown_ProfessorOaksLab_Text_WingBoard, MSGBOX_SIGN
++	end
+diff --git a/data/maps/PalletTown_ProfessorOaksLab/text.inc b/data/maps/PalletTown_ProfessorOaksLab/text.inc
+index 849a643..b798d58 100644
+--- a/data/maps/PalletTown_ProfessorOaksLab/text.inc
++++ b/data/maps/PalletTown_ProfessorOaksLab/text.inc
+@@ -355,3 +355,32 @@ PalletTown_ProfessorOaksLab_Text_RivalIllCompleteThePokedex::
+     .string "ONE ISLAND first…\p"
+     .string "Anyways, I'm outta here!$"
+ 
++
++PalletTown_ProfessorOaksLab_Text_WingAide1::
++	.string "Welcome to the new east wing!\n"
++	.string "PALLET grew, so the lab did too.\p"
++	.string "I'm logging every POKéMON seen\n"
++	.string "around town. There are so many!$"
++
++PalletTown_ProfessorOaksLab_Text_WingAide2::
++	.string "A POOCHYENA and a ZIGZAGOON in\n"
++	.string "PALLET PARK… from HOENN!\p"
++	.string "The PROF wants samples of\n"
++	.string "their fur. Very carefully.$"
++
++PalletTown_ProfessorOaksLab_Text_WingAide3::
++	.string "Mind the cables, please!\p"
++	.string "This machine restores POKéMON\n"
++	.string "the way the CENTER does, but\l"
++	.string "it's only for our research.$"
++
++PalletTown_ProfessorOaksLab_Text_WingComputer::
++	.string "It's a list of POKéMON sighted\n"
++	.string "in PALLET TOWN this month.\p"
++	.string "PIDGEY, RATTATA, MEOWTH,\n"
++	.string "SLOWPOKE, PSYDUCK…\l"
++	.string "POOCHYENA? ZIGZAGOON?!$"
++
++PalletTown_ProfessorOaksLab_Text_WingBoard::
++	.string "EAST WING RESEARCH BOARD\n"
++	.string "Please return all POKé BALLS!$"
 diff --git a/data/maps/PalletTown_School/map.json b/data/maps/PalletTown_School/map.json
 new file mode 100644
 index 0000000..fce6aab

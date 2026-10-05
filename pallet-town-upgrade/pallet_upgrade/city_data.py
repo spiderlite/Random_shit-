@@ -197,18 +197,20 @@ BUILDINGS = [
 
 # Pokémon Center and Mart residents (their interiors come from FireRed's own maps).
 PC_RESIDENTS = [
-    npc("RS_MAY", (10, 6), RIGHT,
+    npc("RS_MAY", (16, 6), LEFT,
         "Hi! I'm MAY. I'm visiting from\\n"
         "LITTLEROOT TOWN in HOENN.\\p"
         "I came all this way to see\\n"
-        "PROF. OAK's lab! It's smaller\\l"
-        "than my dad's, hee hee.$", female=True),
-    npc("YOUNGSTER", (3, 3), WANDER,
+        "PROF. OAK's lab! The new wing\\l"
+        "is even bigger than my dad's!$", female=True),
+    npc("YOUNGSTER", (14, 3), UP,
+        "Shh! The INDIGO PLATEAU match\\n"
+        "is on TV!\\p"
         "This POKéMON CENTER is brand\\n"
         "new! It still smells like paint.\\p"
         "Before, we had to walk all the\\n"
         "way to VIRIDIAN to heal up!$"),
-    npc("OLD_WOMAN", (12, 3), DOWN,
+    npc("OLD_WOMAN", (13, 5), DOWN,
         "The NURSE here is my\\n"
         "granddaughter's best friend.\\p"
         "She treats every POKéMON like\\n"

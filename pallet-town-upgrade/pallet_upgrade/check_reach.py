@@ -59,7 +59,7 @@ for w in m["warp_events"]:
 layouts = {l["id"]: l for l in json.load(open(os.path.join(ROOT, "data/layouts/layouts.json")))["layouts"] if "id" in l}
 for d in sorted(os.listdir(os.path.join(ROOT, "data/maps"))):
     if not d.startswith("PalletTown_") or d in ("PalletTown_PlayersHouse_1F", "PalletTown_PlayersHouse_2F",
-                                                "PalletTown_RivalsHouse", "PalletTown_ProfessorOaksLab"):
+                                                "PalletTown_RivalsHouse"):
         continue
     mj = json.load(open(os.path.join(ROOT, "data/maps", d, "map.json")))
     l = layouts[mj["layout"]]
@@ -72,12 +72,15 @@ for d in sorted(os.listdir(os.path.join(ROOT, "data/maps"))):
         a = open(os.path.join(ROOT, T.tileset_dirs()[ts.replace("gTileset_", "")], "metatile_attributes.bin"), "rb").read()
         return struct.unpack_from("<I", a, (mid - base) * 4)[0] & 0x1FF
     exits = [w for w in mj["warp_events"] if w["dest_map"] == "MAP_PALLET_TOWN"]
-    for w in exits[len(exits) // 2:len(exits) // 2 + 1]:
-        b = behavior(blk[w["y"] * lw + w["x"]] & 0x3FF)
-        good = b != 0
+    if exits:
+        mats = [w for w in exits if behavior(blk[w["y"] * lw + w["x"]] & 0x3FF) != 0]
+        good = bool(mats)
+        w = (mats or exits)[0]
         print("EXIT %-28s at %-8s %s" % (d, (w["x"], w["y"]), "ok" if good else "NOT ON THE DOORMAT"))
         ok &= good
     for o in mj["object_events"]:
+        if o["graphics_id"] in ("OBJ_EVENT_GFX_ITEM_BALL", "OBJ_EVENT_GFX_POKEDEX"):
+            continue   # these sit on tables on purpose
         c = (o["x"], o["y"])
         good = not ((blk[c[1] * lw + c[0]] >> 10) & 3) and c not in warps
         print("ROOM %-28s at %-8s %s" % (d + " " + o["graphics_id"].replace("OBJ_EVENT_GFX_", ""), c,
