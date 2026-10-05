@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Shops, healing and the road out of town. Usage: test_services.py START_STATE SHOTDIR"""
+"""Shops, healing, and the closed road out of town. Usage: test_services.py START_STATE SHOTDIR"""
 import os, shutil, sys
 from walk import Game, map_info
 
@@ -89,7 +89,8 @@ ws = [w for w in map_info(n)[0]["warp_events"] if w["dest_map"] == "MAP_PALLET_T
 g.goto(ws[len(ws) // 2]["x"], ws[len(ws) // 2]["y"]); g.cmd("hold DOWN 20 wait 280")
 check(g.pos()[2] == "PalletTown", "left the Pokémon Center")
 
-# Route 1 and back (FireRed's sign lady may stop you once at the gate to show a tip)
+# The road north used to lead to Route 1. Pallet Town is the whole game now: it is closed.
+# (FireRed's sign lady may stop you once at the gate to show a tip)
 for _ in range(4):
     try:
         g.goto(23, 0)
@@ -98,14 +99,9 @@ for _ in range(4):
         for _ in range(4):
             g.cmd("press A wait 90")
         close()
-shot("route1_0_pallet_edge")
+shot("north_0_pallet_edge")
 g.cmd("step UP"); g.cmd("wait 60")
-x, y, n = g.pos()
-shot("route1_1_route_side")
-r1 = map_info("Route1")
-check(n == "Route1" and y == r1[2] - 1, "walked north onto Route 1 at %s" % ((x, y),))
-g.cmd("step DOWN"); g.cmd("wait 60")
-check(g.pos() == (23, 0, "PalletTown"), "walked back into Pallet Town at %s" % (g.pos(),))
-g.cmd("step DOWN"); g.cmd("step DOWN"); g.cmd("step DOWN"); g.cmd("wait 30")
-shot("route1_2_back_in_town")
+shot("north_1_still_in_town")
+check(g.pos() == (23, 0, "PalletTown"), "the north edge is closed: still in Pallet Town at %s" % (g.pos(),))
+g.cmd("step DOWN"); g.cmd("step DOWN"); g.cmd("wait 30")
 print("services:", "ALL PASS" if not fails else "%d FAILURES" % fails)

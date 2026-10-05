@@ -1,8 +1,21 @@
-# Pallet City for the FireRed decomp
+# Pallet Town Adventurers
 
-Pallet Town for [pret/pokefirered](https://github.com/pret/pokefirered), grown
-into a small, busy city. Oak's lab, the garden, the pond and every original
-event are kept as they are in FireRed.
+A small fan-made game built on [pret/pokefirered](https://github.com/pret/pokefirered):
+Pallet Town, grown into a busy city, is the whole game. Oak's lab, the garden,
+the pond and every original event are kept as they are in FireRed.
+
+- **Just Pallet Town:** every other map was removed from the game (the tilesets
+  all stay). What's left is Pallet Town, its 18 interiors, and the link-cable rooms
+  that the Pokémon Center's upstairs uses. The roads out of town are closed.
+- **The name:** the title screen reads *Pallet Town Adventurers* under the Pokémon logo,
+  and the cartridge header title is `PALLET TOWN`.
+- **A short intro:** New Game goes straight to Professor Oak. He says this is a simple
+  fan-made edit of the FireRed decomp, credits the tilesets (ChaoticCherryCake, Dawn
+  Bronze and their artists) and the Emerald sprites, and asks for your name and your
+  rival's. That's it: no controls guide, no Nidoran, and no boy/girl question (you play
+  as the boy).
+
+![title and intro](screenshots/adventurers_intro.png)
 
 - **Size:** the map goes from 24×20 to 62×30.
 - **Streets:** sand paths in FireRed's own style. There's a main street from the Route 1
@@ -63,7 +76,8 @@ ChaoticCherryCake tiles are CC BY-NC-SA, so this is **non-commercial only**.
 |---|---|
 | Layout | `PalletTown_Layout` is now 62×30. The original town sits in the middle (shifted 10 columns right), and ten rows were inserted above the original bottom edge, so the pond and the seams with Route 1 and Route 21 are unchanged. |
 | Tileset | `gTileset_PalletTown` was redrawn: the 376 usable tiles (the last 8 of the 384 are reserved for door animations), 6 palettes (one is the green-roof recolour), 239 metatiles. Four near-identical tiles were merged; each pair differs by a single pixel one shade apart. The art has about 190 colours for 90 palette slots. Palettes start from object groups (each cottage design, the lab, the rest), so one object's tiles share a palette with no blocky seams. The three roof shading ramps are kept exact, and every palette colour is a real source colour. Tiles that already exist in the General tileset are referenced from there. Ground-level objects sit on the metatile's second layer, so they cost the same tiles on any ground. Metatiles 682/683/690/698 are unchanged, because Route 1 uses them. |
-| Neighbours | The Route 1 and Route 21 North connections were re-aligned. Nothing on those routes was changed. |
+| Other maps | Removed by `pallet_upgrade/strip_maps.py`: 415 maps and 342 layouts. There are three map groups: link rooms, Pallet Town, and its interiors. The engine still names some removed maps in its code (Safari Zone, Sevii quests, the S.S. Anne and others), so their `MAP_*`, `LAYOUT_*` and `LOCALID_*` constants are kept in generated `*_compat.h` headers. Their values never match a real map. The 847 script and text labels that shared code still points at become empty stand-ins (`data/maps/removed_maps.inc`). Viridian School's scripts stay because Pallet's school uses its blackboard and notebook. Heal locations of removed towns lead home. Route 1's layout is kept for the Teachy TV demo. |
+| Intro and title | `pallet_upgrade/intro.py` shortens `src/oak_speech.c` and rewrites Oak's lines in `data/text/new_game_intro.inc`. `pallet_upgrade/title.py` redraws the subtitle block of the title logo in the game's own font, bold, using only colours already in the logo's palette. |
 | Events | All original warps, signs, triggers and NPCs moved with the town. Hard-coded positions in `PalletTown/scripts.inc` and the Pallet heal location were moved too. |
 | Interiors | Oak's Lab widened from 13×14 to 21×14. The Pokémon Center 1F gets its own 19×11 layout (based on One Island's) and the Mart its own 17×9 layout. The standard shared layouts are not changed. |
 | New maps | 14 interior maps (`PalletTown_*`), in a new map group. They reuse FireRed's interior layouts, and their door warps are aligned to each layout's doormat. |
@@ -77,23 +91,25 @@ Played through automatically in the emulator on the final ROM, by the scripts in
 
 - `test_doors.py`: every door and staircase. You arrive on the exact doormat
   square and leave in front of the same door.
-- `test_talk.py`: every character and every sign in town and in all 14
-  interiors (111 in all) opens its dialogue. Wanderers are tracked live.
+- `test_talk.py`: every character and every sign in town and in every
+  interior (118 in all) opens its dialogue. Wanderers are tracked live.
 - `test_trainers.py`: all 14 trainers.
   - Before you have a Pokémon, they only chat.
   - Walking into their line of sight never starts a battle.
   - They ask YES/NO; NO lets you go.
   - YES starts a real battle, which the test wins; afterwards they give a parting line and never rematch.
 - `test_services.py`: buying at the Poké Mart and at the market stall (money
-  goes down), the nurse heal, and walking onto Route 1 and back at the right square.
+  goes down), the nurse heal, and that the old road north to Route 1 is closed.
 - `test_nomon.py`: before you have a Pokémon, the nurse explains she needs one to
   heal (the empty-party heal used to hang the game). The PC and the link-room
   receptionists also answer and let you go.
 - `test_collision.py`: walks into every solid square of the town that borders a
   walkable one (trees, bushes, benches, lamps, walls, fences, signs, the stall)
   and checks the game stops you.
-- New game: the intro, Oak's cutscene, choosing a starter and the rival battle
-  (`mkstarter.py`).
+- New game: the short intro, naming yourself and your rival, Oak's cutscene, choosing a
+  starter and the rival battle (`mkstate.sh`, `mkstarter.py`). Saving and Continue were
+  also checked by hand on the final ROM.
+- `run_all.sh OUTDIR` remakes the save states from the current ROM and runs every test above.
 
 Checked automatically on every rebuild (`check_reach.py`, `compose.py` audits):
 
@@ -117,7 +133,8 @@ git -C pokefirered apply ../pokefirered.patch
 make -C pokefirered -j"$(nproc)"      # -> pokefirered/pokefirered.gba
 ```
 
-The patch reproduces the tested ROM byte for byte on a fresh clone.
+The patch reproduces the tested ROM byte for byte on a fresh clone. It also deletes the
+removed maps' folders, so it is about 4 MB.
 
 To change the design, edit `pallet_upgrade/city_data.py` (or `compose.py` for
 art) and run `pallet_upgrade/rebuild.sh`:
@@ -129,8 +146,12 @@ art) and run `pallet_upgrade/rebuild.sh`:
 3. `doors.py` makes the door animations and registers them.
 4. `wire.py` writes the map JSON, scripts, trainers, shops, interiors,
    connections and heal location. It always starts from the committed files.
-   `sprites.py` imports the Emerald overworld Pokémon.
-5. `check_reach.py` and `check_cover.py` run the checks above and fail the build on any problem.
+   `sprites.py` imports the Emerald overworld Pokémon. `interiors.py` builds the bigger lab,
+   Pokémon Center and Mart.
+5. `strip_maps.py` removes every other map. `intro.py` writes the short intro and the cartridge
+   title, and `title.py` writes the title logo. (`rebuild.sh` first restores the original maps
+   from git, so the steps before it can read them.)
+6. `check_reach.py` and `check_cover.py` run the checks above and fail the build on any problem.
 
 `pallet_upgrade/orig/` is a copy of the original Pallet Town tileset and map
 that the pipeline reads from.

@@ -18,7 +18,10 @@ nomon_state, mon_state, shots = sys.argv[1:4]
 os.makedirs(shots, exist_ok=True)
 pallet = map_info("PalletTown")[0]
 TRAINERS = [(i + 1, o) for i, o in enumerate(pallet["object_events"]) if "_EventScript_Trainer" in o["script"]]
-PARTY_STATS = 0x02024284 + 0x56   # gPlayerParty[0]: hp, maxHP, atk, def, spe, spa, spd
+PARTY = 0x02024284                 # gPlayerParty[0]
+PARTY_STATS = PARTY + 0x56         # hp, maxHP, atk, def, spe, spa, spd
+SUBSTRUCT_ORDER = ["GAEM", "GAME", "GEAM", "GEMA", "GMAE", "GMEA", "AGEM", "AGME", "AEGM", "AEMG", "AMGE", "AMEG",
+                   "EGAM", "EGMA", "EAGM", "EAMG", "EMGA", "EMAG", "MGAE", "MGEA", "MAGE", "MAEG", "MEGA", "MEAG"]
 fails = 0
 
 
@@ -26,6 +29,26 @@ def check(ok, msg):
     global fails
     print(("PASS " if ok else "FAIL ") + msg)
     fails += not ok
+
+
+def refill_pp(g):
+    """Give every move of the lead Pokémon 30 PP (some 20 battles in a row would run Tackle dry).
+    PP sit in the encrypted Attacks substruct: decrypt, set, fix the checksum, re-encrypt."""
+    out = g.cmd("peek %x 80" % PARTY)
+    raw = bytearray(int(b, 16) for b in out.split("PEEK", 1)[1].split()[1:])
+    pid, otid = int.from_bytes(raw[0:4], "little"), int.from_bytes(raw[4:8], "little")
+    key = pid ^ otid
+    sec = bytearray()
+    for k in range(0x20, 0x50, 4):
+        sec += (int.from_bytes(raw[k:k + 4], "little") ^ key).to_bytes(4, "little")
+    a = SUBSTRUCT_ORDER[pid % 24].index("A") * 12
+    for m in range(4):
+        if int.from_bytes(sec[a + 2 * m:a + 2 * m + 2], "little"):
+            sec[a + 8 + m] = 30
+    raw[0x1C:0x1E] = (sum(int.from_bytes(sec[k:k + 2], "little") for k in range(0, 48, 2)) & 0xFFFF).to_bytes(2, "little")
+    for i, k in enumerate(range(0x20, 0x50, 4)):
+        raw[k:k + 4] = (int.from_bytes(sec[4 * i:4 * i + 4], "little") ^ key).to_bytes(4, "little")
+    g.cmd("poke %x %s" % (PARTY, raw.hex()))
 
 
 def yesno(g, path):
@@ -136,6 +159,7 @@ for lid, o in TRAINERS:
     check(res2 == "closed" and free(g), "decline:    %-7s accepts NO and lets you go" % name)
     # 3. YES -> battle
     g.cmd("poke %x %s" % (PARTY_STATS, "e703e7032c012c012c012c012c01"))
+    refill_pp(g)
     face_to(g, lid)
     g.cmd("press A wait 110")
     through(g)
