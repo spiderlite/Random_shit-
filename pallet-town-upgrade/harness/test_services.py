@@ -84,7 +84,10 @@ for _ in range(3):
 close()
 shot("pc_3_done")
 check(not g.textbox() and g.in_field() and g.pos()[2] == "PalletTown_PokemonCenter_1F", "nurse heals and lets you go")
-g.goto(7, 8); g.cmd("hold DOWN 20 wait 280")
+x, y, n = g.pos()
+ws = [w for w in map_info(n)[0]["warp_events"] if w["dest_map"] == "MAP_PALLET_TOWN"]
+g.goto(ws[len(ws) // 2]["x"], ws[len(ws) // 2]["y"]); g.cmd("hold DOWN 20 wait 280")
+check(g.pos()[2] == "PalletTown", "left the Pokémon Center")
 
 # Route 1 and back (FireRed's sign lady may stop you once at the gate to show a tip)
 for _ in range(4):

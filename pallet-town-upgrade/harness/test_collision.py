@@ -23,7 +23,7 @@ probes = []   # (stand, direction, solid square)
 for (x, y) in seen:
     for d, (dx, dy) in DIRS.items():
         t = (x + dx, y + dy)
-        if 0 <= t[0] < w and 0 <= t[1] < h and solid[t[1]][t[0]] and t not in npcs:
+        if 0 <= t[0] < w and 0 <= t[1] < h and solid[t[1]][t[0]] and t not in npcs and t not in warps:
             probes.append(((x, y), d, t))
 # visit in a snake order to keep walks short
 probes.sort(key=lambda p: (p[0][1] // 4, p[0][0] if (p[0][1] // 4) % 2 == 0 else -p[0][0], p[0][1]))
@@ -50,6 +50,10 @@ for stand, d, t in probes:
     else:
         continue   # e.g. a wandering NPC stands there; another side may cover it
     out = g.cmd("step", d)
+    if g.pos()[2] != "PalletTown":   # walked through something into a building: that's a failure too
+        fails.append((stand, d, t))
+        g.cmd("hold DOWN 20 wait 280")
+        continue
     if "STEP ok" in out:
         fails.append((stand, d, t))
         g.goto(*stand)
