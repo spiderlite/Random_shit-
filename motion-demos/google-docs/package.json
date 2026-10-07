@@ -1,0 +1,15 @@
+{
+  "name": "google-docs-motion-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "30-second motion demo of Google Docs. Unofficial portfolio piece, not affiliated with Google.",
+  "type": "module",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "render": "node render/render.mjs --mp4 out/google-docs-motion-demo.mp4 --fps 60",
+    "stills": "node render/render.mjs --stills 0,3.5,6,10.4,16.8,21.8,25.6,29.5 --out out/stills"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.0"
+  }
+}

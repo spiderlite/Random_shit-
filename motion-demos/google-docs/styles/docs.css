@@ -1,0 +1,470 @@
+/* Google Docs app window, drawn at 100% zoom in a 1280x720 viewport.
+   Every position is in window pixels. Measurements come from a real Docs
+   capture (Wikimedia, "Google Docs (new) screenshot") scaled back to 1280x720:
+   the page is 816px wide, a 96px margin, Arial 11pt body text. */
+
+.docs {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1280px;
+  height: 720px;
+  background: #f8fafd;
+  color: #1f1f1f;
+  font-family: "Google Sans", system-ui, sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Icons: Material Symbols outlined, drawn as masks so colour comes from CSS. */
+.ic {
+  position: absolute;
+  display: block;
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+          mask: var(--icon) center / contain no-repeat;
+  color: #444746;
+}
+.docs-ic-24 { width: 24px; height: 24px; }
+.docs-ic-20 { width: 20px; height: 20px; }
+.docs-ic-18 { width: 18px; height: 18px; }
+.docs-ic-16 { width: 16px; height: 16px; }
+
+/* Header */
+.docs-title {
+  position: absolute;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  white-space: nowrap;
+  color: #1f1f1f;
+}
+
+.docs-share {
+  position: absolute;
+  width: 116px;
+  height: 34px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 17px;
+  background: #c2e7ff;
+  color: #001d35;
+  font: 500 14px/34px "Google Sans", system-ui, sans-serif;
+  text-align: left;
+  transform-origin: 50% 50%;
+}
+.docs-share .ic { color: #001d35; }
+.docs-share-label { position: absolute; left: 40px; top: 0; }
+
+.docs-avatar {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #33691e;
+  color: #ffffff;
+  font: 500 14px/28px "Google Sans", system-ui, sans-serif;
+  text-align: center;
+}
+
+/* Menu bar */
+.docs-menu { position: absolute; left: 0; top: 0; width: 1280px; height: 0; }
+.docs-menu span {
+  position: absolute;
+  top: 35px;
+  font: 400 14px/20px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+  white-space: nowrap;
+}
+
+/* Toolbar pill */
+.docs-toolbar {
+  position: absolute;
+  left: 16px;
+  top: 64px;
+  width: 1245px;
+  height: 40px;
+  border-radius: 20px;
+  background: #f0f4f9;
+}
+.docs-tb-text {
+  position: absolute;
+  top: 74px;
+  font: 400 14px/20px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+  white-space: nowrap;
+}
+.docs-tb-sep {
+  position: absolute;
+  top: 74px;
+  width: 1px;
+  height: 20px;
+  background: rgba(31, 31, 31, 0.2);
+}
+.docs-tb-size-btn {
+  position: absolute;
+  top: 70px;
+  width: 16px;
+  font: 400 18px/24px "Google Sans", system-ui, sans-serif;
+  text-align: center;
+  color: #1f1f1f;
+}
+.docs-size-box {
+  position: absolute;
+  top: 71px;
+  width: 36px;
+  height: 26px;
+  border-radius: 4px;
+  background: rgba(31, 31, 31, 0.06);
+  font: 400 14px/26px "Google Sans", system-ui, sans-serif;
+  text-align: center;
+  color: #1f1f1f;
+}
+/* Toolbar icons: 20px, centred on y=84 */
+.tb { top: 74px; color: #1f1f1f; z-index: 1; }
+.tb-caret { top: 76px; color: #1f1f1f; }
+.tb.is-active { color: #041e49; }
+.tb.is-active::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #d3e3fd;
+  z-index: -1;
+}
+
+/* Ruler sits over the page top, with blue indent markers */
+.docs-ruler { position: absolute; left: 0; top: 0; width: 1280px; height: 720px; pointer-events: none; }
+.docs-ruler span {
+  position: absolute;
+  top: 112px;
+  font: 400 11px/16px "Google Sans", system-ui, sans-serif;
+  color: #444746;
+}
+.docs-indent-l {
+  position: absolute;
+  top: 116px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid #025bf1;
+}
+.docs-indent-r {
+  position: absolute;
+  top: 116px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid #025bf1;
+}
+
+/* Left panel: Document tabs */
+.docs-panel { position: absolute; left: 0; top: 0; width: 294px; height: 720px; }
+.docs-panel-title {
+  position: absolute;
+  font: 500 14px/20px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+  white-space: nowrap;
+}
+.docs-tab {
+  position: absolute;
+  width: 244px;
+  height: 36px;
+  border-radius: 18px;
+  background: #d3e3fd;
+}
+.docs-tab .ic { color: #0842a0; }
+.docs-tab-label {
+  position: absolute;
+  top: 8px;
+  font: 500 14px/20px "Google Sans", system-ui, sans-serif;
+  color: #0842a0;
+}
+.docs-panel-hint {
+  position: absolute;
+  width: 220px;
+  margin: 0;
+  font: italic 400 12px/16px "Google Sans", system-ui, sans-serif;
+  color: #444746;
+}
+
+/* Explore, bottom right, and the scroll thumb */
+.docs-explore {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+.docs-explore .ic { left: 8px; top: 8px; color: #444746; }
+.docs-scroll-thumb {
+  position: absolute;
+  width: 6px;
+  height: 260px;
+  border-radius: 3px;
+  background: #c4c7c5;
+}
+
+/* Page: 816px wide, 96px margins, white on the canvas */
+.docs-page {
+  position: absolute;
+  left: 299px;
+  top: 146px;
+  width: 816px;
+  height: 1056px;
+  margin: 0;
+  padding: 96px;
+  box-sizing: border-box;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+}
+.docs-h1 {
+  margin: 0 0 12px;
+  font: 400 26.67px/36px Arial, "Liberation Sans", Arimo, sans-serif;
+  color: #000000;
+  min-height: 36px;
+}
+.docs-p {
+  margin: 0 0 12px;
+  font: 400 14.67px/20px Arial, "Liberation Sans", Arimo, sans-serif;
+  color: #000000;
+  min-height: 20px;
+}
+
+/* Selection and comment highlight share one band. Width is driven per frame. */
+#g-label,
+#g-sentence {
+  background-image: linear-gradient(#d3e3fd, #d3e3fd);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+}
+#g-label.is-bold { font-weight: 700; }
+#g-sentence.commented { background-image: linear-gradient(#fce8b2, #fce8b2); }
+
+/* Caret: solid while typing, hidden otherwise */
+.docs-caret {
+  display: inline-block;
+  width: 1.5px;
+  height: 1.15em;
+  margin-left: 1px;
+  background: #000000;
+  vertical-align: text-bottom;
+  visibility: hidden;
+}
+
+/* Collaborator caret, with the name flag above it */
+.docs-remote {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 1.15em;
+  border-left: 2px solid #e37400;
+  vertical-align: text-bottom;
+  opacity: 0;
+}
+.docs-remote-label {
+  position: absolute;
+  left: -2px;
+  top: -17px;
+  padding: 1px 5px;
+  border-radius: 3px 3px 3px 0;
+  background: #e37400;
+  color: #ffffff;
+  font: 500 11px/14px "Google Sans", system-ui, sans-serif;
+  white-space: nowrap;
+}
+
+/* Comment card: overlay, rises from the bottom edge */
+.docs-comment {
+  position: absolute;
+  left: 934px;
+  top: 430px;
+  width: 320px;
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  opacity: 0;
+}
+.docs-cc-head { position: relative; height: 24px; }
+.docs-cc-avatar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e37400;
+  color: #ffffff;
+  font: 500 12px/24px "Google Sans", system-ui, sans-serif;
+  text-align: center;
+}
+.docs-cc-name {
+  position: absolute;
+  left: 32px;
+  top: 0;
+  font: 500 13px/24px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+}
+.docs-cc-time {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font: 400 12px/24px "Google Sans", system-ui, sans-serif;
+  color: #444746;
+}
+.docs-cc-body {
+  margin: 10px 0 12px;
+  font: 400 14px/20px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+}
+.docs-cc-reply {
+  height: 36px;
+  line-height: 36px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border-radius: 18px;
+  background: #f0f4f9;
+  font: 400 14px/36px "Google Sans", system-ui, sans-serif;
+  color: #444746;
+}
+
+/* Scrim and share dialog: overlay */
+.docs-scrim {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1280px;
+  height: 720px;
+  background: rgba(31, 31, 31, 0.28);
+  opacity: 0;
+}
+.docs-share-dialog {
+  position: absolute;
+  left: 380px;
+  top: 150px;
+  width: 520px;
+  height: 380px;
+  box-sizing: border-box;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px 3px rgba(60, 64, 67, 0.15), 0 1px 3px rgba(60, 64, 67, 0.3);
+  opacity: 0;
+}
+.docs-sd-title {
+  position: absolute;
+  left: 28px;
+  top: 26px;
+  font: 400 22px/28px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+}
+.docs-sd-input {
+  position: absolute;
+  left: 28px;
+  top: 74px;
+  width: 464px;
+  height: 44px;
+  box-sizing: border-box;
+  padding: 0 14px;
+  border: 1px solid #747775;
+  border-radius: 6px;
+  font: 400 14px/42px "Google Sans", system-ui, sans-serif;
+  color: #5f6368;
+}
+.docs-sd-row {
+  position: absolute;
+  left: 28px;
+  width: 464px;
+  height: 40px;
+}
+.docs-sd-avatar {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #33691e;
+  color: #ffffff;
+  font: 500 14px/32px "Google Sans", system-ui, sans-serif;
+  text-align: center;
+}
+.docs-sd-avatar-p { background: #e37400; }
+.docs-sd-who {
+  position: absolute;
+  left: 44px;
+  top: 10px;
+  font: 400 14px/20px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+  white-space: nowrap;
+}
+.docs-sd-role {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  font: 400 14px/20px "Google Sans", system-ui, sans-serif;
+  color: #444746;
+}
+.docs-sd-access {
+  position: absolute;
+  left: 28px;
+  top: 262px;
+  width: 464px;
+  height: 44px;
+}
+.docs-sd-access .ic { left: 0; top: 0; color: #444746; }
+.docs-sd-access-text {
+  position: absolute;
+  left: 34px;
+  top: 0;
+  font: 400 12px/16px "Google Sans", system-ui, sans-serif;
+  color: #444746;
+}
+.docs-sd-access-text b { font-weight: 500; color: #1f1f1f; font-size: 14px; }
+.docs-sd-foot { position: absolute; left: 0; top: 0; width: 520px; height: 380px; pointer-events: none; }
+.docs-sd-copy {
+  position: absolute;
+  left: 28px;
+  top: 326px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 14px/20px "Google Sans", system-ui, sans-serif;
+  color: #0b57d0;
+}
+.docs-sd-copy .ic { position: static; color: #0b57d0; }
+.docs-sd-done {
+  position: absolute;
+  right: 28px;
+  top: 320px;
+  height: 36px;
+  padding: 0 24px;
+  border-radius: 18px;
+  background: #0b57d0;
+  color: #ffffff;
+  font: 500 14px/36px "Google Sans", system-ui, sans-serif;
+}
+
+/* Toast */
+.docs-toast {
+  position: absolute;
+  left: 640px;
+  top: 650px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #1f1f1f;
+  color: #ffffff;
+  font: 400 14px/20px "Google Sans", system-ui, sans-serif;
+  white-space: nowrap;
+  transform: translate(-50%, 0);
+  opacity: 0;
+}

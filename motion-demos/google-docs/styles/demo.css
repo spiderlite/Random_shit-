@@ -1,0 +1,179 @@
+/* Stage: a fixed 1920x1080 composition, scaled to fit the viewport. The renderer
+   captures the stage at 1920x1080, so the scale is 1 there. */
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #d7dee9;
+  overflow: hidden;
+}
+
+#stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  transform-origin: 0 0;
+  background: #e8eef7;
+  -webkit-font-smoothing: antialiased;
+}
+
+#ground {
+  position: absolute;
+  inset: 0;
+  background: #e8eef7;
+}
+
+/* Hook headline, centred above the card */
+.hook {
+  position: absolute;
+  left: 0;
+  top: 300px;
+  width: 1920px;
+  margin: 0;
+  text-align: center;
+}
+.hook-line {
+  margin: 0;
+  font: 500 68px/78px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+  letter-spacing: -0.01em;
+  opacity: 0;
+}
+
+/* Window frame: the card that morphs into the app. Geometry is set per frame. */
+#window {
+  position: absolute;
+  left: 860px;
+  top: 500px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 40px;
+  background: #f8fafd;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.25), 0 8px 28px rgba(60, 64, 67, 0.22);
+}
+
+/* Captions above the window */
+.caption {
+  position: absolute;
+  left: 0;
+  top: 64px;
+  width: 1920px;
+  margin: 0;
+  text-align: center;
+  font: 500 52px/64px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  white-space: nowrap;
+}
+.caption .w {
+  display: inline-block;
+  margin: 0 0.12em;
+  opacity: 0;
+}
+
+/* Pointer and click ring. Positioned in stage coordinates each frame. */
+#pointer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(31, 31, 31, 0.35));
+}
+#pointer svg { display: block; }
+#click-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-radius: 50%;
+  border: 2px solid #1a73e8;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Anchor mark: the Docs icon, moved between scenes */
+#anchor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 120px;
+  opacity: 0;
+  filter: drop-shadow(0 4px 10px rgba(31, 31, 31, 0.12));
+}
+#anchor img { display: block; height: 100%; width: auto; }
+
+/* Outro */
+.outro {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+}
+#outro-line {
+  position: absolute;
+  left: 0;
+  top: 640px;
+  width: 1920px;
+  margin: 0;
+  text-align: center;
+  font: 500 80px/92px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+#outro-line .w { display: inline-block; opacity: 0; margin: 0 0.1em; }
+#outro-note {
+  position: absolute;
+  left: 0;
+  top: 960px;
+  width: 1920px;
+  margin: 0;
+  text-align: center;
+  font: 400 20px/28px "Google Sans", system-ui, sans-serif;
+  color: #444746;
+  opacity: 0;
+}
+
+/* Player: outside the stage, for the browser only */
+#player {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  font: 500 13px/20px "Google Sans", system-ui, sans-serif;
+  color: #1f1f1f;
+}
+#player button {
+  height: 30px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 15px;
+  background: #0b57d0;
+  color: #ffffff;
+  font: 500 13px/30px "Google Sans", system-ui, sans-serif;
+  cursor: pointer;
+}
+#player input[type="range"] { width: 260px; accent-color: #0b57d0; }
+#player #clock { min-width: 110px; font-variant-numeric: tabular-nums; color: #444746; }
+
+body.capture #player { display: none; }
