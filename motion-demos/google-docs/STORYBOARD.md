@@ -26,7 +26,7 @@ The piece has one message: **Docs is where a team writes together, in real time.
 | 2 | 3.40 to 9.00 | Highlight | "Write it together." | Document typing with a second cursor | Morph: card expands to full window |
 | 3 | 9.00 to 14.20 | Showcase: format | "Format in one click." | Bold button and the selected word | Hard cut inside the app (same frame) |
 | 4 | 14.20 to 20.20 | Showcase: comment | "Comment on the exact words." | Commented sentence and its card | Overlay: card rises from bottom |
-| 5 | 20.20 to 25.20 | Showcase: share | "Share it in one click." | Share dialog | Overlay: dialog rises from bottom |
+| 5 | 20.20 to 25.20 | Showcase: share | "Share it with one link." | Share dialog | Overlay: dialog rises from bottom |
 | 6 | 25.20 to 30.00 | Outro | "Write together." | Anchor mark, centred | Match cut: anchor carries across |
 
 Skeleton check against guide 09 rule 1 (hook 0 to 3, highlight 3 to 8, showcase 8 to 20, outro 20 to 30): the piece follows that skeleton within about half a second at each boundary.
@@ -52,9 +52,9 @@ Answered for every scene, in order.
 1. Communicates: several people write in one document.
 2. Looks first at: the typing title and body text, centred in the window.
 3. Enters first: the window (morph ends at 3.40), then title typing, then body typing, then the second cursor.
-4. Moves: the caret, the typed text and Priya's cursor. The caption (left gutter) reveals per word.
+4. Moves: the caret, the typed text and Priya's cursor. The caption (above the window) reveals per word, 0.07 s apart.
 5. Stays still: the page holds still; only text changes (guide 10 rule 2).
-6. Attention path: caption (left), typing (centre), second cursor label (right of the caret).
+6. Attention path: caption (top), typing (centre), second cursor label (right of the caret).
 7. Carried from previous: the anchor mark shrinks into the app header logo.
 8. Transition out: hard cut inside the app, no transition needed (same frame).
 9. Product shown: yes, the real Docs layout.
@@ -88,12 +88,12 @@ Answered for every scene, in order.
 11. Designed, not decorated: test passes.
 
 **Scene 5, Showcase: share (20.20 to 25.20)**
-1. Communicates: sharing is one step.
+1. Communicates: sharing takes one link.
 2. Looks first at: the Share button, then the dialog.
 3. Enters first: pointer to Share, then the dialog rising from the bottom.
 4. Moves: pointer, click, dialog, "Copy link" click, toast.
 5. Stays still: the dialog content while the toast is read.
-6. Attention path: Share button, dialog, Copy link button, toast.
+6. Attention path: Share button, dialog, Copy link button, toast. The caption is gone before the Copy link click.
 7. Carried from previous: the page under the dialog, dimmed.
 8. Transition out: the dialog falls, then the match cut.
 9. Product shown: yes, the real share dialog layout.
@@ -118,17 +118,21 @@ Answered for every scene, in order.
 - Text reading (guide 05 rule 5 and 09 rule 2): 0.375 s per word for the read, with a 0.3 s minimum. The hold starts when the last word lands.
   - "Every great doc" (3 words): read 1.13 s. Held from 0.70 s to 2.60 s. Long enough.
   - "starts blank." (2 words): read 0.75 s. Held from 1.40 s to 2.60 s. Long enough.
-  - "Write it together." (3 words): read 1.13 s. Held 0.9 s after the last word lands at 4.6 s, then the cut comes at 6.0 s.
-  - "Format in one click." (4 words): read 1.5 s. Held 2.2 s.
-  - "Comment on the exact words." (5 words): read 1.9 s. Held 2.5 s.
-  - "Share it in one click." (5 words): read 1.9 s. Held 2.5 s.
+  - Captions start before their scene's pointer moves, so each one has landed when the pointer leaves its rest point (guide 12 rule 1; caught in review). Word stagger is 0.07 s.
+  - "Write it together." (3 words): starts 4.00 s, lands 4.49 s, read 1.13 s. Exit starts 8.05 s.
+  - "Format in one click." (4 words): starts 8.40 s, lands 8.96 s, read 1.5 s. The pointer enters at 9.00 s and starts its drag at 9.55 s. Exit starts 11.75 s, after the Bold click at 10.95 s.
+  - "Comment on the exact words." (5 words): starts 13.60 s, lands 14.23 s, read 1.9 s. The pointer begins at 14.50 s. Exit starts 19.15 s.
+  - "Share it with one link." (5 words): starts 19.70 s, lands 20.33 s, read 1.9 s. The pointer begins at 20.40 s. Exit starts 23.25 s, after the Share click (21.25 s) and before Copy link (23.00 s) has finished reading.
+  - Toast "Link copied to clipboard" (4 words): full opacity from 23.50 s, held to 24.90 s (1.4 s, above the 1.2 s floor of 0.3 s per word), then leaves by 25.20 s, before the match cut.
   - "Write together." (2 words): read 0.75 s. Held 3.4 s to the end (guide 12 rule 4).
 - Easing (guide 04 rules 1, 2, 4, 6):
   - Arrivals: `cubic-bezier(0.2, 0, 0, 1)` (ease-out). Duration 420 to 560 ms.
   - Exits: `cubic-bezier(0.3, 0, 0.8, 0.15)` (ease-in), 60% of the arrival time. The guide states the reason is the exit leaves the frame. No source measures this, so it is a test-render choice.
   - Hero move, one per scene: the hook's morph uses `cubic-bezier(0.34, 1.56, 0.64, 1)` with a small overshoot. It is the only overshoot in the piece (guide 04 rule 4).
   - Pointer travel: `cubic-bezier(0.4, 0, 0.2, 1)` (ease-in-out), 520 to 680 ms.
-  - Linear: only the caret's blink (guide 04 rule 3, continuous motion).
+  - Drags (across "Goal:" and the comment sentence): linear, shared by the pointer and the selection wipe, so the highlight never trails the tip (guide 04 rule 3; motion review).
+  - Overlays: the comment card and the share dialog start at the window's bottom edge and ease up into their rest positions over 0.6 s and 0.5 s. They leave faster, over 0.3 s and 0.25 s (guide 03, 04 rule 2).
+  - Linear: the caret blink and the drags (guide 04 rule 3, continuous motion).
 - Stagger: toolbar groups and dialog rows reveal left to right and top to bottom, the order they are read (guide 04 rule 5).
 - Blur: none. The guide keeps blur off by default (guide 04 rule 7).
 - Scale: the morph is the only scale change over 1.5x. Other scale changes are under 6% (guide 04 rule 6).

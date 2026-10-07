@@ -10,6 +10,7 @@ export const CURVE = {
   out: [0.2, 0, 0, 1], // arrivals: quick start, settles into place
   in: [0.3, 0, 0.8, 0.15], // exits: shorter than arrivals, leaves the frame
   inOut: [0.4, 0, 0.2, 1], // pointer travel between two controls
+  linear: [0, 0, 1, 1], // drags: the pointer and the selection wipe share one curve
   overshoot: [0.34, 1.56, 0.64, 1], // the one hero overshoot (the morph)
 };
 

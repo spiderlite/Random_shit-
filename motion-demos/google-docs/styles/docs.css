@@ -125,17 +125,27 @@
 .tb { top: 74px; color: #1f1f1f; z-index: 1; }
 .tb-caret { top: 76px; color: #1f1f1f; }
 .tb.is-active { color: #041e49; }
-.tb.is-active::before {
-  content: "";
+.docs-halo {
   position: absolute;
-  left: -6px;
-  top: -6px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
   background: #d3e3fd;
-  z-index: -1;
+  opacity: 0;
 }
+
+/* Title row: the title is in flow, and the icons follow it, as in Docs */
+.docs-title-row {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  white-space: nowrap;
+}
+.docs-title-row .docs-title,
+.docs-title-row .ic { position: static; }
+.docs-gap-8 { margin-left: 8px; }
+.docs-gap-2 { margin-left: 2px; }
 
 /* Ruler sits over the page top, with blue indent markers */
 .docs-ruler { position: absolute; left: 0; top: 0; width: 1280px; height: 720px; pointer-events: none; }
@@ -285,9 +295,9 @@
 /* Comment card: overlay, rises from the bottom edge */
 .docs-comment {
   position: absolute;
-  left: 934px;
-  top: 430px;
-  width: 320px;
+  left: 1040px;
+  top: 282px;
+  width: 216px;
   padding: 16px;
   box-sizing: border-box;
   border-radius: 8px;

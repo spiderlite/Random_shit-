@@ -36,19 +36,23 @@ const TYPE = {
 // Captions sit above the window, one per feature scene.
 const CAPTIONS = [
   { text: 'Write it together.', start: 4.0, end: 8.3 },
-  { text: 'Format in one click.', start: 9.2, end: 12.0 },
-  { text: 'Comment on the exact words.', start: 14.4, end: 19.9 },
-  { text: 'Share it in one click.', start: 20.4, end: 23.5 },
+  { text: 'Format in one click.', start: 8.4, end: 12.0 },
+  { text: 'Comment on the exact words.', start: 13.6, end: 19.4 },
+  { text: 'Share it with one link.', start: 19.7, end: 23.5 },
 ];
 
 // Clicks, in seconds. Each click draws a ring and drives the state change.
 const CLICKS = { bold: 10.95, comment: 16.1, share: 21.25, copy: 23.0 };
 
+// Rest tops of the overlays inside the window. Keep in sync with docs.css.
+const COMMENT_TOP = 282;
+const SHARE_TOP = 150;
+
 // DOM handles, looked up once.
 let stage, app, win, hook, hookLines, anchor, caption, outroLine, outroNote;
 let pointer, ring, scrim, dialog, toast, shareBtn, commentCard;
 let h1Text, h1Caret, gLabel, gSpace, gSentence, gCaret, riskText, priyaCaret;
-let btnBold, btnComment, copyLink, outroWords = [];
+let btnBold, boldHalo, btnComment, copyLink, outroWords = [];
 let currentCap = null;
 let capWords = [];
 
@@ -86,7 +90,7 @@ const POINTERS = [
     keys: () => [
       [9.0, { x: 1000, y: 600 }],
       [9.55, startOf(gLabel)],
-      [10.0, endOf(gLabel)],
+      [10.0, endOf(gLabel), 'linear'],
       [10.45, centerOf(btnBold)],
       [11.5, centerOf(btnBold)],
     ],
@@ -97,7 +101,7 @@ const POINTERS = [
     clicks: [CLICKS.comment],
     keys: () => [
       [14.5, startOf(gSentence)],
-      [15.1, endOf(gSentence)],
+      [15.1, endOf(gSentence), 'linear'],
       [15.7, centerOf(btnComment)],
       [16.5, centerOf(btnComment)],
     ],
@@ -120,9 +124,9 @@ function pointerPos(keys, t) {
   if (t <= keys[0][0]) return keys[0][1];
   for (let i = 0; i < keys.length - 1; i++) {
     const [t0, p0] = keys[i];
-    const [t1, p1] = keys[i + 1];
+    const [t1, p1, curve = 'inOut'] = keys[i + 1];
     if (t < t1) {
-      const e = ease('inOut', (t - t0) / (t1 - t0));
+      const e = ease(curve, (t - t0) / (t1 - t0));
       return { x: p0.x + (p1.x - p0.x) * e, y: p0.y + (p1.y - p0.y) * e };
     }
   }
@@ -267,24 +271,26 @@ function renderApp(t) {
 
   // Bold, selection and comment highlight.
   gLabel.classList.toggle('is-bold', t >= CLICKS.bold);
-  const labelSel = t < 9.6 ? 0 : t < 10.0 ? ease('inOut', (t - 9.6) / 0.4) : t < 11.6 ? 1 : 0;
+  const labelSel = t < 9.55 ? 0 : t < 10.0 ? (t - 9.55) / 0.45 : t < 11.6 ? 1 : 0;
   gLabel.style.backgroundSize = `${labelSel * 100}% 100%`;
 
   const commented = t >= CLICKS.comment;
-  const sentSel = t < 14.5 ? 0 : t < 15.1 ? ease('inOut', (t - 14.5) / 0.6) : commented ? 0 : 1;
+  const sentSel = t < 14.5 ? 0 : t < 15.1 ? (t - 14.5) / 0.6 : commented ? 0 : 1;
   gSentence.classList.toggle('commented', commented);
   gSentence.style.backgroundSize = commented ? '100% 100%' : `${sentSel * 100}% 100%`;
 
-  btnBold.classList.toggle('is-active', t >= CLICKS.bold && t < 14.2);
+  const boldOn = t >= CLICKS.bold && t < 14.2;
+  btnBold.classList.toggle('is-active', boldOn);
+  boldHalo.style.opacity = boldOn ? 1 : 0;
 
   // Comment card: overlay, rises from the bottom edge, leaves faster than it arrived.
   let ccA = 0;
-  let ccY = 40;
+  let ccY = WIN.h - COMMENT_TOP;
   if (t >= 16.2 && t < 19.7) {
     const enter = ease('out', (t - 16.2) / 0.6);
     const exit = t >= 19.4 ? ease('in', (t - 19.4) / 0.3) : 0;
     ccA = enter * (1 - exit);
-    ccY = (1 - enter) * 40 + exit * 16;
+    ccY = (1 - enter) * (WIN.h - COMMENT_TOP) + exit * 16;
   }
   commentCard.style.opacity = ccA;
   commentCard.style.transform = `translateY(${ccY}px)`;
@@ -298,10 +304,10 @@ function renderApp(t) {
   const dIn = t >= 21.5 ? ease('out', (t - 21.5) / 0.5) : 0;
   const dOut = t >= 24.7 ? ease('in', (t - 24.7) / 0.25) : 0;
   dialog.style.opacity = dIn * (1 - dOut);
-  dialog.style.transform = `translateY(${(1 - dIn) * 40 + dOut * 24}px)`;
+  dialog.style.transform = `translateY(${(1 - dIn) * (WIN.h - SHARE_TOP) + dOut * 24}px)`;
 
   const tIn = t >= 23.1 ? ease('out', (t - 23.1) / 0.4) : 0;
-  const tOut = t >= 24.4 ? ease('in', (t - 24.4) / 0.3) : 0;
+  const tOut = t >= 24.9 ? ease('in', (t - 24.9) / 0.3) : 0;
   toast.style.opacity = tIn * (1 - tOut);
   toast.style.transform = `translate(-50%, ${(1 - tIn) * 16 + tOut * 12}px)`;
 }
@@ -327,7 +333,7 @@ function renderCaption(t) {
   }
   caption.style.opacity = t > cap.end - 0.25 ? 1 - ease('in', (t - (cap.end - 0.25)) / 0.25) : 1;
   capWords.forEach((node, i) => {
-    const p = ease('out', (t - (cap.start + i * 0.12)) / 0.35);
+    const p = ease('out', (t - (cap.start + i * 0.07)) / 0.35);
     node.style.opacity = p;
     node.style.transform = `translateY(${(1 - p) * 12}px)`;
   });
@@ -388,6 +394,7 @@ async function init() {
   riskText = $('risk-text');
   priyaCaret = $('priya-caret');
   btnBold = $('btn-bold');
+  boldHalo = $('bold-halo');
   btnComment = $('btn-comment');
   copyLink = $('copy-link');
 
@@ -407,16 +414,6 @@ async function init() {
 
   await document.fonts.ready;
   await anchor.querySelector('img').decode().catch(() => {});
-
-  // Title row: star, folder and cloud follow the title's measured width, as in Docs.
-  const titleW = rectIn($('doc-title')).w;
-  const star = document.querySelector('[data-icon="star"]');
-  const folder = document.querySelector('[data-icon="drive_file_move"]');
-  const cloud = document.querySelector('[data-icon="cloud_done"]');
-  const starX = 62 + titleW + 8;
-  star.style.left = `${starX}px`;
-  folder.style.left = `${starX + 26}px`;
-  cloud.style.left = `${starX + 58}px`;
 
   document.body.dataset.ready = '1';
 }
@@ -478,7 +475,9 @@ function setupPlayer() {
 
   const tick = (now) => {
     if (playing) {
-      t += (now - last) / 1000;
+      // Clamp the step: rAF stops in a hidden tab, and the first frame back
+      // would otherwise jump the piece by the whole absence.
+      t += Math.min((now - last) / 1000, 0.1);
       if (t >= DURATION) {
         t = DURATION;
         playing = false;
